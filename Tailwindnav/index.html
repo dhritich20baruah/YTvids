@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="input.css">
+    <title>Tailwind Nav</title>
+</head>
+<body>
+    <section class="bg-gradient-to-r from-purple-500 to-pink-500 h-[100vh]">
+        <nav class="hidden md:block">
+            <ul class="flex flex-row space-x-3 text-white bg-indigo-800">
+                <li></li>
+                <li>Home</li>
+                <li>About</li>
+                <li>Services</li>
+                <li>Contact</li>
+            </ul>
+        </nav>
+        <div class="relative">
+            <div id="hamburger" class="w-11 h-8 px-2 py-1 space-y-1 border-2 border-solid rounded border-white m-2 md:hidden sm:block" onclick="show()">
+                <div class="bg-white w-6 h-1"></div>
+                <div class="bg-white w-6 h-1"></div>
+                <div class="bg-white w-6 h-1"></div>
+            </div>
+            <div class="bg-indigo-800 h-[100vh] w-40 pt-3 absolute top-0 left-0 hidden" id="menu">
+                <h1 class="text-white text-right mr-3" onclick="show()">X</h1>
+                <ul class="flex flex-col space-x-3 space-y-3 text-white bg-indigo-800">
+                    <li></li>
+                    <li>Home</li>
+                    <li>About</li>
+                    <li>Services</li>
+                    <li>Contact</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <script>
+        let menu = document.getElementById("menu");
+        function show(){
+            menu.classList.toggle("hidden")
+        }
+    </script>
+</body>
+</html>

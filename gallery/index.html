@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css">
+		<title>codedamn Project</title>
+	</head>
+	<body>
+		<section id="main-part">
+			<main>
+				<div class="img-div" onclick="openModal();currentImg(1)">
+					<img src="/assets/images/01.jpg" alt=""/>
+					<h3 class="img-title">MAGNA FEUGIAT LOREM</h3>
+				</div>
+				<div class="img-div" onclick="openModal();currentImg(2)">
+					<img src="/assets/images/02.jpg" alt=""/>
+					<h3 class="img-title">NISL ADIPISCING</h3>
+				</div>
+				<div class="img-div" onclick="openModal();currentImg(3)">
+					<img src="/assets/images/03.jpg" alt=""/>
+					<h3 class="img-title">TEMPUS ALIQUAM VEROEROS</h3>
+				</div>
+				<div class="img-div" onclick="openModal();currentImg(4)">
+					<img src="/assets/images/04.jpg" alt=""/>
+					<h3 class="img-title">ALIQUAM IPSUM SED DOLORE</h3>
+				</div>
+				<div class="img-div" onclick="openModal();currentImg(5)">
+					<img src="/assets/images/05.jpg" alt=""/>
+					<h3 class="img-title">CURSIS ALIQUAM NISL</h3>
+				</div>
+				<div class="img-div" onclick="openModal();currentImg(6)">
+					<img src="/assets/images/06.jpg" alt=""/>
+					<h3 class="img-title">SED CONSEQUAT PHASELLUS</h3>
+				</div>
+				<div class="img-div" onclick="openModal();currentImg(7)">
+					<img src="/assets/images/07.jpg" alt=""/>
+					<h3 class="img-title">MAURIS ID TELLUS ARCU</h3>
+				</div>
+				<div class="img-div" onclick="openModal();currentImg(8)">
+					<img src="/assets/images/08.jpg" alt=""/>
+					<h3 class="img-title">NUNC VEHICULA ID NULLA</h3>
+				</div>
+				<div class="img-div" onclick="openModal();currentImg(9)">
+					<img src="/assets/images/09.jpg" alt=""/>
+					<h3 class="img-title">NEQUE ET FAUCIBUS VIVERRA</h3>
+				</div>
+				<div class="img-div" onclick="openModal();currentImg(10)">
+					<img src="/assets/images/10.jpg" alt=""/>
+					<h3 class="img-title">MATTIS ANTE FERMENTUM</h3>
+				</div>
+				<div class="img-div" onclick="openModal();currentImg(11)">
+					<img src="/assets/images/11.jpg" alt=""/>
+					<h3 class="img-title">SED AC ELEMENTUM ARCU</h3>
+				</div>
+				<div class="img-div" onclick="openModal();currentImg(12)">
+					<img src="/assets/images/12.jpg" alt=""/>
+					<h3 class="img-title">VEHICULA ID NULLA DIGNISSIM</h3>
+				</div>
+				<div id="modal">
+					<div class="modal-img" onclick="closeModal();closeImg(1)">
+						<img src="/assets/images/01.jpg" alt="" id="img1">
+					</div>
+					<div class="modal-img" onclick="closeModal();closeImg(2)">
+						<img src="/assets/images/02.jpg" alt="" id="img2">
+					</div>
+					<div class="modal-img" onclick="closeModal();closeImg(3)">
+						<img src="/assets/images/03.jpg" alt="" id="img3">
+					</div>
+					<div class="modal-img" onclick="closeModal();closeImg(4)">
+						<img src="/assets/images/04.jpg" alt="" id="img4">
+					</div>
+					<div class="modal-img" onclick="closeModal();closeImg(5)">
+						<img src="/assets/images/05.jpg" alt="" id="img5">
+					</div>
+					<div class="modal-img" onclick="closeModal();closeImg(6)">
+						<img src="/assets/images/06.jpg" alt="" id="img6">
+					</div>
+					<div class="modal-img" onclick="closeModal();closeImg(7)">
+						<img src="/assets/images/07.jpg" alt="" id="img7">
+					</div>
+					<div class="modal-img" onclick="closeModal();closeImg(8)">
+						<img src="/assets/images/08.jpg" alt="" id="img8">
+					</div>
+					<div class="modal-img" onclick="closeModal();closeImg(9)">
+						<img src="/assets/images/09.jpg" alt="" id="img9">
+					</div>
+					<div class="modal-img" onclick="closeModal();closeImg(10)">
+						<img src="/assets/images/10.jpg" alt="" id="img10">
+					</div>
+					<div class="modal-img" onclick="closeModal();closeImg(11)">
+						<img src="/assets/images/11.jpg" alt="" id="img11">
+					</div>
+					<div class="modal-img" onclick="closeModal();closeImg(12)">
+						<img src="/assets/images/12.jpg" alt="" id="img12">
+					</div>
+				</div>
+			</main>
+			<footer>
+				<div class="footer-note">
+					<p><span id="multi">MULTIVERSE</span> BY HTML5 UP</p>
+					<p>ABOUT <span id="info">i</span></p>
+				</div>
+			</footer>
+		</section>
+		<script>
+			function openModal(){
+				document.getElementById("modal").style.display = "block"
+			}
+			function closeModal(){
+				document.getElementById("modal").style.display = "none"
+			}
+			function currentImg(n){
+				document.getElementById(`img${n}`).style.display = "block"
+			}
+			function closeImg(n){
+				document.getElementById(`img${n}`).style.display = "none"
+			}
+		</script>
+	</body>
+</html>

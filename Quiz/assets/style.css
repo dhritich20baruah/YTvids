@@ -1,0 +1,98 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana;
+}
+header{
+    background-color: #218380;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 1em
+}
+main{
+    display: flex;
+}
+#quiz-card, #start-card, #score-card{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5em;
+}
+#card, #start{
+    display: flex;
+    flex-direction: column;
+    width:80vw;
+    border: 2px solid grey;
+    border-radius: 10px;
+    padding: 3em;
+    box-shadow: 0 0 5px grey;
+}
+#score-card{
+    width:80vw;
+    border: 2px solid grey;
+    border-radius: 10px;
+    padding: 3em;
+    box-shadow: 0 0 5px grey;
+}
+#leaderboard{
+    text-decoration: none;
+    color: white;
+    padding-top: 20px;
+}
+#start-card button{
+    width: fit-content
+}
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}
+#questions{
+    font-size: 24px;
+    text-align: left;
+}
+#options{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.btn{
+    background-color: #218380;
+    color: white;
+    text-align: left;
+    border: none;
+    height: 3em;
+    margin: 0.5em;
+    padding: 0.3em;
+    border-radius: 5px;
+}
+#next{
+    width: fit-content;
+    background-color: red;
+    color: white;
+    border: none;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+#highscores{
+    display: flex;
+    flex-direction: column;
+    width: 60vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10em;
+    border: 2px solid grey;
+    border-radius: 10px;
+    box-shadow: 0 0 5px grey;
+    padding: 3em;
+}
+#highscores button{
+    background-color: #218380;
+    padding: 0.5em;
+    border: none;
+    color: white;
+    border-radius: 5px;
+}

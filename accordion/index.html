@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion</title>
+</head>
+<style>
+    body{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: 'Lucida Sans'
+    }
+    .hide{
+        display: none;
+    }
+    .show{
+        display: block;
+    }
+    div{
+        width: 75vw;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .title{
+        background-color: indigo;
+        color: white;
+        padding: 0.25em 1em;
+        margin-top: 5px;
+        cursor: pointer;
+    }
+    .para{
+        text-align: justify;
+        padding: 0 1em;
+        width:72vw
+    }
+</style>
+<body>
+    <div>
+        <div class="title" onclick="display(0)">
+            <h3>First Title</h3>
+        </div>
+        <div class="para">
+            <p class="hide">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum atque quis harum tenetur perspiciatis voluptates reprehenderit ex quisquam eaque, veritatis esse quas illo quia neque minus nisi repellat. Sit voluptatem quaerat harum repudiandae ipsa dolore reprehenderit fuga quibusdam ducimus error expedita similique delectus aperiam, quia cum nisi vel in. Accusamus.
+            </p>
+        </div>
+    </div>
+    <div>
+         <div class="title" onclick="display(1)">
+            <h3>Second Title</h3>
+        </div>
+        <div class="para">
+            <p class="hide">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum atque quis harum tenetur perspiciatis voluptates reprehenderit ex quisquam eaque, veritatis esse quas illo quia neque minus nisi repellat. Sit voluptatem quaerat harum repudiandae ipsa dolore reprehenderit fuga quibusdam ducimus error expedita similique delectus aperiam, quia cum nisi vel in. Accusamus.
+            </p>
+        </div>
+    </div>
+    <div>
+         <div class="title" onclick="display(2)">
+            <h3>Third Title</h3>
+        </div>
+        <div class="para">
+            <p class="hide">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum atque quis harum tenetur perspiciatis voluptates reprehenderit ex quisquam eaque, veritatis esse quas illo quia neque minus nisi repellat. Sit voluptatem quaerat harum repudiandae ipsa dolore reprehenderit fuga quibusdam ducimus error expedita similique delectus aperiam, quia cum nisi vel in. Accusamus.
+            </p>
+        </div>
+    </div>
+    <div>
+         <div class="title" onclick="display(3)">
+            <h3>Fourth Title</h3>
+        </div>
+        <div class="para">
+            <p class="hide">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum atque quis harum tenetur perspiciatis voluptates reprehenderit ex quisquam eaque, veritatis esse quas illo quia neque minus nisi repellat. Sit voluptatem quaerat harum repudiandae ipsa dolore reprehenderit fuga quibusdam ducimus error expedita similique delectus aperiam, quia cum nisi vel in. Accusamus.
+            </p>
+        </div>
+    </div>
+    <div>
+         <div class="title" onclick="display(4)">
+            <h3>Fifth Title</h3>
+        </div>
+        <div class="para">
+            <p class="hide">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum atque quis harum tenetur perspiciatis voluptates reprehenderit ex quisquam eaque, veritatis esse quas illo quia neque minus nisi repellat. Sit voluptatem quaerat harum repudiandae ipsa dolore reprehenderit fuga quibusdam ducimus error expedita similique delectus aperiam, quia cum nisi vel in. Accusamus.
+            </p>
+        </div>
+    </div>
+    <script>
+        let title = document.querySelectorAll('h3');
+        let para = document.querySelectorAll('p');
+        let titleLen = title.length;
+        let paraLen = para.length;
+        //to show the first item by default
+        para[0].classList.toggle('hide')
+
+        //The following function displays the paragraph when the title os clicked
+        function display(i){
+            para[i].classList.toggle('hide');
+
+            //To hide the item that is already being displayed and show only th eitem that is being clicked on. I am going to use a for loop.
+            //The loop will add the class hide to all the elements with p tag.
+            //But when the index of para is equal to i(i.e. yhe one being clicked on) it will skip it keeping it displayed.
+
+            for(var j = 0; j < paraLen; j++){
+                if(j == i){
+                    continue;
+                }
+                if(!para[j].classList.contains('hide')){
+                    para[j].classList.add('hide')
+                }
+            }
+        }
+    </script>
+</body>
+</html>
