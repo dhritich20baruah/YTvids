@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins&display=swap');
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    background: url('/static/background.jpg')no-repeat center center/cover fixed;
+    display: grid;
+    justify-content: center;
+}
+h2{
+    text-align: center;
+    color: white;
+    text-shadow: 0 0 10px black;
+}
+.firstSet{
+    background-color: beige;
+    width: 80vw;
+    border: none;
+    box-shadow: 0 0 3px yellow;
+    padding: 3em;
+}
+.inputField{
+    width: 60vw;
+    height: 2.5em;
+    border: none;
+    margin-left: 2em;
+    padding: 0.5em;
+}
+label{
+    font-weight: bold;
+}
+.btn{
+    max-width: fit-content;
+    color: white;
+    font-weight: bold;
+    background-color: orange;
+    border: none;
+    padding: 1em;
+    margin: 1em;
+}
+.btn:hover{
+    cursor: pointer;
+    background-color: orangered;
+}
+
+#details{
+    display: flex;
+    width: 70vw;
+    background: blue;
+    margin: 3em;
+    justify-content: space-evenly;
+}
+#pic{
+    object-fit: cover;
+    max-width: 40%
+}
+#pic img{
+    width: 15em;
+    height: 15em;
+    margin: 5px;
+}
+#info{
+    width: 60%;
+    margin: 0 2.5em;
+}
+#info h3{
+    text-align: center;
+}
+td{
+    border: 2px solid white;
+    width: 5em;
+    height: 2em;
+}

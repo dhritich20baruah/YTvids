@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partial/head.ejs') %>
+<body>
+    <section id="formSection">
+        <h2>Sign Up for Tech Conclave</h2>
+        <fieldset class="firstSet">
+            <form action="/participate" method="post" enctype="multipart/form-data">
+            <label for="name">Name</label>
+            <input class="inputField" type="text" name="name" id="name" autofocus placeholder="Name" autocomplete="on" required>
+            <br><br>
+            <label for="email">Email</label>
+            <input class="inputField" type="email" id="email" placeholder="Email ID"  autocomplete="on" required>
+            <br><br>
+            <label for="phone">Phone</label>
+            <input class="inputField" type="tel" name="phone" id="phone" placeholder="Phone No.">
+            <br><br>
+            <label for="organisation">Organisation</label>
+            <input class="inputField" type="text" name="organisation" id="organisation" placeholder="Organisation">
+            <br><br>    
+            <label for="topic">Topic of interest</label>
+            <br>
+            <input type="radio" name="topic" id="webdev" value="Web development">Web development
+            <input type="radio" name="topic" id="appDev" value="Mobile App Development">Mobile App development
+            <input type="radio" name="topic" id="gameDev" value="Game Development">Game development
+            <input type="radio" name="topic" id="dataScience" value="Data Science">Data Science
+            <input type="radio" name="topic" id="ml" value="Machine Learning">Machine Learning
+            <br><br>
+            <label for="photo" class="form-label">Upload Your Photograph</label>
+            <input class='pic' type="file" name="photo"
+                id='photo' multiple>
+                <button class="btn" type="submit">Submit</button>
+            </form>
+        </fieldset>
+    </section>
+</body>
+</html>

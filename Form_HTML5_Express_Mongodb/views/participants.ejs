@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partial/head.ejs') %>
+<body>
+    <% if(data.length> 0){ %>
+        <% for (let i=0; i<data.length; i++){ %>
+    <div id="details">
+        <div id="pic">
+            <img src="<%= data[i].photopath %>" alt="">
+        </div>
+        <div id="info">
+            <h3>TECH CONCLAVE 2022</h3>
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td> <%=data[i].name %></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td> <%=data[i].email %></td>
+                </tr>
+                <tr>
+                    <td>Phone:</td>
+                    <td> <%=data[i].phone %></td>
+                </tr>
+                <tr>
+                    <td>Topic:</td>
+                    <td> <%=data[i].topic %></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <% }%>
+    <% } %>
+</body>
+</html>
