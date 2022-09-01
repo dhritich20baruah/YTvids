@@ -8,7 +8,6 @@ const participantSchema = new mongoose.Schema({
     email: {
         type: String,
         require: true,
-        unique: true
     },
     phone: {
         type: Number,

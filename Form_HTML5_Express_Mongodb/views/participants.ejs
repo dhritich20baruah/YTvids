@@ -2,6 +2,7 @@
 <html lang="en">
 <%- include('./partial/head.ejs') %>
 <body>
+    <a href="/"><button class="btn">HOME</button></a>
     <% if(data.length> 0){ %>
         <% for (let i=0; i<data.length; i++){ %>
     <div id="details">
@@ -29,6 +30,12 @@
                 </tr>
             </table>
         </div>
+        <form action="/deleteData/<%= data[i].id%>">
+            <button type="submit" class="btn">DELETE</button>
+        </form>
+        <a href="/editData/<%= data[i].id %>"
+            ><button class="btn btn-warning">EDIT</button></a
+          >
     </div>
     <% }%>
     <% } %>

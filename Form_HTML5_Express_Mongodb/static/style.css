@@ -46,8 +46,9 @@ label{
 
 #details{
     display: flex;
-    width: 70vw;
-    background: blue;
+    min-width: 50vw;
+    height: auto;
+    background: rgb(3, 3, 92);
     margin: 3em;
     justify-content: space-evenly;
 }
@@ -61,14 +62,16 @@ label{
     margin: 5px;
 }
 #info{
-    width: 60%;
+    max-width: 60%;
     margin: 0 2.5em;
 }
 #info h3{
     text-align: center;
+    color: white;
 }
 td{
-    border: 2px solid white;
-    width: 5em;
+    width: fit-content;
     height: 2em;
+    padding: 5px;
+    color: white;
 }

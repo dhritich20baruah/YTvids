@@ -5,18 +5,18 @@
     <section id="formSection">
         <h2>Sign Up for Tech Conclave</h2>
         <fieldset class="firstSet">
-            <form action="/participate" method="post" enctype="multipart/form-data">
+            <form action="/<%= data._id %>?_method=PUT" method="post" enctype="multipart/form-data">
             <label for="name">Name</label>
-            <input class="inputField" type="text" name="name" id="name" autofocus placeholder="Name" autocomplete="on" required>
+            <input class="inputField" type="text" name="name" id="name" placeholder="Name" required value="<%= data.name %>">
             <br><br>
             <label for="email">Email</label>
-            <input class="inputField" type="email" id="email" placeholder="Email ID"  autocomplete="on" required name="email">
+            <input class="inputField" type="email" id="email" placeholder="Email ID"  value="<%= data.email %>" required name="email">
             <br><br>
             <label for="phone">Phone</label>
-            <input class="inputField" type="tel" name="phone" id="phone" placeholder="Phone No.">
+            <input class="inputField" type="tel" name="phone" id="phone" placeholder="Phone No." value="<%= data.phone %>">
             <br><br>
             <label for="organisation">Organisation</label>
-            <input class="inputField" type="text" name="organisation" id="organisation" placeholder="Organisation">
+            <input class="inputField" type="text" name="organisation" id="organisation" placeholder="Organisation" value="<%= data.organisation %>">
             <br><br>    
             <label for="topic">Topic of interest</label>
             <br>
@@ -28,7 +28,7 @@
             <br><br>
             <label for="photo" class="form-label">Upload Your Photograph</label>
             <input class='pic' type="file" name="photo"
-                id='photo' multiple>
+                id='photo' multiple value="<%= data.photopath %>">
                 <br><br>
                 <button class="btn" type="submit">Submit</button>
             </form>
