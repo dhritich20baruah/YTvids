@@ -70,7 +70,7 @@ app.get('/participants', (req, res)=>{
         }else{
             res.render('participants', {data: data})
         }
-    })
+    }).sort({createdAt: 'desc'})
 })
 
 app.get('/deleteData/:id', (req, res)=>{  
@@ -88,21 +88,24 @@ app.get('/editData/:id', async (req, res) => {
     res.render('edit', { data: data })
 })
 
-app.put('/:id', async (req, res, next) => {
+app.put('/editData/:id',upload.single('photo'), async (req, res, next) => {
     req.data = await Participant.findByIdAndUpdate(req.params.id)
-    next()
-  }, saveArticleAndRedirect())
-
-app.param('id', function(req, res, next, id){
-    Participant.findById(id, function(err, data){
-        if(err) res.json(err);
-        else
-        {
-            req.data = data;
-            next()
+    let data = req.data
+        data.name = req.body.name
+        data.email = req.body.email
+        data.phone = req.body.phone
+        data.topic = req.body.topic
+        data.photo = req.file.photo
+        data.photopath = 'static/' + req.file.originalname;    
+        console.log(data)    
+        try {
+            data = await data.save()
+            res.redirect('/participants')
+        } catch (e) {
+            res.render('edit', { data: data })
         }
-    })
-})
+  })
+
   
 function saveArticleAndRedirect() {
     return async (req, res) => {
@@ -111,7 +114,8 @@ function saveArticleAndRedirect() {
         data.email = req.body.email
         data.phone = req.body.phone
         data.topic = req.body.topic
-        data.photo = req.body.photo    
+        data.photo = req.file.photo
+        data.photopath = 'static/' + req.file.originalname;    
         console.log(data)    
         try {
             data = await data.save()

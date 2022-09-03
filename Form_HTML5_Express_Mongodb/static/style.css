@@ -53,12 +53,12 @@ label{
     justify-content: space-evenly;
 }
 #pic{
-    object-fit: cover;
     max-width: 40%
 }
 #pic img{
     width: 15em;
     height: 15em;
+    object-fit: cover;
     margin: 5px;
 }
 #info{

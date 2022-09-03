@@ -23,10 +23,10 @@ const participantSchema = new mongoose.Schema({
     photopath: {
         type: String
     },
-    date:{
+    createdAt: {
         type: Date,
         default: Date.now
-    }
+    },
 })
 
 const Participant = mongoose.model('Participant', participantSchema);
