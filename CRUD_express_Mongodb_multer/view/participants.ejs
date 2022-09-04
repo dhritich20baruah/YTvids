@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+<body>
+    <a href="/">
+        <button class="btn">HOME</button>
+    </a>
+
+    <div id="details">
+        <div id="pic">
+            <img src="/static/background.jpg" alt="">
+        </div>
+        <div id="info">
+            <h3>TECH CONCLAVE 2022</h3>
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td>John</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>John@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>Phone:</td>
+                    <td>9999999999</td>
+                </tr>
+                <tr>
+                    <td>Topic:</td>
+                    <td>Web Dev</td>
+                </tr>
+            </table>
+        </div>
+        <form action="">
+            <button class="btn" type="submit">DELETE</button>
+        </form>
+        <a href="/edit">
+            <button class="btn">EDIT</button>
+        </a>
+    </div>
+</body>
+</html>

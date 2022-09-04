@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+<body>
+    <section id="formSection">
+        <h2>Sign Up for Tech Conclave</h2>
+        <fieldset class="firstSet">
+            <form action="" method="post">
+                <label for="name">Name</label>
+                <input class="inputField" type="text" name="name" id="name" placeholder="Enter your name" required>
+                <br><br>
+                <label for="email">Email</label>
+                <input class="inputField" type="email" name="email" id="email" placeholder="Enter your email" required>
+                <br><br>
+                <label for="phone">Phone</label>
+                <input class="inputField" type="tel" name="phone" id="phone" placeholder="Your phone number" required>
+                <br><br>
+                <label for="">Field of interest</label>
+                <br>
+                <input type="radio" name="topic" id="webDev" value="Web Development"> Web Development
+                <input type="radio" name="topic" id="appDev" value="Mobile App Development"> Mobile App Development
+                <input type="radio" name="topic" id="dataSc" value="Data Science"> Data Science
+                <input type="radio" name="topic" id="mcLearning" value="Machine Learning"> Machine Learning
+                <input type="radio" name="topic" id="gameDev" value="Game Development"> Game Development
+                <br><br>
+                <label for="photo">Upload Photograph</label>
+                <input class="inputField" type="file" name="photo" id="photo" class="pic" multiple>
+                <br><br>
+                <button type="submit" class="btn">SUBMIT</button>
+            </form>
+        </fieldset>
+        <a href="/participants">
+            <button class="btn">VIEW PARTICIPANTS >></button>
+        </a>
+    </section>
+</body>
+</html>
