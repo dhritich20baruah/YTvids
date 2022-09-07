@@ -1,12 +1,11 @@
-const express = require('express')
-const app = express()
+const express = require('express')// Bringing in the express framework
+const app = express()//Initializing the framework and declaring it to const called app
 const ejs = require('ejs')
 const multer = require('multer')
 const mongoose = require('mongoose')
 const path = require('path')
 const methodOverride = require('method-override')
-const bodyParser = require('body-parser')
-const PORT = 8050
+const PORT = 8050//declaring port 8050 as const PORT
 
 var fs = require('fs')
 
@@ -18,32 +17,51 @@ mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true, useUnifiedT
 
 const Participant = require('./model/participant')
 
+//express.static(root, [options]). root->directory
+//to create virtual path prefix '/static
 app.use('/static', express.static('static'))
-app.use(bodyParser.urlencoded({extended: false}))
+
+//According to geeks for geeks The express.urlencoded() function is a built-in middleware function in Express. It parses incoming requests with urlencoded payloads and is based on body-parser.
+//By parsing it means to separate a string of commands – usually a program into more easily processed components, which are analyzed for correct syntax.Then the computer processes each program chunk and transform it into machine language.
 app.use(express.urlencoded({ extended: true }));
+
+// Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
+// URL encoding converts characters into a format that can be transmitted over the Internet.
+// The extended: true precises that the req.body object will contain values of any type instead of just strings.
+// app.use(bodyParser.urlencoded({extended: true}))
+
+// The express.json() function is a built-in middleware function in Express. It parses incoming requests with JSON payloads and is based on body-parser.
 app.use(express.json())
 app.use(methodOverride('_method'))
+//absolute path
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 //MULTER
 const storage = multer.diskStorage({
     destination: (req, file, cb) =>{
-        cb(null, './static');
+        cb(null, './static');//The folder to which the file has been saved
     },
     filename: (req, file, cb)=>{
-        cb(null, file.originalname);
+        cb(null, file.originalname);//filename: name of file within destination.Originalname name of the file on the user's computer
     }
 })
 
-const upload = multer({ storage });
+const upload = multer({ storage: storage });
 
+//app.method(path, handler)
 app.get('/', (req, res)=>{
     res.render('index')
 })
 
 app.post('/participate', upload.single('photo'), (req, res) => {
-    const { name, email, phone, topic } = req.body;
+    // const { name, email, phone, topic } = req.body;
+    // The req.body property contains key-value pairs of data submitted in the request body. By default, it is undefined and is populated when you use a middleware called body-parsing such as express.urlencoded() or express.json().
+    const name = req.body.name
+    const email = req.body.email
+    const phone = req.body.phone
+    const topic = req.body.topic
+    //Req.file is file upload library
     const photo = req.file.originalname;
     const photopath = 'static/' + req.file.originalname;
     const newParticipant = new Participant({
@@ -78,7 +96,7 @@ app.get('/deleteData/:id', (req, res)=>{
         if(err){
             console.log(err)
         }else{
-            res.redirect('/participants');
+            res.redirect('/participants')
         }   
     })
 })
@@ -126,4 +144,4 @@ function saveArticleAndRedirect() {
     }
 }
 
-app.listen(PORT, ()=> console.log(`Server started on ${PORT}`))
+app.listen(PORT, ()=> console.log(`Server started on ${PORT}`))//we use a built-in method called listen where we pass the port as argument and console.log as call back function.

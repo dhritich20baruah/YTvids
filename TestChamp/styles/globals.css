@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+  .notvisited{
+    @apply text-center border-2 border-slate-500 bg-slate-100 w-10 h-10 m-2 rounded
+  }
+  .notanswered{
+    @apply text-center bg-red-600 text-white w-10 h-10 m-2 rounded
+  }
+  .answered{
+    @apply text-center bg-green-600 text-white w-10 h-10 m-2 rounded
+  }
+  .review{
+    @apply text-center bg-indigo-800 text-white w-10 h-10 m-2 rounded-full
+  }
+  .ansNreview{
+    @apply text-center bg-blue-500 text-white w-10 h-10 m-2 rounded-full
+}
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
