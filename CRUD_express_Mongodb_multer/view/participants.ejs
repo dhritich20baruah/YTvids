@@ -5,40 +5,43 @@
     <a href="/">
         <button class="btn">HOME</button>
     </a>
-
+    <% if(data.length>0){ %>
+    <% for(let i=data.length-1; i>=0; i--){ %>
     <div id="details">
         <div id="pic">
-            <img src="/static/background.jpg" alt="">
+            <img src="<%= data[i].photopath %>" alt="">
         </div>
         <div id="info">
             <h3>TECH CONCLAVE 2022</h3>
             <table>
                 <tr>
                     <td>Name:</td>
-                    <td>John</td>
+                    <td><%= data[i].name %></td>
                 </tr>
                 <tr>
                     <td>Email:</td>
-                    <td>John@gmail.com</td>
+                    <td><%= data[i].email %></td>
                 </tr>
                 <tr>
                     <td>Phone:</td>
-                    <td>9999999999</td>
+                    <td><%= data[i].phone %></td>
                 </tr>
                 <tr>
                     <td>Topic:</td>
-                    <td>Web Dev</td>
+                    <td><%= data[i].topic %></td>
                 </tr>
             </table>
         </div>
         <div id='btn-group'>
-        <form action="">
+        <form action="/deleteData/<%= data[i].id %>">
             <button class="btn" type="submit">DELETE</button>
         </form>
-        <a href="/edit">
+        <a href="/editData/<%= data[i].id %>">
             <button class="btn">EDIT</button>
         </a>
         </div>
     </div>
+    <%}%>
+    <%}%>
 </body>
 </html>
