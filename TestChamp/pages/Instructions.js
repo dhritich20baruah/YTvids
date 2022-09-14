@@ -81,7 +81,7 @@ export default function Jeeinstructions() {
                 <hr />
                 <div className="btndiv flex justify-center">
 
-                    <button className="btn w-72 h-10 bg-green-500 text-white my-3 hover:bg-green-800" id="proceed" onClick={handleClick}>PROCEED</button>
+                    <button className="btn w-72 h-10 bg-blue-500 text-white my-3 hover:cursor-pointer hover:bg-red-700" id="proceed" onClick={handleClick}>START</button>
 
                 </div>
                 <div className="fixed top-1/2 left-[40%] h-72 w-72">
