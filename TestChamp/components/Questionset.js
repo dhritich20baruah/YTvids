@@ -5,9 +5,11 @@ export const Questionset = [
         statement: "India is the seventh-largest country in the world by geographical area which is located at South Asia. Moreover, India is the second populous country and the second country which gets the most frequent rainfalls. Then why is India experiencing a water shortage? Unfortunately, there is an ecologicalunbalance on a global scale. India is one of the eight countries which is seriously facing a sharp increase in water crisis that threatens humans, while a huge percentage of the world has no access to sanitationand clean water. The average person only needs 20 or 30 liters of water, while every Indian uses a big amount of water per day for different purposes than they are supposed to. Additionally, overpopulation and pollution have also been a cause of water poverty in India. Therefore, young children under the age of five make up the 75% of 37.7 million people who are affected by water-borne disease (Khurana 2008). The aim of this project was to create three possible solutions, and finally, the most effective solution is recommended.Thus, several ways to deal with the problem of water shortage in India include harvesting rainwater, watershed management, and river interlinking.",
         question: "Which is not one of the several ways to deal with water shortage in India?",
         options: ["Rainwater harvesting","River interlinking","Developing farm-based water conservation","Watershed management","None of the above"],
-      status: "notvisited",
+        status: "notvisited",
         solution: "Developing farm-based water conservation",
         answer: "3",
+        response: "",
+        result: "",
         section: 1
     },
     {
@@ -16,9 +18,11 @@ export const Questionset = [
         statement: "India is the seventh-largest country in the world by geographical area which is located at South Asia. Moreover, India is the second populous country and the second country which gets the most frequent rainfalls. Then why is India experiencing a water shortage? Unfortunately, there is an ecological unbalance on a global scale. India is one of the eight countries which is seriously facing a sharp increase in water crisis that threatens humans, while a huge percentage of the world has no access to sanitationand clean water. The average person only needs 20 or 30 liters of water, while every Indian uses a big amount of water per day for different purposes than they are supposed to. Additionally, overpopulation and pollution have also been a cause of water poverty in India. Therefore, young children under the age of five make up the 75% of 37.7 million people who are affected by water-borne disease (Khurana 2008). The aimof this project was to create three possible solutions, and finally, the most effective solution is recommended.Thus, several ways to deal with the problem of water shortage in India include harvesting rainwater, watershed management, and river interlinking.",
         question: "The line emboldened in the given passage may or may not have an error. If there is an error, find the part that contains the error or choose no error as your answer. India is one of the eight countries which is seriously (A)/ facing a sharp increase in water crisis that threatens(B)/ humans, while a huge percentage of the world (C)/ has no access to sanitation and clean water. (D)",
         options: ["A", "B", "C", "D", "No error"],
-      status: "notvisited",
+        status: "notvisited",
         solution: "A",
         answer: "1",
+        response: "",
+        result: "",
         section: 1
     },
     {
@@ -30,6 +34,8 @@ export const Questionset = [
       status: "notvisited",
         solution: "Overgazing",
         answer: "4",
+        response: "",
+        result: "",
         section: 1
     },
     {
@@ -41,6 +47,8 @@ export const Questionset = [
       status: "notvisited",
         solution: "D",
         answer: "4",
+        response: "",
+        result: "",
         section: 1
     },
     {
@@ -52,6 +60,8 @@ export const Questionset = [
       status: "notvisited",
         solution: "Healthcare",
         answer: "3",
+        response: "",
+        result: "",
         section: 1
     },
     {
@@ -60,9 +70,11 @@ export const Questionset = [
         statement: "The impacts of our ever-growing economy have become so___1___ (stark, clear, opaque) and so widespread that they are by any___2___(demented, sane, rough) measure, portents to catastrophe. Whether it’s the fact that Antarctic ice is now melting three times faster than we thought or the unfolding   “biological___3___(destruction, construction, annihilation) ” that has already wiped out 50% of all animals and up to 75% of all insects, or the fact that, in spite of all this, we are pumping out CO2 at record levels, it takes willful ignorance or a blinding ideology to deny the severity of the crisis. This creates a terrible paradox: Economic growth keeps economies stable today, but threatens not just future growth but medium-term social and civilizational___4___(cohesion, solidarity, confusion) and ultimately the very capacity of this biosphere to sustain life. A paper published in the Proceedings of the National Academy of Sciences         last year suggested that “the window for effective action is very short, probably two or three decades at most.” And that even this dire___5___(triumph, prediction, plummet) is considered “conservative” by the authors, “given the increasing trajectories of the drivers of extinction.” In terms of practical politics, that means acting immediately, preferably yesterday. Most politicians deal with this___6___(paradox,       redux, coarse) by ignoring it. It’s by far the easiest option; one afforded every incentive and reward by this political economy and the beliefs that underpin it. This belief system has been dominant for a long time now. We are, as a society, deeply comfortable with it, which means many of its core___7___(assumptions, beliefs,   dearth) are considered unassailable–too obvious to question. The most profound being this idea that growth is always good.",
         question: "Choose the correct word/set of words to fill the 1st blank.",
         options: ["stark, clear", "opaque", "stark, clear, opaque", "stark", "clear, opaque"],
-      status: "notvisited",
+        status: "notvisited",
         solution: "stark, clear",
         answer: "1",
+        response: "",
+        result: "",
         section: 1
     },
     {
@@ -71,9 +83,11 @@ export const Questionset = [
         statement: "The impacts of our ever-growing economy have become so___1___ (stark, clear,          opaque) and so widespread that they are by any___2___(demented, sane, rough) measure, portents to catastrophe. Whether it’s the fact that Antarctic ice is now melting three times faster than we thought or the unfolding   “biological___3___(destruction, construction, annihilation) ” that has already wiped out 50% of all animals and up to 75% of all insects, or the fact that, in spite of all this, we are pumping out CO2 at record levels, it takes willful ignorance or a blinding ideology to deny the severity of the crisis. This creates a terrible paradox: Economic growth keeps economies stable today, but threatens not just future growth but medium-term social and civilizational___4___(cohesion, solidarity, confusion) and ultimately the very capacity of this biosphere to sustain life. A paper published in the Proceedings of the National Academy of Sciences         last year suggested that “the window for effective action is very short, probably two or three decades at most.” And that even this dire___5___(triumph, prediction, plummet) is considered “conservative” by the authors, “given the increasing trajectories of the drivers of extinction.” In terms of practical politics, that means acting immediately, preferably yesterday. Most politicians deal with this___6___(paradox,       redux, coarse) by ignoring it. It’s by far the easiest option; one afforded every incentive and reward by this political economy and the beliefs that underpin it. This belief system has been dominant for a long time now. We are, as a society, deeply comfortable with it, which means many of its core___7___(assumptions, beliefs,   dearth) are considered unassailable–too obvious to question. The most profound being this idea that growth is always good.",
         question: "Choose the correct word/set of words to fill the 2nd blank.",
         options: ["demented", "demented, sane", "rough, demented", "sane, rough", "sane"],
-      status: "notvisited",
+        status: "notvisited",
         solution: "sane, rough, sane",
         answer: "5",
+        response: "",
+        result: "",
         section: 1
     },
     {
@@ -82,9 +96,11 @@ export const Questionset = [
         statement: "The impacts of our ever-growing economy have become so___1___ (stark, clear,          opaque) and so widespread that they are by any___2___(demented, sane, rough) measure, portents to catastrophe. Whether it’s the fact that Antarctic ice is now melting three times faster than we thought or the unfolding   “biological___3___(destruction, construction, annihilation) ” that has already wiped out 50% of all animals and up to 75% of all insects, or the fact that, in spite of all this, we are pumping out CO2 at record levels, it takes willful ignorance or a blinding ideology to deny the severity of the crisis. This creates a terrible paradox: Economic growth keeps economies stable today, but threatens not just future growth but medium-term social and civilizational___4___(cohesion, solidarity, confusion) and ultimately the very capacity of this biosphere to sustain life. A paper published in the Proceedings of the National Academy of Sciences         last year suggested that “the window for effective action is very short, probably two or three decades at most.” And that even this dire___5___(triumph, prediction, plummet) is considered “conservative” by the authors, “given the increasing trajectories of the drivers of extinction.” In terms of practical politics, that means acting immediately, preferably yesterday. Most politicians deal with this___6___(paradox,       redux, coarse) by ignoring it. It’s by far the easiest option; one afforded every incentive and reward by this political economy and the beliefs that underpin it. This belief system has been dominant for a long time now. We are, as a society, deeply comfortable with it, which means many of its core___7___(assumptions, beliefs,   dearth) are considered unassailable–too obvious to question. The most profound being this idea that growth is always good.",
         question: "Choose the correct word/set of words to fill the 3rd blank.",
         options: ["construction", "destruction", "desruction, construction, annihilation", "annihilation, destruction", "construction, annihilation"],
-      status: "notvisited",
+        status: "notvisited",
         solution: "annihilation, destruction",
         answer: "4",
+        response: "",
+        result: "",
         section: 1
     },
     {
@@ -93,9 +109,11 @@ export const Questionset = [
         statement: "The impacts of our ever-growing economy have become so___1___ (stark, clear,          opaque) and so widespread that they are by any___2___(demented, sane, rough) measure, portents to catastrophe. Whether it’s the fact that Antarctic ice is now melting three times faster than we thought or the unfolding   “biological___3___(destruction, construction, annihilation) ” that has already wiped out 50% of all animals and up to 75% of all insects, or the fact that, in spite of all this, we are pumping out CO2 at record levels, it takes willful ignorance or a blinding ideology to deny the severity of the crisis. This creates a terrible paradox: Economic growth keeps economies stable today, but threatens not just future growth but medium-term social and civilizational___4___(cohesion, solidarity, confusion) and ultimately the very capacity of this biosphere to sustain life. A paper published in the Proceedings of the National Academy of Sciences         last year suggested that “the window for effective action is very short, probably two or three decades at most.” And that even this dire___5___(triumph, prediction, plummet) is considered “conservative” by the authors, “given the increasing trajectories of the drivers of extinction.” In terms of practical politics, that means acting immediately, preferably yesterday. Most politicians deal with this___6___(paradox,       redux, coarse) by ignoring it. It’s by far the easiest option; one afforded every incentive and reward by this political economy and the beliefs that underpin it. This belief system has been dominant for a long time now. We are, as a society, deeply comfortable with it, which means many of its core___7___(assumptions, beliefs,   dearth) are considered unassailable–too obvious to question. The most profound being this idea that growth is always good.",
         question: "Choose the correct word/set of words to fill the 4th blank.",
         options: ["confusion, cohesion", "cohesion", "solidarity, cohesion", "confusion", "solidarity"],
-      status: "notvisited",
+        status: "notvisited",
         solution: "solidarity, cohesion",
         answer: "3",
+        response: "",
+        result: "",
         section: 1
     },
     {
@@ -104,9 +122,11 @@ export const Questionset = [
         statement: "The impacts of our ever-growing economy have become so___1___ (stark, clear,          opaque) and so widespread that they are by any___2___(demented, sane, rough) measure, portents to catastrophe. Whether it’s the fact that Antarctic ice is now melting three times faster than we thought or the unfolding   “biological___3___(destruction, construction, annihilation) ” that has already wiped out 50% of all animals and up to 75% of all insects, or the fact that, in spite of all this, we are pumping out CO2 at record levels, it takes willful ignorance or a blinding ideology to deny the severity of the crisis. This creates a terrible paradox: Economic growth keeps economies stable today, but threatens not just future growth but medium-term social and civilizational___4___(cohesion, solidarity, confusion) and ultimately the very capacity of this biosphere to sustain life. A paper published in the Proceedings of the National Academy of Sciences         last year suggested that “the window for effective action is very short, probably two or three decades at most.” And that even this dire___5___(triumph, prediction, plummet) is considered “conservative” by the authors, “given the increasing trajectories of the drivers of extinction.” In terms of practical politics, that means acting immediately, preferably yesterday. Most politicians deal with this___6___(paradox,       redux, coarse) by ignoring it. It’s by far the easiest option; one afforded every incentive and reward by this political economy and the beliefs that underpin it. This belief system has been dominant for a long time now. We are, as a society, deeply comfortable with it, which means many of its core___7___(assumptions, beliefs,   dearth) are considered unassailable–too obvious to question. The most profound being this idea that growth is always good.",
         question: "Choose the correct word/set of words to fill the 5th blank.",
         options: ["plummet", "prediction", "triumph, prediction, plummet", "plummet, prediction", "triumph"],
-      status: "notvisited",
+        status: "notvisited",
         solution: "prediction",
         answer: "2",
+        response: "",
+        result: "",
         section: 1
     },
     {
@@ -115,9 +135,11 @@ export const Questionset = [
         statement: "",
         question: "",
         options: ["22", "27", "25", "34", "29"],
-      status: "notvisited",
+        status: "notvisited",
         solution: "22",
         answer: "1",
+        response: "",
+        result: "",
         section: 2
     },
     {
@@ -126,9 +148,11 @@ export const Questionset = [
         statement: "",
         question: "",
         options: ["4 years 6 months", "5 years", "1 year 6 months", "3 years", "2 years"],
-      status: "notvisited",
+        status: "notvisited",
         solution: "4 years 6 months",
         answer: "1",
+        response: "",
+        result: "",
         section: 2
     },
     {
@@ -137,9 +161,11 @@ export const Questionset = [
         statement: "Train Shatabadi Express of length 180 meters can cross a tree in 12 seconds. Another train August express of length 240 meters crosses the tree at the same time as the train Shatabadi. Both the trains entered a bridge of length 270 meters at the same time moving in opposite directions.",
         question: "Find out the train which will cross the bridge first and when it crosses the bridge completely then what will be the distance that the other train needs to covers to cross the bridge?",
         options: ["Shatabadi, 50m", "August, 53m", "August, 67.5m", "Shatabadi, 67.5m", "August, 52m"],
-      status: "notvisited",
+        status: "notvisited",
         solution: "August, 67.5m",
         answer: "3",
+        response: "",
+        result: "",
         section: 2
     },
     {
@@ -148,9 +174,11 @@ export const Questionset = [
         statement: "Train Shatabadi Express of length 180 meters can cross a tree in 12 seconds. Another train August express of length 240 meters crosses the tree at the same time as the train Shatabadi. Both the trains entered a bridge of length 270 meters at the same time moving in opposite directions.",
         question: "What will be the time taken by the Shatabadi train to cover a platform of length 0.55 km? If the speed of the Shatabadi train is increased by 33 1/3 %",
         options: ["30 sec", "31 sec", "32 sec", "36.5 sec", "37 sec"],
-      status: "notvisited",
+        status: "notvisited",
         solution: "36.5 sec",
         answer: "4",
+        response: "",
+        result: "",
         section: 2
     },
     {
@@ -159,29 +187,37 @@ export const Questionset = [
         statement: "Train Shatabadi Express of length 180 meters can cross a tree in 12 seconds. Another train August express of length 240 meters crosses the tree at the same time as the train Shatabadi. Both the trains entered a bridge of length 270 meters at the same time moving in opposite directions.",
         question: "Shatabadi train started from city P at 11:00 am and traveled towards city R and after two hours, August started at R and traveled towards P. If the two trains met at 7:00 pm find the time taken by Shatabadi to reach city R after the two trains met each other.",
         options: ["7 h", "8 h", "9 h", "6 h", "5 h"],
-      status: "notvisited",
+        status: "notvisited",
         solution: "8 h",
         answer: "2",
+        response: "",
+        result: "",
         section: 2
     },
     {
         number: "16",
         directions: "Study the direction and answer the following questions.",
-        statement: "Train Shatabadi Express of length 180 meters can cross a tree in 12 seconds. Another train August express of length 240 meters crosses the tree at the same time as the train Shatabadi. Both the trains entered a bridge of length 270 meters at the same time moving in opposite directions.", question: " What is the time taken by the two trains to cross each other? If the time taken by Shatabadi to cross a tree is 66.67% more and the time taken by August to cross a tree is 150% more.",
+        statement: "Train Shatabadi Express of length 180 meters can cross a tree in 12 seconds. Another train August express of length 240 meters crosses the tree at the same time as the train Shatabadi. Both the trains entered a bridge of length 270 meters at the same time moving in opposite directions.",
+        question: " What is the time taken by the two trains to cross each other? If the time taken by Shatabadi to cross a tree is 66.67% more and the time taken by August to cross a tree is 150% more.",
         options: ["24.7", "2.8", "2.9", '3.0', "3.2"],
-      status: "notvisited",
+        status: "notvisited",
         solution: "24.7",
         answer: "1",
+        response: "",
+        result: "",
         section: 2
     },
     {
         number: "17",
         directions: "Study the direction and answer the following questions.",
-        statement: "Train Shatabadi Express of length 180 meters can cross a tree in 12 seconds. Another train August express of length 240 meters crosses the tree at the same time as the train Shatabadi. Both the trains entered a bridge of length 270 meters at the same time moving in opposite directions.", question:  "If S is the normal speed of Shatabdi Express, and A is the normal speed of August Express; thenfind the value of 4S – 3A.",
+        statement: "Train Shatabadi Express of length 180 meters can cross a tree in 12 seconds. Another train August express of length 240 meters crosses the tree at the same time as the train Shatabadi. Both the trains entered a bridge of length 270 meters at the same time moving in opposite directions.",
+        question:  "If S is the normal speed of Shatabdi Express, and A is the normal speed of August Express; thenfind the value of 4S – 3A.",
         options: ["15", "0", "5", "10", "None of these"],
-      status: "notvisited",
+        status: "notvisited",
         solution: "0",
         answer: "2",
+        response: "",
+        result: "",
         section: 2
     },
     {
@@ -190,9 +226,11 @@ export const Questionset = [
         statement: "",
         question: "How much speed did he increase during returning from the shop?",
         options: ["3km/hr", "2km/hr", "4km/hr", "5km/hr", "6km/hr"],
-      status: "notvisited",
+        status: "notvisited",
         solution: "3km/hr",
         answer: "1",
+        response: "",
+        result: "",
         section: 2
     },
     {
@@ -201,9 +239,11 @@ export const Questionset = [
         statement: "What is the slant height of a cone?",
         question: "",
         options: ["√(163) m", "√(161) m", "√(167) m", "√(173) m", "None of the above"],
-      status: "notvisited",
+        status: "notvisited",
         solution: "√(163) m",
         answer: "1",
+        response: "",
+        result: "",
         section: 2
     },
     {
@@ -212,9 +252,11 @@ export const Questionset = [
         statement: "What is the curved surface area of cylinder if the height of cylinder is 30 meters?",
         question: "",
         options: ["1310 sq.m", "1300 sq.m", "1320 sq.m", "1340 sq.m", "None of the above"],
-      status: "notvisited",
+        status: "notvisited",
         solution: "1320 sq.m",
         answer: "3",
+        response: "",
+        result: "",
         section: 2
     },
     {
@@ -223,9 +265,11 @@ export const Questionset = [
         statement: "March, June, September, November and December and dates are 13 and 18. They visit location according to the given conditions:  1) Person have starting letter of their name before letter 'M' visit location in first three month of January to June. Person have starting letter of their name after letter 'M' visit location in last three months of July to December. 2) Person having even number of letters, visit the location in the month having odd number of day (31 days) and person having odd number of letter in their name visit location in the month having even number of days(30) in the month. 3) The number of letter in the given name is calculated based on the English alphabetical series. The number of person between Beena and Pearl is one. Siya visits immediately after Tina. There are two persons visits between Beena and Kaya. Number of personn visit before Kaya is one less the number of person visit after Rekha. There is only one person Gagan and Nirav. The number of persons after Siya is same as before Asha. Deep visits location somewhere before Vaibhav, but not immediately before. Esha visits immediately after Deep.",
         question: "Who visit on 13th September?",
         options: ["Pearl", "Nirav", "Vaibhav", "Asha", "Rekha"],
-      status: "notvisited",
+        status: "notvisited",
         solution: "Pearl",
         answer: "1",
+        response: "",
+        result: "",
         section: 1
     },
     {
@@ -234,9 +278,11 @@ export const Questionset = [
         statement: "March, June, September, November and December and dates are 13 and 18. They visit location according to the given conditions:  1) Person have starting letter of their name before letter 'M' visit location in first three month of January to June. Person have starting letter of their name after letter 'M' visit location in last three months of July to December. 2) Person having even number of letters, visit the location in the month having odd number of day (31 days) and person having odd number of letter in their name visit location in the month having even number of days(30) in the month. 3) The number of letter in the given name is calculated based on the English alphabetical series. The number of person between Beena and Pearl is one. Siya visits immediately after Tina. There are two persons visits between Beena and Kaya. Number of personn visit before Kaya is one less the number of person visit after Rekha. There is only one person Gagan and Nirav. The number of persons after Siya is same as before Asha. Deep visits location somewhere before Vaibhav, but not immediately before. Esha visits immediately after Deep.",
         question: "The number of persons between Deep and Gagan is same as number of persons between_____?",
         options: ["Esha and Beena", "Esha and Asha", "Nirav and Rekha", "Tina and Rekha", "Asha and Beena"],
-      status: "notvisited",
+        status: "notvisited",
         solution: "Esha and Asha",
         answer: "2",
+        response: "",
+        result: "",
         section: 1
     },
     {
@@ -245,9 +291,11 @@ export const Questionset = [
         statement: "March, June, September, November and December and dates are 13 and 18. They visit location according to the given conditions:  1) Person have starting letter of their name before letter 'M' visit location in first three month of January to June. Person have starting letter of their name after letter 'M' visit location in last three months of July to December. 2) Person having even number of letters, visit the location in the month having odd number of day (31 days) and person having odd number of letter in their name visit location in the month having even number of days(30) in the month. 3) The number of letter in the given name is calculated based on the English alphabetical series. The number of person between Beena and Pearl is one. Siya visits immediately after Tina. There are two persons visits between Beena and Kaya. Number of personn visit before Kaya is one less the number of person visit after Rekha. There is only one person Gagan and Nirav. The number of persons after Siya is same as before Asha. Deep visits location somewhere before Vaibhav, but not immediately before. Esha visits immediately after Deep.",
         question: "Who visit the location at last.",
         options: ["Person who visit the location immediately after Tina.", "Vaibhav", "Tina", "Rekha", "Pearl"],
-      status: "notvisited",
+        status: "notvisited",
         solution: "Person who visited the location immediately after Tina",
         answer: "1",
+        response: "",
+        result: "",
         section: 1
     },
     {
@@ -256,9 +304,11 @@ export const Questionset = [
         statement: "March, June, September, November and December and dates are 13 and 18. They visit location according to the given conditions:  1) Person have starting letter of their name before letter 'M' visit location in first three month of January to June. Person have starting letter of their name after letter 'M' visit location in last three months of July to December. 2) Person having even number of letters, visit the location in the month having odd number of day (31 days) and person having odd number of letter in their name visit location in the month having even number of days(30) in the month. 3) The number of letter in the given name is calculated based on the English alphabetical series. The number of person between Beena and Pearl is one. Siya visits immediately after Tina. There are two persons visits between Beena and Kaya. Number of personn visit before Kaya is one less the number of person visit after Rekha. There is only one person Gagan and Nirav. The number of persons after Siya is same as before Asha. Deep visits location somewhere before Vaibhav, but not immediately before. Esha visits immediately after Deep.",
         question: "Which of the following statements are not true? I. Nirav visit the location immediately after Pearl. II. Kaya visit the location after Asha. III. One person visits after Siya",
         options: ["Only I", "Only II", "Only III", "Both I and II", "All I, II and III"],
-      status: "notvisited",
+        status: "notvisited",
         solution: "Only III",
         answer: "3",
+        response: "",
+        result: "",
         section: 1
     },
     {
@@ -267,9 +317,11 @@ export const Questionset = [
         statement: "March, June, September, November and December and dates are 13 and 18. They visit location according to the given conditions:  1) Person have starting letter of their name before letter 'M' visit location in first three month of January to June. Person have starting letter of their name after letter 'M' visit location in last three months of July to December. 2) Person having even number of letters, visit the location in the month having odd number of day (31 days) and person having odd number of letter in their name visit location in the month having even number of days(30) in the month. 3) The number of letter in the given name is calculated based on the English alphabetical series. The number of person between Beena and Pearl is one. Siya visits immediately after Tina. There are two persons visits between Beena and Kaya. Number of personn visit before Kaya is one less the number of person visit after Rekha. There is only one person Gagan and Nirav. The number of persons after Siya is same as before Asha. Deep visits location somewhere before Vaibhav, but not immediately before. Esha visits immediately after Deep.",
         question: "How many persons visits after Vaibhav?",
         options: ["One", "Two", "Three", "Four", "Five"],
-      status: "notvisited",
+        status: "notvisited",
         solution: "Three",
         answer: "3",
+        response: "",
+        result: "",
         section: 1
     },
     {
@@ -278,9 +330,11 @@ export const Questionset = [
         statement: "Passage: Various studies have recently pointed out the importance of mental health, especially peace of mind, for work productivity and efficiency. They have time and again stressed that sound work comes from a sound mind. Company ABC has decided to go ahead and implement mandatory 15-minute meditation for all employees prior to the start of work.",
         question: "Which of the following assumptions hold?",
         options: ["Meditating for 15 minutes is enough to ensure peace of mind at workplace.", "Employees resist mental health practices at workplace and consider it an intrusion on their freedom.", "Not a single employee in the company is meditating in their own home.", "Employees who work often get tired and complain about it.", "Employees who meditate can sleep better than Employees who don't meditate."],
-      status: "notvisited",
+        status: "notvisited",
         solution: "Meditating for 15 minutes is enough to ensure peace of mind at workplace.",
         answer: "1",
+        response: "",
+        result: "",
         section: 1
     },
     {
@@ -289,9 +343,11 @@ export const Questionset = [
         statement: "Passage: Various studies have recently pointed out the importance of mental health, especially peace of mind, for work productivity and efficiency. They have time and again stressed that sound work comes from a sound mind. Company ABC has decided to go ahead and implement mandatory 15-minute meditation for all employees prior to the start of work.",
         question: "Assumptions: I: YouTube is a platform where people can upload videos about a variety of things. II: YouTube is a subsidiary of Google. III: YouTube is used by almost one-third of all people on the Internet.",
         options: ["Only I", "Only II", "Only III", "All except III", "All follows"],
-      status: "notvisited",
+        status: "notvisited",
         solution: "Only I",
         answer: "1",
+        response: "",
+        result: "",
         section: 1
     },
     {
@@ -300,9 +356,11 @@ export const Questionset = [
         statement: "Rising concerns about pollution in major Indian cities have led to a dramatic increase in sales of home airpurifiers. The air purifier segment, which was earlier limited to select pockets of top metro cities, is firming its foothold in smaller cities, and online channels are emerging as a key facilitator to meet the consumer demand in such places. “The onset of winters, smog situation in various parts of the country and the current concerns around air normally raise the alarm around deteriorating air quality and indoor air pollution. “An air purifier makes the most sense now, owing to the alarming levels of increasing air pollution in major cities around the country,” Eureka Forbes Managing Director and CEO Marzin R. Shroff said. New Delhi, which has been called the most polluted city in the world by the WHO, is not only the biggest buyer of air purifiers but is also the city that is seeing the fastest growth in sales of these devices.",
         question: "Which of the following is/are definitely an effect(s) of the rising concern of pollution in the context of the passage?",
         options: ["The highest demand for air purifiers is from Delhi and its nearby states.", "Indoor air has been 10 to 30 times more polluted than outside air.", "The concern of government towards citizen has increased", "The sales of air purifiers has increased up to 200%.", "Only 1 and 4"],
-      status: "notvisited",
+        status: "notvisited",
         solution: "The highest demand for air purifiers is from Delhi and its nearby states",
         answer: "1",
+        response: "",
+        result: "",
         section: 1
     },
     {
@@ -311,9 +369,11 @@ export const Questionset = [
         statement: "Eight people are sitting around a square table, four at the corners and four the middle of the sides. At a distance of 6 m, there is a boundary of the at all four sides. At that boundary, eight people are sitting there, four at the corners while four at the middle of the sides. People sitting at the table are facing away from the centre while people sitting at the boundary are facing towards the centre. The person who is sitting second to the right of B is facing K. L is sitting at one of the corners. C is sitting seventh to the right of D. M is sitting at the table. Neither E nor J is neighbour of B. F and E are facing each other, but F is not a neighbour of D and R. C is third to the right of R. F is second to the left R. W is neither sitting at the corner nor at the boundary. B is sitting at the table. G is sitting fourth to the right of B and second to the right of W. W is facing K. E is not sitting at any corner. A is neither the neighbour of C nor of H but sitting at the boundary. Two persons are sitting between E and J. I is facing the one who is sitting next to the left of B. Three people are sitting between N and the one who is sitting third to the left of G. E is facing F. H is sitting third to the left of the one who is facing W. M is neither facing H nor I. R is neither neighbour of C nor D but sitting at the boundary.",
         question: "Four of the following are similar somehow and thus forms a group. Which one of the following does notbelong to that group?",
         options: ["G", "N", "H", "W", "J"],
-      status: "notvisited",
+        status: "notvisited",
         solution: "H",
         answer: "3",
+        response: "",
+        result: "",
         section: 1
     },
     {
@@ -322,9 +382,11 @@ export const Questionset = [
         statement: "Eight people are sitting around a square table, four at the corners and four the middle of the sides. At a distance of 6 m, there is a boundary of the at all four sides. At that boundary, eight people are sitting there, four at the corners while four at the middle of the sides. People sitting at the table are facing away from the centre while people sitting at the boundary are facing towards the centre. The person who is sitting second to the right of B is facing K. L is sitting at one of the corners. C is sitting seventh to the right of D. M is sitting at the table. Neither E nor J is neighbour of B. F and E are facing each other, but F is not a neighbour of D and R. C is third to the right of R. F is second to the left R. W is neither sitting at the corner nor at the boundary. B is sitting at the table. G is sitting fourth to the right of B and second to the right of W. W is facing K. E is not sitting at any corner. A is neither the neighbour of C nor of H but sitting at the boundary. Two persons are sitting between E and J. I is facing the one who is sitting next to the left of B. Three people are sitting between N and the one who is sitting third to the left of G. E is facing F. H is sitting third to the left of the one who is facing W. M is neither facing H nor I. R is neither neighbour of C nor D but sitting at the boundary.",
         question: "Which of the following statements is false?",
         options: ["There no one between the person who is facing G and the person who is facing N","K is sitting third to the one who is facing N.","R is facing L","H and I are neighbouring F","None of the above"],
-      status: "notvisited",
+        status: "notvisited",
         solution: "R is facing L",
         answer: "3",
+        response: "",
+        result: "",
         section: 1
     }
   
