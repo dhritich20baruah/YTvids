@@ -16,8 +16,9 @@ const Questions = () => {
     let tempArr = []
     let response
     let result = ""
+    let status = ""
     tempArr = Questionset.map(elem => ({
-        ...elem.number, response: response, result: result
+        ...elem.number, response: response, result: result, status: status
     }))
     const handleChange = (event) => {
         setOption(event.target.value)
@@ -32,28 +33,56 @@ const Questions = () => {
             setScore(score + 1)
         }
     }
-
-    const nextQuestion = () => {
-        tempArr[index].response = option
-        if (Questionset[index].answer == option) {
+    function evaluate(){
+        if(Questionset[index].answer == option){
             setScore(score + 1)
             tempArr[index].result = "Correct"
-            Questionset[index].status = 'answered'
-            setansweredCount(answeredCount+1)
-            setnotvisitedCount(notvisitedCount-1)
-        }
-        if (option == '') {
-            tempArr[index].result = ""
-            Questionset[index].status = 'notanswered'
-            setnotvisitedCount(notvisitedCount-1)
-            setnotansweredCount(notansweredCount+1)
-        }
-        else {
+        }else{
             setScore(score - 1)
             tempArr[index].result = "Incorrect"
+        }
+    }
+    const nextQuestion = () => {
+        tempArr[index].response = option
+        if (option != "") {   
+            if(tempArr[index].status != 'answered'){
+                setansweredCount(answeredCount+1)
+            }    
+            if(tempArr[index].status == 'notanswered'){
+                setnotansweredCount(notansweredCount-1)
+            }
+            if(tempArr[index].status == 'notvisited'){
+                setnotvisitedCount(notvisitedCount-1)
+            }         
+            if(tempArr[index].status == 'review'){
+                setreviewCount(reviewCount-1)
+            }
+            if(tempArr[index].status == 'ansNreview'){
+                setansNreviewCount(ansNreviewCount-1)
+            }
+            evaluate()
+            tempArr[index].status = 'answered'
             Questionset[index].status = 'answered'
-            setansweredCount(answeredCount+1)
-            setnotvisitedCount(notvisitedCount-1)
+        }
+        else {
+            if(tempArr[index].status != 'answered'){
+                setansweredCount(answeredCount+1)
+            }    
+            if(tempArr[index].status == 'notanswered'){
+                setnotansweredCount(notansweredCount-1)
+            }
+            if(tempArr[index].status == 'notvisited'){
+                setnotvisitedCount(notvisitedCount-1)
+            }         
+            if(tempArr[index].status == 'review'){
+                setreviewCount(reviewCount-1)
+            }
+            if(tempArr[index].status == 'ansNreview'){
+                setansNreviewCount(ansNreviewCount-1)
+            }
+       
+            tempArr[index].status = 'notanswered'
+            Questionset[index].status = 'notanswered'
         }
         setIndex(index + 1)
         setOption('')
