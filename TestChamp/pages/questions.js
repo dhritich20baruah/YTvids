@@ -1,20 +1,20 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Timer from '../components/Timer'
 import { Questionset } from '../components/Questionset'
-import Router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import { ScoreStateContext } from '../components/Context'
 
 
 const Questions = () => {
     const [index, setIndex] = useState(0)
     const [option, setOption] = useState('')
-    const [score, setScore] = useState(0)
     const [notvisitedCount, setnotvisitedCount] = useState(30)
     const [notansweredCount, setnotansweredCount] = useState(0)
     const [answeredCount, setansweredCount] = useState(0)
     const [reviewCount, setreviewCount] = useState(0)
     const [ansNreviewCount, setansNreviewCount] = useState(0)
     const [visible, setVisible] = useState(false)
+    const {score, setScore} = useContext(ScoreStateContext)
 
     const router = useRouter()
 
@@ -24,12 +24,30 @@ const Questions = () => {
     //CLEAR BUTTON
     const resetOption = () => {
         setOption('')
-        Questionset[index].status = 'notanswered'
+        Questionset[index].response = option
+        if(Questionset[index].status != 'notanswered'){
+            setnotansweredCount(notansweredCount+1)
+        }
+        if(Questionset[index].status == 'answered'){
+            setansweredCount(answeredCount-1)
+        }   
+        if(Questionset[index].status == 'notvisited'){
+            setnotvisitedCount(notvisitedCount-1)
+        }         
+        if(Questionset[index].status == 'review'){
+            setreviewCount(reviewCount-1)
+        }
+        if(Questionset[index].status == 'ansNreview'){
+            setansNreviewCount(ansNreviewCount-1)
+        }
         if( Questionset[index].result == "Correct"){
             setScore(score - 1)
-        }else{
+        }
+        if( Questionset[index].result == "Incorrect"){
             setScore(score + 1)
         }
+        Questionset[index].result = ""
+        Questionset[index].status = 'notanswered'
     }
     //Evaluation
     function evaluate(){
@@ -142,11 +160,10 @@ const Questions = () => {
     }
 
     return (
-        <>
-            {/* <ScoreStateContext.Provider value={{score, setScore}}></ScoreStateContext.Provider> */}
+        <>   
     
             <div className="questions-head bg-slate-200 flex flex-row justify-between p-3">
-                <div className='font-bold text-lg'>IBPS PO PRELIMS 2022</div>
+                <div className='font-bold text-lg'>IBPS EXAM 2022</div>
                 <div className='flex font-bold text-lg'>
                     Time remaining: <span id="timer" className='text-red-700 ml-3'><Timer /></span>
                 </div>
