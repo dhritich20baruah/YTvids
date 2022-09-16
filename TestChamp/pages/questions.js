@@ -3,7 +3,8 @@ import Timer from '../components/Timer'
 import { Questionset } from '../components/Questionset'
 import { useRouter } from 'next/router'
 import { ScoreStateContext } from '../components/Context'
-
+import Image from 'next/image'
+import profilePic from '../public/profilepic.png'
 
 const Questions = () => {
     const [index, setIndex] = useState(0)
@@ -14,7 +15,7 @@ const Questions = () => {
     const [reviewCount, setreviewCount] = useState(0)
     const [ansNreviewCount, setansNreviewCount] = useState(0)
     const [visible, setVisible] = useState(false)
-    const {score, setScore} = useContext(ScoreStateContext)
+    const { score, setScore } = useContext(ScoreStateContext)
 
     const router = useRouter()
 
@@ -25,36 +26,36 @@ const Questions = () => {
     const resetOption = () => {
         setOption('')
         Questionset[index].response = option
-        if(Questionset[index].status != 'notanswered'){
-            setnotansweredCount(notansweredCount+1)
+        if (Questionset[index].status != 'notanswered') {
+            setnotansweredCount(notansweredCount + 1)
         }
-        if(Questionset[index].status == 'answered'){
-            setansweredCount(answeredCount-1)
-        }   
-        if(Questionset[index].status == 'notvisited'){
-            setnotvisitedCount(notvisitedCount-1)
-        }         
-        if(Questionset[index].status == 'review'){
-            setreviewCount(reviewCount-1)
+        if (Questionset[index].status == 'answered') {
+            setansweredCount(answeredCount - 1)
         }
-        if(Questionset[index].status == 'ansNreview'){
-            setansNreviewCount(ansNreviewCount-1)
+        if (Questionset[index].status == 'notvisited') {
+            setnotvisitedCount(notvisitedCount - 1)
         }
-        if( Questionset[index].result == "Correct"){
+        if (Questionset[index].status == 'review') {
+            setreviewCount(reviewCount - 1)
+        }
+        if (Questionset[index].status == 'ansNreview') {
+            setansNreviewCount(ansNreviewCount - 1)
+        }
+        if (Questionset[index].result == "Correct") {
             setScore(score - 1)
         }
-        if( Questionset[index].result == "Incorrect"){
+        if (Questionset[index].result == "Incorrect") {
             setScore(score + 1)
         }
         Questionset[index].result = ""
         Questionset[index].status = 'notanswered'
     }
     //Evaluation
-    function evaluate(){
-        if(Questionset[index].answer == option){
+    function evaluate() {
+        if (Questionset[index].answer == option) {
             setScore(score + 1)
             Questionset[index].result = "Correct"
-        }else{
+        } else {
             setScore(score - 1)
             Questionset[index].result = "Incorrect"
         }
@@ -63,115 +64,116 @@ const Questions = () => {
     //save and next button
     const nextQuestion = () => {
         Questionset[index].response = option
-        if (option != "") {   
-            if(Questionset[index].status != 'answered'){
-                setansweredCount(answeredCount+1)
-            }    
-            if(Questionset[index].status == 'notanswered'){
-                setnotansweredCount(notansweredCount-1)
+        if (option != "") {
+            if (Questionset[index].status != 'answered') {
+                setansweredCount(answeredCount + 1)
             }
-            if(Questionset[index].status == 'notvisited'){
-                setnotvisitedCount(notvisitedCount-1)
-            }         
-            if(Questionset[index].status == 'review'){
-                setreviewCount(reviewCount-1)
+            if (Questionset[index].status == 'notanswered') {
+                setnotansweredCount(notansweredCount - 1)
             }
-            if(Questionset[index].status == 'ansNreview'){
-                setansNreviewCount(ansNreviewCount-1)
+            if (Questionset[index].status == 'notvisited') {
+                setnotvisitedCount(notvisitedCount - 1)
+            }
+            if (Questionset[index].status == 'review') {
+                setreviewCount(reviewCount - 1)
+            }
+            if (Questionset[index].status == 'ansNreview') {
+                setansNreviewCount(ansNreviewCount - 1)
             }
             evaluate()
             Questionset[index].status = 'answered'
         }
         else {
-            if(Questionset[index].status != 'notanswered'){
-                setnotansweredCount(notansweredCount+1)
-            }    
-            if(Questionset[index].status == 'answered'){
-                setansweredCount(answeredCount-1)
+            if (Questionset[index].status != 'notanswered') {
+                setnotansweredCount(notansweredCount + 1)
             }
-            if(Questionset[index].status == 'notvisited'){
-                setnotvisitedCount(notvisitedCount-1)
-            }         
-            if(Questionset[index].status == 'review'){
-                setreviewCount(reviewCount-1)
+            if (Questionset[index].status == 'answered') {
+                setansweredCount(answeredCount - 1)
             }
-            if(Questionset[index].status == 'ansNreview'){
-                setansNreviewCount(ansNreviewCount-1)
+            if (Questionset[index].status == 'notvisited') {
+                setnotvisitedCount(notvisitedCount - 1)
+            }
+            if (Questionset[index].status == 'review') {
+                setreviewCount(reviewCount - 1)
+            }
+            if (Questionset[index].status == 'ansNreview') {
+                setansNreviewCount(ansNreviewCount - 1)
             }
             Questionset[index].status = 'notanswered'
+
         }
         setIndex(index + 1)
         setOption('')
-        console.log(Questionset)
+
     }
 
     //Mark and review
     const marknReview = () => {
         Questionset[index].response = option
         if (option != "") {
-            if(Questionset[index].status != 'ansNreview'){
-                setansNreviewCount(ansNreviewCount+1)
-            }   
-            if(Questionset[index].status == 'answered'){
-                setansweredCount(answeredCount-1)
-            }    
-            if(Questionset[index].status == 'notanswered'){
-                setnotansweredCount(notansweredCount-1)
+            if (Questionset[index].status != 'ansNreview') {
+                setansNreviewCount(ansNreviewCount + 1)
             }
-            if(Questionset[index].status == 'notvisited'){
-                setnotvisitedCount(notvisitedCount-1)
-            }         
-            if(Questionset[index].status == 'review'){
-                setreviewCount(reviewCount-1)
-            }          
+            if (Questionset[index].status == 'answered') {
+                setansweredCount(answeredCount - 1)
+            }
+            if (Questionset[index].status == 'notanswered') {
+                setnotansweredCount(notansweredCount - 1)
+            }
+            if (Questionset[index].status == 'notvisited') {
+                setnotvisitedCount(notvisitedCount - 1)
+            }
+            if (Questionset[index].status == 'review') {
+                setreviewCount(reviewCount - 1)
+            }
             evaluate()
             Questionset[index].status = 'ansNreview'
         }
         else {
-            if(Questionset[index].status != 'review'){
-                setreviewCount(reviewCount+1)
+            if (Questionset[index].status != 'review') {
+                setreviewCount(reviewCount + 1)
             }
-            if(Questionset[index].status == 'notanswered'){
-                setnotansweredCount(notansweredCount-1)
-            }    
-            if(Questionset[index].status == 'answered'){
-                setansweredCount(answeredCount-1)
+            if (Questionset[index].status == 'notanswered') {
+                setnotansweredCount(notansweredCount - 1)
             }
-            if(Questionset[index].status == 'notvisited'){
-                setnotvisitedCount(notvisitedCount-1)
-            }         
-            if(Questionset[index].status == 'ansNreview'){
-                setansNreviewCount(ansNreviewCount-1)
+            if (Questionset[index].status == 'answered') {
+                setansweredCount(answeredCount - 1)
+            }
+            if (Questionset[index].status == 'notvisited') {
+                setnotvisitedCount(notvisitedCount - 1)
+            }
+            if (Questionset[index].status == 'ansNreview') {
+                setansNreviewCount(ansNreviewCount - 1)
             }
             Questionset[index].status = 'review'
         }
         setIndex(index + 1)
         setOption('')
+
     }
 
     //visibility
-    function display(){
+    function display() {
         setVisible(visible => !visible)
     }
 
     //Redirect to scorecard
-    function showScore(){
+    function showScore() {
         router.replace('/Scorecard')
     }
 
     return (
-        <>   
-    
-            <div className="questions-head bg-slate-200 flex flex-row justify-between p-3">
-                <div className='font-bold text-lg'>IBPS EXAM 2022</div>
-                <div className='flex font-bold text-lg'>
+        <>
+            <div className="questions-head bg-blue-200 flex flex-row justify-between">
+                <div className='font-bold text-lg p-2'>IBPS EXAM 2022</div>
+                <div className='flex font-bold text-lg p-2'>
                     Time remaining: <span id="timer" className='text-red-700 ml-3'><Timer /></span>
                 </div>
-                <div className="profileinfo text-xl">
-                    <div className="profilepic">
-
+                <div className="profileinfo text-xl flex flex-row">
+                    <div className="profilepic mx-5">
+                        <Image src={profilePic} alt="profilepic" width={80} height={80} />
                     </div>
-                    <div>
+                    <div className='p-2'> 
                         Candidate Name: <span className="head-info text-red-600 ml-3">Your Name</span>
                         <br />
                         Roll No.:<span className="head-info text-red-600 ml-3">23045-B890 </span>
@@ -183,9 +185,9 @@ const Questions = () => {
                     <div className='section flex flex-row space-x-4 space-y-2'>
                         <p></p>
                         <p className='font-bold p-2'>Section:</p>
-                        <button className='bg-indigo-700 p-2 text-white rounded hover:bg-slate-200 hover:text-indigo-800 hover:cursor-pointer'>English Language</button>
-                        <button className='bg-indigo-700 p-2 text-white rounded hover:bg-slate-200 hover:text-indigo-800 hover:cursor-pointer'>Numerical Ability</button>
-                        <button className='bg-indigo-700 p-2 text-white rounded hover:bg-slate-200 hover:text-indigo-800 hover:cursor-pointer'>Reasoning Ability</button>
+                        <button className='bg-indigo-700 p-2 text-white rounded hover:bg-slate-200 hover:text-indigo-800 hover:cursor-pointer' onClick={() => { setIndex(0) }}>English Language</button>
+                        <button className='bg-indigo-700 p-2 text-white rounded hover:bg-slate-200 hover:text-indigo-800 hover:cursor-pointer' onClick={() => { setIndex(10) }}>Numerical Ability</button>
+                        <button className='bg-indigo-700 p-2 text-white rounded hover:bg-slate-200 hover:text-indigo-800 hover:cursor-pointer' onClick={() => { setIndex(20) }}>Reasoning Ability</button>
                     </div>
                     <div className="qAndAns mx-10 my-4 overflow-auto h-[65vh]">
                         <p className='direction  bg-red-500 text-white w-24 font-bold p-1'><span className='font-bold text-lg mr-2'>Q. No.:</span>{Questionset[index].number}</p>
@@ -216,13 +218,13 @@ const Questions = () => {
                     <div className="response-buttons flex flex-row justify-between mx-10 my-4 w-[80%]">
                         <div>
                             <button className='p-2 text-blue-800 border-2 border-blue-800 rounded m-2 hover:text-white hover:bg-blue-800 hover:cursor-pointer' onClick={resetOption} type='reset'>CLEAR</button>
-                            <button className='p-2 text-blue-800 border-2 border-blue-800 rounded m-2 hover:text-white hover:bg-blue-800 hover:cursor-pointer' onClick={marknReview}>MARK FOR REVIEW</button>
+                            {index == Questionset.length - 1 ? <button className='p-2 text-blue-800 border-2 border-blue-800 rounded m-2 hover:text-white hover:bg-blue-800 hover:cursor-pointer' onClick={display}>MARK FOR REVIEW</button> : <button className='p-2 text-blue-800 border-2 border-blue-800 rounded m-2 hover:text-white hover:bg-blue-800 hover:cursor-pointer' onClick={marknReview}>MARK FOR REVIEW</button>}
                         </div>
                         <div className='text-lg'>
                             <p>Your response: <span className='font-bold text-red-600'>{Questionset[index].response} </span></p>
                         </div>
                         <div>
-                            <button className='p-2 text-blue-800 border-2 border-blue-800 rounded m-2 hover:text-white hover:bg-blue-800 hover:cursor-pointer' onClick={nextQuestion}>SAVE & NEXT</button>
+                        {index == Questionset.length - 1 ? <button className='p-2 text-blue-800 border-2 border-blue-800 rounded m-2 hover:text-white hover:bg-blue-800 hover:cursor-pointer' onClick={display}>SAVE & NEXT</button> : <button className='p-2 text-blue-800 border-2 border-blue-800 rounded m-2 hover:text-white hover:bg-blue-800 hover:cursor-pointer' onClick={nextQuestion}>SAVE & NEXT</button>}
                         </div>
                     </div>
                 </div>
@@ -246,30 +248,29 @@ const Questions = () => {
                             Answered and Marked for Review <br /> (will be considered for evaluation)
                         </div>
                     </div>
-                    <div>Score: {score}</div>
                     <div className="question-palette">
-                        <h3 className='font-bold m-3'>Section: </h3>
+                        <h3 className='font-bold p-3 w-[100%] bg-blue-200'>Section: <span className='text-red-500'>{Questionset[index].section}</span> </h3>
                         <div className='overflow-auto w-[80%] h-[45vh] mx-6'>
                             <ul className='flex flex-row flex-wrap hover:cursor-pointer'>
                                 {Questionset.map((item) => {
                                     return (
-                                        <li className={item.status} key={item.number} onClick={() => { setIndex(item.number-1) }}> {item.number} </li>
+                                        <li className={item.status} key={item.number} onClick={() => { setIndex(item.number - 1) }}> {item.number} </li>
                                     )
                                 })}
-                            
+
                             </ul>
                         </div>
                         <button className='bg-green-500 text-white p-2 font-bold hover:bg-green-900 my-4 mx-8' onClick={display}>SUBMIT</button>
                     </div>
                 </div>
                 {visible &&
-                <div className="absolute w-[50%] h-[50%] bg-blue-600 top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-white font-bold text-center">
-                    <p className='text-4xl mt-24'>Are you sure you want to submit?</p>
-                    <div className='flex flex-row justify-center align-middle mt-8 text-2xl'>
-                    <button className='bg-green-600 w-24 text-center m-10 p-2 hover:cursor-pointer hover:bg-green-800' onClick={showScore}>Yes</button>
-                    <button className='bg-red-600 w-24 text-center m-10 p-2 hover:cursor-pointer hover:bg-red-800' onClick={display}>No</button>
+                    <div className="absolute w-[50%] h-[50%] bg-blue-600 top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-white font-bold text-center">
+                        <p className='text-4xl mt-24'>Are you sure you want to submit?</p>
+                        <div className='flex flex-row justify-center align-middle mt-8 text-2xl'>
+                            <button className='bg-green-600 w-24 text-center m-10 p-2 hover:cursor-pointer hover:bg-green-800' onClick={showScore}>Yes</button>
+                            <button className='bg-red-600 w-24 text-center m-10 p-2 hover:cursor-pointer hover:bg-red-800' onClick={display}>No</button>
+                        </div>
                     </div>
-                </div>
                 }
             </div>
         </>

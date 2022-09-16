@@ -10,7 +10,7 @@ export const Questionset = [
         answer: "3",
         response: "",
         result: "",
-        section: 1
+        section: "English Language"
     },
     {
         number: "2",
@@ -23,7 +23,7 @@ export const Questionset = [
         answer: "1",
         response: "",
         result: "",
-        section: 1
+        section: "English Language"
     },
     {
         number: "3",
@@ -36,7 +36,7 @@ export const Questionset = [
         answer: "4",
         response: "",
         result: "",
-        section: 1
+        section: "English Language"
     },
     {
         number: "4",
@@ -49,7 +49,7 @@ export const Questionset = [
         answer: "4",
         response: "",
         result: "",
-        section: 1
+        section: "English Language"
     },
     {
         number: "5",
@@ -62,7 +62,7 @@ export const Questionset = [
         answer: "3",
         response: "",
         result: "",
-        section: 1
+        section: "English Language"
     },
     {
         number: "6",
@@ -75,7 +75,7 @@ export const Questionset = [
         answer: "1",
         response: "",
         result: "",
-        section: 1
+        section: "English Language"
     },
     {
         number: "7",
@@ -88,7 +88,7 @@ export const Questionset = [
         answer: "5",
         response: "",
         result: "",
-        section: 1
+        section: "English Language"
     },
     {
         number: "8",
@@ -101,7 +101,7 @@ export const Questionset = [
         answer: "4",
         response: "",
         result: "",
-        section: 1
+        section: "English Language"
     },
     {
         number: "9",
@@ -114,7 +114,7 @@ export const Questionset = [
         answer: "3",
         response: "",
         result: "",
-        section: 1
+        section: "English Language"
     },
     {
         number: "10",
@@ -127,7 +127,7 @@ export const Questionset = [
         answer: "2",
         response: "",
         result: "",
-        section: 1
+        section: "English Language"
     },
     {
         number: "11",
@@ -140,7 +140,7 @@ export const Questionset = [
         answer: "1",
         response: "",
         result: "",
-        section: 2
+        section: "Numerical Ability"
     },
     {
         number: "12",
@@ -153,7 +153,7 @@ export const Questionset = [
         answer: "1",
         response: "",
         result: "",
-        section: 2
+        section: "Numerical Ability"
     },
     {
         number: "13",
@@ -166,7 +166,7 @@ export const Questionset = [
         answer: "3",
         response: "",
         result: "",
-        section: 2
+        section: "Numerical Ability"
     },
     {
         number: "14",
@@ -179,7 +179,7 @@ export const Questionset = [
         answer: "4",
         response: "",
         result: "",
-        section: 2
+        section: "Numerical Ability"
     },
     {
         number: "15",
@@ -192,7 +192,7 @@ export const Questionset = [
         answer: "2",
         response: "",
         result: "",
-        section: 2
+        section: "Numerical Ability"
     },
     {
         number: "16",
@@ -205,7 +205,7 @@ export const Questionset = [
         answer: "1",
         response: "",
         result: "",
-        section: 2
+        section: "Numerical Ability"
     },
     {
         number: "17",
@@ -218,7 +218,7 @@ export const Questionset = [
         answer: "2",
         response: "",
         result: "",
-        section: 2
+        section: "Numerical Ability"
     },
     {
         number: "18",
@@ -231,7 +231,7 @@ export const Questionset = [
         answer: "1",
         response: "",
         result: "",
-        section: 2
+        section: "Numerical Ability"
     },
     {
         number: "19",
@@ -244,7 +244,7 @@ export const Questionset = [
         answer: "1",
         response: "",
         result: "",
-        section: 2
+        section: "Numerical Ability"
     },
     {
         number: "20",
@@ -257,7 +257,7 @@ export const Questionset = [
         answer: "3",
         response: "",
         result: "",
-        section: 2
+        section: "Numerical Ability"
     },
     {
         number: "21",
@@ -270,7 +270,7 @@ export const Questionset = [
         answer: "1",
         response: "",
         result: "",
-        section: 1
+        section: "Reasoning Ability"
     },
     {
         number: "22",
@@ -283,7 +283,7 @@ export const Questionset = [
         answer: "2",
         response: "",
         result: "",
-        section: 1
+        section: "Reasoning Ability"
     },
     {
         number: "23",
@@ -296,7 +296,7 @@ export const Questionset = [
         answer: "1",
         response: "",
         result: "",
-        section: 1
+        section: "Reasoning Ability"
     },
     {
         number: "24",
@@ -309,7 +309,7 @@ export const Questionset = [
         answer: "3",
         response: "",
         result: "",
-        section: 1
+        section: "Reasoning Ability"
     },
     {
         number: "25",
@@ -322,7 +322,7 @@ export const Questionset = [
         answer: "3",
         response: "",
         result: "",
-        section: 1
+        section: "Reasoning Ability"
     },
     {
         number: "26",
@@ -335,7 +335,7 @@ export const Questionset = [
         answer: "1",
         response: "",
         result: "",
-        section: 1
+        section: "Reasoning Ability"
     },
     {
         number: "27",
@@ -348,7 +348,7 @@ export const Questionset = [
         answer: "1",
         response: "",
         result: "",
-        section: 1
+        section: "Reasoning Ability"
     },
     {
         number: "28",
@@ -361,7 +361,7 @@ export const Questionset = [
         answer: "1",
         response: "",
         result: "",
-        section: 1
+        section: "Reasoning Ability"
     },
     {
         number: "29",
@@ -374,7 +374,7 @@ export const Questionset = [
         answer: "3",
         response: "",
         result: "",
-        section: 1
+        section: "Reasoning Ability"
     },
     {
         number: "30",
@@ -387,7 +387,7 @@ export const Questionset = [
         answer: "3",
         response: "",
         result: "",
-        section: 1
-    }
-  
+        section: "Reasoning Ability"
+    },
+   
 ]
