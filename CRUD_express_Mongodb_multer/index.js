@@ -101,7 +101,7 @@ app.put('/editData/:id', upload.single('photo'), async(req, res)=>{
 
     try{
         data = await data.save()
-        req.redirect('/participants')
+        res.redirect('/participants')
     }catch(err){
         res.render('edit', {data:data})
     }
