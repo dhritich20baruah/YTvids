@@ -1,47 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('./partials/head.ejs') %>
-<body>
-    <a href="/">
-        <button class="btn">HOME</button>
-    </a>
-    <% if(data.length>0){ %>
-    <% for(let i=data.length-1; i>=0; i--){ %>
-    <div id="details">
-        <div id="pic">
-            <img src="<%= data[i].photopath %>" alt="">
+  <%- include('./partials/head.ejs') %>
+  <body>
+    <section class="container">
+      <a href="/">
+        <button class="btn btn-success">HOME</button>
+      </a>
+      <% if(data.length>0){ %> <% for(let i=data.length-1; i>=0; i--){ %>
+
+      <div class="card m-3 fw-bold shadow" style="max-width: 640px">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img
+              src="<%= data[i].photopath %>"
+              class="img-fluid rounded-start"
+              alt="..."
+            />
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">TECH CONCLAVE 2022</h5>
+              <p class="card-text">
+                Name:<span class="text-danger mx-3"><%= data[i].name %></span>
+              </p>
+              <p class="card-text">
+                Email:<span class="text-danger mx-3"><%= data[i].email %></span>
+              </p>
+              <p class="card-text">
+                Phone:<span class="text-danger mx-3"><%= data[i].phone %></span>
+              </p>
+              <p class="card-text">
+                Topic:<span class="text-danger mx-3"><%= data[i].topic %></span>
+              </p>
+            </div>
+          </div>
         </div>
-        <div id="info">
-            <h3>TECH CONCLAVE 2022</h3>
-            <table>
-                <tr>
-                    <td>Name:</td>
-                    <td><%= data[i].name %></td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td><%= data[i].email %></td>
-                </tr>
-                <tr>
-                    <td>Phone:</td>
-                    <td><%= data[i].phone %></td>
-                </tr>
-                <tr>
-                    <td>Topic:</td>
-                    <td><%= data[i].topic %></td>
-                </tr>
-            </table>
+        <div class="d-flex">
+          <form action="/deleteData/<%= data[i].id %>">
+            <button class="btn btn-danger" type="submit">DELETE</button>
+          </form>
+          <a href="/editData/<%= data[i].id %>">
+            <button class="btn btn-primary">EDIT</button>
+          </a>
         </div>
-        <div id='btn-group'>
-        <form action="/deleteData/<%= data[i].id %>">
-            <button class="btn" type="submit">DELETE</button>
-        </form>
-        <a href="/editData/<%= data[i].id %>">
-            <button class="btn">EDIT</button>
-        </a>
-        </div>
-    </div>
-    <%}%>
-    <%}%>
-</body>
+      </div>
+      <%}%> <%}%>
+    </section>
+  </body>
 </html>

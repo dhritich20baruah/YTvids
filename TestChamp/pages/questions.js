@@ -162,6 +162,16 @@ const Questions = () => {
         router.replace('/Scorecard')
     }
 
+    function last(){
+        Questionset[index].response = option
+        if (option != ""){
+            Questionset[index].status = 'answered'
+        } else{
+            Questionset[index].status = 'notanswered'
+        }
+        evaluate()
+        display()
+    }
     return (
         <>
             <div className="questions-head bg-blue-200 flex flex-row justify-between">
@@ -181,7 +191,7 @@ const Questions = () => {
                 </div>
             </div>
             <div className='questions-body flex relative'>
-                <div className="left-panel h-[90vh] w-[75vw]">
+                <div className="left-panel h-[88vh] w-[75vw]">
                     <div className='section flex flex-row space-x-4 space-y-2'>
                         <p></p>
                         <p className='font-bold p-2'>Section:</p>
@@ -218,17 +228,17 @@ const Questions = () => {
                     <div className="response-buttons flex flex-row justify-between mx-10 my-4 w-[80%]">
                         <div>
                             <button className='p-2 text-blue-800 border-2 border-blue-800 rounded m-2 hover:text-white hover:bg-blue-800 hover:cursor-pointer' onClick={resetOption} type='reset'>CLEAR</button>
-                            {index == Questionset.length - 1 ? <button className='p-2 text-blue-800 border-2 border-blue-800 rounded m-2 hover:text-white hover:bg-blue-800 hover:cursor-pointer' onClick={display}>MARK FOR REVIEW</button> : <button className='p-2 text-blue-800 border-2 border-blue-800 rounded m-2 hover:text-white hover:bg-blue-800 hover:cursor-pointer' onClick={marknReview}>MARK FOR REVIEW</button>}
+                            {index == Questionset.length - 1 ? <button className='p-2 text-blue-800 border-2 border-blue-800 rounded m-2 hover:text-white hover:bg-blue-800 hover:cursor-pointer' onClick={last}>MARK FOR REVIEW</button> : <button className='p-2 text-blue-800 border-2 border-blue-800 rounded m-2 hover:text-white hover:bg-blue-800 hover:cursor-pointer' onClick={marknReview}>MARK FOR REVIEW</button>}
                         </div>
                         <div className='text-lg'>
                             <p>Your response: <span className='font-bold text-red-600'>{Questionset[index].response} </span></p>
                         </div>
                         <div>
-                        {index == Questionset.length - 1 ? <button className='p-2 text-blue-800 border-2 border-blue-800 rounded m-2 hover:text-white hover:bg-blue-800 hover:cursor-pointer' onClick={display}>SAVE & NEXT</button> : <button className='p-2 text-blue-800 border-2 border-blue-800 rounded m-2 hover:text-white hover:bg-blue-800 hover:cursor-pointer' onClick={nextQuestion}>SAVE & NEXT</button>}
+                        {index == Questionset.length - 1 ? <button className='p-2 text-blue-800 border-2 border-blue-800 rounded m-2 hover:text-white hover:bg-blue-800 hover:cursor-pointer' onClick={last}>SAVE & NEXT</button> : <button className='p-2 text-blue-800 border-2 border-blue-800 rounded m-2 hover:text-white hover:bg-blue-800 hover:cursor-pointer' onClick={nextQuestion}>SAVE & NEXT</button>}
                         </div>
                     </div>
                 </div>
-                <div className="right-panel bg-orange-200 h-[90vh] w-[25vw]">
+                <div className="right-panel bg-orange-200 h-[88vh] w-[25vw]">
                     <div className="number-board flex flex-row flex-wrap p-3">
                         <div className="flex flex-row">
                             <div className="notvisited">{notvisitedCount}</div>Not visited

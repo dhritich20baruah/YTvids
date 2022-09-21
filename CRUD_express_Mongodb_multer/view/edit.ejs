@@ -2,43 +2,47 @@
 <html lang="en">
   <%- include('./partials/head.ejs') %>
   <body>
-    <section id="formSection">
-      <h2>Sign Up for Tech Conclave</h2>
-      <fieldset class="firstSet">
-        <form action="/editData/<%= data._id%>?_method=PUT" method="post" enctype="multipart/form-data">
-          <label for="name">Name</label>
+    <section class="container">
+      <h2 class="text-center">EDIT DETAILS</h2>
+      <form
+        action="/editData/<%= data._id%>?_method=PUT"
+        method="post"
+        enctype="multipart/form-data"
+        class="text-light bg-secondary p-5"
+      >
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
           <input
-            class="inputField"
             type="text"
+            class="form-control"
             name="name"
             id="name"
-            placeholder="Enter your name"
-            required
+            aria-describedby="emailHelp"
             value="<%= data.name %>"
           />
-          <br /><br />
-          <label for="email">Email</label>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
           <input
-            class="inputField"
             type="email"
+            class="form-control"
             name="email"
             id="email"
-            placeholder="Enter your email"
-            required
+            aria-describedby="emailHelp"
             value="<%= data.email %>"
           />
-          <br /><br />
-          <label for="phone">Phone</label>
+        </div>
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone Number</label>
           <input
-            class="inputField"
             type="tel"
+            class="form-control"
             name="phone"
             id="phone"
-            placeholder="Your phone number"
-            required
             value="<%= data.phone %>"
           />
-          <br /><br />
+        </div>
+        <div class="mb-3">
           <label for="">Field of interest</label>
           <br />
           <input
@@ -70,22 +74,22 @@
             id="gameDev"
             value="Game Development"
           />
-          Game Development <br /><br />
-          <label for="photo">Upload Photograph</label>
+          Game Development
+        </div>
+        <div class="mb-3">
+          <label for="photo" class="form-label">Upload Photograph</label>
           <input
-            class="inputField"
-            type="file"
+            class="form-control"
             name="photo"
+            type="file"
             id="photo"
-            class="pic"
             multiple
           />
-          <br /><br />
-          <button type="submit" class="btn">SUBMIT</button>
-        </form>
-      </fieldset>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
       <a href="/participants">
-        <button class="btn">VIEW PARTICIPANTS >></button>
+        <button class="btn btn-outline-info m-5">VIEW PARTICIPANTS >></button>
       </a>
     </section>
   </body>
