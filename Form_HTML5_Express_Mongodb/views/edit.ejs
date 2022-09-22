@@ -1,95 +1,54 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <%- include('./partial/head.ejs') %>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>FORM</title>
+  </head>
   <body>
-    <section id="formSection">
-      <h2>Sign Up for Tech Conclave</h2>
-      <fieldset class="firstSet">
-        <form
-          action="/editData/<%= data._id %>?_method=PUT"
-          method="POST"
-          enctype="multipart/form-data"
-        >
-          <label for="name">Name</label>
-          <input
-            class="inputField"
-            type="text"
-            name="name"
-            id="name"
-            placeholder="Name"
-            required
-            value="<%= data.name %>"
-          />
-          <br /><br />
-          <label for="email">Email</label>
-          <input
-            class="inputField"
-            type="email"
-            id="email"
-            placeholder="Email ID"
-            value="<%= data.email %>"
-            required
-            name="email"
-          />
-          <br /><br />
-          <label for="phone">Phone</label>
-          <input
-            class="inputField"
-            type="tel"
-            name="phone"
-            id="phone"
-            placeholder="Phone No."
-            value="<%= data.phone %>"
-          />
-          <br /><br />
-          <label for="topic">Topic of interest</label>
-          <br />
-          <input
-            type="radio"
-            name="topic"
-            id="webdev"
-            value="Web development"
-          />Web development
-          <input
-            type="radio"
-            name="topic"
-            id="appDev"
-            value="Mobile App Development"
-          />Mobile App development
-          <input
-            type="radio"
-            name="topic"
-            id="gameDev"
-            value="Game Development"
-          />Game development
-          <input
-            type="radio"
-            name="topic"
-            id="dataScience"
-            value="Data Science"
-          />Data Science
-          <input
-            type="radio"
-            name="topic"
-            id="ml"
-            value="Machine Learning"
-          />Machine Learning <br /><br />
-          <label for="photo" class="form-label">Upload Your Photograph</label>
-          <input
-            class="pic"
-            type="file"
-            name="photo"
-            id="photo"
-            multiple
-            value="<%= data.photopath %>"
-          />
-          <br /><br />
-          <button class="btn" type="submit">Submit</button>
-        </form>
-      </fieldset>
-      <a href="/participants"
-        ><button class="btn">VIEW PARTICIPANTS >></button></a
-      >
+    <section class="container">
+        <h1 class="my-3 text-center">EDIT</h1>
+    <form class="bg-secondary p-4 text-light">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name </label>
+            <input type="email" class="form-control" id="name" name="name" aria-describedby="emailHelp">
+          </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone</label>
+          <input type="tel" class="form-control" id="phone" name="phone">
+        </div>
+        <div class="mb-3">
+         <label for="topic" class="form-label">Field of interest</label>
+         <br>
+          <input type="radio" class="form-check-input" id="web" name="radio" value="Web development"> Web development
+          <input type="radio" class="form-check-input" id="mobile" name="radio" value="Mobile app development">Mobile App development 
+         <input type="radio" class="form-check-input" id="data" name="radio" value="Data science">Data science
+         <input type="radio" class="form-check-input" id="machine" name="radio" value="Machine learning">Machine learning
+         <input type="radio" class="form-check-input" id="game" name="radio" value="Game development"> 
+         Game Development
+        </div>
+        <div class="mb-3">
+            <label for="photo" class="form-label">Upload photo</label>
+            <input class="form-control" type="file" id="photo" name="photo">
+          </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <a href="/participants.html">
+      <button class="btn btn-outline-primary my-3">VIEW PARTICIPANTS</button>
+    </a>
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    
+
   </body>
 </html>

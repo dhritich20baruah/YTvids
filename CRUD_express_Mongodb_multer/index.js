@@ -66,6 +66,7 @@ app.post('/participate', upload.single('photo'), (req, res)=>{ //req means reque
 })
 app.get('/participants', (req, res)=>{
     Participant.find({}, function(err, data){
+        //The find() function is used to find particular data from the MongoDB database.
         if(err){
             console.log(err)
         }else{

@@ -1,20 +1,21 @@
 {
   "name": "form_html5_express_mongodb",
   "version": "1.0.0",
-  "description": "",
+  "description": "CRUD application",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "dev": "nodemon index.js"
   },
-  "author": "dhriti",
+  "author": "Dhriti",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.20.0",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
+    "method": "^2.0.0",
     "method-override": "^3.0.0",
-    "mongoose": "^6.5.3",
+    "mongoose": "^6.6.1",
     "multer": "^1.4.5-lts.1",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.20",
+    "override": "^0.0.1"
   }
 }
