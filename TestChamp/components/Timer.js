@@ -5,7 +5,7 @@ const Timer = () => {
     const Ref = useRef(null)
     const router = useRouter()
     const [timer, setTimer] = useState('00:00:00');
-
+    
     const getTimeRemaining = (e) => {
         const total = Date.parse(e) - Date.parse(new Date())
         const seconds = Math.floor((total / 1000) % 60)
@@ -60,3 +60,4 @@ const Timer = () => {
 }
 
 export default Timer
+

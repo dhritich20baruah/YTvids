@@ -15,7 +15,7 @@ const Questions = () => {
     const [reviewCount, setreviewCount] = useState(0)
     const [ansNreviewCount, setansNreviewCount] = useState(0)
     const [visible, setVisible] = useState(false)
-    const { score, setScore } = useContext(ScoreStateContext)
+    const { score, setScore} = useContext(ScoreStateContext)
 
     const router = useRouter()
 
@@ -56,7 +56,7 @@ const Questions = () => {
             setScore(score + 1)
             Questionset[index].result = "Correct"
         } else {
-            setScore(score - 1)
+            setScore(score - 0.25)
             Questionset[index].result = "Incorrect"
         }
     }
@@ -104,7 +104,6 @@ const Questions = () => {
         }
         setIndex(index + 1)
         setOption('')
-
     }
 
     //Mark and review
@@ -149,7 +148,6 @@ const Questions = () => {
         }
         setIndex(index + 1)
         setOption('')
-
     }
 
     //visibility
@@ -162,16 +160,94 @@ const Questions = () => {
         router.replace('/Scorecard')
     }
 
+    //Last question
     function last(){
         Questionset[index].response = option
         if (option != ""){
+            if (Questionset[index].status != 'answered') {
+                setansweredCount(answeredCount + 1)
+            }
+            if (Questionset[index].status == 'notanswered') {
+                setnotansweredCount(notansweredCount - 1)
+            }
+            if (Questionset[index].status == 'notvisited') {
+                setnotvisitedCount(notvisitedCount - 1)
+            }
+            if (Questionset[index].status == 'review') {
+                setreviewCount(reviewCount - 1)
+            }
+            if (Questionset[index].status == 'ansNreview') {
+                setansNreviewCount(ansNreviewCount - 1)
+            }
             Questionset[index].status = 'answered'
         } else{
+            if (Questionset[index].status != 'notanswered') {
+                setnotansweredCount(notansweredCount + 1)
+            }
+            if (Questionset[index].status == 'answered') {
+                setansweredCount(answeredCount - 1)
+            }
+            if (Questionset[index].status == 'notvisited') {
+                setnotvisitedCount(notvisitedCount - 1)
+            }
+            if (Questionset[index].status == 'review') {
+                setreviewCount(reviewCount - 1)
+            }
+            if (Questionset[index].status == 'ansNreview') {
+                setansNreviewCount(ansNreviewCount - 1)
+            }
             Questionset[index].status = 'notanswered'
         }
+        setOption('')
         evaluate()
         display()
     }
+
+    //Last question review
+    const lastReview = () => {
+        Questionset[index].response = option
+        if (option != "") {
+            if (Questionset[index].status != 'ansNreview') {
+                setansNreviewCount(ansNreviewCount + 1)
+            }
+            if (Questionset[index].status == 'answered') {
+                setansweredCount(answeredCount - 1)
+            }
+            if (Questionset[index].status == 'notanswered') {
+                setnotansweredCount(notansweredCount - 1)
+            }
+            if (Questionset[index].status == 'notvisited') {
+                setnotvisitedCount(notvisitedCount - 1)
+            }
+            if (Questionset[index].status == 'review') {
+                setreviewCount(reviewCount - 1)
+            }
+            Questionset[index].status = 'ansNreview'
+        }
+        else {
+            if (Questionset[index].status != 'review') {
+                setreviewCount(reviewCount + 1)
+            }
+            if (Questionset[index].status == 'notanswered') {
+                setnotansweredCount(notansweredCount - 1)
+            }
+            if (Questionset[index].status == 'answered') {
+                setansweredCount(answeredCount - 1)
+            }
+            if (Questionset[index].status == 'notvisited') {
+                setnotvisitedCount(notvisitedCount - 1)
+            }
+            if (Questionset[index].status == 'ansNreview') {
+                setansNreviewCount(ansNreviewCount - 1)
+            }
+            Questionset[index].status = 'review'
+        }
+        setOption('')
+        evaluate()
+        display()
+    }
+
+
     return (
         <>
             <div className="questions-head bg-blue-200 flex flex-row justify-between">
@@ -228,7 +304,7 @@ const Questions = () => {
                     <div className="response-buttons flex flex-row justify-between mx-10 my-4 w-[80%]">
                         <div>
                             <button className='p-2 text-blue-800 border-2 border-blue-800 rounded m-2 hover:text-white hover:bg-blue-800 hover:cursor-pointer' onClick={resetOption} type='reset'>CLEAR</button>
-                            {index == Questionset.length - 1 ? <button className='p-2 text-blue-800 border-2 border-blue-800 rounded m-2 hover:text-white hover:bg-blue-800 hover:cursor-pointer' onClick={last}>MARK FOR REVIEW</button> : <button className='p-2 text-blue-800 border-2 border-blue-800 rounded m-2 hover:text-white hover:bg-blue-800 hover:cursor-pointer' onClick={marknReview}>MARK FOR REVIEW</button>}
+                            {index == Questionset.length - 1 ? <button className='p-2 text-blue-800 border-2 border-blue-800 rounded m-2 hover:text-white hover:bg-blue-800 hover:cursor-pointer' onClick={lastReview}>MARK FOR REVIEW</button> : <button className='p-2 text-blue-800 border-2 border-blue-800 rounded m-2 hover:text-white hover:bg-blue-800 hover:cursor-pointer' onClick={marknReview}>MARK FOR REVIEW</button>}
                         </div>
                         <div className='text-lg'>
                             <p>Your response: <span className='font-bold text-red-600'>{Questionset[index].response} </span></p>
