@@ -290,6 +290,7 @@ export const Questionset = [
         question: "Which of the following givenfunctions of the Number Object formats a number with a different number of digits to the right of the decimal?",
         options: ["toExponential()","toFixed()","toPrecision()","toLocaleString()"],
         solution: "toFixed()",
+        status: "notvisited",
         answer: "2",
         response: "",
         result: "",

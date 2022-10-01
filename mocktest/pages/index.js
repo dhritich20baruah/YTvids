@@ -18,7 +18,7 @@ export default function Home() {
     <>
       <div className='relative top-72'>
         <p className='p-5 text-lg'>
-          <input type="checkbox" name="declaration" id="declaration" className='mx-4 text-xl' ref={ref}/> I have read the insrtuctions and checked that the computer provided to me is working perfectly.
+          <input type="checkbox" name="declaration" id="declaration" className='mx-4 text-xl' ref={ref}/> I have read the instructions and checked that the computer provided to me is working perfectly.
         </p>
         <div className='flex justify-center'>
           <button className='bg-indigo-700 text-lg text-white w-fit p-2 hover:bg-green-600 hover:cursor-pointer' onClick={handleClick}>START</button>
