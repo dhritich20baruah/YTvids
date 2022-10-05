@@ -1,0 +1,131 @@
+body{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+#main{
+    position: relative;
+    height: 100vh;
+}
+nav{
+    display: flex;
+    justify-content: end;
+    margin: auto 5em;
+    position: absolute;
+    z-index:10;
+    width: 90vw;
+}
+
+nav ul{
+    display: flex;
+}
+
+nav ul li{
+    list-style: none;
+    padding: 5px;
+    margin: 5px;
+    text-shadow: 0 0 2px white;
+    font-weight: bold;
+}
+
+#buyBtn{
+    background-color: orange;
+    border-radius: 50px;
+    color: white;
+    width: 6em;
+    text-align: center;
+}
+
+#home{
+    display: flex;
+    width: 100vw;
+    position: relative;
+    height: 93vh;
+    background-color: #1943cc;
+}
+#home-text{
+    width: 50vw;
+    padding: 10%;
+    color: white;
+}
+#home-img img{
+    max-width: 50vw;
+    height: auto;
+}
+#image-text{
+    writing-mode: vertical-lr;
+    position: absolute;
+    bottom:0;
+    right: 0;
+    margin: 2em;
+    transform: rotate(180deg);
+    color: white;
+    text-decoration: underline;
+    text-shadow: 0 0 2px black;
+    font-size: 3em;
+}
+#email{
+    border: none;
+    height: 1.9em;
+    border-radius: 50px 0 0 50px;
+    padding-left: 1em;
+}
+#enquireBtn{
+    border: none;
+    height: 2.1em;
+    background-color: orange;
+    color: white;
+    border-radius: 0 50px 50px 0;
+}
+#about{
+    display: flex;
+    position: relative;
+}
+#about-text{
+    padding: 5em;
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#about-image{
+    width: 50vw;
+}
+#about-image img{
+    margin: 3em;
+    max-width: 40vw;
+    height: auto;
+}
+#features{
+    background-color: black;
+    color: white;
+}
+#features h2{
+    text-align: center;
+    padding-top: 1em;
+}
+#features ul{
+    display: flex;
+}
+#features ul li{
+    margin: 2em;
+    list-style: none;
+}
+#features ul li p{
+    text-align: justify;
+}
+#price{
+    display: flex;
+    justify-content: space-evenly;
+}
+.list img{
+    width:25vw;
+    height: 75vh;
+}
+footer{
+    height: 2em;
+    background-color: black;
+    color: beige;
+    padding: 10px;
+}
