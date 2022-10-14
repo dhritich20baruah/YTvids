@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif; 
+}
+
+.card img{
+    width: auto;
+    height: 20rem;
+    object-fit: cover;
+}
+.text-shadow{
+    text-shadow: 0 0 5px black;
+}
+.font-style{
+    font-family: 'Niconne', sans-serif;
+    text-shadow: 0 0 5px white
+}
+#categories-image1{
+    height: 43vh; 
+    width: auto; 
+    object-fit: cover
+}
+#categories-image2{
+    height: 20vh;
+    width: auto; 
+    object-fit: cover
+}
