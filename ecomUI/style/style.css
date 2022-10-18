@@ -40,3 +40,19 @@ i{
 .product-img:hover .shop-icons{
     transform: scale(1)
 }
+input{
+    margin-right: 5px;
+}
+
+
+/* Gallery tabs */
+.img-tab{
+    width: 3em;
+    height: 3em;
+    object-fit: cover;
+}
+.img-tab-main{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}

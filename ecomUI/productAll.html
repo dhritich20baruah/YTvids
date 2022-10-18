@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <title>Maple</title>
+    <link rel="stylesheet" href="/style/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Niconne&family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+      <div class="container-fluid d-flex justify-content-between">
+        <div>
+          <a class="navbar-brand text-warning fw-bold" href="/index.html"
+            >Maple</a
+          >
+        </div>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-between"
+          id="navbarSupportedContent"
+        >
+          <ul class="navbar-nav fw-bold">
+            <li class="nav-item px-3">
+              <a
+                class="nav-link"
+                id="navbarDrop"
+                aria-current="page"
+                href="/index.html"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/about.html">About</a>
+            </li>
+            <li class="nav-item dropdown px-3">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                >Shop</a
+              >
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li>
+                  <a href="/productAll.html" class="dropdown-item"
+                    >All Products</a
+                  >
+                </li>
+                <li>
+                  <a href="/singleProduct.html" class="dropdown-item"
+                    >Product Gallery</a
+                  >
+                </li>
+                <li>
+                  <a href="/cart.html" class="dropdown-item"
+                    >Cart</a
+                  >
+                </li>
+                <li>
+                  <a href="/Checkout.html" class="dropdown-item">Checkout</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown px-3">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                >Blog</a
+              >
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li>
+                  <a href="/productAll.html" class="dropdown-item">All Blogs</a>
+                </li>
+                <li>
+                  <a href="/singleProduct.html" class="dropdown-item"
+                    >Single Blog</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown px-3">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                >More</a
+              >
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li>
+                  <a href="/loginRegister.html" class="dropdown-item"
+                    >Login/register</a
+                  >
+                </li>
+                <li>
+                  <a href="/contact.html" class="dropdown-item">Contact</a>
+                </li>
+                <li>
+                  <a href="/404NotFound.html" class="dropdown-item">404</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <div id="icons" class="d-flex px-2">
+            <div id="cart-icon" class="px-2">
+              <!-- CART -->
+              <i
+                class="material-icons"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                >add_shopping_cart</i
+              >
+              <span
+                class="position-absolute top-4 start85 translate-middle badge rounded-pill bg-warning"
+                >4</span
+              >
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">
+                        Your Cart
+                      </h1>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div
+                      class="modal-body overflow-auto"
+                      style="max-height: 60vh"
+                    >
+                      <div class="card bg-light mb-3">
+                        <div class="row g-0">
+                          <div class="col-md-6">
+                            <img
+                              src="/image/deal3.jpg"
+                              class="w-100 object-fit-cover rounded-start"
+                              alt="..."
+                            />
+                          </div>
+                          <div class="col-md-6">
+                            <div class="card-body">
+                              <h5
+                                class="card-detail d-flex justify-content-between"
+                              >
+                                Wall decoration
+                              </h5>
+                              <p class="text-danger fs-5">$50</p>
+                            </div>
+                            <p class="card-text">Category:Fixtures</p>
+                            <div>
+                              <button class="btn btn-warning">+</button>
+                              <span class="mx-2">1</span>
+                              <button class="btn btn-warning">-</button>
+                            </div>
+                            <div>
+                              <button class="btn btn-danger my-1">
+                                Delete
+                              </button>
+                              <button class="btn btn-primary my-1">
+                                Save for later
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card bg-light mb-3">
+                        <div class="row g-0">
+                          <div class="col-md-6">
+                            <img
+                              src="/image/item14.jpg"
+                              class="w-100 object-fit-cover rounded-start"
+                              alt="..."
+                            />
+                          </div>
+                          <div class="col-md-6">
+                            <div class="card-body">
+                              <h5
+                                class="card-detail d-flex justify-content-between"
+                              >
+                                Leather Sofa
+                              </h5>
+                              <p class="text-danger fs-5">$100</p>
+                            </div>
+                            <p class="card-text">Category: Sofa</p>
+                            <div>
+                              <button class="btn btn-warning">+</button>
+                              <span class="mx-2">1</span>
+                              <button class="btn btn-warning">-</button>
+                            </div>
+                            <div>
+                              <button class="btn btn-danger my-1">
+                                Delete
+                              </button>
+                              <button class="btn btn-primary my-1">
+                                Save for later
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card bg-light mb-3">
+                        <div class="row g-0">
+                          <div class="col-md-6">
+                            <img
+                              src="/image/item3.jpg"
+                              class="w-100 object-fit-cover rounded-start"
+                              alt="..."
+                            />
+                          </div>
+                          <div class="col-md-6">
+                            <div class="card-body">
+                              <h5
+                                class="card-detail d-flex justify-content-between"
+                              >
+                                Winged Chair
+                              </h5>
+                              <p class="text-danger fs-5">$50</p>
+                            </div>
+                            <p class="card-text">Category:Chair</p>
+                            <div>
+                              <button class="btn btn-warning">+</button>
+                              <span class="mx-2">1</span>
+                              <button class="btn btn-warning">-</button>
+                            </div>
+                            <div>
+                              <button class="btn btn-danger my-1">
+                                Delete
+                              </button>
+                              <button class="btn btn-primary my-1">
+                                Save for later
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <h5>
+                        Total: <span class="text-danger fw-bold">$250</span>
+                      </h5>
+                      <button class="btn btn-primary">Checkout</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- USER -->
+            <div class="dropstart px-2">
+              <div
+                type="button"
+                data-bs-toggle="dropdown"
+                id="dropDownMenu1"
+                aria-expanded="false"
+              >
+                <i class="material-icons">account_circle</i>
+              </div>
+              <ul class="dropdown-menu" aria-labelledby="dropDownMenu1">
+                <li>
+                  <a class="dropdown-item" href="/loginRegister.html">Login</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/loginRegister.html"
+                    >Register</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/loginRegister.html"
+                    >My Account</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <!-- Search -->
+            <div id="search-icon" class="px-2">
+              <i
+                class="material-icons"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal2"
+                >search</i
+              >
+            </div>
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="exampleModal2"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">
+                      Search
+                    </h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="" class="d-flex px-3 py-3">
+                      <input
+                        type="search"
+                        class="form-control me-2"
+                        placeholder="Search"
+                        aria-label="Search"
+                      />
+                      <button class="btn btn-outline-success" type="submit">
+                        <i class="material-icons">search</i>
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div id="secondary-title" class="container my-5">
+      <h4 class="d-flex justify-content-center">SHOP</h4>
+      <hr style="margin: auto; width: 25%; color: blue; height: 4px" />
+    </div>
+
+    <section id="filter-sort" class="mx-5 d-flex justify-content-end">
+      <!-- FILTER -->
+      <!-- Button trigger modal -->
+      <div
+        type="button"
+        class="dropdown d-block d-md-none mx-5" 
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal3"
+      >
+        <!-- Will be displayed in small screens -->
+        FILTER
+      </div>
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleModal3"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel3"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel3">Modal title</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div id="side" class="mx-3">
+                <ul class="list-unstyled">
+                  <li><h4>CATEGORY</h4></li>
+                  <li><input type="checkbox" name="check" id="check" />All</li>
+                  <li><input type="checkbox" name="check" id="check" />Beds</li>
+                  <li>
+                    <input type="checkbox" name="check" id="check" />Tables
+                  </li>
+                  <li>
+                    <input type="checkbox" name="check" id="check" />Chairs
+                  </li>
+                  <li>
+                    <input type="checkbox" name="check" id="check" />Cabinets
+                  </li>
+                  <li>
+                    <input type="checkbox" name="check" id="chcek" />Bookshelves
+                  </li>
+                  <li>
+                    <input type="checkbox" name="check" id="check" />Study
+                    tables
+                  </li>
+                  <li>
+                    <input type="checkbox" name="check" id="check" />Dinning
+                    tables
+                  </li>
+                  <li>
+                    <input type="checkbox" name="check" id="check" />Sofas &
+                    couches
+                  </li>
+                </ul>
+                <ul class="list-unstyled">
+                  <li><h4>PRICE</h4></li>
+                  <label for="price">Price: $10 to $500</label>
+                  <br />
+                  <input
+                    type="range"
+                    name="price"
+                    id="price"
+                    min="10"
+                    max="500"
+                    step="50"
+                    value="10"
+                    oninput="this.nextElementSibling.value = this.value"
+                  />
+                  <output class="text-danger fs-4 fw-bold">10</output>
+                </ul>
+                <ul class="list-unstyled">
+                  <li><h4>BRAND</h4></li>
+                  <li><input type="checkbox" name="check" />Ikea</li>
+                  <li><input type="checkbox" name="check" />Kartel</li>
+                  <li>
+                    <input type="checkbox" name="check" />Raymour & Fanigan
+                  </li>
+                  <li><input type="checkbox" name="check" />Williams-Sonoma</li>
+                  <li>
+                    <input type="checkbox" name="check" />Ashley Homestore
+                  </li>
+                </ul>
+                <ul class="list-unstyled">
+                  <li><h4>COLORS</h4></li>
+                  <li>
+                    <input type="checkbox" name="check" /><span
+                      style="color: black"
+                      >BLACK</span
+                    >
+                  </li>
+                  <li>
+                    <input type="checkbox" name="check" /><span
+                      style="color: red"
+                      >RED</span
+                    >
+                  </li>
+                  <li>
+                    <input type="checkbox" name="check" /><span
+                      style="color: blue"
+                      >BLUE</span
+                    >
+                  </li>
+                  <li>
+                    <input type="checkbox" name="check" /><span
+                      style="color: green"
+                      >GREEN</span
+                    >
+                  </li>
+                  <li>
+                    <input type="checkbox" name="check" /><span
+                      style="color: brown"
+                      >BROWN</span
+                    >
+                  </li>
+                  <li>
+                    <input type="checkbox" name="check" /><span
+                      style="color: grey"
+                      >GREY</span
+                    >
+                  </li>
+                  <li>
+                    <input type="checkbox" name="check" /><span
+                      style="color: white; background: black"
+                      >WHITE</span
+                    >
+                  </li>
+                </ul>
+                <ul class="list-unstyled">
+                  <li><h4>MATERIAL</h4></li>
+                  <li><input type="checkbox" name="check" />Wood</li>
+                  <li><input type="checkbox" name="check" />Metal</li>
+                  <li><input type="checkbox" name="check" />Leather</li>
+                  <li><input type="checkbox" name="check" />Plastic</li>
+                  <li><input type="checkbox" name="check" />Engineered wood</li>
+                </ul>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary">
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- SORT -->
+      <div class="dropdown">
+        <div
+          class="dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          SORT
+        </div>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="#">Price--Low to high</a></li>
+          <li><a class="dropdown-item" href="#">Price--High to low</a></li>
+          <li><a class="dropdown-item" href="#">Ratings</a></li>
+          <li><a class="dropdown-item" href="#">Relevant</a></li>
+          <li><a class="dropdown-item" href="#">Popularity</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- WILL BE DISPLAYED IN LARGER SCREEN -->
+          <div class="col col-md-3 d-none d-md-block">
+            <div id="side" class="mx-3">
+              <ul class="list-unstyled">
+                <li><h4>CATEGORY</h4></li>
+                <li><input type="checkbox" name="check" id="check" />All</li>
+                <li><input type="checkbox" name="check" id="check" />Beds</li>
+                <li><input type="checkbox" name="check" id="check" />Tables</li>
+                <li><input type="checkbox" name="check" id="check" />Chairs</li>
+                <li>
+                  <input type="checkbox" name="check" id="check" />Cabinets
+                </li>
+                <li>
+                  <input type="checkbox" name="check" id="chcek" />Bookshelves
+                </li>
+                <li>
+                  <input type="checkbox" name="check" id="check" />Study tables
+                </li>
+                <li>
+                  <input type="checkbox" name="check" id="check" />Dinning
+                  tables
+                </li>
+                <li>
+                  <input type="checkbox" name="check" id="check" />Sofas &
+                  couches
+                </li>
+              </ul>
+              <ul class="list-unstyled">
+                <li><h4>PRICE</h4></li>
+                <label for="price">Price: $10 to $500</label>
+                <br />
+                <input
+                  type="range"
+                  name="price"
+                  id="price"
+                  min="10"
+                  max="500"
+                  step="50"
+                  value="10"
+                  oninput="this.nextElementSibling.value = this.value"
+                />
+                <output class="text-danger fs-4 fw-bold">10</output>
+              </ul>
+              <ul class="list-unstyled">
+                <li><h4>BRAND</h4></li>
+                <li><input type="checkbox" name="check" />Ikea</li>
+                <li><input type="checkbox" name="check" />Kartel</li>
+                <li><input type="checkbox" name="check" />Raymour & Fanigan</li>
+                <li><input type="checkbox" name="check" />Williams-Sonoma</li>
+                <li><input type="checkbox" name="check" />Ashley Homestore</li>
+              </ul>
+              <ul class="list-unstyled">
+                <li><h4>COLORS</h4></li>
+                <li>
+                  <input type="checkbox" name="check" /><span
+                    style="color: black"
+                    >BLACK</span
+                  >
+                </li>
+                <li>
+                  <input type="checkbox" name="check" /><span style="color: red"
+                    >RED</span
+                  >
+                </li>
+                <li>
+                  <input type="checkbox" name="check" /><span
+                    style="color: blue"
+                    >BLUE</span
+                  >
+                </li>
+                <li>
+                  <input type="checkbox" name="check" /><span
+                    style="color: green"
+                    >GREEN</span
+                  >
+                </li>
+                <li>
+                  <input type="checkbox" name="check" /><span
+                    style="color: brown"
+                    >BROWN</span
+                  >
+                </li>
+                <li>
+                  <input type="checkbox" name="check" /><span
+                    style="color: grey"
+                    >GREY</span
+                  >
+                </li>
+                <li>
+                  <input type="checkbox" name="check" /><span
+                    style="color: white; background: black"
+                    >WHITE</span
+                  >
+                </li>
+              </ul>
+              <ul class="list-unstyled">
+                <li><h4>MATERIAL</h4></li>
+                <li><input type="checkbox" name="check" />Wood</li>
+                <li><input type="checkbox" name="check" />Metal</li>
+                <li><input type="checkbox" name="check" />Leather</li>
+                <li><input type="checkbox" name="check" />Plastic</li>
+                <li><input type="checkbox" name="check" />Engineered wood</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col col-md-9">
+            <!-- 4 ROWS and 4 COLUMNS -->
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+              <div class="col">
+                <div class="card border-light shadow product-img my-3">
+                    <img src="image/pic1.jpg" alt="" class="card-img-top h-75 position-relative">
+                    <div class="shop-icons position-absolute px-2 py-2">
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to cart"><i class="material-icons">add_shopping_cart</i></button>
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to wishlist"><i class="material-icons">favorite_border</i></button>
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Expand"><i class="material-icons">open_with</i></button>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <h5 class="card-title">Sofa</h5>
+                        </div>
+                        <p class="card-text text-danger">$99.99</p>
+                        <div class="star">
+                            <i class="material-icons text-warning">star_rate</i>
+                            <i class="material-icons text-warning">star_rate</i>
+                            <i class="material-icons text-warning">star_rate</i>
+                            <i class="material-icons text-warning">star_rate</i>
+                            <i class="material-icons text-secondary">star_rate</i>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card border-light shadow product-img my-3">
+                <img src="image/pic2.jpg" alt="" class="card-img-top h-75 position-relative">
+                <div class="shop-icons position-absolute px-2 py-2">
+                    <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to cart"><i class="material-icons">add_shopping_cart</i></button>
+                    <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to wishlist"><i class="material-icons">favorite_border</i></button>
+                    <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Expand"><i class="material-icons">open_with</i></button>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex">
+                        <h5 class="card-title">Chair</h5>
+                    </div>
+                    <p class="card-text text-danger">$39.99</p>
+                    <div class="star">
+                        <i class="material-icons text-warning">star_rate</i>
+                        <i class="material-icons text-warning">star_rate</i>
+                        <i class="material-icons text-warning">star_rate</i>
+                        <i class="material-icons text-warning">star_rate</i>
+                        <i class="material-icons text-secondary">star_rate</i>
+                    </div>
+                </div>
+            </div>
+                </div>
+              <div class="col">
+                <div class="card border-light shadow product-img my-3">
+                    <img src="image/pic9.jpg" alt="" class="card-img-top h-75 position-relative">
+                    <div class="shop-icons position-absolute px-2 py-2">
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to cart"><i class="material-icons">add_shopping_cart</i></button>
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to wishlist"><i class="material-icons">favorite_border</i></button>
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Expand"><i class="material-icons">open_with</i></button>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <h5 class="card-title">Sofa</h5>
+                        </div>
+                        <p class="card-text text-danger">$99.99</p>
+                        <div class="star">
+                            <i class="material-icons text-warning">star_rate</i>
+                            <i class="material-icons text-warning">star_rate</i>
+                            <i class="material-icons text-warning">star_rate</i>
+                            <i class="material-icons text-warning">star_rate</i>
+                            <i class="material-icons text-secondary">star_rate</i>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card border-light shadow product-img my-3">
+                    <img src="image/deal1.jpg" alt="" class="card-img-top h-75 position-relative">
+                    <div class="shop-icons position-absolute px-2 py-2">
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to cart"><i class="material-icons">add_shopping_cart</i></button>
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to wishlist"><i class="material-icons">favorite_border</i></button>
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Expand"><i class="material-icons">open_with</i></button>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <h5 class="card-title">Sofa</h5>
+                        </div>
+                        <p class="card-text text-danger">$99.99</p>
+                        <div class="star">
+                            <i class="material-icons text-warning">star_rate</i>
+                            <i class="material-icons text-warning">star_rate</i>
+                            <i class="material-icons text-warning">star_rate</i>
+                            <i class="material-icons text-warning">star_rate</i>
+                            <i class="material-icons text-secondary">star_rate</i>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+                <div class="col">
+                  <div class="card border-light shadow product-img my-3">
+                      <img src="image/pic1.jpg" alt="" class="card-img-top h-75 position-relative">
+                      <div class="shop-icons position-absolute px-2 py-2">
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to cart"><i class="material-icons">add_shopping_cart</i></button>
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to wishlist"><i class="material-icons">favorite_border</i></button>
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Expand"><i class="material-icons">open_with</i></button>
+                    </div>
+                      <div class="card-body">
+                          <div class="d-flex">
+                              <h5 class="card-title">Sofa</h5>
+                          </div>
+                          <p class="card-text text-danger">$99.99</p>
+                          <div class="star">
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-secondary">star_rate</i>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="col"><div class="card border-light shadow product-img my-3">
+                  <img src="image/pic2.jpg" alt="" class="card-img-top h-75 position-relative">
+                  <div class="shop-icons position-absolute px-2 py-2">
+                    <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to cart"><i class="material-icons">add_shopping_cart</i></button>
+                    <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to wishlist"><i class="material-icons">favorite_border</i></button>
+                    <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Expand"><i class="material-icons">open_with</i></button>
+                </div>
+                  <div class="card-body">
+                      <div class="d-flex">
+                          <h5 class="card-title">Chair</h5>
+                      </div>
+                      <p class="card-text text-danger">$39.99</p>
+                      <div class="star">
+                          <i class="material-icons text-warning">star_rate</i>
+                          <i class="material-icons text-warning">star_rate</i>
+                          <i class="material-icons text-warning">star_rate</i>
+                          <i class="material-icons text-warning">star_rate</i>
+                          <i class="material-icons text-secondary">star_rate</i>
+                      </div>
+                  </div>
+              </div></div>
+                <div class="col">
+                  <div class="card border-light shadow product-img my-3">
+                      <img src="image/pic9.jpg" alt="" class="card-img-top h-75 position-relative">
+                      <div class="shop-icons position-absolute px-2 py-2">
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to cart"><i class="material-icons">add_shopping_cart</i></button>
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to wishlist"><i class="material-icons">favorite_border</i></button>
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Expand"><i class="material-icons">open_with</i></button>
+                    </div>
+                      <div class="card-body">
+                          <div class="d-flex">
+                              <h5 class="card-title">Sofa</h5>
+                          </div>
+                          <p class="card-text text-danger">$99.99</p>
+                          <div class="star">
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-secondary">star_rate</i>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card border-light shadow product-img my-3">
+                      <img src="image/deal1.jpg" alt="" class="card-img-top h-75 position-relative">
+                      <div class="shop-icons position-absolute px-2 py-2">
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to cart"><i class="material-icons">add_shopping_cart</i></button>
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to wishlist"><i class="material-icons">favorite_border</i></button>
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Expand"><i class="material-icons">open_with</i></button>
+                    </div>
+                      <div class="card-body">
+                          <div class="d-flex">
+                              <h5 class="card-title">Sofa</h5>
+                          </div>
+                          <p class="card-text text-danger">$99.99</p>
+                          <div class="star">
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-secondary">star_rate</i>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+                <div class="col">
+                  <div class="card border-light shadow product-img my-3">
+                      <img src="image/pic1.jpg" alt="" class="card-img-top h-75 position-relative">
+                      <div class="shop-icons position-absolute px-2 py-2">
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to cart"><i class="material-icons">add_shopping_cart</i></button>
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to wishlist"><i class="material-icons">favorite_border</i></button>
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Expand"><i class="material-icons">open_with</i></button>
+                    </div>
+                      <div class="card-body">
+                          <div class="d-flex">
+                              <h5 class="card-title">Sofa</h5>
+                          </div>
+                          <p class="card-text text-danger">$99.99</p>
+                          <div class="star">
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-secondary">star_rate</i>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="col"><div class="card border-light shadow product-img my-3">
+                  <img src="image/pic2.jpg" alt="" class="card-img-top h-75 position-relative">
+                  <div class="shop-icons position-absolute px-2 py-2">
+                    <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to cart"><i class="material-icons">add_shopping_cart</i></button>
+                    <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to wishlist"><i class="material-icons">favorite_border</i></button>
+                    <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Expand"><i class="material-icons">open_with</i></button>
+                </div>
+                  <div class="card-body">
+                      <div class="d-flex">
+                          <h5 class="card-title">Chair</h5>
+                      </div>
+                      <p class="card-text text-danger">$39.99</p>
+                      <div class="star">
+                          <i class="material-icons text-warning">star_rate</i>
+                          <i class="material-icons text-warning">star_rate</i>
+                          <i class="material-icons text-warning">star_rate</i>
+                          <i class="material-icons text-warning">star_rate</i>
+                          <i class="material-icons text-secondary">star_rate</i>
+                      </div>
+                  </div>
+              </div></div>
+                <div class="col">
+                  <div class="card border-light shadow product-img my-3">
+                      <img src="image/pic9.jpg" alt="" class="card-img-top h-75 position-relative">
+                      <div class="shop-icons position-absolute px-2 py-2">
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to cart"><i class="material-icons">add_shopping_cart</i></button>
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to wishlist"><i class="material-icons">favorite_border</i></button>
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Expand"><i class="material-icons">open_with</i></button>
+                    </div>
+                      <div class="card-body">
+                          <div class="d-flex">
+                              <h5 class="card-title">Sofa</h5>
+                          </div>
+                          <p class="card-text text-danger">$99.99</p>
+                          <div class="star">
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-secondary">star_rate</i>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card border-light shadow product-img my-3">
+                      <img src="image/deal1.jpg" alt="" class="card-img-top h-75 position-relative">
+                      <div class="shop-icons position-absolute px-2 py-2">
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to cart"><i class="material-icons">add_shopping_cart</i></button>
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to wishlist"><i class="material-icons">favorite_border</i></button>
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Expand"><i class="material-icons">open_with</i></button>
+                    </div>
+                      <div class="card-body">
+                          <div class="d-flex">
+                              <h5 class="card-title">Sofa</h5>
+                          </div>
+                          <p class="card-text text-danger">$99.99</p>
+                          <div class="star">
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-secondary">star_rate</i>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+                <div class="col">
+                  <div class="card border-light shadow product-img my-3">
+                      <img src="image/pic1.jpg" alt="" class="card-img-top h-75 position-relative">
+                      <div class="shop-icons position-absolute px-2 py-2">
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to cart"><i class="material-icons">add_shopping_cart</i></button>
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to wishlist"><i class="material-icons">favorite_border</i></button>
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Expand"><i class="material-icons">open_with</i></button>
+                    </div>
+                      <div class="card-body">
+                          <div class="d-flex">
+                              <h5 class="card-title">Sofa</h5>
+                          </div>
+                          <p class="card-text text-danger">$99.99</p>
+                          <div class="star">
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-secondary">star_rate</i>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="col"><div class="card border-light shadow product-img my-3">
+                  <img src="image/pic2.jpg" alt="" class="card-img-top h-75 position-relative">
+                  <div class="shop-icons position-absolute px-2 py-2">
+                    <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to cart"><i class="material-icons">add_shopping_cart</i></button>
+                    <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to wishlist"><i class="material-icons">favorite_border</i></button>
+                    <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Expand"><i class="material-icons">open_with</i></button>
+                </div>
+                  <div class="card-body">
+                      <div class="d-flex">
+                          <h5 class="card-title">Chair</h5>
+                      </div>
+                      <p class="card-text text-danger">$39.99</p>
+                      <div class="star">
+                          <i class="material-icons text-warning">star_rate</i>
+                          <i class="material-icons text-warning">star_rate</i>
+                          <i class="material-icons text-warning">star_rate</i>
+                          <i class="material-icons text-warning">star_rate</i>
+                          <i class="material-icons text-secondary">star_rate</i>
+                      </div>
+                  </div>
+              </div></div>
+                <div class="col">
+                  <div class="card border-light shadow product-img my-3">
+                      <img src="image/pic9.jpg" alt="" class="card-img-top h-75 position-relative">
+                      <div class="shop-icons position-absolute px-2 py-2">
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to cart"><i class="material-icons">add_shopping_cart</i></button>
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to wishlist"><i class="material-icons">favorite_border</i></button>
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Expand"><i class="material-icons">open_with</i></button>
+                    </div>
+                      <div class="card-body">
+                          <div class="d-flex">
+                              <h5 class="card-title">Sofa</h5>
+                          </div>
+                          <p class="card-text text-danger">$99.99</p>
+                          <div class="star">
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-secondary">star_rate</i>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card border-light shadow product-img my-3">
+                      <img src="image/deal1.jpg" alt="" class="card-img-top h-75 position-relative">
+                      <div class="shop-icons position-absolute px-2 py-2">
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to cart"><i class="material-icons">add_shopping_cart</i></button>
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to wishlist"><i class="material-icons">favorite_border</i></button>
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Expand"><i class="material-icons">open_with</i></button>
+                    </div>
+                      <div class="card-body">
+                          <div class="d-flex">
+                              <h5 class="card-title">Sofa</h5>
+                          </div>
+                          <p class="card-text text-danger">$99.99</p>
+                          <div class="star">
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-warning">star_rate</i>
+                              <i class="material-icons text-secondary">star_rate</i>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>         
+          <div id="page-navigation" class="d-flex justify-content-center my-4">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+              </nav>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="footer" class="container-fluid">
+      <div class="bg-secondary text-light pt-5 row px-5">
+        <div id="about-us" class="footer-item col-md-3 col-sm-6">
+          <ul class="list-unstyled">
+            <li><h5>ABOUT</h5></li>
+            <li>
+              <a href="#" class="text-light text-decoration-none">About Us</a>
+            </li>
+            <li>
+              <a href="#" class="text-light text-decoration-none">Newsletter</a>
+            </li>
+            <li>
+              <a href="#" class="text-light text-decoration-none">Brands</a>
+            </li>
+            <li>
+              <a href="#" class="text-light text-decoration-none">Contact Us</a>
+            </li>
+            <li>
+              <a href="#" class="text-light text-decoration-none"
+                >Terms & Conditions</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-light text-decoration-none"
+                >Privacy Policy</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div id="useful-links" class="footer-item col-md-3 col-sm-6">
+          <ul class="list-unstyled">
+            <li><h5>USEFUL LINKS</h5></li>
+            <li>
+              <a href="#" class="text-light text-decoration-none"
+                >Privacy policy</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-light text-decoration-none">Returns</a>
+            </li>
+            <li>
+              <a href="#" class="text-light text-decoration-none"
+                >Latest News</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-light text-decoration-none"
+                >Customer feedback</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-light text-decoration-none"
+                >Track Shipping</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-light text-decoration-none"
+                >Out Sitemap</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div id="my-account" class="footer-item col-md-3 col-sm-6">
+          <ul class="list-unstyled">
+            <li><h5>MY ACCOUNT</h5></li>
+            <li>
+              <a href="#" class="text-light text-decoration-none">My Account</a>
+            </li>
+            <li>
+              <a href="#" class="text-light text-decoration-none">My Cart</a>
+            </li>
+            <li>
+              <a href="#" class="text-light text-decoration-none"
+                >My Wishlist</a
+              >
+            </li>
+            <li>
+              <a href="#" class="text-light text-decoration-none">Login</a>
+            </li>
+            <li>
+              <a href="#" class="text-light text-decoration-none">Register</a>
+            </li>
+          </ul>
+        </div>
+        <div id="footer-newsletter" class="footer-item col-md-3 col-sm-6">
+          <ul class="list-unstyled">
+            <li><h5>SUBSCRIBE FOR NEWSLETTER</h5></li>
+            <li>
+              <input type="email" name="email" id="email" placeholder="Email" />
+            </li>
+            <li><button class="btn btn-primary px-3 py-1">Submit</button></li>
+          </ul>
+        </div>
+        <hr />
+        <div class="text-center pt-4 text-light bg-secondary">
+          <div>
+            <p>Follow us on</p>
+            <div>
+              <a href=""><img src="/image/facebook.png" alt="" /></a>
+              <a href=""><img src="/image/insta.png" alt="" /></a>
+              <a href=""><img src="/image/linkedin.png" alt="" /></a>
+              <a href=""><img src="/image/youtube.png" alt="" /></a>
+            </div>
+            <p class="my-4">
+              Copyright &#169; 2022 Maple. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

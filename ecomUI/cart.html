@@ -367,86 +367,145 @@
       </nav>
 
       <div id="secondary-title" class="container my-5">
-        <h4 class="d-flex justify-content-center">CHECKOUT</h4>
+        <h4 class="d-flex justify-content-center">CART</h4>
         <hr style="margin: auto; width: 25%; color: blue; height: 4px" />
       </div>
 
-      <section id="checkout" class="container">
-        <div class="row container my-5 pb-3">
-            <div class="col-12 col-md-9 bg-light">
-                <h5 class="mx-2 pt-5">Billing Address</h5>
-                <div>
-                    <label for="name" class="mx-2">Name</label>
-                    <input type="text" class="w-100 p-1 mx-2 my-2 border-light" id="name" name="name" placeholder="name">
-                </div>
-                <div>
-                    <label for="phone" class="mx-2">Phone number</label>
-                    <input type="tel" class="w-100 p-1 mx-2 my-2 border-light" id="phone" name="phone" placeholder="Phone number">
-                </div>
-                <div>
-                    <label for="email" class="mx-2">Email</label>
-                    <input type="email" class="w-100 p-1 mx-2 my-2 border-light" id="email" name="email" placeholder="email">
-                </div>
-                <div>
-                    <label for="house" class="mx-2">House/ Apartment/ Flat No.</label>
-                    <input type="text" class="w-100 p-1 mx-2 my-2 border-light" id="house" name="house" placeholder="House/ Apartment/ Flat No.">
-                </div>
-                <div>
-                    <label for="street" class="mx-2">Street</label>
-                    <input type="text" class="w-100 p-1 mx-2 my-2 border-light" id="street" name="street" placeholder="Street">
-                </div>
-                <div>
-                    <label for="City" class="mx-2">City</label>
-                    <input type="text" class="w-100 p-1 mx-2 my-2 border-light" id="City" name="City" placeholder="City">
-                </div>
-                <div>
-                    <label for="state" class="mx-2">State/County</label>
-                    <input type="text" class="w-100 p-1 mx-2 my-2 border-light" id="state" name="state" placeholder="State/ County">
-                </div>
-                <div>
-                    <label for="country" class="mx-2">Country</label>
-                    <input type="text" class="w-100 p-1 mx-2 my-2 border-light" id="country" name="country" placeholder="Country">
-                </div>
-                <div>
-                    <label for="pincode" class="mx-2">Zip/Pin code</label>
-                    <input type="number" class="w-100 p-1 mx-2 my-2 border-light" id="pincode" name="pincode" placeholder="pincode">
-                </div>
-                <div>
-                    <button class="w-100 p-1 mx-2 my-2 btn btn-warning">Save and deliver here</button>
-                </div>
-            </div>
-            <div class="col-12 col-md-3">
-                <div id="price-details" class="container my-3 mx-3">
-                    <h5>Price details</h5>
-                    <div id="purchases" class="d-flex justify-content-between">
-                        <p>Price</p>
-                        <p class="text-danger fs-5">$500</p>
+      <section id="cart">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card mb-3 shadow border-light">
+                        <div class="row g-0">
+                          <div class="col-md-4">
+                            <img src="/image/deal3.jpg" class="w-100 object-fit-contain rounded-start" alt="...">
+                          </div>
+                          <div class="col-md-8">
+                            <div class="card-body">
+                                <div class="card-detail d-flex justify-content-between">
+                                    <h5 class="card-title">Wall decoration</h5>
+                                    <p class="text-danger fs-4">$50</p>
+                                </div>
+                              <p class="card-text">In stock</p>
+                              <p class="card-text">Category: Fixtures</p>
+                              <div>
+                                <button class="btn btn-warning">+</button>
+                                <span class="mx-2">1</span>
+                                <button class="btn btn-warning">-</button>
+                              </div>
+                              <div>
+                                <button class="btn btn-danger my-3">Delete</button>
+                                <button class="btn btn-primary my-3">Save for later</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                     </div>
-                    <div id="delivery" class="d-flex justify-content-between">
-                        <p>Delivery charges</p>
-                        <p class="text-danger fs-5">$20</p>
+                    <div class="card mb-3 shadow border-light">
+                        <div class="row g-0">
+                          <div class="col-md-4">
+                            <img src="/image/item14.jpg" class="w-100 object-fit-contain rounded-start" alt="...">
+                          </div>
+                          <div class="col-md-8">
+                            <div class="card-body">
+                                <div class="card-detail d-flex justify-content-between">
+                                    <h5 class="card-title">Leather Sofa</h5>
+                                    <p class="text-danger fs-4">$100</p>
+                                </div>
+                              <p class="card-text">In stock</p>
+                              <p class="card-text">Category: Sofa</p>
+                              <div>
+                                <button class="btn btn-warning">+</button>
+                                <span class="mx-2">1</span>
+                                <button class="btn btn-warning">-</button>
+                              </div>
+                              <div>
+                                <button class="btn btn-danger my-3">Delete</button>
+                                <button class="btn btn-primary my-3">Save for later</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                     </div>
-                    <hr>
-                    <h5>Payment options</h5>
-                    <div>
-                        <input type="radio" name="payment" id="net">
-                        <label for="net">Net Banking</label>
+                    <div class="card mb-3 shadow border-light">
+                        <div class="row g-0">
+                          <div class="col-md-4">
+                            <img src="/image/item3.jpg" class="w-100 object-fit-contain rounded-start" alt="...">
+                          </div>
+                          <div class="col-md-8">
+                            <div class="card-body">
+                                <div class="card-detail d-flex justify-content-between">
+                                    <h5 class="card-title">Winged Chair</h5>
+                                    <p class="text-danger fs-4">$50</p>
+                                </div>
+                              <p class="card-text">In stock</p>
+                              <p class="card-text">Category: Sofa</p>
+                              <div>
+                                <button class="btn btn-warning">+</button>
+                                <span class="mx-2">1</span>
+                                <button class="btn btn-warning">-</button>
+                              </div>
+                              <div>
+                                <button class="btn btn-danger my-3">Delete</button>
+                                <button class="btn btn-primary my-3">Save for later</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                     </div>
-                    <div>
-                        <input type="radio" name="payment" id="card">
-                        <label for="card">Debit/ Credit Card</label>
+                    <div class="card mb-3 shadow border-light">
+                        <div class="row g-0">
+                          <div class="col-md-4">
+                            <img src="/image/item4.jpg" class="w-100 object-fit-contain rounded-start" alt="...">
+                          </div>
+                          <div class="col-md-8">
+                            <div class="card-body">
+                                <div class="card-detail d-flex justify-content-between">
+                                    <h5 class="card-title">Blue Chair</h5>
+                                    <p class="text-danger fs-4">$50</p>
+                                </div>
+                              <p class="card-text">In stock</p>
+                              <p class="card-text">Category: Chair</p>
+                              <div>
+                                <button class="btn btn-warning">+</button>
+                                <span class="mx-2">1</span>
+                                <button class="btn btn-warning">-</button>
+                              </div>
+                              <div>
+                                <button class="btn btn-danger my-3">Delete</button>
+                                <button class="btn btn-primary my-3">Save for later</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                     </div>
-                    <div>
-                        <input type="radio" name="payment" id="cash">
-                        <label for="cash">Cash on delivery</label>
+                </div>
+                <div class="col col-md-4">
+                    <div id="cart-sidebar" class="px-5">
+                        <div id="coupon">
+                            <h5>Add coupon code</h5>
+                            <p>Enter coupon code if available:</p>
+                            <div id="coupon-form">
+                                <input type="text" class="w-100">
+                                <button class="btn btn-warning my-2">APPLY COUPON</button>
+                            </div>
+                            <div id="cart-amt" class="my-4">
+                                <h5>Cart total</h5>
+                                <div class="d-flex justify-content-between">
+                                    <p>Total amount</p>
+                                    <h5 class="text-danger">$ 250</h5>
+                                </div>
+                                <a href="/Checkout.html">
+                                  <button class="btn btn-warning">Proceed to checkout</button>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <button class="btn btn-warning">Place order</button>
                 </div>
             </div>
         </div>
       </section>
-  
-      
+
       <section id="footer" class="container-fluid">
         <div class="bg-secondary text-light pt-5 row px-5">
           <div id="about-us" class="footer-item col-md-3 col-sm-6">
