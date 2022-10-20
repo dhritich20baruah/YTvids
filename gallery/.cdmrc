@@ -1,2 +1,0 @@
-tabs: ['README.md', 'style-guide.html']
-terminal-one: static-server -p $PUBLIC_PORT --no-cache

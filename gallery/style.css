@@ -5,69 +5,67 @@ body{
     background-color: #000000;
 }
 
-main{
+#imageDiv{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    position: relative;
 }
 .img-div img{
     width: 32.5vw;
     height: auto;
 }
-#imageDiv{
-    position: relative;
-}
-#img-title{
-    position: absolute;
-    left: 1em;
-    bottom: 1em;
-    color: #eeeeee;
-    font-family: sans-serif;
-    font-size: 14px;
-    font-style: normal;
-    z-index: 10;
-}
-.footer-note{
-    display: flex;
-    justify-content: space-between;
-    color: #a0a0a1;
-    margin: 1em;
-     font-family: "Source Sans Pro", Helvetica, sans-serif;
-    font-size: 14px;
-    font-style: normal;
-}
-#multi{
-    color: white;
-}
 #modal{
     position: fixed;
     z-index: 5;
-    display: none;
-    width: 100%;
-    height: 100%;
-}
-.modal-img{
-    position: relative;   
-    margin-right: auto;
-    margin-left: auto;    
-}
-.modal-img img{
-    width: 50%;
-    height: auto;
-    text-align: center;
-    margin-right: auto;
-    margin-left: auto;
-    display: none;  
-    margin-top: 100px;
+    width: 70vw;
+    height: 80vh;
+    background: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-@media screen and (min-width:500px) and (max-width: 700px){
-    main{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: repeat(6, 1fr);
-    }
+#imageClose, #imageLeft, #imageRight{
+    position: fixed;
+    z-index: 12;
+    width: 2em;
 }
+
+#imageLeft{
+    top: 50%;
+    left: 2%;
+}
+
+#imageRight{
+    top: 50%;
+    right: 2%;
+}
+
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}
+#imageLeft, #imageRight, #imageClose:hover{
+    cursor: pointer;
+}
+#image{
+    z-index: 9;
+}
+
+#image img{
+    position: fixed;
+    top: 0;
+    width: 99%;
+    height: 98%;
+    object-fit: cover;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 @media screen and (max-width:500px){
     main{
         display: flex;
@@ -76,5 +74,9 @@ main{
     .img-div img{
         width: 100%;
         height: auto;
+    }
+    #modal{
+        width: 99vw;
+        height: 50vh;
     }
 }

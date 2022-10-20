@@ -1,85 +1,85 @@
 data = [
     {
-        number: 1,
-        title: "MAGNA FEUGIAT LOREM",
-        image: "/assets/images/01.jpg" 
+        number: "1",
+        image: "/images/1.jpg" 
     },
     {
-        number: 2,
-        title: "NISL ADIPISCING",
-        image: "/assets/images/02.jpg" 
+        number: "2",
+        image: "/images/2.jpg" 
     },
     {
-        number: 3,
-        title: "TEMPUS ALIQUAM VEROEROS",
-        image: "/assets/images/03.jpg" 
+        number: "3",
+        image: "/images/3.jpg" 
     },
     {
-        number: 4,
-        title: "ALIQUAM IPSUM SED DOLORE",
-        image: "/assets/images/04.jpg" 
+        number: "4",
+        image: "/images/4.jpg" 
     },
     {
-        number: 5,
-        title: "CURSIS ALIQUAM NISL",
-        image: "/assets/images/05.jpg" 
+        number: "5",
+        image: "/images/5.jpg" 
     },
     {
-        number: 6,
-        title: "SED CONSEQUAT PHASELLUS",
-        image: "/assets/images/06.jpg" 
+        number: "6",
+        image: "/images/6.jpg" 
     },
     {
-        number: 7,
-        title: "MAURIS ID TELLUS ARCU",
-        image: "/assets/images/07.jpg" 
+        number: "7",
+        image: "/images/7.jpg" 
     },
     {
-        number: 8,
-        title: "NUNC VEHICULA ID NULLA",
-        image: "/assets/images/08.jpg" 
+        number: "8",
+        image: "/images/8.jpg" 
     },
     {
-        number: 9,
-        title: "NEQUE ET FAUCIBUS VIVERRA",
-        image: "/assets/images/09.jpg" 
+        number: "9",
+        image: "/images/9.jpg" 
     },
     {
-        number: 10,
-        title: "MATTIS ANTE FERMENTUM",
-        image: "/assets/images/10.jpg" 
+        number: "10",
+        image: "/images/10.jpg" 
     },
     {
-        number: 11,
-        title: "SED AC ELEMENTUM ARCU",
-        image: "/assets/images/11.jpg" 
+        number: "11",
+        image: "/images/11.jpg" 
     },
     {
-        number: 12,
-        title: "VEHICULA ID NULLA DIGNISSIM",
-        image: "/assets/images/12.jpg" 
+        number: "12",
+        image: "/images/12.jpg" 
     },
 ]
 
 const imageDiv = document.getElementById('imageDiv')
 const imageTitle = document.getElementById('img-title')
-const modal = document.getElementById('modalImg')
+const modal = document.getElementById('modal')
+const image = document.getElementById('image')
+let index
+
 data.forEach(element => {
-    imageDiv.innerHTML += `<img src=${element.image} alt="" onclick="openModal(); currentImg(${element.number})"/>`
-    // imageTitle.innerHTML +=`<h3>hello</h3>`
+    imageDiv.innerHTML += `<img src=${element.image} alt="" onclick="openModal(); showImg(${element.number})"/>`
 });
 
 
 function openModal(){
-    document.getElementById("modal").style.display = "block"
+    modal.classList.toggle('hide')
 }
 function closeModal(){
-    document.getElementById("modal").style.display = "none"
+    modal.classList.toggle('hide')
 }
-function currentImg(n){
-    console.log(n)
-    document.getElementById(`img${n}`).style.display = "block"
+function showImg(n){
+    index = n
+    image.innerHTML = `<img src="/images/${n}.jpg" alt="">`;
+    return index
 }
-function closeImg(n){
-    document.getElementById(`img${n}`).style.display = "none"
+
+function nextImage(){
+    if(index < data.length){
+        showImg(index+1)
+    }
+}
+
+function prevImage(){
+    if(index >1){
+        showImg(index-1)
+    }
 }
