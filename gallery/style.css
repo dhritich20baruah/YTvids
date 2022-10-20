@@ -4,27 +4,28 @@ body{
     box-sizing: border-box;
     background-color: #000000;
 }
+
 main{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
-img{
-    width: 100%;
-    max-width: 100%;
-    height: auto
+.img-div img{
+    width: 32.5vw;
+    height: auto;
 }
-.img-div{
+#imageDiv{
     position: relative;
 }
-.img-title{
+#img-title{
     position: absolute;
     left: 1em;
     bottom: 1em;
     color: #eeeeee;
-    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    font-family: sans-serif;
     font-size: 14px;
     font-style: normal;
+    z-index: 10;
 }
 .footer-note{
     display: flex;
@@ -69,8 +70,11 @@ img{
 }
 @media screen and (max-width:500px){
     main{
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(12, 1fr);
+        display: flex;
+        flex-direction: column;
+    }
+    .img-div img{
+        width: 100%;
+        height: auto;
     }
 }

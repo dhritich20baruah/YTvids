@@ -9,57 +9,13 @@
 	</head>
 	<body>
 		<section id="main-part">
-			<main>
-				<div class="img-div" onclick="openModal();currentImg(1)">
-					<img src="/assets/images/01.jpg" alt=""/>
-					<h3 class="img-title">MAGNA FEUGIAT LOREM</h3>
-				</div>
-				<div class="img-div" onclick="openModal();currentImg(2)">
-					<img src="/assets/images/02.jpg" alt=""/>
-					<h3 class="img-title">NISL ADIPISCING</h3>
-				</div>
-				<div class="img-div" onclick="openModal();currentImg(3)">
-					<img src="/assets/images/03.jpg" alt=""/>
-					<h3 class="img-title">TEMPUS ALIQUAM VEROEROS</h3>
-				</div>
-				<div class="img-div" onclick="openModal();currentImg(4)">
-					<img src="/assets/images/04.jpg" alt=""/>
-					<h3 class="img-title">ALIQUAM IPSUM SED DOLORE</h3>
-				</div>
-				<div class="img-div" onclick="openModal();currentImg(5)">
-					<img src="/assets/images/05.jpg" alt=""/>
-					<h3 class="img-title">CURSIS ALIQUAM NISL</h3>
-				</div>
-				<div class="img-div" onclick="openModal();currentImg(6)">
-					<img src="/assets/images/06.jpg" alt=""/>
-					<h3 class="img-title">SED CONSEQUAT PHASELLUS</h3>
-				</div>
-				<div class="img-div" onclick="openModal();currentImg(7)">
-					<img src="/assets/images/07.jpg" alt=""/>
-					<h3 class="img-title">MAURIS ID TELLUS ARCU</h3>
-				</div>
-				<div class="img-div" onclick="openModal();currentImg(8)">
-					<img src="/assets/images/08.jpg" alt=""/>
-					<h3 class="img-title">NUNC VEHICULA ID NULLA</h3>
-				</div>
-				<div class="img-div" onclick="openModal();currentImg(9)">
-					<img src="/assets/images/09.jpg" alt=""/>
-					<h3 class="img-title">NEQUE ET FAUCIBUS VIVERRA</h3>
-				</div>
-				<div class="img-div" onclick="openModal();currentImg(10)">
-					<img src="/assets/images/10.jpg" alt=""/>
-					<h3 class="img-title">MATTIS ANTE FERMENTUM</h3>
-				</div>
-				<div class="img-div" onclick="openModal();currentImg(11)">
-					<img src="/assets/images/11.jpg" alt=""/>
-					<h3 class="img-title">SED AC ELEMENTUM ARCU</h3>
-				</div>
-				<div class="img-div" onclick="openModal();currentImg(12)">
-					<img src="/assets/images/12.jpg" alt=""/>
-					<h3 class="img-title">VEHICULA ID NULLA DIGNISSIM</h3>
+			<main id="main">
+				<div class="img-div" id="imageDiv">
+					<div id="img-title">hello</div>
+				
 				</div>
 				<div id="modal">
-					<div class="modal-img" onclick="closeModal();closeImg(1)">
+					<div class="modal-img" id="modalImg" onclick="closeModal();closeImg(1)">
 						<img src="/assets/images/01.jpg" alt="" id="img1">
 					</div>
 					<div class="modal-img" onclick="closeModal();closeImg(2)">
@@ -104,19 +60,6 @@
 				</div>
 			</footer>
 		</section>
-		<script>
-			function openModal(){
-				document.getElementById("modal").style.display = "block"
-			}
-			function closeModal(){
-				document.getElementById("modal").style.display = "none"
-			}
-			function currentImg(n){
-				document.getElementById(`img${n}`).style.display = "block"
-			}
-			function closeImg(n){
-				document.getElementById(`img${n}`).style.display = "none"
-			}
-		</script>
+		<script src="/script.js"></script>
 	</body>
 </html>
