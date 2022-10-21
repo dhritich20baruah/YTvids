@@ -1,50 +1,51 @@
+// The above array contains the names and locations of the image files
 data = [
     {
-        number: "1",
+        name: "1",
         image: "/images/1.jpg" 
     },
     {
-        number: "2",
+        name: "2",
         image: "/images/2.jpg" 
     },
     {
-        number: "3",
+        name: "3",
         image: "/images/3.jpg" 
     },
     {
-        number: "4",
+        name: "4",
         image: "/images/4.jpg" 
     },
     {
-        number: "5",
+        name: "5",
         image: "/images/5.jpg" 
     },
     {
-        number: "6",
+        name: "6",
         image: "/images/6.jpg" 
     },
     {
-        number: "7",
+        name: "7",
         image: "/images/7.jpg" 
     },
     {
-        number: "8",
+        name: "8",
         image: "/images/8.jpg" 
     },
     {
-        number: "9",
+        name: "9",
         image: "/images/9.jpg" 
     },
     {
-        number: "10",
+        name: "10",
         image: "/images/10.jpg" 
     },
     {
-        number: "11",
+        name: "11",
         image: "/images/11.jpg" 
     },
     {
-        number: "12",
+        name: "12",
         image: "/images/12.jpg" 
     },
 ]
@@ -56,20 +57,19 @@ const image = document.getElementById('image')
 let index
 
 data.forEach(element => {
-    imageDiv.innerHTML += `<img src=${element.image} alt="" onclick="openModal(); showImg(${element.number})"/>`
+    imageDiv.innerHTML += `<img src=${element.image} alt="" onclick="openModal(); showImg(${element.name})"/>`
 });
 
 
 function openModal(){
-    modal.classList.toggle('hide')
+    modal.classList.remove('hide')
 }
 function closeModal(){
-    modal.classList.toggle('hide')
+    modal.classList.add('hide')
 }
 function showImg(n){
     index = n
     image.innerHTML = `<img src="/images/${n}.jpg" alt="">`;
-    return index
 }
 
 function nextImage(){
