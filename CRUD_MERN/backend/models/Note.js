@@ -1,14 +1,11 @@
 const mongoose = require('mongoose')
 
-const blogSchema = new mongoose.Schema({
+const noteSchema = new mongoose.Schema({
     title:{
         type: String,
     },
-    snippet:{
+    note:{
         type: String,
-    },
-    blogBody:{
-        type: String
     },
     createdAt:{
         type: Date,
@@ -16,4 +13,4 @@ const blogSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('Blog', blogSchema)
+module.exports = mongoose.model('Note', noteSchema)
