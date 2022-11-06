@@ -1,21 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="input.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
     <title>Navbars</title>
-</head>
-<body>
-    <section class="h-[100vh] w-[100vw] bg-cyan-700">
-        <nav>
-            <ul class="flex flex-row bg-red-600">
-                <li>Home</li>
-                <li>About</li>
-                <li>Service</li>
-                <li>Contact</li>
-            </ul>
-        </nav>
+  </head>
+  <body>
+    <section class="h-[100vh] w-[100vw] bg-slate-400 relative">
+      <nav class="absolute left-0">
+        <ul class="flex flex-col bg-white text-black h-[100vh] md:w-40 w-16 space-y-6" id="nav-list">
+          <li></li>
+          <li class="text-xl flex flex-row m-4">
+            <i
+              class="material-icons mr-1"
+              style="font-size: 1.5em; color: orange"
+              >whatshot</i
+            ><span class="md:block hidden">BRAND</span>
+          </li>
+          <li class="m-4 p-2 hover:bg-blue-300">
+            <a href="#" class="flex flex-row"><i class="material-icons mr-2">home</i><span class="md:block hidden">Home</span></a>
+          </li>
+          <li class="m-4 p-2 hover:bg-blue-300">
+            <a href="#" class="flex flex-row"><i class="material-icons mr-2">dashboard</i><span class="md:block hidden">Dashboard</span></a>
+          </li>
+          <li class="m-4 p-2 hover:bg-blue-300">
+            <a href="#" class="flex flex-row"><i class="material-icons mr-2">event_note</i><span class="md:block hidden">Orders</span></a>
+          </li> 
+          <li class="m-4 p-2 hover:bg-blue-300">
+            <a href="/imdb-nav.html" class="flex flex-row"><i class="material-icons mr-2">shopping_basket</i
+            ><span class="md:block hidden">Product</span></a>
+          </li>
+          <li class="m-4 p-2 hover:bg-blue-300">
+            <a href="#" class="flex flex-row"><i class="material-icons mr-2">person</i><span class="md:block hidden">Customers</span></a>
+          </li>
+        </ul>
+      </nav>
+      <div class="absolute right-10 top-4">
+        <button onclick="nightMode()"><i class="material-icons">brightness_4</i></button>
+      </div>
     </section>
-</body>
+    <script>
+        const navList = document.getElementById('nav-list')
+        function nightMode(){
+            navList.classList.toggle('bg-white')
+            navList.classList.toggle('bg-black')
+            navList.classList.toggle('text-white')
+            navList.classList.toggle('text-black')
+        }
+    </script>
+  </body>
 </html>
