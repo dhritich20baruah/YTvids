@@ -1,3 +1,74 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components{
+    .easedown{
+        @apply transition duration-700 ease-in-out
+    }
+}
+
+.slideUp{
+    animation-name: slideUp;
+    animation-duration: 0.7s;
+    animation-fill-mode: both;
+}
+
+@keyframes slideUp{
+    0%{
+        transform: translateY(0)
+    }
+    100%{
+        transform: translateY(-100%)
+    }
+}
+
+.slideDown{
+    animation-name: slideDown;
+    animation-duration: 0.7s;
+    animation-fill-mode: both;
+}
+
+@keyframes slideDown{
+    0%{
+        transform: translateY(-100%)
+    }
+    100%{
+        transform: translateY(0)
+    }
+}
+
+input[type=radio]{
+    accent-color: rgb(255, 217, 0);
+}
+
+.showSearch{
+    animation-name: displaySearch;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+}
+
+@keyframes displaySearch{
+    0%{
+        transform: translate(-50%, -50%) scale(0, 0);
+    }
+    100%{
+        transform: translate(0, 0) scale(1, 1);
+
+    }
+}
+
+.hideSearch{
+    animation-name: hideSearch;
+    animation-duration: 0.1s;
+    animation-fill-mode: both;
+}
+
+@keyframes hideSearch{
+    0%{
+        transform: translate(0, 0) scale(1, 1);
+    }
+    100%{
+        transform: translate(-50%, -50%) scale(0, 0);
+    }
+}

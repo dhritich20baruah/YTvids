@@ -19,13 +19,20 @@
                 <li>
                     <img src="/IMDB_Logo_2016.svg.png" alt="" class="w-16 h-auto"/>
                 </li>
-                <li class="flex flex-row content-center">
-                    <i class="material-icons">view_headline</i>
+                <li class="flex flex-row content-center hover:bg-gray-800 hover:cursor-pointer rounded-sm p-1" onclick="slide()">
+                    <i class="material-icons text-gray-300 hover:text-white">view_headline</i>
                     <span class="pt-1 pl-1">Menu</span>
                 </li>
-                <li class="flex flex-row">
-                    <div class="flex flex-row text-black bg-white pt-2 rounded-tl-md rounded-bl-md pl-2 border-r-2">All <i class="material-icons">arrow_drop_down</i></div>
-                    <input type="text" class="w-[45vw] p-1" placeholder="search IMDb"><i class="material-icons text-black bg-white p-1 rounded-tr-md rounded-br-md">search</i>
+                <li class="flex flex-row hover:cursor-pointer searchClass" onclick="showSearch(), displayArrow()" >
+                    <div class="flex flex-row text-black hover:bg-gray-300 bg-white pt-2 rounded-tl-md rounded-bl-md pl-2 border-r-2">All
+                    <span class="dropArrow">
+                        <i class="material-icons">arrow_drop_down</i>
+                    </span> 
+                    <span class="dropArrow hidden">
+                        <i class="material-icons">arrow_drop_up</i>
+                    </span>
+                    </div>
+                    <input type="text" class="w-[45vw] p-1 text-black outline-none" placeholder="Search IMDb"><i class="material-icons text-black bg-white p-1 rounded-tr-md rounded-br-md font-normal">search</i>
                 </li>
                 <li style="font-family: arial;" class="pt-1 pl-1">
                     IMDb<span class="text-blue-600">PRO</span>
@@ -35,18 +42,27 @@
                     <span class="pt-1 pl-1">Watchlist</span>
                 </li>
                 <li class="pt-1 pl-1">Sign In</li>
-                <li class="flex flex-row pt-1 pl-1">
-                    EN <i class="material-icons">arrow_drop_down</i>
+                <li class="flex flex-row hover:bg-gray-800 hover:cursor-pointer rounded-sm p-1" onclick="showLang()">
+                    <span class="pl-1">EN</span>
+                    <span class="dropArrow">
+                        <i class="material-icons">arrow_drop_down</i>
+                    </span> 
+                    <span class="dropArrow hidden">
+                        <i class="material-icons">arrow_drop_up</i>
+                    </span>
                 </li>
             </ul>
         </nav>
-        <div class="h-[100vh] w-[100vw] bg-[url('/ironman.jpg')]">
-            <div class="w-[100vw] bg-black absolute">
-                <img src="/IMDB_Logo_2016.svg.png" alt="" class="w-28 h-auto"/>
-                <div class="text-white font-bold">
+        <div class="h-[100vh] w-[100%] bg-[url('/ironman.jpg')]">
+            <div class="w-[100%] bg-black absolute top-0 left-0 translate-y-[-100%]" id="dropDown-main">
+                <div class="flex flex-row justify-between mx-40 my-10">
+                    <img src="/IMDB_Logo_2016.svg.png" alt="" class="w-24 h-auto"/>
+                    <div class="bg-yellow-400 w-10 h-10 rounded-full relative hover:cursor-pointer" onclick="slideUp()"><p class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-xl">X</p></div>
+                </div>
+                <div class="text-white flex flex-row justify-between mx-40">
                     <div>
-                        <p class="text-2xl my-2"><i class="material-icons text-yellow-400">local_movies</i>Movies</p>
-                        <ul class="ml-6 space-y-2">
+                        <p class="text-2xl mb-4 font-bold"><i class="material-icons text-yellow-400 mr-4">local_movies</i>Movies</p>
+                        <ul class="ml-10 space-y-3">
                             <li>Release Calender</li>
                             <li>Top 250 Movies</li>
                             <li>Most Popular Movies</li>
@@ -56,36 +72,125 @@
                             <li>Movie News</li>
                             <li>India Movie Spotlight</li>
                         </ul>
-                        <p class="text-2xl my-2"><i class="material-icons text-yellow-400">people</i>Movies</p>
-                        <ul class="ml-6 space-y-2">
+                        <p class="text-2xl mb-4 mt-32 font-bold"><i class="material-icons text-yellow-400 mr-4">people</i>Celebs</p>
+                        <ul class="ml-10 space-y-3 mt-6">
                             <li>Born Today</li>
                             <li>Most Popular Celebs</li>
                             <li>Celebrity News</li>
                         </ul>
                     </div>
                     <div>
-                        <p class="text-2xl my-2"><i class="material-icons text-yellow-400">local_movies</i>Movies</p>
-                        <ul class="ml-6 space-y-2">
-                            <li>What's on TV & streaming</li>
-                            <li>Top 250 Movies</li>
-                            <li>Most Popular Movies</li>
-                            <li>Browse Movies by Genre</li>
-                            <li>Top Box Office</li>
-                            <li>Showtimes & Tickets</li>
-                            <li>Movie News</li>
-                            <li>India Movie Spotlight</li>
+                        <p class="text-2xl mb-4 font-bold"><i class="material-icons text-yellow-400 mr-4">tv</i>TV Shows</p>
+                        <ul class="ml-10 space-y-2">
+                            <li>What's on TV & Streaming</li>
+                            <li>Top 250 TV Shows</li>
+                            <li>Most Popular TV Shows</li>
+                            <li>Browse TV Shows by Genre</li>
+                            <li>TV News</li>
+                            <li>India TV Spotlight</li>
                         </ul>
-                        <p class="text-2xl my-2"><i class="material-icons text-yellow-400">people</i>Movies</p>
-                        <ul class="ml-6 space-y-2">
-                            <li>Born Today</li>
-                            <li>Most Popular Celebs</li>
-                            <li>Celebrity News</li>
+                        <p class="text-2xl mb-4 mt-10 font-bold"><i class="material-icons text-yellow-400 mr-4">video_library</i>Watch</p>
+                        <ul class="ml-10 space-y-2">
+                            <li>What to Watch</li>
+                            <li>Latest Trailers</li>
+                            <li>IMDb Originals</li>
+                            <li>IMDb Picks</li>
+                            <li>IMDb Podcasts</li>
                         </ul>
                     </div>
-                    <div></div>
+                    <div>
+                        <p class="text-2xl mb-4 font-bold"><i class="material-icons text-yellow-400 mr-4">stars</i>Awards & Events</p>
+                        <ul class="ml-10 space-y-2">
+                            <li>Oscars</li>
+                            <li>Best Picture Winners</li>
+                            <li>Emmys</li>
+                            <li>STARmeter Awards</li>
+                            <li>San Diego Comic-Con</li>
+                            <li>New York Comic-Con</li>
+                            <li>Sundance Film Festival</li>
+                            <li>Toronto Int'l Film Festival</li>
+                            <li>Awards Central</li>
+                            <li>Festival Central</li>
+                            <li>All Events</li>
+                        </ul>
+                        <p class="text-2xl mb-4 mt-14 font-bold"><i class="material-icons text-yellow-400 mr-4">public</i>Community</p>
+                        <ul class="ml-10 space-y-2">
+                            <li>Help Center</li>
+                            <li>Contributor Zone</li>
+                            <li>Polls</li>
+                        </ul>
+                    </div>
                 </div>
+            </div>
+
+            <div class="w-42 bg-[#181717] absolute top-14 left-60 rounded-sm hidden searchClass" id="search" onmouseleave="hideSearch()">
+                <ul>
+                    <li class="m-3 flex flex-row"><i class="material-icons mr-3 mt-1 text-yellow-400">search</i><span class="text-yellow-400 text-lg">All</span></li>
+                    <li class="m-3 flex flex-row"><i class="material-icons mr-3 mt-1 text-gray-400">local_movies</i><span class="text-white text-lg">Titles</span></li>
+                    <li class="m-3 flex flex-row"><i class="material-icons mr-3 mt-1 text-gray-400">tv</i><span class="text-white text-lg">TV episodes</span></li>
+                    <li class="m-3 flex flex-row"><i class="material-icons mr-3 mt-1 text-gray-400">people</i><span class="text-white text-lg">Celebs</span></li>
+                    <li class="m-3 flex flex-row"><i class="material-icons mr-3 mt-1 text-gray-400">business</i><span class="text-white text-lg">Companies</span></li>
+                    <li class="m-3 flex flex-row"><i class="material-icons mr-3 mt-1 text-gray-400">play_arrow</i><span class="text-white text-lg">Keywords</span></li>
+                    <hr>
+                    <li class="m-3 flex flex-row border-t-gray-400"><i class="material-icons mr-3 mt-1 text-gray-400">pageview</i><span class="text-white text-lg">Advanced Search</span><i class="material-icons ml-3 mt-1 text-gray-400">keyboard_arrow_right</i></li>
+                </ul>
+            </div>
+
+            <div class="w-60 bg-[#181717] absolute top-14 right-10 rounded-sm hidden" id="language">
+                <ul class="text-gray-400 text-lg">
+                    <li class="text-white m-4">Fully Supported</li>
+                    <hr>
+                    <li class="text-white m-4"><input type="radio" class="mr-3" name="language" checked/>English (United States)</li>
+                    <hr>
+                    <li class="text-white m-4">Partially Supported</li>
+                    <hr>
+                    <li class="m-4"><input type="radio" name="language" class="mr-3"/>Français (Canada)</li>
+                    <li class="m-4"><input type="radio" name="language" class="mr-3"/>Français (France)</li>
+                    <li class="m-4"><input type="radio" name="language" class="mr-3"/>Deutsch (Deutschland)</li>
+                    <li class="m-4"><input type="radio" name="language" class="mr-3"/>हिन्दी (भारत)</li>
+                    <li class="m-4"><input type="radio" name="language" class="mr-3"/>Italiano (Italia)</li>
+                    <li class="m-4"><input type="radio" name="language" class="mr-3"/>Português (Brasil)</li>
+                    <li class="m-4"><input type="radio" name="language" class="mr-3"/>Español (España)</li>
+                    <li class="m-4"><input type="radio" name="language" class="mr-3"/>Español (México)</li>
+                </ul>
             </div>
         </div>
     </section>
+    <script>
+        const dropDownMain = document.getElementById('dropDown-main')
+        const language = document.getElementById('language')
+        const search = document.getElementById('search')
+        const dropArrow = document.getElementsByClassName('dropArrow')
+        const searchClass = document.querySelectorAll('searchClass')
+
+        function slide(){
+            dropDownMain.classList.toggle('slideDown')          
+        }
+
+        function slideUp(){
+            dropDownMain.classList.toggle('slideDown')          
+            dropDownMain.classList.add('slideUp')
+            dropDownMain.classList.remove('translate-y-[-100%]')
+        }
+
+        function showSearch(){
+            search.classList.add('showSearch')
+            search.classList.remove('hidden')
+            search.classList.remove('hideSearch')
+        }
+        
+        function hideSearch(){
+            search.classList.remove('showSearch')
+            search.classList.add('hideSearch')
+        }
+
+        function displayArrow(){
+            dropArrow.classList.toggle('hidden')
+        }
+        function showLang(){
+            language.classList.toggle('hidden')
+        }
+   
+    </script>
 </body>
 </html>

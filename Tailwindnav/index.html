@@ -12,7 +12,7 @@
     <title>Navbars</title>
   </head>
   <body>
-    <section class="h-[100vh] w-[100vw] bg-slate-400 relative">
+    <section class="h-[100vh] w-[100vw] bg-slate-400 relative" id="main">
       <nav class="absolute left-0">
         <ul class="flex flex-col bg-white text-black h-[100vh] md:w-40 w-16 space-y-6" id="nav-list">
           <li></li>
@@ -44,14 +44,21 @@
       <div class="absolute right-10 top-4">
         <button onclick="nightMode()"><i class="material-icons">brightness_4</i></button>
       </div>
+      <h1 class="text-black font-bold text-4xl absolute top-[50%] left-[50%]" id="title">TAILWIND CSS</h1>
     </section>
     <script>
         const navList = document.getElementById('nav-list')
+        const main = document.getElementById('main')
+        const title = document.getElementById('title')
         function nightMode(){
             navList.classList.toggle('bg-white')
             navList.classList.toggle('bg-black')
             navList.classList.toggle('text-white')
             navList.classList.toggle('text-black')
+            title.classList.toggle('text-white')
+            title.classList.toggle('text-black')
+            main.classList.toggle('bg-gray-800')
+            main.classList.toggle('bg-slate-400')
         }
     </script>
   </body>
