@@ -8,6 +8,7 @@
     }
 }
 
+/* CSS for main menu */
 .slideUp{
     animation-name: slideUp;
     animation-duration: 0.7s;
@@ -42,6 +43,7 @@ input[type=radio]{
     accent-color: rgb(255, 217, 0);
 }
 
+/* CSS for search dropdown */
 .showSearch{
     animation-name: displaySearch;
     animation-duration: 0.3s;
@@ -70,5 +72,67 @@ input[type=radio]{
     }
     100%{
         transform: translate(-50%, -50%) scale(0, 0);
+    }
+}
+/* CSS for language dropdown */
+.showLang{
+    animation-name: displayLang;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+}
+
+@keyframes displayLang{
+    0%{
+        transform: translate(50%, -50%) scale(0, 0);
+    }
+    100%{
+        transform: translate(0, 0) scale(1, 1);
+
+    }
+}
+
+.hideLang{
+    animation-name: hideLang;
+    animation-duration: 0.1s;
+    animation-fill-mode: both;
+}
+
+@keyframes hideLang{
+    0%{
+        transform: translate(0, 0) scale(1, 1);
+    }
+    100%{
+        transform: translate(50%, -50%) scale(0, 0);
+    }
+}
+
+/* Carousal CSS */
+.slideLeft{
+    animation-name: slideLeft;
+    animation-duration: 0.7s;
+    animation-fill-mode: both;
+}
+
+@keyframes slideLeft{
+    0%{
+        transform: translateX(0)
+    }
+    100%{
+        transform: translateX(-100%)
+    }
+}
+
+.slideRight{
+    animation-name: slideRight;
+    animation-duration: 0.7s;
+    animation-fill-mode: both;
+}
+
+@keyframes slideRight{
+    0%{
+        transform: translateX(-100%)
+    }
+    100%{
+        transform: translateX(0)
     }
 }
