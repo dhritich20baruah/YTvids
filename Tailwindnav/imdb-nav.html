@@ -12,7 +12,6 @@
     <title>IMDB nav</title>
 </head>
 <body>
-    <section>
         <nav>
             <ul class="bg-black text-white font-bold flex flex-row text-sm space-x-8 space-y-3">
                 <li></li>
@@ -86,7 +85,7 @@
                 </li>
             </ul>
         </nav>
-        <div class="w-[100%] bg-black absolute top-0 left-0 translate-y-[-100%] z-10" id="dropDown-main">
+        <div class="w-[100%] bg-black absolute top-0 left-0 translate-y-[-100%] z-20" id="dropDown-main">
             <div class="flex flex-row justify-between mx-40 my-10">
                 <img src="/IMDB_Logo_2016.svg.png" alt="" class="w-24 h-auto"/>
                 <div class="bg-yellow-400 w-10 h-10 rounded-full relative hover:cursor-pointer" onclick="slideUp()"><p class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-xl">X</p></div>
@@ -157,54 +156,24 @@
         <section id="main" class="h-[100vh] w-[100%] bg-black flex flex-row">
             <!-- Main Thumbnail -->
             <div class="w-[75vw] m-5 relative">
-                <div id="left-btn" class="absolute top-[30%] left-0 border-2 border-white rounded-md text-white hover:cursor-pointer bg-black w-12 h-16 opacity-50">
+                <div id="left-btn" class="absolute z-10 top-[30%] left-0 border-2 border-white rounded-md text-white hover:cursor-pointer bg-black w-12 h-16 opacity-50" onclick="prevSlide(), prevThumbs()">
                     <i class="material-icons absolute top-2 hover:text-yellow-600" style="font-size: 2.5em">chevron_left</i>
                 </div>
-                <div id="right-btn" class="absolute top-[30%] right-0 border-2 border-white rounded-md text-white hover:cursor-pointer bg-black w-12 h-16 opacity-50">
+                <div id="right-btn" class="absolute z-10 top-[30%] right-0 border-2 border-white rounded-md text-white hover:cursor-pointer bg-black w-12 h-16 opacity-50" onclick="nextSlide(), nextThumbs()">
                     <i class="material-icons absolute top-2 hover:text-yellow-600" style="font-size: 2.5em">chevron_right</i>
                 </div>
-                <div id="main-thumbnail">
+                <div id="main-thumbnail" class="relative flex flex-row">
 
                 </div>
             </div>
             <!-- Thumbnail List -->
             <div class="w-[35vw] mr-5" id="thumbnail-list">
                 <h2 class="text-yellow-400 my-5 text-lg font-bold">Up next</h2>
-                <div class="bg-gradient-to-b from-[#141414] to-black p-3 space-y-2">
-                    <div class="card flex flex-row">
-                        <img src="/images/rocketboys2.jpg" alt="" class="w-28">
-                        <div class="m-2 text-white">
-                            <p>
-                                <i class="material-icons">play_circle_outline</i> 1:25
-                            </p>
-                            <h3 class="text-2xl">"Rocket Boys" Season 1</h3>
-                            <p>Watch the Trailer</p>
-                        </div>
-                    </div>
-                    <div class="card flex flex-row">
-                        <img src="/images/fordvsferrari2.png" alt="" class="w-28">
-                        <div class="m-2 text-white">
-                            <p>
-                                <i class="material-icons">play_circle_outline</i> 2:45
-                            </p>
-                            <h3 class="text-2xl">Ford Vs Ferrari</h3>
-                            <p>Watch the Trailer</p>
-                        </div>
-                    </div>
-                    <div class="card flex flex-row">
-                        <img src="/images/mrrobot2.jpg" alt="" class="w-28">
-                        <div class="m-2 text-white">
-                            <p>
-                                <i class="material-icons">play_circle_outline</i> 1:25
-                            </p>
-                            <h3 class="text-2xl">"Mr. Robot" Final Season</h3>
-                            <p>Watch the Trailer</p>
-                        </div>
-                    </div>
+                <div class="bg-gradient-to-b from-[#141414] to-black p-3 space-y-2" id="cards">
+                    
                 </div>
             </div>
         </section>       
-    </section>
     <script src="/script.js"></script>
    
 </body>

@@ -109,7 +109,7 @@ input[type=radio]{
 /* Carousal CSS */
 .slideLeft{
     animation-name: slideLeft;
-    animation-duration: 0.7s;
+    animation-duration: 5s;
     animation-fill-mode: both;
 }
 
@@ -118,7 +118,7 @@ input[type=radio]{
         transform: translateX(0)
     }
     100%{
-        transform: translateX(-100%)
+        transform: translateX(-120%)
     }
 }
 

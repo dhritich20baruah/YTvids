@@ -3,7 +3,7 @@ const imageArr = [
         number: 1,
         title: '"Iron Man" Extended Cut',
         imageLandscape: "/images/ironman1l.jpeg",
-        imagePoster: "/images/iron man1.jpg",
+        imagePoster: "/images/ironman2.jpg",
         duration: "2:01"
 
     },
@@ -19,7 +19,7 @@ const imageArr = [
         number: 3,
         title: 'Ford vs Ferrari',
         imageLandscape: "/images/fordvsferrari1.jpg",
-        imagePoster: "/images/fordvsferrari2.jpg",
+        imagePoster: "/images/fordvsferrari2.png",
         duration: "2:45"
 
     },
@@ -31,6 +31,14 @@ const imageArr = [
         duration: "2:01"
 
     },
+    {
+        number: 5,
+        title: 'The Imitation Game',
+        imageLandscape: "/images/imitationgame1.jpg",
+        imagePoster: "/images/imitationgame2.jpg",
+        duration: "2:11"
+
+    },
 ]
 
 const dropDownMain = document.getElementById('dropDown-main')
@@ -39,22 +47,84 @@ const search = document.getElementById('search')
 const dropArrow = document.getElementsByClassName('dropArrow')
 const searchClass = document.querySelectorAll('searchClass')
 const mainThumb = document.getElementById('main-thumbnail')
+const cards = document.getElementById('cards')
 
-mainThumb.innerHTML = 
-        `<div id="primary-image" class="">
-            <img src="/images/ironman1l.jpeg" alt="">
-        </div>
+let index = 0
+let index2 = 1
+
+display(index)
+
+function display(index){
+    mainThumb.innerHTML = 
+    `<div id="primaryImage" class="primeImage">
+        <img src=${imageArr[index].imageLandscape} alt="">
         <div id="secondary-image" class="">
-            <img src="/images/iron man1.jpg" alt="" class="w-48 h-auto absolute bottom-6 left-10 drop-shadow-xl">
-            <i class="material-icons absolute left-8 bottom-[43.5%] text-black" style="font-size: 3em; opacity: 0.7;">bookmark</i>
-            <span class="absolute left-11 bottom-[45.5%] text-white text-3xl ">+</span>
+            <img src=${imageArr[index].imagePoster}  alt="" class="w-48 h-auto absolute bottom-0 left-10 drop-shadow-xl">
+            <i class="material-icons absolute left-8 bottom-[42%] text-black" style="font-size: 3em; opacity: 0.7;">bookmark</i>
+            <span class="absolute left-11 bottom-[44%] text-white text-3xl ">+</span>
         </div> 
         <i class="material-icons absolute bottom-16 left-60 text-white hover:text-yellow-400 hover:cursor-pointer" style="font-size: 5em;">play_circle_outline</i>
         <div class="absolute bottom-16 left-80">
-            <h2 id="title" class=" text-white text-4xl">"Iron Man" Extended cut <span class="text-gray-400 text-xl ml-5">2:01</span></h2>
+            <h2 id="title" class=" text-white text-4xl">${imageArr[index].title} <span class="text-gray-400 text-xl ml-5">${imageArr[index].duration}</span></h2>
             <p class="text-white text-2xl">Watch the Trailer</p>
-        </div>`
+        </div>
+    </div>`
+}
 
+function nextSlide(){
+//    mainThumb.classList.add('slideLeft')
+    index = index + 1
+    if(index> imageArr.length - 1){
+        index = 0
+    }
+    display(index) 
+}
+
+
+function prevSlide(){
+    index = index - 1
+    if(index < 0){
+        index = imageArr.length - 1
+    }
+  display(index)
+}
+
+//Thumbnails display
+displayCard(index2)
+
+function displayCard(index2){
+    cards.innerHTML = ""
+    for (var j = 0; j < 3; j++) {
+      // console.log(imageArr[(i + j) % imageArr.length])
+    //   console.log((index2 + j) % imageArr.length)
+      cards.innerHTML += `
+      <div class="card flex flex-row">
+      <img src=${imageArr[(index2 + j) % imageArr.length].imagePoster} alt="" class="w-28">
+      <div class="m-2 text-white">
+          <p>
+              <i class="material-icons">play_circle_outline</i> ${imageArr[(index2 + j) % imageArr.length].duration}
+          </p>
+          <h3 class="text-2xl">${imageArr[(index2 + j) % imageArr.length].title}</h3>
+          <p>Watch the Trailer</p>
+      </div>
+      </div>`
+  }
+  }
+ 
+  function nextThumbs(){
+    index2 = index2 +1
+    displayCard(index2)
+  }
+
+    function prevThumbs(){
+        index2 = index2 - 1
+        if(index2 == 0){
+            index2 = imageArr.length 
+        }
+        console.log(index2)
+        displayCard(index2)
+    }
+// Main menu
 function slide() {
     dropDownMain.classList.toggle('slideDown')
 }
