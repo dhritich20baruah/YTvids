@@ -8,6 +8,10 @@
     }
 }
 
+body{
+    background-color: black;
+}
+
 /* CSS for main menu */
 .slideUp{
     animation-name: slideUp;
@@ -134,5 +138,36 @@ input[type=radio]{
     }
     100%{
         transform: translateX(0)
+    }
+}
+
+/* Side Menu CSS */
+.slideIn{
+    animation-name: slideIn;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+
+@keyframes slideIn{
+    0%{
+        transform: translateX(-100%)
+    }
+    100%{
+        transform: translateX(0)
+    }
+}
+
+.slideOut{
+    animation-name: slideOut;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+
+@keyframes slideOut{
+    0%{
+        transform: translateX(0)
+    }
+    100%{
+        transform: translateX(-100%)
     }
 }

@@ -42,12 +42,19 @@ const imageArr = [
 ]
 
 const dropDownMain = document.getElementById('dropDown-main')
+const sideMenu = document.getElementById('sideMenu')
 const language = document.getElementById('language')
 const search = document.getElementById('search')
 const dropArrow = document.getElementsByClassName('dropArrow')
 const searchClass = document.querySelectorAll('searchClass')
 const mainThumb = document.getElementById('main-thumbnail')
 const cards = document.getElementById('cards')
+const smSearch = document.getElementById('smSearch')
+
+const sideHead = document.getElementsByClassName('sideHead');
+const sideList = document.getElementsByClassName('sideList');
+const sideHeadLen = sideHead.length;
+const sideListLen = sideList.length;
 
 let index = 0
 let index2 = 1
@@ -59,14 +66,15 @@ function display(index){
     `<div id="primaryImage" class="primeImage">
         <img src=${imageArr[index].imageLandscape} alt="">
         <div id="secondary-image" class="">
-            <img src=${imageArr[index].imagePoster}  alt="" class="w-48 h-auto absolute bottom-0 left-10 drop-shadow-xl">
+            <img src=${imageArr[index].imagePoster}  alt="" class="md:w-48 h-auto absolute bottom-0 left-10 max-w-[26%]">
             <i class="material-icons absolute left-8 bottom-[42%] text-black" style="font-size: 3em; opacity: 0.7;">bookmark</i>
             <span class="absolute left-11 bottom-[44%] text-white text-3xl ">+</span>
         </div> 
-        <i class="material-icons absolute bottom-16 left-60 text-white hover:text-yellow-400 hover:cursor-pointer" style="font-size: 5em;">play_circle_outline</i>
-        <div class="absolute bottom-16 left-80">
-            <h2 id="title" class=" text-white text-4xl">${imageArr[index].title} <span class="text-gray-400 text-xl ml-5">${imageArr[index].duration}</span></h2>
-            <p class="text-white text-2xl">Watch the Trailer</p>
+        <i class="material-icons absolute bottom-16 md:left-60 right-40 text-white hover:text-yellow-400 hover:cursor-pointer" style="font-size: 5em">play_circle_outline</i>        
+        <span class="text-gray-400 text-xl ml-5 md:hidden block absolute bottom-16 right-24">${imageArr[index].duration}</span>
+        <div class="absolute md:bottom-16 md:left-80 left-40 bottom-0">
+            <h2 id="title" class=" text-white text-xl md:text-4xl">${imageArr[index].title} <span class="text-gray-400 text-xl ml-5 md:inline-block hidden">${imageArr[index].duration}</span></h2>
+            <p class="text-white md:text-2xl">Watch the Trailer</p>
         </div>
     </div>`
 }
@@ -164,4 +172,32 @@ function hideLang() {
     language.classList.add('hideLang')
     dropArrow[2].classList.remove('hidden')
     dropArrow[3].classList.add('hidden')
+}
+
+function toggleDisplay(){
+    smSearch.classList.toggle('hidden')
+}
+
+function displayList(i){
+    sideList[i].classList.toggle('hidden');
+
+    for(var j = 0; j < sideListLen; j++){
+        if(j == i){
+            continue;
+        }
+        if(!sideList[j].classList.contains('hidden')){
+            sideList[j].classList.add('hidden')
+        }
+    }
+}
+
+function slideIn() {
+    sideMenu.classList.toggle('slideIn')
+    sideMenu.classList.remove('slideOut')
+}
+
+function slideOut() {
+    sideMenu.classList.toggle('slideIn')
+    sideMenu.classList.add('slideOut')
+    sideMenu.classList.remove('translate-x-[-100%]')
 }
