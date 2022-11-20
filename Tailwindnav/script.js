@@ -193,12 +193,12 @@ function displayList(i){
 
 function slideIn() {
     sideMenu.classList.toggle('slideIn')
-    sideMenu.classList.add('slideOut')
+    sideMenu.classList.remove('slideOut')
 }
 
 function slideOut() {
     sideMenu.classList.toggle('slideIn')
-    sideMenu.classList.remove('slideOut')
+    sideMenu.classList.add('slideOut')
     sideMenu.classList.remove('translate-x-[-100%]')
 }
 
