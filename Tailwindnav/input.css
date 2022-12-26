@@ -171,3 +171,34 @@ input[type=radio]{
         transform: translateX(-100%)
     }
 }
+
+/* slider */
+.next{
+    animation-name: next;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+
+@keyframes next{
+    0%{
+        transform: translateX(-100%)
+    }
+    100%{
+        transform: translateX(0)
+    }
+}
+
+.prev{
+    animation-name: prev;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+
+@keyframes prev{
+    0%{
+        transform: translateX(0)
+    }
+    100%{
+        transform: translateX(-100%)
+    }
+}

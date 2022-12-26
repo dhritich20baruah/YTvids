@@ -78,7 +78,7 @@ function display(index){
         </div>
     </div>`
 }
-
+document.getElementById('primaryImage').classList.add('')
 function nextSlide(){
 //    mainThumb.classList.add('slideLeft')
     index = index + 1
@@ -124,14 +124,14 @@ function displayCard(index2){
     displayCard(index2)
   }
 
-    function prevThumbs(){
-        index2 = index2 - 1
-        if(index2 == 0){
-            index2 = imageArr.length 
-        }
-        console.log(index2)
-        displayCard(index2)
+function prevThumbs(){
+    index2 = index2 - 1
+    if(index2 == 0){
+        index2 = imageArr.length 
     }
+    console.log(index2)
+    displayCard(index2)
+}
 // Main menu
 function slide() {
     dropDownMain.classList.toggle('slideDown')
