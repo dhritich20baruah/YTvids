@@ -34,7 +34,7 @@ body{
   background-color: skyblue;
 }
 /* REGISTER */
-.register{
+.register, .product{
   margin-left: 30%;
 }
 .login{

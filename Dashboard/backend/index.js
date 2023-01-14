@@ -8,6 +8,7 @@ app.use(cors());
 //Importing the mongoose configuration from the config file 
 require('./db/config')
 const User = require("./db/User")
+const Product = require('./db/Product')
 
 app.post('/register', async (req, res)=>{
     let user = new User(req.body)
@@ -30,6 +31,12 @@ app.post('/login', async (req, res)=>{
         res.send({result: "No user found"})
     }
    
+})
+
+app.post("/add-product", async (req, res)=>{
+    let product = new Product(req.body);
+    let result = await product.save();
+    res.send(result)
 })
 
 app.listen(PORT, ()=>{console.log(`Server running at port ${PORT}`)})
