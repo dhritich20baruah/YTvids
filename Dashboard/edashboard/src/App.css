@@ -23,6 +23,9 @@ body{
   margin: 0;
   background-color: skyblue;
 }
+.nav-right{
+  text-align: right;
+}
 .footer{
   position: absolute;
   bottom: 0;
@@ -32,6 +35,9 @@ body{
 }
 /* REGISTER */
 .register{
+  margin-left: 30%;
+}
+.login{
   margin-left: 30%;
 }
 .inputBox{
