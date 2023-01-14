@@ -33,6 +33,12 @@ body{
   width: 100%;
   background-color: skyblue;
 }
+.invalid-input{
+  color: red;
+  margin-top: -20px;
+  display: block;
+  margin-left: 20px;
+}
 /* REGISTER */
 .register, .product{
   margin-left: 30%;
