@@ -53,4 +53,23 @@ app.delete('/product/:id', async(req, res)=>{
     res.send(result)
 })
 
+app.get('/product/:id', async (req, res)=>{
+    let result = await Product.findOne({_id:req.params.id})
+    if(result){
+        res.send(result)
+    }else{
+        res.send({result:"No record found"})
+    }
+})
+
+app.put('/product/:id', async(req, res)=>{
+    let result = await Product.updateOne( //This function accepts two parameters(objects) on the basis of which the update takes place
+        {_id: req.params.id}, //Update on the basis of what
+        {
+            //The data to be updated is given in this object
+            $set : req.body
+        }
+        )
+        res.send(result)
+})
 app.listen(PORT, ()=>{console.log(`Server running at port ${PORT}`)})
