@@ -3,9 +3,7 @@ import React from "react";
 const Gyro = () => {
   return (
     <div>
-      Introducing the all-new Gyroscope and accelerometer sensor feature on our
-      smart watch! This feature allows you to track your physical activity and
-      monitor your fitness levels with accurate and detailed information. The
+      The Gyroscope and accelerometer sensor allows you to track your physical activity and monitor your fitness levels with accurate and detailed information. The
       Gyroscope and accelerometer sensors work together to provide a wide range
       of features and functions, including tracking movement and orientation,
       monitoring activity levels, and even providing navigation and location
