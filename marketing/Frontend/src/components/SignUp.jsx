@@ -3,7 +3,7 @@ import React from 'react'
 const SignUp = () => {
   return (
     <>
-        <div className="contact-form m-10">
+        <div className="contact-form m-10 h-[70vh]">
         <input type="text" placeholder='Enter your name' className='w-[100%] md:w-[50%] shadow-lg rounded-lg m-4 p-2 outline-none' required/>
         <br/>
         <input type="text" placeholder='Enter your number' className='w-[100%] md:w-[50%] shadow-lg rounded-lg m-4 p-2 outline-none' required/>

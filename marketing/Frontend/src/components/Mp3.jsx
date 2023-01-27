@@ -1,8 +1,17 @@
 import React from "react";
+import mp3Img from '../images/music.jpg'
+import Buy from "./Buy";
 
 const Mp3 = () => {
   return (
-    <div>
+    <div className="mx-16 my-10 text-justify">
+      <div className="flex md:flex-row flex-col">
+        <img src={mp3Img} alt="" className="md:m-10 m-2 md:h-[50vh] w-[100vw] md:w-auto" />
+        <p className="text-center text-4xl italic font-bold text-blue-700 md:mt-20">
+          MP3 PLAYER
+        </p>
+      </div>
+      <p>
       Introducing the all-new MP3 player feature on our smart watch! With this
       feature, you can enjoy your favorite music, audiobooks, or podcasts, right
       from your wrist. The MP3 player feature allows you to store and play your
@@ -22,6 +31,8 @@ const Mp3 = () => {
       convenience and allows you to enjoy your favorite music, audiobooks, or
       podcasts, right from your wrist and make your life more enjoyable and
       entertaining.
+      </p>
+      <Buy/>
     </div>
   );
 };

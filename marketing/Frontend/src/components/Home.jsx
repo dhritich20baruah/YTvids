@@ -10,8 +10,8 @@ import Buy from './Buy';
 const Home = () => {
   return (
     <div className="Home">
-      <section className="top flex flex-row bg-[#e5dfdc] text-gray-800">
-        <div className="flex flex-col text-center justify-center p-20 w-[50vw]">
+      <section className="top flex md:flex-row flex-col bg-[#e5dfdc] text-gray-800">
+        <div className="flex flex-col text-center justify-center md:p-20 p-5 md:w-[50vw] w-[100vw]">
           <h1 className="text-2xl">Experience Our New Product</h1>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum
@@ -19,16 +19,16 @@ const Home = () => {
             beatae architecto exercitationem.
           </p>
         </div>
-        <div className="w-[50vw]">
+        <div className="md:w-[50vw] w-[100vw]">
           <img src={product1} alt="" className="w-[100%]"/>
         </div>
       </section>
 
-      <section className="about flex m-20 text-gray-700">
-        <div className="w-[50vw]">
+      <section className="about flex flex-col md:flex-row md:m-20 m-5 text-gray-700">
+        <div className="md:w-[50vw] w-auto">
           <img src={product4} alt="" className='shadow-2xl'/>
         </div>
-        <div className="w-[50vw] flex flex-col justify-center p-10">
+        <div className="md:w-[50vw] w-auto flex flex-col justify-center p-10 text-justify">
           <h1 className="text-2xl">ABOUT THE PRODUCT</h1>
           <hr />
           <p className="mt-5">
@@ -44,7 +44,7 @@ const Home = () => {
       </section>
       <section className="features text-white bg-gray-700 pb-10 text-center">
         <h1 className='mb-5 pt-5 text-3xl font-bold text-center'>Features</h1>
-        <div className="flex flex-row justify-evenly">
+        <div className="flex md:flex-row flex-col justify-evenly">
           <Link to="/Gyro">
           <div className="basis-1/4 hover:bg-white hover:text-gray-800 p-4 rounded-md hover:cursor-pointer">
             <i className="material-icons">explore</i>
