@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import Axios from 'axios'
+import React, {useState} from 'react';
+import Axios from 'axios';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
