@@ -3,7 +3,10 @@ const mongoose = require("mongoose");
 const cors = require('cors');
 const PORT = 5000;
 const app = express();
-const Query = require('./models/Query');
+const bcrypt = require('bcryptjs')
+const passport = require('passport')
+const session = require('express-session')
+
 
 app.use(cors())
 app.use(express.json())
@@ -15,6 +18,8 @@ mongoose.connect('mongodb://localhost/marketing',{
 }).then(()=>console.log('DB Connected')).catch(err=>console.log(err))
 
 //Query
+const Query = require('./models/Query');
+
 app.post('/newQuery', (req, res)=>{
     const name = req.body.name
     const number = req.body.number
@@ -33,5 +38,7 @@ app.post('/newQuery', (req, res)=>{
     })
     console.log(newQuery)
 })
+
+
 
 app.listen(PORT, ()=>{console.log(`Server started on ${PORT}`)})
