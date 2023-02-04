@@ -94,11 +94,13 @@ const Home = () => {
 
       <h1 className='text-center text-3xl font-bold text-gray-700 my-5'>MODELS</h1>
       <section className='models flex m-5 space-x-4 text-center text-xl text-gray-800'>
-        <div>
+        <Link to="/ProductDetails">
+        <div class='hover:cursor-pointer'>
           <img src={product3} alt="" className='shadow-2xl'/>
           <h1>Model X1</h1>
           <h2>Price: 100 units</h2>
         </div>
+        </Link>
         <div>
           <img src={product2} alt="" className='shadow-2xl'/>
           <h1>Model X2</h1>

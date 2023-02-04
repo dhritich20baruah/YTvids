@@ -12,6 +12,7 @@ import Query from "./components/Query";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import UserDashboard from "./components/UserDashboard";
+import ProductDetails from "./components/ProductDetails";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path='/SignIn' element={<SignIn/>}/>
           <Route path='/SignUp' element={<SignUp/>}/>
           <Route path='/UserDashboard' element={<UserDashboard/>}/>
+          <Route path='/ProductDetails' element={<ProductDetails/>}/>
         </Routes>
       <Foot/>
       </BrowserRouter>
