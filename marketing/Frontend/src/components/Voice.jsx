@@ -1,12 +1,11 @@
 import React from 'react'
 import Buy from './Buy'
-import voiceImg from '../images/voice.jpg'
 
 const Voice = () => {
   return (
     <div className="mx-16 my-10 text-justify">
     <div className="flex md:flex-row flex-col">
-    <img src={voiceImg} alt=""  className="md:m-10 m-2 md:h-[50vh] w-[100vw] md:w-auto"/>
+    <img src="https://i.ibb.co/0mmQ5fJ/voice.jpg" alt=""  className="md:m-10 m-2 md:h-[50vh] w-[100vw] md:w-auto"/>
     <p className="text-center text-4xl italic font-bold text-green-700 md:mt-20">VOICE CALLS/COMMANDS</p>
     </div>
     <p>

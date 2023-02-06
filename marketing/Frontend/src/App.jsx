@@ -13,11 +13,14 @@ import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import UserDashboard from "./components/UserDashboard";
 import ProductDetails from "./components/ProductDetails";
+import { productContext } from "./components/Context";
 
 function App() {
+  const [index, setIndex] = useState('')
   return (
     <>
       <BrowserRouter>
+      <productContext.Provider value={{ index, setIndex }}>
         <Nav/>
         <Routes>
           <Route path="/" element={<Home/>}/>
@@ -34,6 +37,7 @@ function App() {
           <Route path='/ProductDetails' element={<ProductDetails/>}/>
         </Routes>
       <Foot/>
+      </productContext.Provider>
       </BrowserRouter>
     </>
   );

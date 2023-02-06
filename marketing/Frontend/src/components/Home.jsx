@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import product1 from "../images/product1.jpg";
-import product2 from "../images/product2.jpg";
-import product3 from "../images/product3.jpg";
 import product4 from "../images/product4.jpg";
-import product5 from "../images/product5.jpg";
 import { Link } from 'react-router-dom';
 import Buy from './Buy';
+import productData from './data';
+import Product from './Product';
 
 const Home = () => {
+  const [displayProduct, setDisplayProduct] = useState('')
+
+
   return (
     <div className="Home">
       <section className="top flex md:flex-row flex-col bg-[#e5dfdc] text-gray-800">
@@ -93,25 +95,11 @@ const Home = () => {
       </section>
 
       <h1 className='text-center text-3xl font-bold text-gray-700 my-5'>MODELS</h1>
+      <Link to='/ProductDetails'>
       <section className='models flex m-5 space-x-4 text-center text-xl text-gray-800'>
-        <Link to="/ProductDetails">
-        <div class='hover:cursor-pointer'>
-          <img src={product3} alt="" className='shadow-2xl'/>
-          <h1>Model X1</h1>
-          <h2>Price: 100 units</h2>
-        </div>
-        </Link>
-        <div>
-          <img src={product2} alt="" className='shadow-2xl'/>
-          <h1>Model X2</h1>
-          <h2>Price: 100 units</h2>
-        </div>
-        <div>
-          <img src={product5} alt=""  className='shadow-2xl'/>
-          <h1>Model X3</h1>
-          <h2>Price: 100 units</h2>
-        </div>
+        <Product items={productData}/>
       </section>
+      </Link>
       <hr />
       <Buy/>
     </div>

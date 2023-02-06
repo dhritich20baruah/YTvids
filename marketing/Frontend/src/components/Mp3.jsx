@@ -1,5 +1,4 @@
 import React from "react";
-import mp3Img from "../images/music.jpg";
 import Buy from "./Buy";
 
 const Mp3 = () => {
@@ -7,7 +6,7 @@ const Mp3 = () => {
     <div className="mx-16 my-10 text-justify">
       <div className="flex md:flex-row flex-col">
         <img
-          src={mp3Img}
+          src="https://i.ibb.co/2ddxkPs/music.jpg" 
           alt=""
           className="md:m-10 m-2 md:h-[50vh] w-[100vw] md:w-auto"
         />

@@ -4,9 +4,11 @@ const cors = require('cors');
 const PORT = 5000;
 const app = express();
 const bcrypt = require('bcryptjs')
-const passport = require('passport')
-const session = require('express-session')
+// const passport = require('passport')
 const jwt = require('jsonwebtoken')
+const { body, validationResult } = require('express-validator')
+
+const JWT_SECRET = 'secret@123'
 
 app.use(cors())
 app.use(express.json())
@@ -43,17 +45,30 @@ app.post('/newQuery', (req, res)=>{
 const User = require('./models/Customer')
 
 app.post('/SignUp', async (req, res)=>{
+    let success = false;
     try{
+        let user = await User.findOne({ email:req.body.email });
+        if(user){
+            return res.status(400).json({ success, error: "Sorry a user with this email already exit"})
+        }
         const hashedPassword = await bcrypt.hash(req.body.password, 10)
         let newUser = await User.create({
             name: req.body.name,
             email: req. body.email,
             password: hashedPassword
         })
-        res.json({ status: "OK"})
+        const data = {
+            user:{
+                id: user.id
+            }
+        }
+        const authtoken = jwt.sign(data, JWT_SECRET);
+        success = true;
+        res.json({ status: "OK", authtoken})
         console.log(newUser)
     }catch (err){
-        res.json({ status: 'error', error: "Duplicate Email"})
+        console.log(err.message)
+        res.status(500).json({ status: 'error', error: "Internal Error"})
     }
 })
 
@@ -77,7 +92,7 @@ app.post('/SignIn', async (req, res)=>{
                 name: user.name,
                 email: user.email,
             },
-            'secret123'
+            JWT_SECRET
         )
         console.log(token)
         return res.json({ status: 'OK', user: token})
