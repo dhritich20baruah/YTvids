@@ -42,7 +42,6 @@ const SignIn = () => {
 // For example, if email has the value "example@email.com" and password has the value "secret", the request body will look like this after JSON.stringify:
 
   const handleSubmit = async () => {
-    console.log(email, password);
     try {
         const result = await Axios.post(`http://localhost:5000/SignIn`, {
             email,

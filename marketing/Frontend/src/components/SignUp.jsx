@@ -17,13 +17,17 @@ const SignUp = () => {
       try{
         const result = await  Axios.post(`http://localhost:5000/SignUp`, customerObj)
 
-        const data = result.data
-        if(data.user){
-            localStorage.setItem("token", data.user);
-            alert("SignUp successful");
+        let data = result.data
+        localStorage.setItem("token", data.user)
+
+        if(result){
+            alert('Registeration Successful')
             navigate('/userDashboard')
         }
       } catch(error){
+        if(error.response.status==400){
+          alert('Sorry a user with this email already exist')
+        }
         console.log(error)
       }
     }
@@ -36,7 +40,7 @@ const SignUp = () => {
             <br/>
             <input type="text" placeholder='Enter your email ID' className='w-[100%] md:w-[50%] shadow-lg rounded-lg m-4 p-2 outline-none' onChange={(e)=>setEmail(e.target.value)} value={email} required/>
             <br />
-            <input type="text" placeholder='Enter your password' className='w-[100%] md:w-[50%] shadow-lg rounded-lg m-4 p-2 outline-none' onChange={(e)=>setPassword(e.target.value)} value={password} required/>
+            <input type="password" placeholder='Enter your password' className='w-[100%] md:w-[50%] shadow-lg rounded-lg m-4 p-2 outline-none' onChange={(e)=>setPassword(e.target.value)} value={password} required/>
             <br />
             <button className='m-4 p-2 bg-yellow-500 rounded-lg text-white hover:bg-orange-600' onClick={handleSubmit}>Sign Up</button>
             </div>
