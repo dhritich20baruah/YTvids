@@ -5,7 +5,7 @@ const Gyro = () => {
   return (
     <div className="mx-16 my-10 text-justify">
       <div className="flex md:flex-row flex-col">
-      <img src='https://i.ibb.co/h9m6NpD/gyro.jpg' alt=""  className="md:m-10 m-2 md:h-[50vh] w-[100vw] md:w-auto"/>
+      <img src='https://i.postimg.cc/hPK3XCNn/gyro.jpg' alt=""  className="md:m-10 m-2 md:h-[50vh] w-[100vw] md:w-auto"/>
       <p className="text-center text-4xl italic font-bold text-gray-700 md:mt-20">GYROSCOPE AND ACCELEROMETER</p>
       </div>
       <p>

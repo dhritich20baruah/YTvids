@@ -6,7 +6,6 @@ const app = express();
 const bcrypt = require('bcryptjs')
 // const passport = require('passport')
 const jwt = require('jsonwebtoken')
-const { body, validationResult } = require('express-validator')
 
 const JWT_SECRET = 'secret@123'
 
@@ -42,7 +41,8 @@ app.post('/newQuery', (req, res) => {
 })
 
 //Authentication
-const User = require('./models/Customer')
+const User = require('./models/Customer');
+const checker = require("./config/checker");
 
 app.post('/SignUp', async (req, res) => {
     try {
@@ -97,5 +97,54 @@ app.post('/SignIn', async (req, res) => {
         return res.json({ status: 'error', user: false })
     }
 })
+
+app.post('/getuser', checker, async (req, res) =>{
+    try {
+      let userId= req.user.id;
+      const user = await User.findById(userId).select("-password");
+      res.send(user)
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send("Internal server error occured")
+    }
+    });
+
+//Products routes
+const Product = require('./models/Product')
+// app.use('/products', require('./routes/productRoutes'))
+app.post('/addProducts', async (req, res)=>{
+    console.log(req.body)
+    const name = req.body.name
+    const image = req.body.image
+    const description = req.body.description
+    const details = req.body.details
+    const price = req.body.price
+
+    const newProduct = new Product({
+        name, image, description, details, price
+    })
+    newProduct.save((err, data)=>{
+        if(err){
+            console.log(err)
+        }
+        res.send('OK')
+    })
+    console.log(newProduct)
+})
+
+app.get('/getAllProducts', async (req, res)=>{
+    Product.find({}, function(err, data){
+        if(err){
+            console.log(err)
+        }else{
+            res.json(data)
+        }
+    })
+}) 
+
+app.get('/ProductDetails/:id', async (req, res)=>{
+    const result = await Product.findOne({id: req.params._id})
+    res.json(result)
+}) 
 
 app.listen(PORT, () => { console.log(`Server started on ${PORT}`) })

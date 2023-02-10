@@ -95,11 +95,11 @@ const Home = () => {
       </section>
 
       <h1 className='text-center text-3xl font-bold text-gray-700 my-5'>MODELS</h1>
-      <Link to='/ProductDetails'>
-      <section className='models flex m-5 space-x-4 text-center text-xl text-gray-800'>
+    
+      <section className='models flex flex-wrap justify-evenly space-x-4 text-center text-xl text-gray-800'>
         <Product items={productData}/>
       </section>
-      </Link>
+
       <hr />
       <Buy/>
     </div>
