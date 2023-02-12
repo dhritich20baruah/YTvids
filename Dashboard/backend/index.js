@@ -1,4 +1,4 @@
-const express = require('express')
+const express = require('express');
 const app = express(); //make it executable
 const cors = require("cors");
 const PORT = 5000;

@@ -91,7 +91,6 @@ app.post('/SignIn', async (req, res) => {
             },
             JWT_SECRET
         )
-        console.log(token)
         return res.json({ status: 'OK', user: token })
     } else {
         return res.json({ status: 'error', user: false })
@@ -143,7 +142,7 @@ app.get('/getAllProducts', async (req, res)=>{
 }) 
 
 app.get('/ProductDetails/:id', async (req, res)=>{
-    const result = await Product.findOne({id: req.params._id})
+    const result = await Product.findOne({_id: req.params.id})
     res.json(result)
 }) 
 
