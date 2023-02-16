@@ -51,7 +51,7 @@ const SignIn = () => {
         if (data.user) {
             localStorage.setItem("token", data.user);
             alert("Sign In successful");
-            navigate("/userDashboard");
+            navigate(-1);
         } else {
             alert("Please check email and password");
         }

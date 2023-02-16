@@ -15,13 +15,15 @@ import UserDashboard from "./components/UserDashboard";
 import ProductDetails from "./components/ProductDetails";
 import { productContext } from "./components/Context";
 import AddProduct from "./components/AddProduct";
+import CheckOut from "./components/CheckOut";
 
 function App() {
   const [model, setModel] = useState([])
+  const [count, setCount] = useState(0)
   return (
     <>
       <BrowserRouter>
-      <productContext.Provider value={{ model, setModel }}>
+      <productContext.Provider value={{ model, setModel, count, setCount }}>
         <Nav/>
         <Routes>
           <Route path="/" element={<Home/>}/>
@@ -37,6 +39,7 @@ function App() {
           <Route path='/UserDashboard' element={<UserDashboard/>}/>
           <Route path='/ProductDetails/:id' element={<ProductDetails/>}/>
           <Route path='/AddProduct' element={<AddProduct/>}/>
+          <Route path='/CheckOut' element={<CheckOut/>}/>
         </Routes>
       <Foot/>
       </productContext.Provider>

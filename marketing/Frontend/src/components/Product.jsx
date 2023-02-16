@@ -26,7 +26,7 @@ const Product = () => {
               alt=""
               className="shadow-2xl w-[100%] h-96 object-cover"
             />
-            <h1>{item.name} {item._id}</h1>
+            <h1>{item.name}</h1>
             <h2>Price: {item.price}</h2>
             </Link>
           </div>

@@ -22,7 +22,7 @@ const SignUp = () => {
 
         if(result){
             alert('Registeration Successful')
-            navigate('/userDashboard')
+            navigate('/SignIn')
         }
       } catch(error){
         if(error.response.status==400){

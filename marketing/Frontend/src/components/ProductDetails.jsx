@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import parse from "html-react-parser";
 import Axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate, Link } from "react-router-dom";
+import { productContext } from "./Context";
 
 const ProductDetails = () => {
   const [name, setName] = useState("");
@@ -10,7 +11,9 @@ const ProductDetails = () => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [details, setDetails] = useState("");
+  const [id, setId] = useState('')
   let [visible, setVisible] = useState(false);
+  const {count, setCount} = useContext(productContext)
   const params = useParams();
   const auth = localStorage.getItem('token')
   const navigate = useNavigate()
@@ -31,12 +34,21 @@ const ProductDetails = () => {
     setDescription(model.description);
     setPrice(model.price);
     setDetails(model.details);
+    setId(model._id)
   };
 
-  function checkAuth(){
+  function checkAuthCart(){
     if(auth){
-      console.log('hello')
-      navigate('/UserDashboard')
+      alert('Added to cart')
+      setCount(count+1)
+    }else{
+      setVisible(visible =!visible)
+    }
+  }
+
+  function checkAuthBuy(){
+    if(auth){
+      navigate('/CheckOut')
     }else{
       setVisible(visible =!visible)
     }
@@ -48,8 +60,8 @@ const ProductDetails = () => {
         <div className="w-[90%] shadow-2xl">
           <img src={image} alt="" className="h-[40rem] mr-auto ml-auto" />
           <div className="text-white font-bold mr-auto text-center">
-            <button className="bg-yellow-500 p-2 m-2" onClick={checkAuth}>ADD TO CART</button>
-            <button className="bg-orange-600 p-2 m-2" onClick={checkAuth}>BUY NOW</button>
+            <button className="bg-yellow-500 p-2 m-2" onClick={checkAuthCart}>ADD TO CART</button>
+            <button className="bg-orange-600 p-2 m-2" onClick={checkAuthBuy}>BUY NOW</button>
           </div>
         </div>
         <div className="space-y-2 w-[90%]">
