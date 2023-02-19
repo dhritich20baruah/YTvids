@@ -60,11 +60,12 @@ app.post('/SignUp', async (req, res) => {
             {
                 name: newUser.name,
                 email: newUser.email,
+                id: newUser.id
             },
             JWT_SECRET
         )
         // console.log(newUser, token)
-        return res.json({ status: 'OK', user: token })
+        return res.json({ status: 'OK', token })
     } catch (err) {
         res.status(500).json({ status: 'error', error: "Internal Error" })
     }
@@ -88,10 +89,11 @@ app.post('/SignIn', async (req, res) => {
             {
                 name: user.name,
                 email: user.email,
+                id: user.id
             },
             JWT_SECRET
         )
-        return res.json({ status: 'OK', user: token })
+        return res.json({ status: 'OK', token, user })
     } else {
         return res.json({ status: 'error', user: false })
     }
@@ -99,8 +101,8 @@ app.post('/SignIn', async (req, res) => {
 
 app.post('/getuser', checker, async (req, res) =>{
     try {
-      let userId= req.user.id;
-      const user = await User.findById(userId).select("-password");
+      let userId= req.user;
+      const user = await User.findOne(userId).select("-password");
       res.send(user)
     } catch (error) {
       console.error(error.message);

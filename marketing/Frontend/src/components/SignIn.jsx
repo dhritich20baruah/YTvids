@@ -48,7 +48,8 @@ const SignIn = () => {
             password
         });
         const data = result.data;
-        if (data.user) {
+        console.log(data)
+        if (data.token) {
             localStorage.setItem("token", data.user);
             alert("Sign In successful");
             navigate(-1);

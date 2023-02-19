@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const JWT_SECRET = 'secret'
+const JWT_SECRET = 'secret@123'
 
 const checker = (req, res, next)=>{
     const token = req.header('auth-token');
@@ -11,7 +11,7 @@ const checker = (req, res, next)=>{
         req.user = data.user;
         next();
     } catch (err){
-        req.status(401).send({error: "Please provide a valid token"})
+        res.status(401).send({error: "Please provide a valid token"})
     }
 }
 

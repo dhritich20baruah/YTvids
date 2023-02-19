@@ -16,6 +16,7 @@ import ProductDetails from "./components/ProductDetails";
 import { productContext } from "./components/Context";
 import AddProduct from "./components/AddProduct";
 import CheckOut from "./components/CheckOut";
+import Cart from "./components/Cart";
 
 function App() {
   const [model, setModel] = useState([])

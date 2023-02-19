@@ -18,11 +18,10 @@ const SignUp = () => {
         const result = await  Axios.post(`http://localhost:5000/SignUp`, customerObj)
 
         let data = result.data
-        localStorage.setItem("token", data.user)
 
         if(result){
             alert('Registeration Successful')
-            navigate('/SignIn')
+            navigate('/')
         }
       } catch(error){
         if(error.response.status==400){
