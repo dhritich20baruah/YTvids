@@ -41,6 +41,7 @@ function App() {
           <Route path='/ProductDetails/:id' element={<ProductDetails/>}/>
           <Route path='/AddProduct' element={<AddProduct/>}/>
           <Route path='/CheckOut' element={<CheckOut/>}/>
+          <Route path='/Cart' element={<Cart/>}/>
         </Routes>
       <Foot/>
       </productContext.Provider>

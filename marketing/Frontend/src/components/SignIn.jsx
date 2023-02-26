@@ -50,7 +50,7 @@ const SignIn = () => {
         const data = result.data;
         console.log(data)
         if (data.token) {
-            localStorage.setItem("token", data.user);
+            localStorage.setItem("token", data.token);
             alert("Sign In successful");
             navigate(-1);
         } else {
