@@ -11,13 +11,16 @@ body{
     margin:0;
     padding:0;
     box-sizing: border-box;
+    font-family: sans-serif;
 }
 section{
-    width: 100%;
+    width: 95vw;
     height: auto;
     display: grid;
-    grid-template-columns: 5em 5em;
-    grid-template-rows: 5em 5em 5em;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 10em 10em;
+    gap: 0.5em;
+    margin: 3em 3em 3em 3em;
 }
 div{
     color: white;
@@ -28,49 +31,67 @@ div{
 
 #div1{
     background-color: blue;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
 }
 #div2{
     background-color: indigo;
+     /*grid-area: horizontal line to start at/vertical line to start at/ horizontal line to end at/vertical line to end at */
 }
 #div3{
-    background-color: gold;
+    background-color: rgb(219, 189, 16);
 }
 #div4{
     background-color: orangered;
+
 }
 #div5{
     background-color: black;
 }
 #div6{
     background-color: green;
+
 }
 #div7{
     background-color: teal;
+
 }
+#div8{
+    background-color: rebeccapurple;
+
+}
+
 </style>
 <body>
     <section>
         <div id="div1">
-          <p>1</p>
+          <div>G</div>
+          <div>R</div>
+          <div>I</div>
+          <div>D</div>
         </div>
         <div id="div2">
-            <p>2</p>
+            <p>C</p>
         </div>
         <div id="div3">
-            <p>3</p>
+            <p>S</p>
         </div>
         <div id="div4">
-            <p>4</p>
+            <p>S</p>
         </div>
         <div id="div5">
-            <p>5</p>
+            <p>G</p>
         </div>
         <div id="div6">
-            <p>6</p>
+            <p>R</p>
         </div>
         <div id="div7">
-            <p>7</p>
-        </div>
+            <p>I</p>
+        </div>          
+        <div id="div8">
+            <p>D</p>
+        </div>  
     </section>
 </body>
 </html>
