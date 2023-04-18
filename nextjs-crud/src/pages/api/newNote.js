@@ -19,7 +19,7 @@ async function handler(req, res) {
             useUnifiedTopology: true
         }).then(() => console.log('DB connected')).catch(err => console.log(err))
 
-        const newNote = new Notes({
+        var newNote = new Notes({
             title, note
         })
         await newNote.save()
