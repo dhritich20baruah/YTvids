@@ -11,7 +11,7 @@ const ShowNotes = () => {
     }, [])
 
     const deleteNote = (id) =>{
-        Axios.delete(`/api/deleteNote/${id}`).then(()=>{
+        Axios.delete(`/api/deleteNote?id=${id}`).then(()=>{
             window.location.reload(false)
         })
     }
@@ -27,7 +27,7 @@ const ShowNotes = () => {
             <hr />
             {items.map((element)=>{
                 return(
-                    <div key={element._id} className='flex justify-evenly'>
+                    <div key={element.id} className='flex justify-evenly'>
                     <h2 className='m-2 p-1'>{element.title}</h2>
                     <p className='m-2 p-1'>{element.note}</p>
                     <div>
