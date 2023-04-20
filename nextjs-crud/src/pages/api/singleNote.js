@@ -14,10 +14,10 @@ async function handler(req, res) {
       useUnifiedTopology: true,
     });
     console.log('DB connected');
-
-    const note = await Notes.findOne({ _id: id});
-    console.log(note)
-    res.status(200).json(note);
+    console.log(id)
+    // const note = await Notes.findOne({ _id: id});
+    // console.log(note)
+    // res.status(200).json(note);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Unable to retrieve note' });

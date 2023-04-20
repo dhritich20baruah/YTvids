@@ -7,21 +7,28 @@ async function handler(req, res) {
     }
 
     const { id } = req.query;
+    const { title, note } = req.body
     try {
         await mongoose.connect('mongodb://localhost/nextCRUD', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         })
         console.log(id)
-        const result = await Notes.findByIdAndUpdate({ _id: id })
-        if (result.deletedCount === 1) {
-            return res.status(200).end(); // success
-        } else {
-            return res.status(400).end(); // bad request
-        }
     } catch (error) {
         console.error(error);
-        return res.status(500).end(); // internal server error
+        res.status(500).json({ error: "DB not connected" }); // internal server error
+        return;
+    }
+
+    try {
+        const updatedNote = await Notes.findByIdAndUpdate(id, { title, note }, { new: true })
+        console.log(updatedNote);
+        res.status(200).json(updatedNote)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: "Note not updated" })
+    } finally {
+        mongoose.connection.close
     }
 }
 
