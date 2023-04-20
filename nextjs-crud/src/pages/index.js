@@ -18,17 +18,7 @@ export default function Home() {
       alert('Posted')
     })
   }
-  // const response = await fetch('/api/notes', {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  //   body: JSON.stringify({ note: 'This is a new note' }),
-  // });
-  
-  // const data = await response.json();
-  
-  // console.log(data.note); // { _id: ObjectId(...), note: 'This is a new note' }
+
   
   return (
     <div className='w-[75vw] m-5'>

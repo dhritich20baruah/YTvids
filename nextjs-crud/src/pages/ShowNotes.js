@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 const ShowNotes = () => {
     const [items, setItems] = useState([])
+    const router = useRouter()
     
     useEffect(() => {
         Axios.get(`/api/showNote`)
@@ -14,6 +17,10 @@ const ShowNotes = () => {
         Axios.delete(`/api/deleteNote?id=${id}`).then(()=>{
             window.location.reload(false)
         })
+    }
+
+    const singleNote = (noteId) =>{
+        router.push(`/EditNote/${noteId}`)
     }
     return (
         <>       
@@ -32,7 +39,9 @@ const ShowNotes = () => {
                     <p className='m-2 p-1'>{element.note}</p>
                     <div>
                     <button className='bg-red-600 m-2 p-1 text-white hover:cursor-pointer' onClick={()=>deleteNote(element._id)}>Delete</button>
-                    <button className='bg-blue-600 m-2 p-1 text-white hover:cursor-pointer'>Edit</button>
+                    
+                    <button className='bg-blue-600 m-2 p-1 text-white hover:cursor-pointer' onClick={()=>singleNote(element._id)}>Edit</button>
+           
                     </div>
                     </div>
                 )
