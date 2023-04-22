@@ -6,17 +6,17 @@ export async function getStaticProps() {
   const mongoose = require('mongoose');
   const Notes = require('../../model/Notes');
 
-  await mongoose.connect('mongodb://localhost/nextJSCRUD', {
+  await mongoose.connect('mongodb://localhost/nextCRUD', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
-
-  const notes = await Notes.find({});
+  console.log('DB connected')
+   const notes = await Notes.find().sort({ createdAt: 'desc' });
   console.log(notes)
-  const serializedNotes = notes.map(note => note.toObject());
+
 
   return {
-    props: { notes: serializedNotes },
+    props: { notes: JSON.parse(JSON.stringify(notes)) },
   };
 };
 

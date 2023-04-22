@@ -1,36 +1,36 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Axios from 'axios'
-import { useRouter } from 'next/router'
-import { GetStaticProps } from 'next'
+import parse from 'html-react-parser'
 
-// export const GetStaticProps = async () => {
-//     const mongoose = require('mongoose');
-//     const Notes = require('../model/Notes');
+export async function getStaticProps() {
+    // Connect to database and fetch notes
+    const mongoose = require('mongoose');
+    const Notes = require('../../model/Notes');
 
-//     await mongoose.connect('mongodb://localhost/nextCRUD', {
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true,
-//     });
+    await mongoose.connect('mongodb://localhost/nextCRUD', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    });
+    console.log('DB connected')
+    const notes = await Notes.find().sort({ createdAt: 'desc' });
 
-//     const notes = await Notes.find().sort({ createdAt: 'desc' });
-//     return {
-//         props: {notes}
-//     }
-// }
 
-const ShowNotes = () => {
-    const [items, setItems] = useState([])
+    return {
+        props: { notes: JSON.parse(JSON.stringify(notes)) },
+    };
+};
+
+const ShowNotes = ({ notes }) => {
     const [visibility, setVisibility] = useState(false)
     const [title, setTitle] = useState("")
     const [note, setNote] = useState("")
     const [noteId, setNoteId] = useState("")
-    const router = useRouter()
 
-    useEffect(() => {
-        Axios.get(`/api/showNote`)
-            .then((res) => setItems(res.data))
-            .catch((err) => console.log(err))
-    }, [])
+    // useEffect(() => {
+    //     Axios.get(`/api/showNote`)
+    //         .then((res) => setItems(res.data))
+    //         .catch((err) => console.log(err))
+    // }, [])
 
     const deleteNote = (id) => {
         Axios.delete(`/api/deleteNote?id=${id}`).then(() => {
@@ -69,11 +69,11 @@ const ShowNotes = () => {
                     <p>Action</p>
                 </div>
                 <hr />
-                {items.map((element) => {
+                {notes.map((element) => {
                     return (
                         <div key={element.id} className='flex justify-evenly'>
                             <h2 className='m-2 p-1'>{element.title}</h2>
-                            <p className='m-2 p-1'>{element.note}</p>
+                            <p className='m-2 p-1'>{parse(element.note)}</p>
                             <div>
                                 <button className='bg-red-600 m-2 p-1 text-white hover:cursor-pointer' onClick={() => deleteNote(element._id)}>Delete</button>
 
