@@ -1,0 +1,28 @@
+1. Create next app
+2. Install mongoose and axios (a JS library used to make HTTP request from nodeJS). Integrate bootstrap5.
+    1. import Head from "next/head"
+    2. import Script from 'next/script'
+    3. Copy CDN script and link and paste it in the _app.js file within <Head> tags.
+3. Create the display todo page and rafce.
+4. Create Navbar, make it a react arrow function component and import Link from next/link
+    1. Edit logo; change class to className and make input closing tag.
+    2. Keep only two li tags and remove the rest.
+5. Import navbar to _app.js and text navbar.
+6. Add the form to add todo page and make the necessary changes. 
+7. import useState hook and create states.  
+7.1 Create the mongoose Schema.
+    1. We will have to add mongoose.models = {}. If we don't it will throw an error that once model is compiled we won't be able to overwrite it.
+    2. The line resets the mongoose.models to an empty object, like this: mongoose.models = {}. This will remove all the models from the mongoose.models object.
+8. Create addTodo api and axios post request at the add todo page.
+9. Check if the todo is created at compass.
+10. Navigate to display todo page.
+11. Get the table from bootstap website to display the todos and add delete and edit buttons
+12. First show how useEffect would have worked and also create the api for that.
+13. Then use getStaticProps and write the function for that and show its advantage.
+14. Next make the delete api and import axios to make delete request.
+15. For edit operation copy the form from add todo and paste it in the display page.
+16. Import useState and create visibility, title, note and NoteID states.
+17. Create the function to display the form and populate it with the data.
+18. Then create the function to update todo by coping the function to add todo.
+19. Make the update function asynchronous and call window.reload.
+20. Create the api to handle to put request.
