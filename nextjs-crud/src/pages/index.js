@@ -2,6 +2,31 @@ import { Inter } from 'next/font/google'
 import React, {useState} from 'react'
 import Axios from 'axios'
 const inter = Inter({ subsets: ['latin'] })
+import dynamic from 'next/dynamic';
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+import 'react-quill/dist/quill.snow.css';
+
+
+
+const modules = {
+  toolbar: [
+    [{ header: '1' }, { header: '2' }, { header: '3' }, { font: [] }],
+    [{ size: [] }],
+    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+    [
+      { list: 'ordered' },
+      { list: 'bullet' },
+      { indent: '-1' },
+      { indent: '+1' },
+    ],
+    ['link', 'image', 'video'],
+    ['clean'],
+  ],
+  clipboard: {
+    // toggle to add extra line breaks when pasting HTML:
+    matchVisual: false,
+  },
+}
 
 export default function Home() {
   const [title, setTitle] = useState('')
@@ -26,11 +51,11 @@ export default function Home() {
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title</label>
         <br />
-        <input type="text" id="title" className='my-2 p-2 bg-slate-300 w-96' onChange={(event)=>setTitle(event.target.value)}/>
+        <input type="text" id="title" className='my-2 p-2 bg-slate-300 w-[100%]' onChange={(event)=>setTitle(event.target.value)}/>
         <br />
         <label htmlFor="note">Note</label>
         <br />
-        <textarea name="note" id="note" cols="30" rows="5" className='my-2 p-2 bg-slate-300 w-96' onChange={(event)=>setNote(event.target.value)}></textarea>
+        <ReactQuill value={note} onChange={setNote} theme="snow"/>
         <br />
         <button className='my-2 p-2 bg-yellow-300 hover:bg-orange-600 hover:text-white' type='submit'>SUBMIT</button>
       </form>
