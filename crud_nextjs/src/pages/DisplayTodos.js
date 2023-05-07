@@ -67,8 +67,8 @@ const DisplayTodos = ({todos}) => {
                             <td>{element.title}</td>
                             <td>{element.todo}</td>
                             <td>
-                                <button className="btn-danger" onClick={()=>deleteTodo(element._id)}>Delete</button>
-                                <button className="btn-primary" onClick={(title, todo, todoId)=>editForm(element.title, element.todo, element._id)}>Edit</button>
+                                <button className="btn btn-danger" onClick={()=>deleteTodo(element._id)}>Delete</button>
+                                <button className="btn btn-primary" onClick={(title, todo, todoId)=>editForm(element.title, element.todo, element._id)}>Edit</button>
                             </td>
                         </tr>
                            ) 
