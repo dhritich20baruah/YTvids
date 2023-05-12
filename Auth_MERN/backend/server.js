@@ -65,4 +65,9 @@ app.put('/update/:id', async (req, res)=>{
    }
 })
 
+//USER
+const user = require('./routes/user')
+
+app.use('/user', user)
+
 app.listen(PORT, ()=>{console.log(`Server started at port ${PORT}`)} )

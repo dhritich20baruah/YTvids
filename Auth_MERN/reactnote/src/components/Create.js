@@ -23,11 +23,11 @@ const handleSubmit =()=>{
       <div className="container my-4">
         <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label for="exampleFormControlInput1" className="form-label">Title</label>
+          <label htmlFor="exampleFormControlInput1" className="form-label">Title</label>
           <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="title" onChange={(event)=>setTitle(event.target.value)}/>
         </div>
         <div className="mb-3">
-          <label for="exampleFormControlTextarea1" className="form-label">Note</label>
+          <label htmlFor="exampleFormControlTextarea1" className="form-label">Note</label>
           <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="title" onChange={(event)=>setNote(event.target.value)}/>
 
           {/* <ReactQuill theme="snow" value={note} onChange={setNote} /> */}

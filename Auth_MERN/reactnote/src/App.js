@@ -17,9 +17,9 @@ const [post, setPost] = useState([])
       <Nav />
       <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path='Create' element={<Create/>}/>
-        <Route path='Notes' element={<Notes/>}/>
-        <Route path='Edit' element={<Edit/>}/>
+        <Route path='/Create' element={<Create/>}/>
+        <Route path='/Notes' element={<Notes/>}/>
+        <Route path='/Edit' element={<Edit/>}/>
       </Routes>
       </itemStateContext.Provider>
     </>
