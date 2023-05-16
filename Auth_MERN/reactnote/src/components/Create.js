@@ -12,7 +12,7 @@ const handleSubmit =()=>{
     title: title,
     note: note
   }
-  Axios.post(`http://localhost:4000/newNote`, noteObj)
+  Axios.post(`http://localhost:4000/notes/newNote`, noteObj)
   .then(()=>{
     alert('Posted')
   })

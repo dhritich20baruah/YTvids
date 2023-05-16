@@ -14,7 +14,7 @@ const Edit = () => {
       title: title,
       note: note
     }
-    Axios.put(`http://localhost:4000/update/${id}`, noteObj)
+    Axios.put(`http://localhost:4000/notes/update/${id}`, noteObj)
     .then(()=>{
       alert('Updated')
     })

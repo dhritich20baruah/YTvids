@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const checker = require('../config/checker')
 
 const JWT_SECRET = 'secret_123'
 
@@ -53,9 +54,21 @@ router.post('/signIn', async (req, res)=>{
             },
             JWT_SECRET
         )
-        return res.json({ status:'OK', token, user.name})
+        return res.json({ status:'OK', token, })
     }else{
         return res.json({ status: 'error', user: false})
+    }
+})
+
+router.post('/getuser', checker, async (req, res)=>{
+    try{
+        let userId = req.user
+        const user = await User.findOne(userId).select("-password")
+        res.send(user)
+    }
+    catch(error){
+        console.error(error.message)
+        res.status(500).send("Internal server error occured")
     }
 })
 

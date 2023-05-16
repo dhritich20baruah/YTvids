@@ -13,7 +13,7 @@ const Notes = () => {
   // console.log(userName)
 
   useEffect(() => {
-    Axios.get(`http://localhost:4000/notes`)
+    Axios.get(`http://localhost:4000/notes/getNotes`)
       .then((res) => setItems(res.data))
       .catch((err) => console.log(err));
   }, []);
