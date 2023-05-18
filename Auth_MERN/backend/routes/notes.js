@@ -1,35 +1,36 @@
 const express = require('express')
 const router = express.Router()
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
-const checker = require('../config/checker')
+const fetcher = require('../config/fetcher')
 const Note = require('../models/Note')
 
 // CREATE 
-router.post('/newNote', (req, res)=>{
+router.post('/newNote', fetcher, async (req, res)=>{
     const title = req.body.title
     const note = req.body.note
 
     const newNote = new Note({
-        title, note
+        title, note, user: req.user.id
     })
-    newNote.save((err, data)=>{
+    await newNote.save((err, data)=>{
         if(err){
             console.log(err)
         }
-        res.send('OK')
+        res.send('OK', data)
     })
+    res.send(newNote)
     console.log(newNote)
+    
 })
 // READ
-router.get('/getNotes', (req, res)=>{
-    Note.find({}, function(err,data){
-        if(err){
-            console.log(err)
-        }else{
-            res.json(data)
-        }
-    })
+router.get('/getNotes', fetcher, async (req, res)=>{
+    try{
+        const notes = await Note.find({user: req.user.id});
+        res.json(notes)
+    }
+    catch(err){
+        console.error(err.message)
+        res.status(500).send("Internal server error")
+    }
 })
 // DELETE
 router.delete('/deleteNote/:id', (req, res)=>{
@@ -45,6 +46,9 @@ router.delete('/deleteNote/:id', (req, res)=>{
 router.put('/update/:id', async (req, res)=>{
     req.data = await Note.findByIdAndUpdate(req.params.id)
     let data = req.data
+    if (data.user.toString() !== req.user.id){
+        return res.status(401).send("Not allowed")
+    }
     data.title = req.body.title
     data.note = req.body.note
 

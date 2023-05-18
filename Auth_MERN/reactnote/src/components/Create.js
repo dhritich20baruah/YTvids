@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Axios from 'axios';
 // import ReactQuill from 'react-quill';
 // import 'react-quill/dist/quill.snow.css';
@@ -6,16 +6,36 @@ import Axios from 'axios';
 const Create = () => {
 const [title, setTitle] = useState('')
 const [note, setNote] = useState('')
+const [user, setUser] = useState([])
 
+// useEffect(() => {
+//   Axios.get(`http://localhost:4000/notes/getuser`,{
+//     headers: {
+//       'Content-Type': 'application/json',
+//       "auth-token": localStorage.getItem('token')
+//     }})
+//     .then((res) => setUser(res.data))
+//     .catch((err) => console.log(err));
+// }, []);
+// console.log("user",user)
 const handleSubmit =()=>{
   const noteObj={
     title: title,
     note: note
   }
-  Axios.post(`http://localhost:4000/notes/newNote`, noteObj)
+  Axios.post(`http://localhost:4000/notes/newNote`, noteObj, {
+    headers: {
+      'Content-Type': 'application/json',
+      'auth-token': localStorage.getItem('token')
+    }
+  })
   .then(()=>{
     alert('Posted')
   })
+  .catch(error => {
+    console.error(error);
+    alert('An error occurred while posting the note. Please try again.');
+  });
 }
 
   return (

@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const checker = require('../config/checker')
+const fetcher = require('../config/fetcher')
 
 const JWT_SECRET = 'secret_123'
 
@@ -41,26 +41,24 @@ router.post('/signIn', async (req, res)=>{
         email: req.body.email
     })
     if(!user){
-        return {status: 'error'}
+        return {status: 'User not found'}
     }
     const validation = await bcrypt.compare(req.body.password, user.password)
-
     if(validation){
-        const token = jwt.sign(
+        const token = await jwt.sign(
             {
-                name: user.name,
-                email: user.email,
                 id: user.id
             },
             JWT_SECRET
         )
-        return res.json({ status:'OK', token, })
+        return res.json({ status:'OK', token })
     }else{
         return res.json({ status: 'error', user: false})
     }
 })
 
-router.post('/getuser', checker, async (req, res)=>{
+router.post('/getuser', fetcher, async (req, res)=>{
+    console.log("ping")
     try{
         let userId = req.user
         const user = await User.findOne(userId).select("-password")

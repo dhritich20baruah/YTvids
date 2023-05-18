@@ -6,17 +6,18 @@ const SignIn = () => {
   const [password, setPassword] = useState('')
 
   const handleSubmit = async () =>{
+    console.log("Pinged");
     try{
       const result = await Axios.post(`http://localhost:4000/user/signIn`, {
         email,
         password
       });
       const data = result.data
-      console.log(data)
+      console.log(data.token)
       if(data.token){
         localStorage.setItem("token", data.token);
         alert("Sign In Successful")
-        // window.location.href = '/Notes'
+        window.location.href = '/Notes'
       } else {
         alert("Please check email and password")
       }

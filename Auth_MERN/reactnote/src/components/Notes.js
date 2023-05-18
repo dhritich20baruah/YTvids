@@ -13,7 +13,11 @@ const Notes = () => {
   // console.log(userName)
 
   useEffect(() => {
-    Axios.get(`http://localhost:4000/notes/getNotes`)
+    Axios.get(`http://localhost:4000/notes/getNotes`,{
+      headers: {
+        'Content-Type': 'application/json',
+        "auth-token": localStorage.getItem('token')
+      }})
       .then((res) => setItems(res.data))
       .catch((err) => console.log(err));
   }, []);
