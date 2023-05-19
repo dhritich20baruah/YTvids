@@ -11,8 +11,8 @@ const SignIn = () => {
         email,
         password
       });
-      const data = result.data
-      console.log(data)
+      console.log("Pinged")
+      const data = await result.data
       if(data.token){
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.userInfo));
