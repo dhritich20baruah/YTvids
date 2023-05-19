@@ -15,11 +15,10 @@ router.post('/newNote', fetcher, async (req, res)=>{
         if(err){
             console.log(err)
         }
-        res.send('OK', data)
+        res.status(200).send('Note saved')
     })
-    res.send(newNote)
-    console.log(newNote)
-    
+    // res.send(newNote)
+    console.log(newNote)    
 })
 // READ
 router.get('/getNotes', fetcher, async (req, res)=>{
@@ -43,7 +42,7 @@ router.delete('/deleteNote/:id', (req, res)=>{
     })
 })
 // UPDATE
-router.put('/update/:id', async (req, res)=>{
+router.put('/update/:id', fetcher, async (req, res)=>{
     req.data = await Note.findByIdAndUpdate(req.params.id)
     let data = req.data
     if (data.user.toString() !== req.user.id){

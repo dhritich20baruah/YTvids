@@ -14,10 +14,19 @@ const Edit = () => {
       title: title,
       note: note
     }
-    Axios.put(`http://localhost:4000/notes/update/${id}`, noteObj)
-    .then(()=>{
-      alert('Updated')
+    Axios.put(`http://localhost:4000/notes/update/${id}`, noteObj, {
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token': localStorage.getItem('token')
+      }
     })
+    .then(()=>{
+      alert('Posted')
+    })
+    .catch(error => {
+      console.error(error);
+      alert('An error occurred while posting the note. Please try again.');
+    });
   }
 
   return (

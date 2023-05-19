@@ -40,6 +40,9 @@ router.post('/signIn', async (req, res)=>{
     const user = await User.findOne({
         email: req.body.email
     })
+    const userInfo = await User.findOne({
+        email: req.body.email
+    }).select("-password")
     if(!user){
         return {status: 'User not found'}
     }
@@ -51,7 +54,7 @@ router.post('/signIn', async (req, res)=>{
             },
             JWT_SECRET
         )
-        return res.json({ status:'OK', token })
+        return res.json({ userInfo, token })
     }else{
         return res.json({ status: 'error', user: false})
     }

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Nav = () => {
   const auth = localStorage.getItem("token");
+  const user = localStorage.getItem("user");
   const navigate = useNavigate();
   const signOut = () => {
     localStorage.clear();
@@ -11,8 +12,7 @@ const Nav = () => {
   };
   return (
     <>
-      {auth ? 
-      (
+      {auth ? (
         <nav className="navbar navbar-expand-lg bg-warning">
           <div className="container-fluid">
             <Link className="navbar-brand" to="#">
@@ -45,20 +45,22 @@ const Nav = () => {
                   </Link>
                 </li>
               </ul>
+              <div className="d-flex">
+                <p className="my-3">Hello {JSON.parse(user).name} </p>
+                <button className="btn btn-outline-danger mx-3" onClick={signOut}>
+                  SignOut
+                </button>
+              </div>
             </div>
           </div>
-          <div>
-            <button className="btn btn-outline-danger" onClick={signOut}>SignOut</button>
-          </div>
         </nav>
-      )
-      : (
+      ) : (
         <nav className="navbar navbar-expand-lg bg-warning">
           <div className="container-fluid">
             <Link className="navbar-brand" to="/">
               React Notes
-            </Link>          
-          </div>    
+            </Link>
+          </div>
         </nav>
       )}
     </>

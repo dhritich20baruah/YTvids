@@ -23,7 +23,7 @@ const Notes = () => {
   }, []);
 
   const deleteNote = (id) => {
-    Axios.delete(`http://localhost:4000/deleteNote/${id}`).then(() => {
+    Axios.delete(`http://localhost:4000/notes/deleteNote/${id}`).then(() => {
       window.location.reload(false);
     });
   };

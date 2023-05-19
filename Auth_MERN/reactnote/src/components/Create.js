@@ -6,18 +6,7 @@ import Axios from 'axios';
 const Create = () => {
 const [title, setTitle] = useState('')
 const [note, setNote] = useState('')
-const [user, setUser] = useState([])
 
-// useEffect(() => {
-//   Axios.get(`http://localhost:4000/notes/getuser`,{
-//     headers: {
-//       'Content-Type': 'application/json',
-//       "auth-token": localStorage.getItem('token')
-//     }})
-//     .then((res) => setUser(res.data))
-//     .catch((err) => console.log(err));
-// }, []);
-// console.log("user",user)
 const handleSubmit =()=>{
   const noteObj={
     title: title,
