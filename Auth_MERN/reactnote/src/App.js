@@ -10,15 +10,16 @@ import {itemStateContext} from './components/Context'
 
 function App() {
 const [post, setPost] = useState([])
+const auth = localStorage.getItem("token")
 
   return (
     <>
     <itemStateContext.Provider value={{ post, setPost}}>
       <Nav />
       <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/Create' element={<Create/>}/>
-        <Route path='/Notes' element={<Notes/>}/>
+        <Route path='/' element={auth ? <Notes/>:<Home/> }/>
+        <Route path='/Create' element={auth ? <Create/>:<Home/>}/>
+        <Route path='/Notes' element={auth ? <Notes/>:<Home/>}/>
         <Route path='/Edit' element={<Edit/>}/>
       </Routes>
       </itemStateContext.Provider>

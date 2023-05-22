@@ -1,31 +1,35 @@
-import React, {useState} from "react";
-import Axios from 'axios'
+import React, { useState } from "react";
+import Axios from "axios";
 
 const SignIn = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleSubmit = async () =>{
-    try{
+  const handleSubmit = async () => {
+    try {
       const result = await Axios.post(`http://localhost:4000/user/signIn`, {
         email,
-        password
+        password,
       });
-      console.log("Pinged")
-      const data = await result.data
-      if(data.token){
+      console.log("Pinged");
+      const data = await result.data;
+      if (data.token) {
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.userInfo));
-        alert("Sign In Successful")
-        window.location.href = '/Notes'
+        alert("Sign In Successful");
+        window.location.href = "/Notes";
       } else {
-        alert("Please check email and password")
+        alert("Please check email and password");
+      }
+    } catch (error) {
+      if (error.response.status == 400) {
+        alert("Sorry a user does not exist. Check email");
+      }
+      if (error.response.status == 500) {
+        alert("SignIn failed");
       }
     }
-    catch(error){
-      console.log(error)
-    }
-  } 
+  };
   return (
     <>
       <div>
@@ -39,7 +43,7 @@ const SignIn = () => {
               className="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
-              onChange={(e)=>setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               value={email}
               required
             />
@@ -52,12 +56,16 @@ const SignIn = () => {
               type="password"
               className="form-control"
               id="exampleInputPassword1"
-              onChange={(e)=>setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               value={password}
               required
             />
           </div>
-          <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
+          <button
+            type="submit"
+            className="btn btn-primary"
+            onClick={handleSubmit}
+          >
             Submit
           </button>
         </form>
