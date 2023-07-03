@@ -1,6 +1,6 @@
-import { NextResponse } from "next/server"
-import Products from "@/app/model/Products"
-import dbConnect from "@/app/utils/dbConnect"
+import { NextResponse } from "next/server";
+import Products from "@/app/model/Products";
+import dbConnect from "@/app/utils/dbConnect";
 dbConnect()
 
 export async function POST(request) {
