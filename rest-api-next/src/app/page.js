@@ -29,7 +29,7 @@ export default function Home() {
   const getData = async () => {
     try {
       const response = await Axios.get(
-        `http://localhost:3000/api/productRoute`
+        `/api/productRoute`
       );
       const products = response.data;
       setProdArray(products);
@@ -37,7 +37,7 @@ export default function Home() {
       console.log(error);
     }
   };
-  getData();
+  // getData();
 
   //Update data
   const handleEdit = (name, brand, price, quantity, productId) => {
