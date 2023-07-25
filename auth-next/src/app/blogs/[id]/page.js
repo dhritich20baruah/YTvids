@@ -1,6 +1,7 @@
 import Blog from "@/app/model/Blog"
 import dbConnect from "@/app/utils/dbConnect"
 import Link from "next/link"
+import CommentComponent from "./CommentComponent"
 
 export default async function page({params}){
     dbConnect()
@@ -17,6 +18,9 @@ export default async function page({params}){
                 <li className="text-gray-600">Blogger One</li>
             </ul>
             <p className="text-gray-900 font-sans text-justify w-[90%]">{blogs.body}</p>
+            <div className="my-10">
+                <CommentComponent blogsId={blogsId}/>
+            </div>
         </main>
     )
 }

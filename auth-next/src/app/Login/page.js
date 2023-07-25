@@ -14,7 +14,7 @@ const page = () => {
             :
             <div className='text-center m-16'>
                 <p>You are not Signed In</p>
-                <button className="p-2 bg-orange-400" onClick={signIn}>SignIn with Google</button>
+                <button className="p-2 bg-orange-400" onClick={signIn}>SignIn with Google/Github</button>
             </div>
         }
     </div>
