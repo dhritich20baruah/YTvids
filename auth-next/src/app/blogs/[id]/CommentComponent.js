@@ -1,6 +1,7 @@
 "use client"
 import React, {useState, useEffect} from 'react'
 import { useSession, signIn, signOut } from 'next-auth/react'
+import postComment from './PostComment'
 
 const CommentComponent = (props) => {
     const [comment, setComment] = useState("")
@@ -18,6 +19,7 @@ const CommentComponent = (props) => {
     }
 
     const logOut = () => {
+        localStorage.clear()
         signOut()
     }
 
@@ -42,7 +44,8 @@ const CommentComponent = (props) => {
        (<div>
         <p className='font-semibold'>Hello {userName}, please leave your comment here.</p>
         <input type="text" name="comment" id="comment" className='w-[80%] outline-none border-b-2 border-slate-600 p-2'onChange={(e)=>setComment(e.target.value)}/>
-        <button className="p-2 text-white bg-orange-600 ml-3 hover:cursor-pointer hover:bg-red-900">Submit</button>
+        <button className="p-2 text-white bg-yellow-600 ml-3 hover:cursor-pointer hover:bg-red-900" onClick={handleSubmit}>Submit</button>
+        <button className="p-2 text-white bg-red-600 ml-3 hover:cursor-pointer hover:bg-red-900" onClick={logOut}>LogOut</button>
         </div>)
         :
         (
