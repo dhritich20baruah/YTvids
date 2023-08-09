@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 const Pool = require('pg').Pool;
+const path = require('path')
 const PORT = 5000;
+const ejs = require('ejs')
 
 const pool = new Pool({
     user: 'postgres',
@@ -12,9 +14,14 @@ const pool = new Pool({
     port: 5432
 })
 
-const bodyParser = require('body-parser');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
+app.use('/static', express.static('static'))
+
+app.use(express.urlencoded({extended: true}));
+app.use(express.json())
+
 
 pool.connect((err, client, release) => {
     if(err){
@@ -31,6 +38,11 @@ pool.connect((err, client, release) => {
         }
         console.log("Connected to Database.")
     })
+})
+
+
+app.get('/', (req, res) => {
+    res.render('index')
 })
 
 app.get('/testData', (req, res, next)=>{
