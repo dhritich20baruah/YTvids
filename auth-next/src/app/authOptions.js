@@ -1,8 +1,9 @@
+//Create a file for the authOptions Object in the app directory
 import GoogleProvider from "next-auth/providers/google"
 import GithubProvider from "next-auth/providers/github"
 //These lines import the authentication providers for Google and GitHub from the next-auth/providers package. These providers will be used to configure the authentication options for the NextAuth.js setup.
 
-export const authOptions = { //The providers array within authOptions is used to configure the authentication providers for Google and GitHub. Each provider is initialized with a configuration object containing the necessary credentials for the specific provider.
+export const authOptions = { //The authoption object contains an array called providers which is used to configure the authentication providers for Google, GitHub or any other providers. Each provider is initialized with a configuration object containing the necessary credentials like clientID and client secret for that specific provider.
     providers:[
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID,
@@ -10,7 +11,7 @@ export const authOptions = { //The providers array within authOptions is used to
         }),
         GithubProvider({
             clientId: process.env.GITHUB_CLIENT_ID,
-            clientSecret: process.env.GITHUB_CLIENT_SECRET
+            clientSecret: process.env.GITHUB_CLIENT_SECRET  
         }),
     ],
     secret: process.env.NEXTAUTH_SECRET

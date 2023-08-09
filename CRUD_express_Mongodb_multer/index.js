@@ -13,7 +13,7 @@ const Participant = require('./models/participants')
 const PORT = 8010
 
 //Connect to Mongo
-mongoose.connect('mongodb://localhost/crud',{
+mongoose.connect('mongodb://127.0.0.1:27017/crud',{
     useNewUrlParser: true, useUnifiedTopology: true
 }).then(()=>console.log('Database Connected'))
 .catch(err=>console.log(err))
@@ -52,6 +52,7 @@ app.post('/participate', upload.single('photo'), (req, res)=>{ //req means reque
     //the req.body property contains key value pairs of data submitted in the request body or this case the data submitted in the form
     const photo = req.file.originalname //contains the file name
     const photopath = 'static/' + req.file.originalname
+    console.log(name, email, phone, topic)
     //req.file is also a property like req.body but you need to use it to handle files.
     const newParticipant = new Participant({
         name, email, phone, topic, photo, photopath

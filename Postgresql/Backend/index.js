@@ -45,12 +45,22 @@ app.get('/', (req, res) => {
     res.render('index')
 })
 
-app.get('/testData', (req, res, next)=>{
-    console.log('Test data: ');
-    pool.query('select * from car')
-    .then(testData=>{
-        res.send(testData.rows);
-    })
+app.post('/newStudent', async (req, res)=>{
+    const { name, email, gender, field1, field2 } = req.body;
+   
+    try{
+        const result = await pool.query(`INSERT INTO student (student_name, email, gender, field1, field2) VALUES ($1, $2, $3, $4, $5) RETURNING *`, [name, email, gender, field1, field2])
+        res.redirect('/')
+    }
+    catch(error){
+        console.error('Error inserting student:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+})
+
+app.get('/students', async (req, res, next)=>{
+    const data =  await pool.query('select * from student')
+    res.render('students', {data: data.rows})
 })
 
 app.listen(PORT, ()=>{console.log(`Server started at port ${PORT}`)} )
