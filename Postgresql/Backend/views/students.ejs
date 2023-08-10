@@ -51,8 +51,12 @@
                 <td><%=data[i].field1%></td>
                 <td><%=data[i].field2%></td>
                 <td>
-                    <button class="btn btn-danger"><i class="material-icons">delete</i></button>
-                    <button class="btn btn-primary"><i class="material-icons">border_color</i></button>
+                    <form action="/delete/<%= data[i].id %>">
+                    <button class="btn btn-danger"><i class="material-icons" type="submit">delete</i></button>
+                    </form>
+                    <a href="/edit/<%= data[i].id %>">
+                    <button class="btn btn-primary" ><i class="material-icons">border_color</i></button>
+                    </a>
                 </td>
               </tr>
             </tbody>

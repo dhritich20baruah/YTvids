@@ -50,6 +50,7 @@ app.post('/newStudent', async (req, res)=>{
    
     try{
         const result = await pool.query(`INSERT INTO student (student_name, email, gender, field1, field2) VALUES ($1, $2, $3, $4, $5) RETURNING *`, [name, email, gender, field1, field2])
+        console.log(result)
         res.redirect('/')
     }
     catch(error){
@@ -58,9 +59,35 @@ app.post('/newStudent', async (req, res)=>{
     }
 })
 
-app.get('/students', async (req, res, next)=>{
+app.get('/students', async (req, res)=>{
     const data =  await pool.query('select * from student')
     res.render('students', {data: data.rows})
 })
+
+app.get('/edit/:id', async (req, res)=>{
+    const id = req.params.id;
+    const data = await pool.query('SELECT * FROM student WHERE id = $1', [id])
+    res.render('edit', {data: data.rows})
+})
+
+app.post('/update/:id', async (req, res)=>{
+    const id = req.params.id;
+    const { name, email, gender, field1, field2 } = req.body;
+
+    try{
+        await pool.query(`UPDATE student SET student_name = $1, email = $2, gender = $3, field1 = $4, field2 = $5 WHERE id = $6`, [name, email, gender, field1, field2, id])
+        res.redirect('/students')
+    }
+    catch(error){
+        console.error('Error inserting student:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+})
+
+app.get('/delete/:id', async (req, res)=>{
+    const id = req.params.id
+    await pool.query('DELETE FROM student WHERE id = $1', [id])
+    res.redirect('/students')
+})  
 
 app.listen(PORT, ()=>{console.log(`Server started at port ${PORT}`)} )

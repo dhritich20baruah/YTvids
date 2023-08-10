@@ -24,27 +24,28 @@
 </head>
 <body>
   <main class="container m-5">
-    <h4>New Student Information</h4>
-    <form action="/newStudent" method="post">
+    <a href="/"><button class="btn btn-success">HOME</button></a>
+    <h4>Edit Student Information</h4>
+    <form action="/update/<%=data[0].id%>" method="post">
     <div class="mb-3">
-      <label for="name" class="form-label">Student Name</label>
-      <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+      <label for="name" class="form-label">Student Name, ID = <%= data[0].id %></label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="<%= data[0].student_name %>">
     </div>
     <div class="mb-3">
       <label for="email" class="form-label">Email</label>
-      <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+      <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="<%= data[0].email %>">
     </div>
     <div class="mb-3">
       <label for="gender" class="form-label">Gender</label>
-      <input type="text" class="form-control" id="gender" name="gender" placeholder="Gender">
+      <input type="text" class="form-control" id="gender" name="gender" placeholder="Gender" value="<%= data[0].gender %>">
     </div>
     <div class="mb-3">
       <label for="field1" class="form-label">Field of Study 1</label>
-      <input type="text" class="form-control" id="field1" name="field1" placeholder="Field of Study">
+      <input type="text" class="form-control" id="field1" name="field1" placeholder="Field of Study" value="<%= data[0].field1 %>">
     </div>
     <div class="mb-3">
       <label for="field2" class="form-label">Field of Study 2</label>
-      <input type="text" class="form-control" id="field2" name="field2" placeholder="Field of Study">
+      <input type="text" class="form-control" id="field2" name="field2" placeholder="Field of Study" value="<%= data[0].field2 %>">
     </div>
     <button type="submit" class="btn btn-outline-warning">SUBMIT</button>
   </form>
