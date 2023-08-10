@@ -4,6 +4,7 @@ const Pool = require('pg').Pool;
 const path = require('path')
 const PORT = 5000;
 const ejs = require('ejs')
+const cors = require('cors')
 
 const pool = new Pool({
     user: 'postgres',
@@ -19,6 +20,7 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.use('/static', express.static('static'))
 
+app.use(cors())
 app.use(express.urlencoded({extended: true}));
 app.use(express.json())
 
@@ -89,5 +91,33 @@ app.get('/delete/:id', async (req, res)=>{
     await pool.query('DELETE FROM student WHERE id = $1', [id])
     res.redirect('/students')
 })  
+
+// NOTES ENDPOINTS
+app.post('/createNote', async(req,res)=>{
+    console.log('pinged')
+    const { note, writtenBy } = await req.body;
+    console.log(note, writtenBy)
+
+    try{
+        const newNote = await pool.query('INSERT INTO notes (note, written_by) VALUES ($1, $2) RETURNING *', [note, writtenBy])
+        res.status(200).json({message: 'OK'})
+        console.log(newNote.rows[0])
+    }
+    catch(error){
+        console.log(error)
+        res.status(500).json({ error: "Internal server error"})
+    }
+})
+
+app.get('/getNotes', async(req, res)=>{
+    const data = await pool.query('SELECT * FROM notes')
+    res.json(data.rows)
+})
+
+app.delete('/deleteNote/:id', async(req,res)=>{
+    const id = req.params.id
+    await pool.query('DELETE FROM notes WHERE id= $1', [id])
+    res.status(200).json({message: 'Note Deleted'})
+})
 
 app.listen(PORT, ()=>{console.log(`Server started at port ${PORT}`)} )
