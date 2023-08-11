@@ -5,14 +5,15 @@ import Axios from 'axios'
 function App() {
   const [note, setNote] = useState("")
   const [writtenBy, setWrittenBy] = useState("")
+  const [noteId, setNoteId] = useState('')
   const [items, setItems] = useState([])
+  const [visibility, setVisibility] = useState(true)
 
-  const handleSubmit = async() => {
+  const createNote = async() => {
     const noteObj = {
       note: note,
       writtenBy: writtenBy
     }
-    console.log(noteObj)
     await Axios.post('http://localhost:5000/createNote', noteObj).then(()=>{alert('Note posted')})
   }
 
@@ -29,10 +30,29 @@ function App() {
     })
   }
 
+  const editNote = (id, note, writtenBy) => {
+    setNoteId(id)
+    setNote(note);
+    setWrittenBy(writtenBy);
+    setVisibility(visibility => !visibility)
+  }
+
+  const updateNote = (noteId) => {
+    const noteObj = {
+      note: note,
+      writtenBy: writtenBy
+    }
+    console.log(noteId)
+    Axios.put(`http://localhost:5000/updateNote/${noteId}`, noteObj)
+    .then(()=>{
+      alert('Note updated')
+    })
+  }
+
   return (
     <>
     <div className="container m-5">
-      <form onSubmit={handleSubmit}>
+      <form>
       <div className="mb-3">
         <label htmlFor="note" className="form-label">
           Note
@@ -60,11 +80,15 @@ function App() {
           onChange={(e)=>setWrittenBy(e.target.value)}
         />
       </div>
-      <button className="btn btn-warning" type='submit'>SUBMIT</button>
+      {visibility ? 
+      <button className="btn btn-warning" onClick={createNote}>SUBMIT</button>
+      :
+      <button className="btn btn-primary" onClick={()=>updateNote(noteId)}>UPDATE</button>
+      }
       </form>
     </div>
     <div className="container m-5"> 
-      <table class="table table-striped">
+      <table className="table table-striped">
         <thead>
           <tr>
             <th scope="col">id</th>
@@ -77,14 +101,14 @@ function App() {
         <tbody>
           {items.map((element)=>{
             return(
-              <tr>
+              <tr key={element.id}>
               <th scope="row">{element.id}</th>
               <td>{element.note}</td>
               <td>{element.written_by}</td>
               <td>{element.written_on}</td>
               <td>
                 <button className="btn btn-danger" onClick={()=>deleteNote(element.id)}>DEL</button>
-                <button className="btn btn-primary">EDIT</button>
+                <button className="btn btn-primary" onClick={()=>editNote(element.id, element.note, element.written_by)}>EDIT</button>
               </td>
             </tr>
             )

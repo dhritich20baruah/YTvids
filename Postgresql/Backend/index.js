@@ -94,9 +94,7 @@ app.get('/delete/:id', async (req, res)=>{
 
 // NOTES ENDPOINTS
 app.post('/createNote', async(req,res)=>{
-    console.log('pinged')
     const { note, writtenBy } = await req.body;
-    console.log(note, writtenBy)
 
     try{
         const newNote = await pool.query('INSERT INTO notes (note, written_by) VALUES ($1, $2) RETURNING *', [note, writtenBy])
@@ -118,6 +116,20 @@ app.delete('/deleteNote/:id', async(req,res)=>{
     const id = req.params.id
     await pool.query('DELETE FROM notes WHERE id= $1', [id])
     res.status(200).json({message: 'Note Deleted'})
+})
+
+app.put('/updateNote/:id', async (req, res)=>{
+    const id = await req.params.id;
+    const { note, writtenBy } = req.body;
+
+    try{
+        const updatedNote = await pool.query(`UPDATE notes SET note = $1, written_by = $2 WHERE id = $3`, [note, writtenBy, id])
+        res.status(200).json({message: 'OK'})
+    }
+    catch(error){
+        console.error('Error updating note:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 })
 
 app.listen(PORT, ()=>{console.log(`Server started at port ${PORT}`)} )
