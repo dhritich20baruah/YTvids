@@ -4,15 +4,16 @@ const Pool = require('pg').Pool;
 const path = require('path')
 const PORT = 5000;
 const ejs = require('ejs')
-const cors = require('cors')
+const cors = require('cors');
+require('dotenv').config();
 
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'test',
-    password: '81708',
-    dialect: 'postgres',
-    port: 5432
+    user: process.env.USER_NAME,
+    host: process.env.HOST_NAME,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    dialect: process.env.DB_DIALECT,
+    port: process.env.PORT_NUMBER
 })
 
 
