@@ -51,6 +51,42 @@
   <a href="/students">
     <button class="btn btn-primary">Students</button>
   </a>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Student ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Subject 1</th>
+        <th scope="col">Subject 2</th>
+        <th scope="col">Options</th>
+      </tr>
+    </thead>
+    <% if(data.length>0){%>
+        <% for(let i=0; i<data.length; i++){ %>
+    <tbody>
+      <tr>
+        <th scope="row"><%=data[i].id%></th>
+        <td><%=data[i].student_name%></td>
+        <td><%=data[i].email%></td>
+        <td><%=data[i].gender%></td>
+        <td><%=data[i].field1%></td>
+        <td><%=data[i].field2%></td>
+        <td>
+            <form action="/delete/<%= data[i].id %>">
+            <button class="btn btn-danger"><i class="material-icons" type="submit">delete</i></button>
+            </form>
+            <a href="/edit/<%= data[i].id %>">
+            <button class="btn btn-primary" ><i class="material-icons">border_color</i></button>
+            </a>
+        </td>
+      </tr>
+    </tbody>
+    <%}%>
+    <%}%>
+  </table>
   </main>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

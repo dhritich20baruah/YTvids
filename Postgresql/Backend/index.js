@@ -43,8 +43,9 @@ pool.connect((err, client, release) => {
 })
 
 
-app.get('/', (req, res) => {
-    res.render('index')
+app.get('/', async (req, res) => {
+    const data = await pool.query('select * from student')
+    res.render('index', {data: data.rows})
 })
 
 app.post('/newStudent', async (req, res)=>{
@@ -78,7 +79,7 @@ app.post('/update/:id', async (req, res)=>{
 
     try{
         await pool.query(`UPDATE student SET student_name = $1, email = $2, gender = $3, field1 = $4, field2 = $5 WHERE id = $6`, [name, email, gender, field1, field2, id])
-        res.redirect('/students')
+        res.redirect('/')
     }
     catch(error){
         console.error('Error inserting student:', error);
@@ -89,7 +90,7 @@ app.post('/update/:id', async (req, res)=>{
 app.get('/delete/:id', async (req, res)=>{
     const id = req.params.id
     await pool.query('DELETE FROM student WHERE id = $1', [id])
-    res.redirect('/students')
+    res.redirect('/')
 })  
 
 // NOTES ENDPOINTS
