@@ -92,7 +92,14 @@ app.get('/delete/:id', async (req, res)=>{
     const id = req.params.id
     await pool.query('DELETE FROM student WHERE id = $1', [id])
     res.redirect('/')
-})  
+}) 
+
+//search
+app.post('/search', async (req, res) => {
+    const searchTerm = req.body.search
+    const data = await pool.query(`SELECT * FROM todo WHERE todo ILIKE '${searchTerm}%'`)
+    res.render('search', {data: data.rows})
+})
 
 // NOTES ENDPOINTS
 app.post('/createNote', async(req,res)=>{
