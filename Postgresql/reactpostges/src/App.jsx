@@ -6,29 +6,29 @@ import { todoListAtom } from './recoil/atom/todoAtom'
 import { TodoMain } from './components/TodoMain'
 
 function App() {
-  const [note, setNote] = useState("")
-  const [writtenBy, setWrittenBy] = useState("")
-  const [_, setTodoList] = useRecoilState(todoListAtom)
-  // const [noteId, setNoteId] = useState('')
-  // const [items, setItems] = useState([])
-  const [visibility, setVisibility] = useState(true)
+  // const [note, setNote] = useState("")
+  // const [writtenBy, setWrittenBy] = useState("")
+  // const [_, setTodoList] = useRecoilState(todoListAtom)
+  // // const [noteId, setNoteId] = useState('')
+  // // const [items, setItems] = useState([])
+  // const [visibility, setVisibility] = useState(true)
 
-  const createNote = () => {
-    if(note){
-    setTodoList((oldTodoList)=>[
-      ...oldTodoList,
-      {
-        id: Date.now() + "_id_" + Math.floor(Math.random()*1000),
-        text: note,
-        // writtenBy: writtenBy
-        isComplete: false
-      }
-    ]);
-    setNote("")
-  }
+  // const createNote = () => {
+  //   if(note){
+  //   setTodoList((oldTodoList)=>[
+  //     ...oldTodoList,
+  //     {
+  //       id: Date.now() + "_id_" + Math.floor(Math.random()*1000),
+  //       text: note,
+  //       // writtenBy: writtenBy
+  //       isComplete: false
+  //     }
+  //   ]);
+  //   setNote("")
+  // }
     
-    // await Axios.post('http://localhost:5000/createNote', noteObj).then(()=>{alert('Note posted')})
-  }
+  //   // await Axios.post('http://localhost:5000/createNote', noteObj).then(()=>{alert('Note posted')})
+  // }
 
   // useEffect(() => {
   //    Axios.get('http://localhost:5000/getNotes')
@@ -61,10 +61,19 @@ function App() {
   //     alert('Note updated')
   //   })
   // }
+  // const [note, setNote] = useState('')
+  const [note, setNote] = useRecoilState(todoListAtom)
+
+  const createNote = (event) => {
+    setNote(event.target.value)
+  }
 
   return (
     <>
-    <div className="container m-5">
+    <label htmlFor="note">
+      <input type="text" name='note' id='note' onChange={createNote}/>
+    </label>
+    {/* <div className="container m-5">
       <form>
       <div className="mb-3">
         <label htmlFor="note" className="form-label">
@@ -99,7 +108,7 @@ function App() {
       <button className="btn btn-primary" onClick={()=>updateNote(noteId)}>UPDATE</button>
       }
       </form>
-    </div>
+    </div> */}
     {/* <div className="container m-5"> 
       <table className="table table-striped">
         <thead>
@@ -130,7 +139,7 @@ function App() {
       </table>
    
     </div> */}
-    <TodoMain/>
+    <TodoMain note={note}/>
     </>
   )
 }
