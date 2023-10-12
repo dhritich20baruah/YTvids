@@ -1,53 +1,66 @@
 import { useState, useEffect } from 'react'
+import { useRecoilState } from 'recoil'
 import './App.css'
 import Axios from 'axios'
+import { todoListAtom } from './recoil/atom/todoAtom'
+import { TodoMain } from './components/TodoMain'
 
 function App() {
   const [note, setNote] = useState("")
   const [writtenBy, setWrittenBy] = useState("")
-  const [noteId, setNoteId] = useState('')
-  const [items, setItems] = useState([])
+  const [_, setTodoList] = useRecoilState(todoListAtom)
+  // const [noteId, setNoteId] = useState('')
+  // const [items, setItems] = useState([])
   const [visibility, setVisibility] = useState(true)
 
-  const createNote = async() => {
-    const noteObj = {
-      note: note,
-      writtenBy: writtenBy
-    }
-    await Axios.post('http://localhost:5000/createNote', noteObj).then(()=>{alert('Note posted')})
+  const createNote = () => {
+    if(note){
+    setTodoList((oldTodoList)=>[
+      ...oldTodoList,
+      {
+        id: Date.now() + "_id_" + Math.floor(Math.random()*1000),
+        text: note,
+        // writtenBy: writtenBy
+        isComplete: false
+      }
+    ]);
+    setNote("")
+  }
+    
+    // await Axios.post('http://localhost:5000/createNote', noteObj).then(()=>{alert('Note posted')})
   }
 
-  useEffect(() => {
-     Axios.get('http://localhost:5000/getNotes')
-    .then((res)=>setItems(res.data))
-    .catch((err)=>console.log(err))
-  }, [])
+  // useEffect(() => {
+  //    Axios.get('http://localhost:5000/getNotes')
+  //   .then((res)=>setItems(res.data))
+  //   .catch((err)=>console.log(err))
+  // }, [])
 
-  const deleteNote= (id) => {
-    Axios.delete(`http://localhost:5000/deleteNote/${id}`)
-    .then(()=>{
-      window.location.reload()
-    })
-  }
+  // const deleteNote= (id) => {
+  //   Axios.delete(`http://localhost:5000/deleteNote/${id}`)
+  //   .then(()=>{
+  //     window.location.reload()
+  //   })
+  // }
 
-  const editNote = (id, note, writtenBy) => {
-    setNoteId(id)
-    setNote(note);
-    setWrittenBy(writtenBy);
-    setVisibility(visibility => !visibility)
-  }
+  // const editNote = (id, note, writtenBy) => {
+  //   setNoteId(id)
+  //   setNote(note);
+  //   setWrittenBy(writtenBy);
+  //   setVisibility(visibility => !visibility)
+  // }
 
-  const updateNote = (noteId) => {
-    const noteObj = {
-      note: note,
-      writtenBy: writtenBy
-    }
-    console.log(noteId)
-    Axios.put(`http://localhost:5000/updateNote/${noteId}`, noteObj)
-    .then(()=>{
-      alert('Note updated')
-    })
-  }
+  // const updateNote = (noteId) => {
+  //   const noteObj = {
+  //     note: note,
+  //     writtenBy: writtenBy
+  //   }
+  //   console.log(noteId)
+  //   Axios.put(`http://localhost:5000/updateNote/${noteId}`, noteObj)
+  //   .then(()=>{
+  //     alert('Note updated')
+  //   })
+  // }
 
   return (
     <>
@@ -87,7 +100,7 @@ function App() {
       }
       </form>
     </div>
-    <div className="container m-5"> 
+    {/* <div className="container m-5"> 
       <table className="table table-striped">
         <thead>
           <tr>
@@ -99,7 +112,7 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {items.map((element)=>{
+          {todoList.map((element)=>{
             return(
               <tr key={element.id}>
               <th scope="row">{element.id}</th>
@@ -116,7 +129,8 @@ function App() {
         </tbody>
       </table>
    
-    </div>
+    </div> */}
+    <TodoMain/>
     </>
   )
 }
