@@ -8,11 +8,6 @@ export const TodoMain = () => {
     <>
     <div>
       {noteList}
-      {/* {todoList.map((item)=>{
-        return(
-          <p key={item.id}>{item.note}</p>
-        )
-      })} */}
     </div>
     </>
   );
