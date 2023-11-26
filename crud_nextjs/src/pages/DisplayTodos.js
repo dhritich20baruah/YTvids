@@ -5,7 +5,7 @@ export async function getStaticProps(){
     const mongoose = require('mongoose')
     const Todos = require('../../model/Todo')
 
-    await mongoose.connect('mongodb://localhost/nextJSCRUD',{
+    await mongoose.connect('mongodb://127.0.0.1:27017/nextJSCRUD',{
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
