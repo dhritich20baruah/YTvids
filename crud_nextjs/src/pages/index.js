@@ -28,11 +28,11 @@ export default function Home() {
         <h1>Create Todo</h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label for="title" className="form-label">Title</label>
+            <label htmlFor="title" className="form-label">Title</label>
             <input type="text" className="form-control" id="title" aria-describedby="emailHelp" onChange={(event)=>setTitle(event.target.value)}/>          
           </div>
           <div className="mb-3">
-            <label for="todo" className="form-label">Todo</label>
+            <label htmlFor="todo" className="form-label">Todo</label>
             <input type="text" className="form-control" id="todo" aria-describedby="emailHelp" onChange={(event)=>setTodo(event.target.value)}/>          
           </div>
           <button type="submit" className="btn btn-primary">Submit</button>

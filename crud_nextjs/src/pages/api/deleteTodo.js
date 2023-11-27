@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 import Todo from '../../../model/Todo'
+import dbConnect from '../../../config/dbConnect'
 
 async function handler(req, res){
     if(req.method !== 'DELETE'){
@@ -8,14 +9,7 @@ async function handler(req, res){
 
     const { id } = req.query
 
-    try{
-        await mongoose.connect('mongodb://127.0.0.1:27017/nextJSCRUD',{
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        }).then(()=> console.log(' DB connected'))
-    }catch(error){
-        console.log(error)
-    }
+   dbConnect()
 
     try{
         const deleteTodo = await Todo.deleteOne({_id:id})

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 import Todos from '../../../model/Todo'
+import dbConnect from '../../../config/dbConnect'
 
 async function handler(req, res){
     if(req.method !== 'PUT'){
@@ -9,14 +10,7 @@ async function handler(req, res){
     const { id } = req.query
     const { title, todo } = req.body
 
-    try{
-        await mongoose.connect('mongodb://127.0.0.1:27017/nextJSCRUD',{
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        }).then(()=> console.log(' DB connected'))
-    }catch(error){
-        console.log(error)
-    }
+   dbConnect()
 
     try{
         const updatedTodo = await Todos.findByIdAndUpdate(id, {title, todo})
