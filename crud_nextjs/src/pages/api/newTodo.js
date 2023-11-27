@@ -12,7 +12,7 @@ async function handler(req, res){
         dbConnect()
         var newTodo = new Todo({title, todo})
         await newTodo.save()
-        console.log(newTodo)
+        // console.log(newTodo)
         res.status(200).json({status:"Todo added"})
     }catch(error){
         console.log(error)

@@ -8,7 +8,7 @@ export async function getStaticProps(){
 
     dbConnect()
     const todos = await Todos.find().sort({ createdAt: 'desc'})
-    console.log(todos)
+    // console.log(todos)
     return{
         props: {
             todos: JSON.parse(JSON.stringify(todos))
