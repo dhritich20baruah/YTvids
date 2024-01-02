@@ -54,7 +54,6 @@ app.post('/newStudent', async (req, res)=>{
    
     try{
         const result = await pool.query(`INSERT INTO student (student_name, email, gender, field1, field2) VALUES ($1, $2, $3, $4, $5) RETURNING *`, [name, email, gender, field1, field2])
-        console.log(result)
         res.redirect('/')
     }
     catch(error){
