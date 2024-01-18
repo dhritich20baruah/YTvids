@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import { ScoreStateContext } from '../components/Context'
 import Image from 'next/image'
 import profilePic from '../public/profilepic.png'
+import CountdownTimer from '../components/CountdownTimer'
 
 const Questions = () => {
     const [index, setIndex] = useState(0)
@@ -247,9 +248,17 @@ const Questions = () => {
         display()
     }
 
+    const handleTimerEnd = () => {
+        console.log('Timer ended!');
+        // Perform actions when the timer reaches zero
+      };
 
     return (
         <>
+        <div>
+      <h1>Countdown Timer Example</h1>
+      <CountdownTimer initialTime={120} onTimerEnd={handleTimerEnd} />
+    </div>
             <div className="questions-head bg-blue-200 flex flex-row justify-between">
                 <div className='font-bold text-lg p-2'>IBPS EXAM 2022</div>
                 <div className='flex font-bold text-lg p-2'>
