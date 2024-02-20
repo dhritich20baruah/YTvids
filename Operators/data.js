@@ -70,11 +70,11 @@
       "height": "6'2\""
     },
     {
-      "name": "Fatima Ali",
-      "country": "morocco",
-      "city": "Karachi",
+      "name": "Alara Arslan",
+      "country": "Turkey",
+      "city": "Istanbul",
       "age": 33,
-      "email": "fatima.ali@example.com",
+      "email": "arslan.alara@example.com",
       "phone": "+92 300 1234567",
       "company": "NOP Ltd",
       "height": "5'5\""
