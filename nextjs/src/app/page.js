@@ -1,139 +1,143 @@
-"use client"
-import Image from 'next/image'
-import { motion } from 'framer-motion'
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.js</code>
-        </p>
-       
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main>
+      <div className="flex-col-reverse justify-evenly md:flex md:flex-row">
+        <div className="text-center flex justify-center items-center md:w-[50%] w-[100%]">
+          <p className="p-10">
+            <span className="text-3xl">Experience Our New Product</span>
+            <br />
+            Introducing the iWatch Model X3, the latest innovation in smartwatch
+            technology. Equipped with a built-in blood pressure monitor, this
+            cutting-edge timepiece empowers you to monitor your health on the
+            go. Stay connected and stay healthy with iWatch Model X3.
+          </p>
         </div>
-    
-
-      </div>
-
-      <motion.div initial="hidden" animate="visible" variants={{
-        hidden: {
-          scale: .8,
-          opacity: 0
-        }, 
-        visible: {
-          scale: 1,
-          opacity: 1,
-          transition: {
-            delay: .4
-          }
-        }
-      }}>
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+        <img
+          src="https://i.postimg.cc/1Xv0nKNR/product1.jpg"
+          alt=""
+          className="md:w-[50%] w-[100%]"
         />
       </div>
-      </motion.div>
+      {/* ABOUT */}
+      <div className="flex-col justify-evenly md:flex md:flex-row">
+        <img
+          src="https://i.postimg.cc/MHS3btTy/product4.jpg"
+          alt=""
+          className="md:w-[50%] w-[100%] h-[40rem] object-cover"
+        />
+        <div className="text-center flex justify-center items-center md:w-[50%] w-[100%]">
+          <div>
+            <p className="text-4xl">ABOUT THE PRODUCT</p>
+            <p className="p-10">
+              Introducing the all-new SmartTime X3, the ultimate smart watch
+              designed to elevate your lifestyle and redefine the way you
+              interact with technology. Packed with cutting-edge features and
+              sleek aesthetics, this next-generation wearable is here to
+              revolutionize your daily routine. Stay connected and organized
+              like never before with the SmartTime X3. Its vibrant,
+              high-resolution display adapts to your surroundings, ensuring
+              crystal-clear visibility in any light. From reading messages to
+              tracking your fitness goals, the intuitive touchscreen makes
+              navigation a breeze. Powered by a state-of-the-art AI assistant,
+              the SmartTime X3 anticipates your needs and delivers personalized
+              suggestions throughout the day. Whether it's suggesting the best
+              route to beat traffic or reminding you of an important meeting,
+              your smart watch is your ever-reliable companion.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="features bg-gray-900 text-white p-10">
+        <h3 className="text-center text-3xl">FEATURES</h3>
+        <div className="md:flex md:flex-row flex-col text-center my-3">
+          <div className="px-3">
+            <h4 className="text-xl">Gyro and Accelerometer</h4>
+            <p className="text-justify">
+              Track movement, activity levels, and even sleep patterns. Monitor
+              your health and fitness levels.Also use it for navigation and
+              location services.
+            </p>
+          </div>
+          <div className="px-3">
+            <h4 className="text-xl">Heart Monitor</h4>
+            <p className="text-justify">
+              Monitor heart rate and track progress over time. Set goals for
+              improving heart health. SOS feature that can be activated in case
+              of emergency.
+            </p>
+          </div>
+          <div className="px-3">
+            <h4 className="text-xl">Voice Dial/Commands</h4>
+            <p className="text-justify">
+              The voice command feature allows you to make calls, send messages,
+              set reminders, play music, and even control your smart home
+              devices, all with simple voice commands.
+            </p>
+          </div>
+          <div className="px-3">
+            <h4 className="text-xl">Mp3 Player</h4>
+            <p className="text-justify">
+              The MP3 player feature allows you to store and play your own music
+              files, giving you the freedom to listen to your music collection
+              without the need for a separate device.
+            </p>
+          </div>
+        </div>
+      </div>
+      {/* Latest Products */}
+      <h3 className="text-center my-8 text-3xl font-bold">Latest Products</h3>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <motion.a whileHover={{
-          scale: 1.2,
-          transition: {
-            duration: .2
-          }
-        }}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-        </motion.a>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+      <div className="latest-product my-10 md:flex md:flex-row flex-col mx-auto justify-evenly">
+        <div className="card text-center shadow-lg shadow-black mx-5 md:w-[30%] p-5">
+          <div
+            style={{ textDecorationLine: "none" }}
+            className="text-black flex flex-col justify-center items-center"
+          >
+            <img
+              src="https://i.postimg.cc/VkSjtfk6/product6.jpg"
+              alt=""
+              className="w-1/2 h-auto object-contain"
+            />
+            <div className="card-body">
+              <p className="text-lg font-semibold">Model X4</p>
+              <p className="card-text font-bold text-red-700">Rs.1699/-</p>
+            </div>
+          </div>
+        </div>
+        <div className="card text-center shadow-lg shadow-black mx-5 md:w-[30%] p-5">
+          <div
+            style={{ textDecorationLine: "none" }}
+            className="text-black flex flex-col justify-center items-center"
+          >
+            <img
+              src="https://i.postimg.cc/1tjPHwr2/product8.webp"
+              alt=""
+              className="w-1/2 h-auto object-contain"
+            />
+            <div className="card-body">
+              <p className="text-lg font-semibold">Model X5</p>
+              <p className="card-text font-bold text-red-700">Rs.1899/-</p>
+            </div>
+          </div>
+        </div>
+        <div className="card text-center shadow-lg shadow-black mx-5 md:w-[30%] p-5">
+          <div
+            style={{ textDecorationLine: "none" }}
+            className="text-black flex flex-col justify-center items-center"
+          >
+            <img
+              src="https://i.postimg.cc/fLkZzrv6/product7.jpg"
+              alt=""
+              className="w-1/2 h-auto object-contain"
+            />
+            <div className="card-body">
+              <p className="text-lg font-semibold">Model X6</p>
+              <p className="card-text font-bold text-red-700">Rs.2199/-</p>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
-  )
+  );
 }
