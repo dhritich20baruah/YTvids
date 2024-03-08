@@ -1,17 +1,32 @@
+"use client"
+import { motion } from "framer-motion";
 
 export default function Home() {
   return (
     <main>
       <div className="flex-col-reverse justify-evenly md:flex md:flex-row">
         <div className="text-center flex justify-center items-center md:w-[50%] w-[100%]">
-          <p className="p-10">
-            <span className="text-3xl">Experience Our New Product</span>
-            <br />
+          <motion.div initial="hidden" animate="visible" variants={{
+            hidden:{
+              scale: 0.8,
+              opacity: 0
+            },
+            visible: {
+              scale: 1,
+              opacity: 1,
+              transition: {
+                duration: 2
+              }
+            }
+          }} className="p-10">
+            <h1 className="text-3xl">Experience Our New Product</h1>
+            <p>
             Introducing the iWatch Model X3, the latest innovation in smartwatch
             technology. Equipped with a built-in blood pressure monitor, this
             cutting-edge timepiece empowers you to monitor your health on the
             go. Stay connected and stay healthy with iWatch Model X3.
-          </p>
+            </p>
+          </motion.div>
         </div>
         <img
           src="https://i.postimg.cc/1Xv0nKNR/product1.jpg"
@@ -21,11 +36,18 @@ export default function Home() {
       </div>
       {/* ABOUT */}
       <div className="flex-col justify-evenly md:flex md:flex-row">
+        <motion.div whileHover={{
+          scale: 1.2,
+          transition: {
+            duration: .4
+          }
+        }} className="md:w-[50%] w-[100%] h-[40rem]">
         <img
           src="https://i.postimg.cc/MHS3btTy/product4.jpg"
           alt=""
-          className="md:w-[50%] w-[100%] h-[40rem] object-cover"
-        />
+          className="w-[100%] h-[40rem] object-cover"
+          />
+        </motion.div>
         <div className="text-center flex justify-center items-center md:w-[50%] w-[100%]">
           <div>
             <p className="text-4xl">ABOUT THE PRODUCT</p>
@@ -138,6 +160,45 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* FOOTER */}
+
+      <footer className="bg-gray-900 text-gray-100 py-8">
+        <div className="container mx-auto flex flex-col items-center justify-center">
+          <div className="flex mb-4">
+            {/* Social Media Links */}
+            <a href="#" className="mr-4 hover:text-white">
+              <i className="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" className="mr-4 hover:text-white">
+              <i className="fab fa-twitter"></i>
+            </a>
+            <a href="#" className="mr-4 hover:text-white">
+              <i className="fab fa-instagram"></i>
+            </a>
+            <a href="#" className="hover:text-white">
+              <i className="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+          {/* Contact Details */}
+          <div className="text-center mb-4">
+            <p className="mb-2">
+              <i className="fas fa-envelope mr-2"></i>info@example.com
+            </p>
+            <p className="mb-2">
+              <i className="fas fa-phone-alt mr-2"></i>+1234567890
+            </p>
+            <p>
+              <i className="fas fa-map-marker-alt mr-2"></i>123 Street, City,
+              Country
+            </p>
+          </div>
+          {/* Copyright */}
+          <p className="text-sm">
+            &copy; 2023 Your Company. All rights reserved.
+          </p>
+        </div>
+      </footer>
     </main>
   );
 }
