@@ -111,7 +111,17 @@ export default function Home() {
       <h3 className="text-center my-8 text-3xl font-bold">Latest Products</h3>
 
       <div className="latest-product my-10 md:flex md:flex-row flex-col mx-auto justify-evenly">
-        <div className="card text-center shadow-lg shadow-black mx-5 md:w-[30%] p-5">
+        <motion.div initial="outView" whileInView="inView" variants={{
+                    outView:{
+                        translateX: -100,
+                        opacity: 0
+                    },
+                    inView:{
+                        translateX: 0,
+                        opacity: 1,
+                        transition: {duration: 1}
+                    }
+                }} className="card text-center shadow-lg shadow-black mx-5 md:w-[30%] p-5">
           <div
             style={{ textDecorationLine: "none" }}
             className="text-black flex flex-col justify-center items-center"
@@ -126,8 +136,18 @@ export default function Home() {
               <p className="card-text font-bold text-red-700">Rs.1699/-</p>
             </div>
           </div>
-        </div>
-        <div className="card text-center shadow-lg shadow-black mx-5 md:w-[30%] p-5">
+        </motion.div>
+        <motion.div initial="outView" whileInView="inView" variants={{
+                    outView:{
+                        translateX: -100,
+                        opacity: 0
+                    },
+                    inView:{
+                        translateX: 0,
+                        opacity: 1,
+                        transition: {duration: 1}
+                    }
+                }} className="card text-center shadow-lg shadow-black mx-5 md:w-[30%] p-5">
           <div
             style={{ textDecorationLine: "none" }}
             className="text-black flex flex-col justify-center items-center"
@@ -142,8 +162,18 @@ export default function Home() {
               <p className="card-text font-bold text-red-700">Rs.1899/-</p>
             </div>
           </div>
-        </div>
-        <div className="card text-center shadow-lg shadow-black mx-5 md:w-[30%] p-5">
+        </motion.div>
+        <motion.div initial="outView" whileInView="inView" variants={{
+                    outView:{
+                        translateX: -100,
+                        opacity: 0,
+                    },
+                    inView:{
+                        translateX: 0,
+                        opacity: 1,
+                        transition: {duration: 1}
+                    }
+                }} className="card text-center shadow-lg shadow-black mx-5 md:w-[30%] p-5">
           <div
             style={{ textDecorationLine: "none" }}
             className="text-black flex flex-col justify-center items-center"
@@ -158,7 +188,7 @@ export default function Home() {
               <p className="card-text font-bold text-red-700">Rs.2199/-</p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* FOOTER */}

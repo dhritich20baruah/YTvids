@@ -6,14 +6,14 @@ import { todoListAtom } from './recoil/atom/todoAtom'
 import { TodoMain } from './components/TodoMain'
 
 function App() {
-  // const [note, setNote] = useState("")
-  // const [writtenBy, setWrittenBy] = useState("")
-  // const [_, setTodoList] = useRecoilState(todoListAtom)
-  // // const [noteId, setNoteId] = useState('')
-  // // const [items, setItems] = useState([])
-  // const [visibility, setVisibility] = useState(true)
+  const [note, setNote] = useState("")
+  const [writtenBy, setWrittenBy] = useState("")
+  const [_, setTodoList] = useRecoilState(todoListAtom)
+  // const [noteId, setNoteId] = useState('')
+  const [items, setItems] = useState([])
+  const [visibility, setVisibility] = useState(true)
 
-  // const createNote = () => {
+  const createNote = async () => {
   //   if(note){
   //   setTodoList((oldTodoList)=>[
   //     ...oldTodoList,
@@ -26,54 +26,57 @@ function App() {
   //   ]);
   //   setNote("")
   // }
-    
-  //   // await Axios.post('http://localhost:5000/createNote', noteObj).then(()=>{alert('Note posted')})
-  // }
-
-  // useEffect(() => {
-  //    Axios.get('http://localhost:5000/getNotes')
-  //   .then((res)=>setItems(res.data))
-  //   .catch((err)=>console.log(err))
-  // }, [])
-
-  // const deleteNote= (id) => {
-  //   Axios.delete(`http://localhost:5000/deleteNote/${id}`)
-  //   .then(()=>{
-  //     window.location.reload()
-  //   })
-  // }
-
-  // const editNote = (id, note, writtenBy) => {
-  //   setNoteId(id)
-  //   setNote(note);
-  //   setWrittenBy(writtenBy);
-  //   setVisibility(visibility => !visibility)
-  // }
-
-  // const updateNote = (noteId) => {
-  //   const noteObj = {
-  //     note: note,
-  //     writtenBy: writtenBy
-  //   }
-  //   console.log(noteId)
-  //   Axios.put(`http://localhost:5000/updateNote/${noteId}`, noteObj)
-  //   .then(()=>{
-  //     alert('Note updated')
-  //   })
-  // }
-  // const [note, setNote] = useState('')
-  const [note, setNote] = useRecoilState(todoListAtom)
-
-  const createNote = (event) => {
-    setNote(event.target.value)
+    const noteObj = {
+      note: note,
+      writtenBy: writtenBy
+    }
+    await Axios.post('http://localhost:5000/createNote', noteObj).then(()=>{alert('Note posted')})
   }
+
+  useEffect(() => {
+     Axios.get('http://localhost:5000/getNotes')
+    .then((res)=>setItems(res.data))
+    .catch((err)=>console.log(err))
+  }, [])
+
+  const deleteNote= (id) => {
+    Axios.delete(`http://localhost:5000/deleteNote/${id}`)
+    .then(()=>{
+      window.location.reload()
+    })
+  }
+
+  const editNote = (id, note, writtenBy) => {
+    setNoteId(id)
+    setNote(note);
+    setWrittenBy(writtenBy);
+    setVisibility(visibility => !visibility)
+  }
+
+  const updateNote = (noteId) => {
+    const noteObj = {
+      note: note,
+      writtenBy: writtenBy
+    }
+    console.log(noteId)
+    Axios.put(`http://localhost:5000/updateNote/${noteId}`, noteObj)
+    .then(()=>{
+      alert('Note updated')
+    })
+  }
+  // const [note, setNote] = useState('')
+  // const [note, setNote] = useRecoilState(todoListAtom)
+
+  // const createNote = (event) => {
+  //   setNote(event.target.value)
+  // }
 
   return (
     <>
-    <label htmlFor="note">
+    {/* <label htmlFor="note">
       <input type="text" name='note' id='note' onChange={createNote}/>
-    </label>
-    {/* <div className="container m-5">
+    </label> */}
+   <div className="container m-5">
       <form>
       <div className="mb-3">
         <label htmlFor="note" className="form-label">
@@ -108,8 +111,8 @@ function App() {
       <button className="btn btn-primary" onClick={()=>updateNote(noteId)}>UPDATE</button>
       }
       </form>
-    </div> */}
-    {/* <div className="container m-5"> 
+    </div> 
+   <div className="container m-5"> 
       <table className="table table-striped">
         <thead>
           <tr>
@@ -121,7 +124,7 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {todoList.map((element)=>{
+          {items.map((element)=>{
             return(
               <tr key={element.id}>
               <th scope="row">{element.id}</th>
@@ -138,8 +141,8 @@ function App() {
         </tbody>
       </table>
    
-    </div> */}
-    <TodoMain note={note}/>
+    </div>
+    {/* <TodoMain note={note}/> */}
     </>
   )
 }
