@@ -1,24 +1,26 @@
 "use client"
-import { motion } from "framer-motion";
+import Navbar from "./components/Navbar";
+import {motion} from "framer-motion"
 
 export default function Home() {
   return (
     <main>
+      <Navbar/>
       <div className="flex-col-reverse justify-evenly md:flex md:flex-row">
-        <div className="text-center flex justify-center items-center md:w-[50%] w-[100%]">
-          <motion.div initial="hidden" animate="visible" variants={{
-            hidden:{
-              scale: 0.8,
-              opacity: 0
-            },
-            visible: {
-              scale: 1,
-              opacity: 1,
-              transition: {
-                duration: 2
-              }
+        <motion.div initial="hidden" animate="visible" variants={{
+          hidden: {
+            scale: 0.8,
+            opacity: 0
+          },
+          visible: {
+            scale: 1,
+            opacity: 1,
+            transition: {
+              duration: 2
             }
-          }} className="p-10">
+          }
+        }} className="text-center flex justify-center items-center md:w-[50%] w-[100%]">
+          <div className="p-10">
             <h1 className="text-3xl">Experience Our New Product</h1>
             <p>
             Introducing the iWatch Model X3, the latest innovation in smartwatch
@@ -26,8 +28,8 @@ export default function Home() {
             cutting-edge timepiece empowers you to monitor your health on the
             go. Stay connected and stay healthy with iWatch Model X3.
             </p>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
         <img
           src="https://i.postimg.cc/1Xv0nKNR/product1.jpg"
           alt=""
@@ -39,7 +41,7 @@ export default function Home() {
         <motion.div whileHover={{
           scale: 1.2,
           transition: {
-            duration: .4
+            duration: 0.4
           }
         }} className="md:w-[50%] w-[100%] h-[40rem]">
         <img
@@ -112,16 +114,18 @@ export default function Home() {
 
       <div className="latest-product my-10 md:flex md:flex-row flex-col mx-auto justify-evenly">
         <motion.div initial="outView" whileInView="inView" variants={{
-                    outView:{
-                        translateX: -100,
-                        opacity: 0
-                    },
-                    inView:{
-                        translateX: 0,
-                        opacity: 1,
-                        transition: {duration: 1}
-                    }
-                }} className="card text-center shadow-lg shadow-black mx-5 md:w-[30%] p-5">
+          outView: {
+            translateX: -100,
+            opacity: 0
+          },
+          inView: {
+            translateX: 0,
+            opacity: 1,
+            transition: {
+              duration: 1
+            }
+          }
+        }} className="card text-center shadow-lg shadow-black mx-5 md:w-[30%] p-5">
           <div
             style={{ textDecorationLine: "none" }}
             className="text-black flex flex-col justify-center items-center"
@@ -138,16 +142,18 @@ export default function Home() {
           </div>
         </motion.div>
         <motion.div initial="outView" whileInView="inView" variants={{
-                    outView:{
-                        translateX: -100,
-                        opacity: 0
-                    },
-                    inView:{
-                        translateX: 0,
-                        opacity: 1,
-                        transition: {duration: 1}
-                    }
-                }} className="card text-center shadow-lg shadow-black mx-5 md:w-[30%] p-5">
+          outView: {
+            translateX: -100,
+            opacity: 0
+          },
+          inView: {
+            translateX: 0,
+            opacity: 1,
+            transition: {
+              duration: 1
+            }
+          }
+        }} className="card text-center shadow-lg shadow-black mx-5 md:w-[30%] p-5">
           <div
             style={{ textDecorationLine: "none" }}
             className="text-black flex flex-col justify-center items-center"
@@ -164,16 +170,18 @@ export default function Home() {
           </div>
         </motion.div>
         <motion.div initial="outView" whileInView="inView" variants={{
-                    outView:{
-                        translateX: -100,
-                        opacity: 0,
-                    },
-                    inView:{
-                        translateX: 0,
-                        opacity: 1,
-                        transition: {duration: 1}
-                    }
-                }} className="card text-center shadow-lg shadow-black mx-5 md:w-[30%] p-5">
+          outView: {
+            translateX: -100,
+            opacity: 0
+          },
+          inView: {
+            translateX: 0,
+            opacity: 1,
+            transition: {
+              duration: 1
+            }
+          }
+        }} className="card text-center shadow-lg shadow-black mx-5 md:w-[30%] p-5">
           <div
             style={{ textDecorationLine: "none" }}
             className="text-black flex flex-col justify-center items-center"
