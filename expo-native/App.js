@@ -1,25 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { NativeWindStyleSheet } from "nativewind";
-
-NativeWindStyleSheet.setOutput({
-  default: "native",
-});
+import { View, Text, Button, Image, ImageBackground } from 'react-native';
+import { styles } from './styles';
 
 export default function App() {
+  const handlePress= () => {
+    alert("Hello world!")
+  }
+
   return (
+   <>
     <View style={styles.container}>
-      <Text className="text-red-600">App started</Text>
-      <StatusBar style="auto" />
+      <ImageBackground source={require('./assets/ironman.jpg')} resizeMode='cover' style={styles.background}>
+      <Text style={styles.text}>React Native</Text>
+      <Button title="Press" onPress={handlePress}/>
+      </ImageBackground>
     </View>
+   </>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
