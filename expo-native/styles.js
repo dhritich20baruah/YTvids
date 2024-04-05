@@ -13,5 +13,16 @@ export const styles = StyleSheet.create({
       fontWeight: 'bold',
       color: 'white',
       textAlign:"center"
+    },
+    input: {
+      backgroundColor: 'white',
+      height: 30,
+      padding: 2
+    },
+    childText: {
+      color: 'white',
+      fontSize: 30,
+      textAlign: 'center',
+      fontWeight: 'bold'
     }
   })
