@@ -93,6 +93,22 @@ app.get('/delete/:id', async (req, res)=>{
     res.redirect('/')
 }) 
 
+app.get('/bikes', async (req, res)=>{
+    res.render('bikes')
+})
+
+app.get('/saleMonthly/:month', async (req, res)=>{
+    const month = req.params.month
+    const data = await pool.query(`select model, units_sold from royal_enfield where month = $1`, [month])
+    res.json({data: data.rows})
+})
+
+app.get('/saleModel/:model', async (req, res)=>{
+    const model = req.params.model
+    const data = await pool.query(`select month, units_sold from royal_enfield where model = $1`, [model])
+    console.log(data)
+    res.json({data: data.rows})
+})
 //search
 app.post('/search', async (req, res) => {
     const searchTerm = req.body.search

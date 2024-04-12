@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Postgresql</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/style/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Niconne&family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main class="container m-5">
+      <h3 class="text-center">Sale of Each Model By Month</h3>
+      <div class="dropdown">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Month
+        </button>
+        <ul class="dropdown-menu">
+          <li onclick="fetchBikes('January')">
+            <a class="dropdown-item" href="#">January</a>
+          </li>
+          <li onclick="fetchBikes('February')">
+            <a class="dropdown-item" href="#">February</a>
+          </li>
+          <li onclick="fetchBikes('March')">
+            <a class="dropdown-item" href="#">March</a>
+          </li>
+          <li onclick="fetchBikes('April')">
+            <a class="dropdown-item" href="#">April</a>
+          </li>
+          <li onclick="fetchBikes('May')">
+            <a class="dropdown-item" href="#">May</a>
+          </li>
+          <li onclick="fetchBikes('June')">
+            <a class="dropdown-item" href="#">June</a>
+          </li>
+        </ul>
+      </div>
+      <canvas id="myPie"></canvas>
+
+      <h3 class="text-center">Sale of Model by Month</h3>
+      <div class="dropdown">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Model
+        </button>
+        <ul class="dropdown-menu">
+          <li onclick="fetchModel('Classic 350')">
+            <a class="dropdown-item" href="#">Classic 350</a>
+          </li>
+          <li onclick="fetchModel('Bullet 350')">
+            <a class="dropdown-item" href="#">Bullet 350</a>
+          </li>
+          <li onclick="fetchModel('Hunter 350')">
+            <a class="dropdown-item" href="#">Hunter 350</a>
+          </li>
+          <li onclick="fetchModel('Scram 411')">
+            <a class="dropdown-item" href="#">Scram 411</a>
+          </li>
+          <li onclick="fetchModel('Himalayan 411')">
+            <a class="dropdown-item" href="#">Himalayan 411</a>
+          </li>
+          <li onclick="fetchModel('Continental GT 650')">
+            <a class="dropdown-item" href="#">Continental GT 650</a>
+          </li>
+          <li onclick="fetchModel('Interceptor 650')">
+            <a class="dropdown-item" href="#">Interceptor 650</a>
+          </li>
+          <li onclick="fetchModel('Super Meteor')">
+            <a class="dropdown-item" href="#">Super Meteor</a>
+          </li>
+        </ul>
+      </div>
+      <canvas id="myChart"></canvas>
+    </main>
+  </body>
+  <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    let myPie; // Declare myChart variable globally to access it outside functions
+
+    async function fetchBikes(month) {
+      try {
+        const response = await fetch(`/saleMonthly/${month}`);
+        const data = await response.json();
+        const bike_model = data.data.map((item) => item.model);
+        const units_sold = data.data.map((item) => item.units_sold);
+        createPie(month, bike_model, units_sold); // Call createChart function after fetching data
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+
+    function createPie(month, bike_model, units_sold) {
+      var ctx = document.getElementById("myPie").getContext("2d");
+
+      // Destroy the existing chart instance if it exists
+      if (myPie) {
+        myPie.destroy();
+      }
+
+      // Create the chart
+      myPie = new Chart(ctx, {
+        type: "pie", // Specify the chart type (e.g., bar, line, pie, etc.)
+        data: {
+          labels: bike_model, // Provide labels for the chart
+          datasets: [
+            {
+              label: `Units Sold in ${month}`,
+              data: units_sold, // Provide data for the chart
+              backgroundColor: [
+                "purple",
+                "red",
+                "green",
+                "orange",
+                "blue",
+                "yellow",
+                "gray",
+                "indigo",
+                "brown",
+              ],
+              borderColor: [
+                "rgba(255, 99, 132, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(255, 206, 186, 1)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          // Add configuration options here
+        },
+      });
+    }
+  </script>
+
+  <script>
+    let myChart; // Declare myChart variable globally to access it outside functions
+
+    async function fetchModel(model) {
+      try {
+        const response = await fetch(`/saleModel/${model}`);
+        const data = await response.json();
+        const month = data.data.map((item) => item.month);
+        const units_sold = data.data.map((item) => item.units_sold);
+        createChart(model, month, units_sold); // Call createChart function after fetching data
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+
+    function createChart(model, month, units_sold) {
+      var ctx = document.getElementById("myChart").getContext("2d");
+
+      // Destroy the existing chart instance if it exists
+      if (myChart) {
+        myChart.destroy();
+      }
+
+      // Create the chart
+      myChart = new Chart(ctx, {
+        type: "line", // Specify the chart type (e.g., bar, line, pie, etc.)
+        data: {
+          labels: month, // Provide labels for the chart
+          datasets: [
+            {
+              label: `${model} Sold from January - June`,
+              data: units_sold, // Provide data for the chart
+              backgroundColor: [
+                "purple",
+                "red",
+                "green",
+                "orange",
+                "blue",
+                "yellow",
+                "gray",
+                "indigo",
+                "brown",
+              ],
+              borderColor: [
+                "rgba(255, 99, 132, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(255, 206, 186, 1)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          // Add configuration options here
+        },
+      });
+    }
+  </script>
+</html>
