@@ -55,7 +55,7 @@
           </li>
         </ul>
       </div>
-      <canvas id="myPie"></canvas>
+      <canvas id="myPie" height="600"></canvas>
 
       <h3 class="text-center">Sale of Model by Month</h3>
       <div class="dropdown">
@@ -116,15 +116,15 @@
       try {
         const response = await fetch(`/saleMonthly/${month}`);
         const data = await response.json();
-        const bike_model = data.data.map((item) => item.model);
+        const model = data.data.map((item) => item.model);
         const units_sold = data.data.map((item) => item.units_sold);
-        createPie(month, bike_model, units_sold); // Call createChart function after fetching data
+        createPie(month, model, units_sold); // Call createChart function after fetching data
       } catch (error) {
         console.error("Error:", error);
       }
     }
 
-    function createPie(month, bike_model, units_sold) {
+    function createPie(month, model, units_sold) {
       var ctx = document.getElementById("myPie").getContext("2d");
 
       // Destroy the existing chart instance if it exists
@@ -136,7 +136,7 @@
       myPie = new Chart(ctx, {
         type: "pie", // Specify the chart type (e.g., bar, line, pie, etc.)
         data: {
-          labels: bike_model, // Provide labels for the chart
+          labels: model, // Provide labels for the chart
           datasets: [
             {
               label: `Units Sold in ${month}`,
@@ -162,6 +162,8 @@
           ],
         },
         options: {
+            maintainAspectRatio: false, // Set to false to allow custom dimensions
+            responsive: false,
           // Add configuration options here
         },
       });
@@ -221,6 +223,8 @@
           ],
         },
         options: {
+            maintainAspectRatio: false, // Set to false to allow custom dimensions
+            responsive: false,
           // Add configuration options here
         },
       });

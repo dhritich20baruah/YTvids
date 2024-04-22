@@ -94,7 +94,13 @@ app.get('/delete/:id', async (req, res)=>{
 }) 
 
 app.get('/bikes', async (req, res)=>{
-    res.render('bikes')
+    const data = await pool.query(`SELECT * FROM royal_enfield`)
+    res.render('bikes', {data: data.rows})
+})
+
+app.get('/allBikes', async(req, res)=>{
+    const data = await pool.query(`select * from  royal_enfield`)
+    res.json({ data: data.rows })
 })
 
 app.get('/saleMonthly/:month', async (req, res)=>{

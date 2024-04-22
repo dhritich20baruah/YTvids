@@ -46,6 +46,7 @@ app.get('/', async (req, res)=>{
 app.get('/saleMonthly/:month', async (req, res)=>{
     const month = req.params.month
     const data = await pool.query(`SELECT model, units_sold from royal_enfield where month = $1`, [month])
+    console.log(data.rows)
     res.json({data: data.rows})
 })
 

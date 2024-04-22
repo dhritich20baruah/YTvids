@@ -51,7 +51,7 @@
         }
 
         myChart = new Chart(ctx, {
-          type: "pie",
+          type: "line",
           data: {
             labels: model,
             datasets: [
@@ -60,7 +60,7 @@
                 data: units_sold,
                 backgroundColor: ["purple", "red", "orange", "green", "indigo", "gray", "brown"],
                 borderColor: ["indigo", "gray", "brown"],
-                borderWidth: 1
+                borderWidth: 5
               }
             ]
           },
