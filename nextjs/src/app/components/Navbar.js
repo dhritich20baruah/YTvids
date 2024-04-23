@@ -46,7 +46,7 @@ const Navbar = () => {
               SHOP
             </li>
           </Link>
-          <Link href="/Login">
+          <Link href="/Dashboard">
             <li className="hover:cursor-pointer hover:bg-white hover:text-gray-600 p-3">
               DASHBOARD
             </li>
@@ -71,7 +71,7 @@ const Navbar = () => {
                 SHOP
               </li>
             </Link>
-            <Link href="/Login">
+            <Link href="/Dashboard">
               <li className="hover:cursor-pointer hover:bg-white hover:text-gray-600 p-3 border-b-2 border-white">
                 DASHBOARD
               </li>
