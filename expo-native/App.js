@@ -124,16 +124,7 @@ export default function App() {
 
   return (
     <View>
-      <Text
-        style={{
-          margin: 30,
-          textAlign: "center",
-          fontWeight: "bold",
-          fontSize: 25,
-        }}
-      >
-        Notes
-      </Text>
+      <Text style={{ margin: 30, textAlign: "center", fontWeight: "bold", fontSize: 25 }}>Notes</Text>
       <View style={{ display: "flex", flexDirection: "row" }}>
         <TextInput
           onChangeText={setNote}
