@@ -8,3 +8,9 @@ CREATE TABLE buses (
     speed INTEGER NOT NULL,
     service VARCHAR(50) NOT NULL
 );
+
+CREATE TABLE Routes (
+  id SERIAL PRIMARY KEY,
+  route_name VARCHAR(255) NOT NULL,
+  stoppages TEXT[] NOT NULL
+);
