@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+</head>
+<script>
+    async function updateBook(id) {
+        const title = document.getElementById(`title-${id}`).innerText;
+        const author = document.getElementById(`author-${id}`).innerText;
+        const metadata = document.getElementById(`metadata-${id}`).innerText;
+
+        const response = await fetch(`/update-book/${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ title, author, metadata })
+        });
+
+        if (response.ok) {
+            alert('Book updated successfully');
+        } else {
+            alert('Error updating book');
+        }
+    }
+</script>
+<body>
+    <h3>BOOK LISTS</h3>
+    <div>
+        <% if(data.length > 0) { %>
+            <% data.forEach(book => { %>
+                <div>
+                    <p contenteditable="true" id="title-<%= book.id %>"><%= book.title %></p>
+                    <p contenteditable="true" id="author-<%= book.id %>"><%= book.author %></p>
+                    <p contenteditable="true" id="metadata-<%= book.id %>"><%= JSON.stringify(book.metadata) %></p>
+                    <button onclick="updateBook(<%= book.id %>)">Save</button>
+                </div>
+            <% }) %>
+        <% } %>
+    </div>
+</body>
+</html>

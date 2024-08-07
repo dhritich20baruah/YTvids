@@ -122,6 +122,62 @@ app.post('/search', async (req, res) => {
     res.render('search', {data: data.rows})
 })
 
+
+//BOOKS ENDPOINT
+// Get all books
+app.get('/books', async (req, res) => {
+    try {
+      const result = await pool.query('SELECT * FROM books');
+      res.render( 'books', {data: result.rows});
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+  
+  // Add a new book
+  app.post('/books', async (req, res) => {
+    const { title, author, metadata } = req.body;
+    try {
+      const result = await pool.query(
+        'INSERT INTO books (title, author, metadata) VALUES ($1, $2, $3) RETURNING *',
+        [title, author, metadata]
+      );
+      res.status(201).json(result.rows[0]);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+  
+  // Update book metadata
+  app.post('/update-book/:id', async (req, res) => {
+    const { id } = req.params;
+    const { title, author, metadata } = req.body;
+
+    try {
+        await pool.query(
+            'UPDATE books SET title = $1, author = $2, metadata = $3 WHERE id = $4',
+            [title, author, metadata, id]
+        );
+        res.send({ status: 'OK' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error updating book');
+    }
+});
+  
+  // Delete a book
+  app.delete('/books/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+      await pool.query('DELETE FROM books WHERE id = $1', [id]);
+      res.status(204).send();
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+  
+;
+  
 // NOTES ENDPOINTS
 app.post('/createNote', async(req,res)=>{
     const { note, writtenBy } = await req.body;
