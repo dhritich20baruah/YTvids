@@ -41,6 +41,38 @@ app.get("/", async(req, res)=>{
     res.render("index", {data: data.rows})
 })
 
+app.post("/add-book", async (req, res) => {
+    const {title, author, otherdetails} = req.body;
+    try {
+        const parsedData = JSON.parse(otherdetails)
+        await pool.query(
+            "INSERT INTO book_list (title, author, other_details) VALUES ($1, $2, $3)",
+            [title, author, parsedData]
+        );
+        res.redirect("/")
+    } catch (error) {
+        console.error(error)
+        res.status(500).send("Error adding book")
+    }
+})
+
+app.post("/update-book/:id", async (req, res) => {
+    const {id} = req.params;
+    const {title, author, otherdetails} = req.body;
+
+    try{
+        await pool.query (
+            "UPDATE book_list SET title = $1, author = $2, other_details = $3 WHERE id = $4",
+            [title, author, otherdetails, id]
+        );
+        res.send({status: "OK"})
+    }
+    catch(error){
+        console.error(error)
+        res.status(500).send("Error updating book")
+    }
+})
+
 app.listen(PORT, ()=>{
     console.log(`Server started at port ${PORT}`)
 })

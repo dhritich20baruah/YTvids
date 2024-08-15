@@ -19,35 +19,69 @@
       }
     </style>
     <script>
-      function addKeyValue(){
-        const keyValueContainer = document.getElementById("key-value-container")
-        const div = document.createElement("div")
-        div.classList.add("key-value-pair")
+      function addKeyValue() {
+        const keyValueContainer = document.getElementById(
+          "key-value-container"
+        );
+        const div = document.createElement("div");
+        div.classList.add("key-value-pair");
         div.innerHTML = `
             <input type="text" class="key" placeholder="Key" required>
             <input type="text" class="value" placeholder="Value" required>
             <button type="button" onclick="removeKeyValuePair(this)">Remove</button>
-        `
-        keyValueContainer.appendChild(div)
+        `;
+        keyValueContainer.appendChild(div);
       }
 
-      function removeKeyValuePair(button){
-        const keyValueContainer = document.getElementById("key-value-container");
-        keyValueContainer.removeChild(button.parentElement)
+      function removeKeyValuePair(button) {
+        const keyValueContainer = document.getElementById(
+          "key-value-container"
+        );
+        keyValueContainer.removeChild(button.parentElement);
       }
 
-      function addBook(){
+      function addBook() {
         const pairs = document.querySelectorAll(".key-value-pair");
-        const otherdetails = {}
+        const otherdetails = {};
 
         pairs.forEach((pair) => {
           const key = pair.querySelector(".key").value;
           const value = pair.querySelector(".value").value;
           otherdetails[key] = value;
-        })
+        });
 
-        document.getElementById("other-details").value = JSON.stringify(otherdetails)
+        document.getElementById("otherdetails").value =
+          JSON.stringify(otherdetails);
       }
+
+    async function updateBook(id){
+      const title = document.getElementById(`title-${id}`).innerText.trim()
+      const author = document.getElementById(`author-${id}`).innerText.trim()
+
+      const otherDetails = {}
+      document.querySelectorAll(`#data-list-${id} li`).forEach((item, index) => {
+        const key = item.querySelector(`#key-${id}-${index}`).innerText.trim();
+        const value = item.querySelector(`#value-${id}-${index}`).innerText.trim();
+        otherDetails[key] = value;
+      })
+
+      const response = await fetch(`/update-book/${id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({title, author, otherdetails: otherDetails})
+      });
+
+      if(response.ok){
+        alert("Book updated successfully")
+        location.reload()
+      }
+      else{
+        alert("Error updating book")
+      }
+    }  
+    
     </script>
   </head>
   <body>
@@ -55,41 +89,48 @@
     <h3>ADD NEW BOOK</h3>
     <form action="/add-book" method="post" onsubmit="addBook()">
       <label for="title">Title</label>
-      <input type="text" name="title" id="title" required>
-      <br>
+      <input type="text" name="title" id="title" required />
+      <br />
 
       <label for="author">Author</label>
-      <input type="text" name="author" id="author" required>
-      <br>
+      <input type="text" name="author" id="author" required />
+      <br />
 
       <label>Other Details</label>
       <div id="key-value-container">
         <div class="key-value-pair">
-          <input type="text" class="key" placeholder="key" required>
-          <input type="text" class="value" placeholder="value" required>
+          <input type="text" class="key" placeholder="key" required />
+          <input type="text" class="value" placeholder="value" required />
         </div>
       </div>
       <button type="button" onclick="addKeyValue()">Add key-value pair</button>
-      <br>
+      <br />
 
       <!-- Hidden textarea to store the json string -->
-       <textarea name="other-details" id="other-details" style="visibility: block; height: 0; padding: 0;"></textarea>
+      <textarea
+        name="otherdetails"
+        id="otherdetails"
+        style="visibility: hidden; height: 0; padding: 0"
+      ></textarea>
       <button type="submit">Add Book</button>
     </form>
 
-
     <h3>BOOK LIST</h3>
     <div>
-        <% if(data.length > 0) { %> <% data.forEach(book => { %>
-        <p>Title: <%= book.title %></p>
-        <p>Author: <%= book.author %></p>
-        <ul class="data-list">
-          <% Object.entries(book.other_details).forEach(([key, value]) => { %>
-          <li><%= key %>: <span><%= value %></span></li>
+      <% if(data.length > 0) { %> <% data.forEach(book => { %>
+        <p>Title: <span contenteditable="true" id="title-<%= book.id%>"> <%= book.title %></span></p>
+        <p>Author: <span contenteditable="true" id="author-<%= book.id%>"> <%= book.author %></span></p>
+        <ul class="data-list-<%= book.id%>" class="data-list">
+          <% Object.entries(book.other_details).forEach(([key, value], index) => { %>
+          <li>
+            <span contenteditable="true" id="key-<%= book.id%>"><%= key %>:</span> 
+            <span contenteditable="true" id="value-<%= book.id%>"><%= value %></span></li>
           <% }) %>
         </ul>
-        <hr />
-        <% }) %> <% } %>
-      </div>
+       
+        <button onclick="updateBook(<%= book.id%>)">Update</button>
+      <hr />
+      <% }) %> <% } %>
+    </div>
   </body>
 </html>
