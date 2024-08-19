@@ -120,11 +120,11 @@
       <% if(data.length > 0) { %> <% data.forEach(book => { %>
         <p>Title: <span contenteditable="true" id="title-<%= book.id%>"> <%= book.title %></span></p>
         <p>Author: <span contenteditable="true" id="author-<%= book.id%>"> <%= book.author %></span></p>
-        <ul class="data-list-<%= book.id%>" class="data-list">
+        <ul id="data-list-<%= book.id%>" class="data-list">
           <% Object.entries(book.other_details).forEach(([key, value], index) => { %>
           <li>
-            <span contenteditable="true" id="key-<%= book.id%>"><%= key %>:</span> 
-            <span contenteditable="true" id="value-<%= book.id%>"><%= value %></span></li>
+            <span contenteditable="true" id="key-<%= book.id%>-<%= index%>"><%= key %>:</span> 
+            <span contenteditable="true" id="value-<%= book.id%>-<%= index%>"><%= value %></span></li>
           <% }) %>
         </ul>
        

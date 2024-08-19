@@ -73,6 +73,13 @@ app.post("/update-book/:id", async (req, res) => {
     }
 })
 
+// Delete a book
+app.get("/deleteBook/:id", async (req, res) => {
+    const id = req.params.id;
+    await pool.query("DELETE FROM book_list WHERE id = $1", [id]);
+    res.redirect("/");
+  });
+
 app.listen(PORT, ()=>{
     console.log(`Server started at port ${PORT}`)
 })
