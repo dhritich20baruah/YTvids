@@ -16,7 +16,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
       <body className={inter.className}>{children}</body>
     </html>
   );

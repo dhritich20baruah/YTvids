@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import axios from "axios";
+import Head from "next/head";
 
 export default function Home() {
   const stoppages: string[] = [
@@ -104,21 +105,20 @@ export default function Home() {
       destination,
       doj,
     };
-    handleVisible();
+    console.log(searchObj)
     try {
-      const busArr = await axios.post(
-        "http://localhost:3000/getBus",
-        searchObj
-      );
-      console.log(busArr.data.buses);
-      setBusList(busArr.data.buses);
+      const response = await axios.get('/api/bus', { params: searchObj });
+      console.log(response.data);
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching data:", error);
     }
   }
 
   return (
     <main>
+      <Head>
+       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+      </Head>
       <div id="main">
         <form
           action=""
