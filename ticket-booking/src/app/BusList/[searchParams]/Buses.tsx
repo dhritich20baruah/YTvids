@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
+import Head from "next/head";
 type busArr = {
-  busName: string;
+  bus_name: string;
   details: string;
   total_seats: number;
   stoppages: Array<string>;
@@ -35,14 +36,15 @@ const Buses: React.FC<props> = ({ buses }) => {
 
   return (
     <main id="buses">
+ 
       <p id="busRoute" className="m-4">
         <strong>Home</strong> &gt; Bus Tickets
       </p>
       <p id="travelPlan" className="flex font-bold m-4">
         {" "}
-        {origin} <i className="material-icons">arrow_forward</i> {destination}{" "}
-        <i className="material-icons">chevron_left</i>10 Oct Tue{" "}
-        <i className="material-icons">chevron_right</i>
+        {origin} - {destination}{" "}
+       - 10 Oct Tue{" "}
+      
         <button
           className="mx-1 p-1 text-white bg-red-500 rounded-md hover:cursor-pointer"
           onClick={handleModify}
@@ -67,7 +69,7 @@ const Buses: React.FC<props> = ({ buses }) => {
                 className="p-4 grid grid-cols-7 gap-4 w-[100%] border-2 border-gray-600 font-md my-4"
               >
                 <div>
-                  <p className="font-bold text-lg">{item.busName}</p>
+                  <p className="font-bold text-lg">{item.bus_name}</p>
                   <br />
                   <p>{item.details}</p>
                 </div>

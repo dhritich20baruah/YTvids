@@ -10,6 +10,28 @@ CREATE TABLE buses (
     service VARCHAR(50) NOT NULL
 );
 
+CREATE TYPE stop AS (
+    name VARCHAR(100),
+    distance_from_last INTEGER
+);
+
+CREATE TABLE bus_routes (
+    id SERIAL PRIMARY KEY,
+    route_name VARCHAR(255) NOT NULL,
+    distance stop[]
+);
+
+INSERT INTO bus_routes (route_name, distance) VALUES ('NH37_G2T',  ARRAY[
+        ROW('Guwahati', 0)::stop,
+        ROW('Nagaon', 120)::stop,
+        ROW('Bokakhat', 120)::stop,
+        ROW('Jorhat', 68)::stop,
+        ROW('Sivsagar', 57)::stop,
+        ROW('Moran', 42)::stop,
+        ROW('Dibrugarh', 38)::stop,
+        ROW('Tinsukia', 47)::stop
+    ]);
+
 INSERT INTO buses (
     bus_name, details, total_seats, stoppages, fare, start_time, speed, service
 ) VALUES (

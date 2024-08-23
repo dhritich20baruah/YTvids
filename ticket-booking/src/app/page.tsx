@@ -3,8 +3,14 @@ import Image from "next/image";
 import { useState } from "react";
 import axios from "axios";
 import Head from "next/head";
+import { useRouter } from "next/navigation";
+import { usePathname, useSearchParams } from 'next/navigation';
 
 export default function Home() {
+  const router = useRouter();
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+
   const stoppages: string[] = [
     "Goalpara",
     "Guwahati",
@@ -107,8 +113,9 @@ export default function Home() {
     };
     console.log(searchObj)
     try {
-      const response = await axios.get('/api/bus', { params: searchObj });
-      console.log(response.data);
+      // const response = await axios.get('/api/bus', { params: searchObj });
+      // console.log(response.data);
+      router.push(`/BusList/`+ origin + `&` + destination + `&` + doj);
     } catch (error) {
       console.error("Error fetching data:", error);
     }

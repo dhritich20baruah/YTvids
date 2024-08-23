@@ -54,7 +54,11 @@ const stops: Stoppage[] = [
   },
 ];
 
-function calculateTotalFare(origin: string, destination: string): number {
+function calculateTotalFare(
+  busData: Bus[],
+  origin: string,
+  destination: string
+): number {
   const bus = busData.find(
     (bus) =>
       bus.stoppages.includes(origin) && bus.stoppages.includes(destination)
@@ -88,18 +92,24 @@ function calculateTotalFare(origin: string, destination: string): number {
 
 export async function GET(req: NextRequest, res: NextResponse) {
   const searchParams = req.nextUrl.searchParams;
+  console.log(req.nextUrl)
   const origin = searchParams.get("origin");
   const destination = searchParams.get("destination");
   const doj = searchParams.get("doj");
 
-  const inputDoj = doj;
-  const formattedDoj: any = inputDoj.replace(
-    /^(\d{2})\/(\d{2})\/(\d{4})$/,
-    "$3-$2-$1"
-  );
+  if (!origin || !destination || !doj) {
+    return NextResponse.json(
+      { error: "Missing required parameters" },
+      { status: 400 }
+    );
+  }
 
   try {
-    const result = await pool.query(`SELECT * FROM buses`);
+    const formattedDoj = format(new Date(doj), "yyyy-MM-dd");
+    const result = await pool.query(
+      `SELECT * FROM buses WHERE stoppages @> ARRAY[$1, $2]::text[]`,
+      [origin, destination]
+    );
     const busData = result.rows;
     return NextResponse.json(busData);
   } catch (error) {
@@ -120,6 +130,7 @@ interface BusWithTravelTime extends Bus {
 }
 
 function searchBus(
+  busData: Bus[],
   origin: string,
   destination: string,
   doj: string
@@ -146,7 +157,7 @@ function searchBus(
         const stop = stops.find((s) => s.name === bus.stoppages[i]);
 
         if (!stop) {
-          return { buses: [] }; // Stop not found
+          throw new Error("Stop not found");
         }
 
         totalDistance += stop.distance_from_last;
