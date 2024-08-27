@@ -21,6 +21,10 @@ CREATE TABLE bus_routes (
     distance stop[]
 );
 
+ALTER TABLE buses
+ADD COLUMN routes VARCHAR;
+
+
 INSERT INTO bus_routes (route_name, distance) VALUES ('NH37_G2T',  ARRAY[
     ROW('Guwahati', 0)::stop,
     ROW('Nagaon', 120)::stop,
@@ -33,14 +37,14 @@ INSERT INTO bus_routes (route_name, distance) VALUES ('NH37_G2T',  ARRAY[
 ]);
 
 INSERT INTO bus_routes (route_name, distance) VALUES ('NH37_T2G',  ARRAY[
-    ROW('Tinsukia', 0)::stop
+    ROW('Tinsukia', 0)::stop,
     ROW('Dibrugarh', 47)::stop,
     ROW('Moran', 38)::stop,
     ROW('Sivsagar', 42)::stop,
     ROW('Jorhat', 57)::stop,
     ROW('Bokakhat', 68)::stop,
     ROW('Nagaon', 120)::stop,
-    ROW('Guwahati', 120)::stop,
+    ROW('Guwahati', 120)::stop
 ]);
 
 INSERT INTO bus_routes (route_name, distance) VALUES ('NH15_52_G2D',  ARRAY[
@@ -52,11 +56,11 @@ INSERT INTO bus_routes (route_name, distance) VALUES ('NH15_52_G2D',  ARRAY[
 ]);
 
 INSERT INTO bus_routes (route_name, distance) VALUES ('NH15_52_D2G',  ARRAY[
-    ROW('Dhemaji', 0)::stop
+    ROW('Dhemaji', 0)::stop,
     ROW('North Lakhimpur', 66)::stop,
     ROW('Tezpur', 180)::stop,
     ROW('Mangaldoi', 95)::stop,
-    ROW('Guwahati', 72)::stop,
+    ROW('Guwahati', 72)::stop
 ]);
 
 INSERT INTO buses (

@@ -20,6 +20,9 @@ type busArr = {
   destination: string;
   doj: string;
   bookedSeats: Array<string>;
+  routes: string;
+  total_fare: string;
+  estimated_arrival: string
 };
 
 type props = { buses: busArr[]}
@@ -31,6 +34,8 @@ const Buses: React.FC<props> = ({ buses }) => {
   const [busFare, setbusFare] = useState(0);
   const [bus, setBus] = useState("");
   const [startTime, setStartTime] = useState("");
+  const [arrivalTime, setArrivalTime] = useState("");
+  const [totalFare, setTotalFare] = useState("");
 
   function handleModify() {}
 
@@ -82,7 +87,7 @@ const Buses: React.FC<props> = ({ buses }) => {
                   <p>Duration</p>
                 </div>
                 <div>
-                  <p className="font-bold text-lg">item.travelTime.endTime</p>
+                  <p className="font-bold text-lg">{item.estimated_arrival}</p>
                   <p>item.travelTime.endDate</p>
                   <p>{item.destination}</p>
                 </div>
@@ -92,7 +97,7 @@ const Buses: React.FC<props> = ({ buses }) => {
                   </p>
                 </div>
                 <div>
-                  <p className="font-bold text-lg">INR {item.fare}</p>
+                  <p className="font-bold text-lg">INR {item.total_fare}</p>
                 </div>
                 <div>
                   <br />
