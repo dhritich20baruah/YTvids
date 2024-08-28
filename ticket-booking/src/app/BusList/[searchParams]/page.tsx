@@ -1,6 +1,6 @@
 import { pool } from "../../../../utils/dbConnect";
 import Buses from "./Buses";
-import { addHours } from "date-fns";
+import { addHours, format } from "date-fns";
 
 export default async function BusList({
   params,
@@ -68,13 +68,26 @@ export default async function BusList({
     const total_fare = parseFloat(bus.fare) * total_distance;
 
     const travel_time_hrs = total_distance / bus.speed;
+    const hours = Math.floor(travel_time_hrs);
+    const minutes = Math.round((travel_time_hrs - hours) * 60);
+    const formatted_duration = `${hours}h ${minutes}m`;
 
     const startTime = new Date(`${doj}T${bus.start_time}`);
+    const duration_ms = travel_time_hrs * 60 * 60 * 1000; // Convert hours to milliseconds
+
+    const arrivalDate = new Date(startTime.getTime() + duration_ms);
 
     const estimated_arrival_time = addHours(startTime, travel_time_hrs);
+    const formatted_arrival_time = format(estimated_arrival_time, "HH:mm:ss");
+    const formatted_arrival_date = format(arrivalDate, 'dd/MM/yyyy');
 
     bus.total_fare = total_fare.toFixed(2);
-    bus.estimated_arrival = estimated_arrival_time.toISOString();
+    bus.estimated_arrival = formatted_arrival_time;
+    bus.arrival_date = formatted_arrival_date;
+    bus.duration = formatted_duration;
+    bus.origin = origin;
+    bus.destination = destination;
+    bus.doj = doj;
    })
 
    console.log(buses)
