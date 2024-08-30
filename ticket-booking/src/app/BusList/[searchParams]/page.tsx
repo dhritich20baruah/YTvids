@@ -90,7 +90,6 @@ export default async function BusList({
     bus.doj = doj;
    })
 
-   console.log(buses)
    
   return (
     <main>

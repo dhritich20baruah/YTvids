@@ -7,9 +7,28 @@ CREATE TABLE buses (
     fare DECIMAL(10, 2) NOT NULL,
     start_time TIME NOT NULL,
     speed INTEGER NOT NULL,
-    service VARCHAR(50) NOT NULL
+    service VARCHAR(50) NOT NULL,
+    routes VARCHAR
 );
 
+CREATE TABLE journey (
+    id SERIAL PRIMARY KEY,
+    bus_name VARCHAR NOT NULL,
+    origin VARCHAR NOT NULL,
+    destination VARCHAR NOT NULL,
+    doj VARCHAR NOT NULL,
+    passenger_name VARCHAR NOT NULL,
+    seat_no VARCHAR NOT NULL,
+    mobile_no VARCHAR NOT NULL,
+    email VARCHAR,
+    stoppages TEXT[] NOT NULL,
+    fare DECIMAL(10, 2) NOT NULL,
+    start_time TIME NOT NULL, 
+    paymentID VARCHAR,
+    payment_status BOOLEAN
+);
+
+  
 CREATE TYPE stop AS (
     name VARCHAR(100),
     distance_from_last INTEGER
@@ -64,7 +83,7 @@ INSERT INTO bus_routes (route_name, distance) VALUES ('NH15_52_D2G',  ARRAY[
 ]);
 
 INSERT INTO buses (
-    bus_name, details, total_seats, stoppages, fare, start_time, speed, service
+    bus_name, details, total_seats, stoppages, fare, start_time, speed, service, routes
 ) VALUES (
     'Network Travels',
     'Non A/C Seater Pushback 2+1',
@@ -73,11 +92,12 @@ INSERT INTO buses (
     1.44,
     '20:00',
     41,
-    'night'
+    'night',
+    'NH37_G2T'
 );
 
 INSERT INTO buses (
-    bus_name, details, total_seats, stoppages, fare, start_time, speed, service
+    bus_name, details, total_seats, stoppages, fare, start_time, speed, service, routes
 ) VALUES (
     'Chartered ASTC',
     'Volvo A/C Pushback 2+2',
@@ -86,11 +106,12 @@ INSERT INTO buses (
     2.16,
     '08:30',
     50,
-    'day'
+    'day',
+    'NH37_G2T'
 );
 
 INSERT INTO buses (
-    bus_name, details, total_seats, stoppages, fare, start_time, speed, service
+    bus_name, details, total_seats, stoppages, fare, start_time, speed, service, routes
 ) VALUES (
     'Rayan',
     'Bharat Benz A/C 2+1 Seater',
@@ -99,5 +120,50 @@ INSERT INTO buses (
     1.66,
     '07:30',
     42,
-    'day'
+    'day',
+    'NH37_G2T'
+);
+
+
+-- DOWN
+INSERT INTO buses (
+    bus_name, details, total_seats, stoppages, fare, start_time, speed, service, routes
+) VALUES (
+    'Network Travels',
+    'Non A/C Seater Pushback 2+1',
+    36,
+    ARRAY['Tinsukia','Dibrugarh', 'Moran', 'Sivsagar', 'Jorhat', 'Bokakhat', 'Nagaon', 'Guwahati'],
+    1.44,
+    '20:00',
+    41,
+    'night',
+    'NH37_T2G'
+);
+
+INSERT INTO buses (
+    bus_name, details, total_seats, stoppages, fare, start_time, speed, service, routes
+) VALUES (
+    'Chartered ASTC',
+    'Volvo A/C Pushback 2+2',
+    48,
+    ARRAY['Dibrugarh', 'Moran', 'Sivsagar', 'Jorhat', 'Bokakhat', 'Nagaon', 'Guwahati'],
+    2.16,
+    '08:30',
+    50,
+    'day',
+    'NH37_T2G'
+);
+
+INSERT INTO buses (
+    bus_name, details, total_seats, stoppages, fare, start_time, speed, service, routes
+) VALUES (
+    'Rayan',
+    'Bharat Benz A/C 2+1 Seater',
+    36,
+    ARRAY['Tinsukia','Dibrugarh', 'Moran', 'Sivsagar', 'Jorhat', 'Bokakhat', 'Nagaon'],
+    1.66,
+    '07:30',
+    42,
+    'day',
+    'NH37_T2G'
 );

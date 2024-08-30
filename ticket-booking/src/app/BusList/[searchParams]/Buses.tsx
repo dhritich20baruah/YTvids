@@ -24,7 +24,7 @@ type busArr = {
   doj: string;
   bookedSeats: Array<string>;
   routes: string;
-  total_fare: string;
+  total_fare: number;
   estimated_arrival: string;
   duration: string;
   arrival_date: string;
@@ -33,16 +33,27 @@ type busArr = {
 type props = { buses: busArr[] };
 
 const Buses: React.FC<props> = ({ buses }) => {
-  const [origin, setOrigin] = useState(buses[0].origin);
-  const [destination, setDestination] = useState(buses[0].destination);
+  const [totalFare, setTotalFare] = useState(0);
+  const [totalSeats, setTotalSeats] = useState(0);
+  const [busName, setBusName] = useState("")
+  const [startTime, setStartTime] = useState("")
   const [seatVisibility, setSeatVisibility] = useState(false);
-  const [doj, setDoj] = useState(buses[0].doj);
-  const parsedDate = parseISO(doj);
+  const [stops, setStops] = useState<string[]>([]);
+  const parsedDate = parseISO(buses[0].doj);
   const formated_date = format(parsedDate, "dd/MM/yyyy");
 
-  const handleFare = (fare:number, busName:string, startTime: string, bookedSeats: Array<string>)=>{
+  const stopArr = buses[0].stoppages
+  const start = stopArr.indexOf(buses[0].origin)
+  const end = stopArr.indexOf(buses[0].destination)
+  const stop = stopArr.slice(start, end)
 
-    handleSeatVisible()
+  const handleFare = (total_fare: number, bus_name:string, startTime: string, total_seats: number)=>{
+    setTotalFare(total_fare);
+    setTotalSeats(total_seats);
+    setBusName(bus_name);
+    setStartTime(startTime);
+    setStops(stop)
+    handleSeatVisible();
   }
   const handleSeatVisible = () => {
     setSeatVisibility((seatVisibility) => !seatVisibility);
@@ -55,7 +66,7 @@ const Buses: React.FC<props> = ({ buses }) => {
       </p>
       <p id="travelPlan" className="flex font-bold my-4 mx-10">
         {" "}
-        {origin} - &gt; {destination} - &gt; {formated_date}
+        {buses[0].origin} - &gt; {buses[0].destination} - &gt; {formated_date}
         <Link href="/">
           <button className="mx-5 p-1 text-white bg-red-500 rounded-md hover:cursor-pointer">
             Modify
@@ -117,7 +128,7 @@ const Buses: React.FC<props> = ({ buses }) => {
                   <br />
                   <br />
                   <button className="bg-red-600 p-4 text-white hover:cursor-pointer hover:bg-red-700" 
-                    onClick={() => handleFare(item.fare, item.bus_name, item.start_time, item.bookedSeats)}>
+                    onClick={() => handleFare(item.total_fare, item.bus_name, item.start_time, item.total_seats)}>
                     VIEW SEATS
                   </button>
                 </div>
@@ -125,15 +136,14 @@ const Buses: React.FC<props> = ({ buses }) => {
                 {seatVisibility && (
                     <div>
                       <SeatPlan
-                        busName={item.bus_name}
                         origin={item.origin}
                         destination={item.destination}
                         doj={item.doj}
-                        total_seats={item.total_seats}
-                        stoppages={item.stoppages}
-                        start_time={item.start_time}
-                        fare={item.total_fare}
-                        bookedArr={item.bookedSeats}
+                        stoppages={stops}
+                        bus_name={busName}
+                        total_seats={totalSeats}
+                        start_time={startTime}
+                        fare={totalFare}
                       />
                     </div>
                   )}
@@ -143,7 +153,7 @@ const Buses: React.FC<props> = ({ buses }) => {
           })}
           {seatVisibility && (
             <button
-              //  onClick={handleSeatVisible}
+               onClick={handleSeatVisible}
               className="bg-red-600 p-4 text-white hover:cursor-pointer hover:bg-red-700 fixed top-[10%] right-[10%]"
             >
               X

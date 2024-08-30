@@ -1,21 +1,32 @@
 import { useState } from "react";
+import PassengerDetails from "./PassengerDetails";
 
 type tripObj = {
+  bus_name: string,
   origin: string,
-  destination: string,
+  destination: string, 
   doj: string,
-  busName: string,
   total_seats: number,
   stoppages: Array<string>,
+  fare: number,
   start_time: string,
-  fare: string,
-  bookedArr: Array<string>
 }
 
-const SeatPlan: React.FC<tripObj> = ({origin, destination, doj, busName, stoppages, start_time, fare, bookedArr}) => {
-  const right = [...Array(24).keys()].map((i) => i + 1);
-  const left = Array.from({ length: 48 - 25 + 1 }, (_, index) => 25 + index);
-  // const left = Array.from({ length: total_seats - total_seats/2 }, (_, index) => total_seats/2 + index +1);
+const SeatPlan: React.FC<tripObj> = ({origin, destination, doj, bus_name, stoppages, start_time, fare, total_seats}) => {
+  let bookedArr: any = []
+  let right = [];
+  let left = [];
+  if(total_seats == 48){
+    let half_Seats = total_seats/2
+    right = [...Array(half_Seats).keys()].map((i) => i + 1);
+    left = Array.from({ length: half_Seats }, (_, index) => half_Seats + index + 1);
+  } else{
+    const half_Seats = 24
+    right = [...Array(half_Seats).keys()].map((i) => i + 1);
+    left = Array.from({ length: 12 }, (_, index) => half_Seats + index + 1);
+  }
+ 
+  console.log(stoppages)
 
   const [selectedSeatArr, setSelectedSeatArr] = useState<string[]>([]);
 
@@ -26,18 +37,18 @@ const SeatPlan: React.FC<tripObj> = ({origin, destination, doj, busName, stoppag
   };
 
   const handleSeatClick = (seatNumber: string) => {
-    // //Check if the seat is already booked
-    // if(bookedArr.includes(seatNumber)){
-    //   return
-    // }
-    // // Check if the seat is already selected
-    // const isSelected = selectedSeatArr.includes(seatNumber);
+    //Check if the seat is already booked
+    if(bookedArr.includes(seatNumber)){
+      return
+    }
+    // Check if the seat is already selected
+    const isSelected = selectedSeatArr.includes(seatNumber);
 
-    // // If selected, remove from the array; otherwise, add to the array
-    // setSelectedSeatArr((prevArr) =>
-    //   !isSelected
-    //     ? [...prevArr, seatNumber] : [...prevArr]
-    // );
+    // If selected, remove from the array; otherwise, add to the array
+    setSelectedSeatArr((prevArr) =>
+      !isSelected 
+        ? [...prevArr, seatNumber] : [...prevArr]
+    );
   };
 
   const clearSelection = () => {
@@ -53,9 +64,7 @@ const SeatPlan: React.FC<tripObj> = ({origin, destination, doj, busName, stoppag
           className="flex bg-white h-fit border-2 border-black border-l-8"
         >
           <div id="driver" className="w-12 border-r-4 border-black bg-white">
-            <i className="material-icons" style={{ margin: "10px" }}>
-              adjust
-            </i>
+            <div className="w-6 h-6 my-5 mx-2 rounded-full border-2 border-black"></div>
           </div>
           <div id="seats" className="p-4 grid grid-rows-2 gap-y-4">
             <div
@@ -63,8 +72,8 @@ const SeatPlan: React.FC<tripObj> = ({origin, destination, doj, busName, stoppag
               className="h-[50%] w-[100%] grid grid-cols-12 gap-x-1"
             >
               {right.map((item) => {
-                // const isBooked =  bookedArr.includes(String(item))
-                const isBooked =  '2'
+                const isBooked =  bookedArr.includes(String(item))
+                // const isBooked =  false
                 const isSelected = selectedSeatArr.includes(String(item))
                 return (
                   <div
@@ -82,8 +91,8 @@ const SeatPlan: React.FC<tripObj> = ({origin, destination, doj, busName, stoppag
               className="h-[50%] w-[100%] grid grid-cols-12 gap-x-1"
             >
               {left.map((item) => {
-                //  const isBooked =  bookedArr.includes(String(item))
-                const isBooked = "2"
+                 const isBooked =  bookedArr.includes(String(item))
+                // const isBooked = false
                  const isSelected = selectedSeatArr.includes(String(item))
                 return (
                   <div
@@ -103,6 +112,7 @@ const SeatPlan: React.FC<tripObj> = ({origin, destination, doj, busName, stoppag
         id="station"
         className="w-[30%] space-y-2 bg-white p-8 m-12 shadow-lg shadow-black"
       >
+        <p>{bus_name}</p>
         <p>Boarding Point: <span className="font-semibold">{origin}</span></p>  
         <p>Drop Off Point: <span className="font-semibold">{destination}</span></p>  
         <hr />
@@ -113,7 +123,7 @@ const SeatPlan: React.FC<tripObj> = ({origin, destination, doj, busName, stoppag
         >
           CLEAR SELECTION
         </button>
-        <p className="font-bold">Total Fare: INR {20 * selectedSeatArr.length}</p>
+        <p className="font-bold">Total Fare: INR {fare * selectedSeatArr.length}</p>
         { selectedSeatArr.length !==0 ?
         <button
           onClick={handlePassengerVisible}
@@ -129,7 +139,7 @@ const SeatPlan: React.FC<tripObj> = ({origin, destination, doj, busName, stoppag
     {passengerVisibility &&
     <div>
      <button onClick={handlePassengerVisible} className="top-0 right-0 fixed font-bold p-1 m-3 text-white bg-red-500 hover:cursor-pointer z-30">X</button>
-    {/* <PassengerDetails origin={origin} destination={destination} doj={doj} busName={busName} stoppages={stoppages} start_time={start_time} fare={fare} seatNos={selectedSeatArr}/> */}
+    <PassengerDetails origin={origin} destination={destination} doj={doj} busName={bus_name} stoppages={stoppages} start_time={start_time} fare={fare} seatNos={selectedSeatArr}/>
     </div>
     }
     </>
