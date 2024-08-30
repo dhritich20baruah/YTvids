@@ -2,10 +2,10 @@ import { useState } from "react";
 import axios from "axios";
 
 type passengerObj = {
+  busName: string;
   origin: string;
   destination: string;
   doj: string;
-  busName: string;
   stoppages: Array<string>;
   start_time: string;
   fare: number;
@@ -13,20 +13,18 @@ type passengerObj = {
 };
 
 type passengerFormData = {
-  doj: string;
+  busName: string;
   origin: string;
   destination: string;
-  busName: string;
-  stoppages: Array<string>;
-  start_time: string;
-  fare: number;
+  doj: string;
   passenger_name: string;
   seat_no: string;
   mobile_no: string;
   email: string;
-  age: string;
+  stoppages: Array<string>;
+  fare: number;
+  start_time: string;
 };
-
 
 const PassengerDetails: React.FC<passengerObj> = ({
   origin,
@@ -39,27 +37,19 @@ const PassengerDetails: React.FC<passengerObj> = ({
   seatNos,
 }) => {
 
-  const [paymentsDisplay, setPaymentsDisplay] = useState(false);
-  const [recordID, setRecordID] = useState<string[]>([])
-
-  const handlePaymentsDisplay = () => {
-    setPaymentsDisplay((paymentsDisplay) => !paymentsDisplay);
-  };
-
   const [formData, setFormData] = useState<passengerFormData[]>(
     seatNos.map((seatNo: string)=>({
-      doj,
+      busName,
       origin,
       destination,
-      busName,
-      stoppages,
-      start_time,
-      fare,
+      doj,
       passenger_name: '',
       seat_no: seatNo, 
       mobile_no: '',
       email: '',
-      age: '',
+      stoppages,
+      fare,
+      start_time,
     }))
   );
 
@@ -75,18 +65,20 @@ const PassengerDetails: React.FC<passengerObj> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+  
     try {
-      const response = await axios.post(
-        "http://localhost:3000/bookseat",
-        formData
-      );
-      handlePaymentsDisplay()
-      console.log(response.data.savedRecordIds)
-      setRecordID(response.data.savedRecordIds)
+      const response = await axios.post("/api/bookseat", formData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(response);
+      alert("Seat booked");
     } catch (error) {
       console.log(error);
     }
   };
+  
 
   return (
     <>
@@ -98,23 +90,23 @@ const PassengerDetails: React.FC<passengerObj> = ({
       <h2 className="text-xl font-bold">Passenger Details</h2>
       <div className="passenger-info space-y-2">
         <h4 className="text-md font-semibold flex items-center">
-          <i className="material-icons">account_circle</i> Passenger Information
+         Passenger Information
         </h4>
         <form onSubmit={handleSubmit}>
           {seatNos.map((items: string, index: number) => {
             return (
               <div className="py-2" key={index}>
                 <div className="space-y-2">
-                  <p className="mb-2">
-                    Passenger <span className="font-bold">{index + 1}</span>
+                  <p className="mb-2 font-bold">
+                    Passenger <span className="font-bold text-xl text-red-800">{index + 1}</span>
                   </p>
-                  <div>
+                  <p className="font-semibold">
                     Seat No.:{" "}
-                    <span className="font-bold">
+                    <span className="font-bold text-xl text-red-800">
                       <input type="text" name="seat_no" value={formData[index].seat_no} onChange={(e) => handleInputChange(e, index)} />
                     </span>
-                  </div>
-                  <label htmlFor="Name">
+                  </p>
+                  <label htmlFor="Name" className="font-semibold">
                     Name <br />
                     <input
                       type="text"
@@ -125,26 +117,15 @@ const PassengerDetails: React.FC<passengerObj> = ({
                       required
                     />
                   </label>
-                  <label htmlFor="Age">
-                    Age <br />
-                    <input
-                      type="text"
-                      name="age"
-                      onChange={(e) => handleInputChange(e, index)}
-                      id="age"
-                      className="w-[50%] border-2 border-gray-500 p-2 mx-2 outline-none"
-                      required
-                    />
-                  </label>
                   <br />
                 </div>
                 <h4>
-                  <p className="flex my-2">
-                    <i className="material-icons mx-2">email</i> Contact Details
+                  <p className="flex my-2 font-bold">
+                    Contact Details
                   </p>
                 </h4>
                 <div>
-                  <label htmlFor="email">
+                  <label htmlFor="email" className="font-semibold">
                     {" "}
                     Email ID <br />
                     <input
@@ -157,7 +138,7 @@ const PassengerDetails: React.FC<passengerObj> = ({
                     />
                   </label>
                   <br />
-                  <label htmlFor="Phone">
+                  <label htmlFor="Phone" className="font-semibold">
                     {" "}
                     Phone <br />
                     <input
@@ -186,9 +167,6 @@ const PassengerDetails: React.FC<passengerObj> = ({
           </button>
         </form>
       </div>
-    </div>
-    <div>
-    {/* {paymentsDisplay && <Payments formData={formData} recordID={recordID}/>} */}
     </div>
     </>
   );

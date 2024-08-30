@@ -26,8 +26,6 @@ const SeatPlan: React.FC<tripObj> = ({origin, destination, doj, bus_name, stoppa
     left = Array.from({ length: 12 }, (_, index) => half_Seats + index + 1);
   }
  
-  console.log(stoppages)
-
   const [selectedSeatArr, setSelectedSeatArr] = useState<string[]>([]);
 
   const [passengerVisibility, setPassengerVisibility] = useState(false);
