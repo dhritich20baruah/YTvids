@@ -111,7 +111,6 @@ export default function Home() {
       destination,
       doj,
     };
-    console.log(searchObj)
     try {
       // const response = await axios.get('/api/bus', { params: searchObj });
       // console.log(response.data);

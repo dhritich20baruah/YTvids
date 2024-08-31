@@ -64,6 +64,9 @@ export default async function BusList({
 
    const total_distance = distance.rows[0].total_distance
 
+   const bookedSeats = await pool.query(`SELECT seat_no, bus_name FROM journey WHERE doj = $1 AND $2 = ANY(stoppages) OR $3 = ANY(stoppages) AND array_position(stoppages, $2) < array_position(stoppages, $3)`, [doj, origin, destination])
+   console.log(bookedSeats.rows)
+
    buses.forEach((bus)=>{
     const total_fare = parseFloat(bus.fare) * total_distance;
 
