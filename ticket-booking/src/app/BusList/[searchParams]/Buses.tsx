@@ -39,6 +39,7 @@ const Buses: React.FC<props> = ({ buses }) => {
   const [startTime, setStartTime] = useState("")
   const [seatVisibility, setSeatVisibility] = useState(false);
   const [stops, setStops] = useState<string[]>([]);
+  const [bookedSeats, setBookedSeats] = useState<string[]>([])
   const parsedDate = parseISO(buses[0].doj);
   const formated_date = format(parsedDate, "dd/MM/yyyy");
 
@@ -47,7 +48,8 @@ const Buses: React.FC<props> = ({ buses }) => {
   const end = stopArr.indexOf(buses[0].destination)
   const stop = stopArr.slice(start, end)
 
-  const handleFare = (total_fare: number, bus_name:string, startTime: string, total_seats: number)=>{
+  const handleFare = (total_fare: number, bus_name:string, startTime: string, total_seats: number, booked_Seats: string[])=>{
+    setBookedSeats(booked_Seats)
     setTotalFare(total_fare);
     setTotalSeats(total_seats);
     setBusName(bus_name);
@@ -128,7 +130,7 @@ const Buses: React.FC<props> = ({ buses }) => {
                   <br />
                   <br />
                   <button className="bg-red-600 p-4 text-white hover:cursor-pointer hover:bg-red-700" 
-                    onClick={() => handleFare(item.total_fare, item.bus_name, item.start_time, item.total_seats)}>
+                    onClick={() => handleFare(item.total_fare, item.bus_name, item.start_time, item.total_seats, item.bookedSeats)}>
                     VIEW SEATS
                   </button>
                 </div>
@@ -144,6 +146,7 @@ const Buses: React.FC<props> = ({ buses }) => {
                         total_seats={totalSeats}
                         start_time={startTime}
                         fare={totalFare}
+                        bookedSeats={bookedSeats}
                       />
                     </div>
                   )}

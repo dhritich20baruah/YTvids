@@ -44,10 +44,6 @@ CREATE TABLE bus_routes (
     distance stop[]
 );
 
-ALTER TABLE buses
-ADD COLUMN routes VARCHAR;
-
-
 INSERT INTO bus_routes (route_name, distance) VALUES ('NH37_G2T',  ARRAY[
     ROW('Guwahati', 0)::stop,
     ROW('Nagaon', 120)::stop,

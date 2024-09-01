@@ -64,26 +64,51 @@ export default async function BusList({
 
    const total_distance = distance.rows[0].total_distance
 
-   const bookedSeats = await pool.query(`SELECT seat_no, bus_name FROM journey WHERE doj = $1 AND $2 = ANY(stoppages) OR $3 = ANY(stoppages) AND array_position(stoppages, $2) < array_position(stoppages, $3)`, [doj, origin, destination])
-   console.log(bookedSeats.rows)
+   const stopArr = await pool.query(
+    `
+    WITH stop_data AS (
+      SELECT 
+        route_name,
+        (stop_data).name AS stop_name,
+        ROW_NUMBER() OVER () AS stop_index
+      FROM bus_routes,
+      UNNEST(distance) AS stop_data
+      WHERE route_name = $3
+    )
+      SELECT array_agg(stop_name)
+      FROM stop_data
+      WHERE stop_index >= (
+          SELECT stop_index 
+          FROM stop_data 
+          WHERE stop_name = $1
+          LIMIT 1
+    )
+    AND stop_index < (
+      SELECT stop_index 
+      FROM stop_data 
+      WHERE stop_name = $2
+      LIMIT 1
+    );
+    `,[origin, destination, route_name]
+   )
 
-   buses.forEach((bus)=>{
+   for (const bus of buses) {
     const total_fare = parseFloat(bus.fare) * total_distance;
-
+    console.log(bus.bus_name);
+    
     const travel_time_hrs = total_distance / bus.speed;
     const hours = Math.floor(travel_time_hrs);
     const minutes = Math.round((travel_time_hrs - hours) * 60);
     const formatted_duration = `${hours}h ${minutes}m`;
-
+  
     const startTime = new Date(`${doj}T${bus.start_time}`);
     const duration_ms = travel_time_hrs * 60 * 60 * 1000; // Convert hours to milliseconds
-
     const arrivalDate = new Date(startTime.getTime() + duration_ms);
-
+  
     const estimated_arrival_time = addHours(startTime, travel_time_hrs);
     const formatted_arrival_time = format(estimated_arrival_time, "HH:mm:ss");
     const formatted_arrival_date = format(arrivalDate, 'dd/MM/yyyy');
-
+  
     bus.total_fare = total_fare.toFixed(2);
     bus.estimated_arrival = formatted_arrival_time;
     bus.arrival_date = formatted_arrival_date;
@@ -91,8 +116,18 @@ export default async function BusList({
     bus.origin = origin;
     bus.destination = destination;
     bus.doj = doj;
-   })
+  
+    // Fetch booked seats
+    const bookedSeats = await pool.query(
+      `SELECT seat_no FROM journey WHERE bus_name = $1 AND doj = $2 AND stoppages && $3;`,
+      [bus.bus_name, doj, stopArr.rows[0].array_agg]
+    );
+  
+    bus.bookedSeats = bookedSeats.rows.map(row => row.seat_no);
+  }
+  
 
+   console.log(buses)
    
   return (
     <main>

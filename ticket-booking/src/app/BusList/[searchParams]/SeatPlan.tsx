@@ -10,10 +10,10 @@ type tripObj = {
   stoppages: Array<string>,
   fare: number,
   start_time: string,
+  bookedSeats: Array<string>
 }
 
-const SeatPlan: React.FC<tripObj> = ({origin, destination, doj, bus_name, stoppages, start_time, fare, total_seats}) => {
-  let bookedArr: any = []
+const SeatPlan: React.FC<tripObj> = ({bus_name, origin, destination, doj, total_seats, stoppages, fare, start_time, bookedSeats }) => {
   let right = [];
   let left = [];
   if(total_seats == 48){
@@ -36,7 +36,7 @@ const SeatPlan: React.FC<tripObj> = ({origin, destination, doj, bus_name, stoppa
 
   const handleSeatClick = (seatNumber: string) => {
     //Check if the seat is already booked
-    if(bookedArr.includes(seatNumber)){
+    if(bookedSeats.includes(seatNumber)){
       return
     }
     // Check if the seat is already selected
@@ -70,7 +70,7 @@ const SeatPlan: React.FC<tripObj> = ({origin, destination, doj, bus_name, stoppa
               className="h-[50%] w-[100%] grid grid-cols-12 gap-x-1"
             >
               {right.map((item) => {
-                const isBooked =  bookedArr.includes(String(item))
+                const isBooked =  bookedSeats.includes(String(item))
                 // const isBooked =  false
                 const isSelected = selectedSeatArr.includes(String(item))
                 return (
@@ -89,7 +89,7 @@ const SeatPlan: React.FC<tripObj> = ({origin, destination, doj, bus_name, stoppa
               className="h-[50%] w-[100%] grid grid-cols-12 gap-x-1"
             >
               {left.map((item) => {
-                 const isBooked =  bookedArr.includes(String(item))
+                 const isBooked =  bookedSeats.includes(String(item))
                 // const isBooked = false
                  const isSelected = selectedSeatArr.includes(String(item))
                 return (
