@@ -1,14 +1,38 @@
 "use client";
+import { useContext } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import convertToSubCurrency from "./convert";
 import Checkout from "./Checkout";
+import { PaymentContext } from "./Context";
+
+type passengerData = {
+  doj: string;
+  origin: string;
+  destination: string;
+  busName: string;
+  stoppages: Array<string>;
+  start_time: string;
+  fare: number;
+  passenger_name: string;
+  seat_no: string;
+  mobile_no: string;
+  email: string;
+  age: string;
+};
+
+type props = { formData: passengerData[], recordID: Array<string> };
 
 const PUBLIC_KEY =
   "pk_test_51Oh5akSGJj1UMFGk8ivs6pI4dIOO5nCcBGsqyoVt36KY6L75H64NyJesIjf1qjdK29SPBwkypZK45Yc5PS8R8wJ7005GghDSIS";
 const stripePromise = loadStripe(PUBLIC_KEY);
 
 export default function PaymentForm() {
+  const payContext = useContext(PaymentContext);
+  if (!payContext) {
+    throw new Error('useContext must be used within a PayContextProvider');
+  }
+  const {paymentSuccess} = payContext
   const amount = 49.99;
 
   return (
