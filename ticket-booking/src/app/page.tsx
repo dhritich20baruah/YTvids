@@ -1,16 +1,10 @@
 "use client";
-import Image from "next/image";
 import { useState } from "react";
-import axios from "axios";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
-import { usePathname, useSearchParams } from 'next/navigation';
 
 export default function Home() {
   const router = useRouter();
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-
   const stoppages: string[] = [
     "Goalpara",
     "Guwahati",
@@ -23,27 +17,6 @@ export default function Home() {
     "Saikhowa",
   ];
 
-  type BusDetails = {
-    busName: string;
-    details: string;
-    total_seats: number;
-    stoppages: Array<string>;
-    fare: number;
-    start_time: string;
-    speed?: number;
-    service: "day" | "night";
-    travelTime: {
-      startDate: string;
-      startTime: string;
-      endDate: string;
-      endTime: string;
-    };
-    origin: string;
-    destination: string;
-    doj: string;
-    bookedSeats: Array<string>;
-  };
-
   const [places, setPlaces] = useState<string>("");
   const [filteredOrigins, setFilteredOrigins] = useState<string[]>([]);
   const [origin, setOrigin] = useState("")
@@ -51,15 +24,8 @@ export default function Home() {
   const [doj, setDoj] = useState("")
   const [stops, setStops] = useState<string>("");
   const [filteredDestinations, setFilteredDestination] = useState<string[]>([]);
-  const [busList, setBusList] = useState<BusDetails[]>([]);
-
-  const [busDisplay, setBusDisplay] = useState(true);
 
   const today = new Date().toISOString().split("T")[0];
-
-  const handleVisible = () => {
-    setBusDisplay((busDisplay) => !busDisplay);
-  };
 
   const getOrigin = (stopp: string) => {
     setPlaces(stopp);
@@ -112,8 +78,6 @@ export default function Home() {
       doj,
     };
     try {
-      // const response = await axios.get('/api/bus', { params: searchObj });
-      // console.log(response.data);
       router.push(`/BusList/`+ origin + `&` + destination + `&` + doj);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -197,7 +161,7 @@ export default function Home() {
           />
           <button
             type="submit"
-            className="bg-red-600 font-bold text-lg p-[2.7em] h-28 text-white rounded-tr-md rounded-br-md"
+            className="bg-indigo-600 font-bold text-lg p-[2.7em] h-28 text-white rounded-tr-md rounded-br-md"
             onClick={searchBuses}
           >
             SEARCH BUSES

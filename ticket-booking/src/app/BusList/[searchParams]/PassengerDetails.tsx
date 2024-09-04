@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 type passengerObj = {
   busName: string;
@@ -36,6 +37,7 @@ const PassengerDetails: React.FC<passengerObj> = ({
   fare,
   seatNos,
 }) => {
+  const router = useRouter();
 
   const [formData, setFormData] = useState<passengerFormData[]>(
     seatNos.map((seatNo: string)=>({
@@ -52,7 +54,7 @@ const PassengerDetails: React.FC<passengerObj> = ({
       start_time,
     }))
   );
-
+  const [bookingID, setBookingID] = useState([])
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     index: number
@@ -72,8 +74,10 @@ const PassengerDetails: React.FC<passengerObj> = ({
           "Content-Type": "application/json",
         },
       });
-      console.log(response);
       alert("Seat booked");
+      const seatNos = response.data.bookingID
+      router.push(`/Payments/${seatNos.join(",")}`)
+      // router.push(`/Payments/${bookingID.join(",")}`);
     } catch (error) {
       console.log(error);
     }
@@ -98,11 +102,11 @@ const PassengerDetails: React.FC<passengerObj> = ({
               <div className="py-2" key={index}>
                 <div className="space-y-2">
                   <p className="mb-2 font-bold">
-                    Passenger <span className="font-bold text-xl text-red-800">{index + 1}</span>
+                    Passenger <span className="font-bold text-xl text-indigo-800">{index + 1}</span>
                   </p>
                   <p className="font-semibold">
                     Seat No.:{" "}
-                    <span className="font-bold text-xl text-red-800">
+                    <span className="font-bold text-xl text-indigo-800">
                       <input type="text" name="seat_no" value={formData[index].seat_no} onChange={(e) => handleInputChange(e, index)} />
                     </span>
                   </p>
@@ -160,7 +164,7 @@ const PassengerDetails: React.FC<passengerObj> = ({
             <strong>Total Amount: INR {fare * seatNos.length}</strong>
           </p>
           <button
-            className="bg-red-600 p-2 text-white hover:cursor-pointer hover:bg-red-700"
+            className="bg-indigo-600 p-2 text-white hover:cursor-pointer hover:bg-indigo-700"
             type="submit"
           >
             PROCEED TO PAY

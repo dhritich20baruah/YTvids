@@ -2,11 +2,7 @@ import { pool } from "../../../../utils/dbConnect";
 import Buses from "./Buses";
 import { addHours, format } from "date-fns";
 
-export default async function BusList({
-  params,
-}: {
-  params: { searchParams: string };
-}) {
+export default async function BusList({params}:{params: { searchParams: string }}) {
   const searchArgs = params.searchParams;
   // Decode the URL-encoded string
   const decodedOrigin = decodeURIComponent(searchArgs); // This will convert "%26" to "&"
@@ -94,7 +90,6 @@ export default async function BusList({
 
    for (const bus of buses) {
     const total_fare = parseFloat(bus.fare) * total_distance;
-    console.log(bus.bus_name);
     
     const travel_time_hrs = total_distance / bus.speed;
     const hours = Math.floor(travel_time_hrs);
@@ -125,10 +120,7 @@ export default async function BusList({
   
     bus.bookedSeats = bookedSeats.rows.map(row => row.seat_no);
   }
-  
-
-   console.log(buses)
-   
+     
   return (
     <main>
       <Buses buses={buses} />

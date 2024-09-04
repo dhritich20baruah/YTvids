@@ -75,7 +75,7 @@ const SeatPlan: React.FC<tripObj> = ({bus_name, origin, destination, doj, total_
                 const isSelected = selectedSeatArr.includes(String(item))
                 return (
                   <div
-                  className={`seat w-[2em] h-[2em] border-l-2 border-4 border-black hover:cursor-pointer ${isBooked ? 'bg-red-500' : (isSelected ? 'bg-green-500' : '')}`}
+                  className={`seat w-[2em] h-[2em] border-l-2 border-4 border-black hover:cursor-pointer hover:bg-orange-600 ${isBooked ? 'bg-indigo-500' : (isSelected ? 'bg-green-500' : '')}`}
                     key={item}
                     onClick={() => handleSeatClick(String(item))}
                   >
@@ -94,7 +94,7 @@ const SeatPlan: React.FC<tripObj> = ({bus_name, origin, destination, doj, total_
                  const isSelected = selectedSeatArr.includes(String(item))
                 return (
                   <div
-                  className={`seat w-[2em] h-[2em] border-l-2 border-4 border-black hover:cursor-pointer ${isBooked ? 'bg-red-500' : (isSelected ? 'bg-green-500' : '')}`}
+                  className={`seat w-[2em] h-[2em] border-l-2 border-4 border-black hover:cursor-pointer hover:bg-orange-600 ${isBooked ? 'bg-indigo-500' : (isSelected ? 'bg-green-500' : '')}`}
                     key={item}
                     onClick={() => handleSeatClick(String(item))}
                   >
@@ -117,7 +117,7 @@ const SeatPlan: React.FC<tripObj> = ({bus_name, origin, destination, doj, total_
         <div><p className="font-semibold">Seats: </p>{selectedSeatArr.map((seatNums)=>{return(<span className="font-semibold" key={seatNums}>{seatNums}, </span>)})}</div>
         <button
           onClick={clearSelection}
-          className="bg-red-600 p-2 text-white hover:bg-red-700 hover:cursor-pointer"
+          className="bg-indigo-600 p-2 text-white hover:bg-indigo-700 hover:cursor-pointer"
         >
           CLEAR SELECTION
         </button>
@@ -125,7 +125,7 @@ const SeatPlan: React.FC<tripObj> = ({bus_name, origin, destination, doj, total_
         { selectedSeatArr.length !==0 ?
         <button
           onClick={handlePassengerVisible}
-          className="bg-red-600 p-2 text-white hover:bg-red-700 hover:cursor-pointer"
+          className="bg-indigo-600 p-2 text-white hover:bg-indigo-700 hover:cursor-pointer"
         >
           CONTINUE
         </button>
@@ -136,7 +136,7 @@ const SeatPlan: React.FC<tripObj> = ({bus_name, origin, destination, doj, total_
       
     {passengerVisibility &&
     <div>
-     <button onClick={handlePassengerVisible} className="top-0 right-0 fixed font-bold p-1 m-3 text-white bg-red-500 hover:cursor-pointer z-30">X</button>
+     <button onClick={handlePassengerVisible} className="top-0 right-0 fixed font-bold p-1 m-3 text-white bg-indigo-500 hover:cursor-pointer z-30">X</button>
     <PassengerDetails origin={origin} destination={destination} doj={doj} busName={bus_name} stoppages={stoppages} start_time={start_time} fare={fare} seatNos={selectedSeatArr}/>
     </div>
     }
