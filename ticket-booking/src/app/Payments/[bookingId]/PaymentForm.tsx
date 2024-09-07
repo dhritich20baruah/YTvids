@@ -37,7 +37,7 @@ const PaymentForm: React.FC<props> = ({ formData, bookingIds }) => {
   // const {paymentSuccess} = payContext
 
   const info = formData[0];
-  const totalFare = info.fare * formData.length;
+  const totalFare = Math.round(info.fare * formData.length);
 
   return (
     <main className="max-w-6xl mx-auto p-10 text-center border m-10">
@@ -134,11 +134,11 @@ const PaymentForm: React.FC<props> = ({ formData, bookingIds }) => {
             </h1>
             <ul className="flex justify-between px-4 text-xl">
               <li>Onward Fare</li>
-              <li>INR {info.fare * formData.length}</li>
+              <li>INR {totalFare}</li>
             </ul>
             <ul className="flex justify-between px-4 text-xl font-bold">
               <li>Total Payable</li>
-              <li>INR {info.fare * formData.length}</li>
+              <li>INR {Math.round(info.fare * formData.length)}</li>
             </ul>
           </div>
         </div>

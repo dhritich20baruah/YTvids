@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import Head from "next/head";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
@@ -86,15 +85,12 @@ export default function Home() {
 
   return (
     <main>
-      <Head>
-       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
-      </Head>
       <div id="main">
         <form
           action=""
           method="post"
           id="searchBus"
-          className="absolute top-[30%] left-[68%] translate-x-[-50%] translate-y-[-68%] w-[100vw] flex"
+          className="absolute top-[30%] left-[68%] translate-x-[-50%] translate-y-[-68%] w-[100%] md:flex md:flex-row flex-col"
           onSubmit={(e) => {
             e.preventDefault();
             searchBuses();
@@ -106,7 +102,7 @@ export default function Home() {
               name="from"
               value={places}
               onChange={handleSearchOrigin}
-              className="font-lg p-[2.7em] h-28 font-bold outline-none border-2 border-gray-500 rounded-tl-md rounded-bl-md"
+              className="font-lg p-[2.7em] h-20 font-bold outline-none border-2 border-gray-500"
               placeholder="From"
             />
             <div className="absolute bg-white w-56 px-5 py-2">
@@ -130,7 +126,7 @@ export default function Home() {
               type="text"
               name="to"
               id="to"
-              className="font-lg p-[2.7em] h-28 font-bold outline-none border-2 border-gray-500"
+              className="font-lg p-[2.7em] h-20 font-bold outline-none border-2 border-gray-500"
               value={stops}
               onChange={handleSearchDestination}
               placeholder="To"
@@ -156,12 +152,12 @@ export default function Home() {
             name="doj"
             id="doj"
             min={today}
-            className="font-lg p-[2.7em] h-28 font-bold outline-none border-2 border-gray-500"
+            className="font-lg p-[2.7em] h-20 font-bold outline-none border-2 border-gray-500"
             onChange={(event) => setDoj(event.target.value)}
           />
           <button
             type="submit"
-            className="bg-indigo-600 font-bold text-lg p-[2.7em] h-28 text-white rounded-tr-md rounded-br-md"
+            className="bg-indigo-600 font-bold text-md h-22 px-5 py-5 text-white"
             onClick={searchBuses}
           >
             SEARCH BUSES

@@ -54,7 +54,6 @@ const PassengerDetails: React.FC<passengerObj> = ({
       start_time,
     }))
   );
-  const [bookingID, setBookingID] = useState([])
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     index: number
@@ -77,7 +76,6 @@ const PassengerDetails: React.FC<passengerObj> = ({
       alert("Seat booked");
       const seatNos = response.data.bookingID
       router.push(`/Payments/${seatNos.join(",")}`)
-      // router.push(`/Payments/${bookingID.join(",")}`);
     } catch (error) {
       console.log(error);
     }
