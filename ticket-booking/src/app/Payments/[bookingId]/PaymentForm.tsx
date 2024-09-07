@@ -4,7 +4,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import convertToSubCurrency from "./convert";
 import Checkout from "./Checkout";
-import { PaymentContext } from "./Context";
+// import { PaymentContext } from "./Context";
 
 type passengerData = {
   id: number;
@@ -20,16 +20,16 @@ type passengerData = {
   fare: number;
   start_time: string;
   paymentid: string;
-  payment_status: boolean
+  payment_status: boolean;
 };
 
-type props = { formData: passengerData[] };
+type props = { formData: passengerData[]; bookingIds: Array<string> };
 
 const PUBLIC_KEY =
   "pk_test_51Oh5akSGJj1UMFGk8ivs6pI4dIOO5nCcBGsqyoVt36KY6L75H64NyJesIjf1qjdK29SPBwkypZK45Yc5PS8R8wJ7005GghDSIS";
 const stripePromise = loadStripe(PUBLIC_KEY);
 
-const PaymentForm: React.FC<props> = ({formData}) => {
+const PaymentForm: React.FC<props> = ({ formData, bookingIds }) => {
   // const payContext = useContext(PaymentContext);
   // if (!payContext) {
   //   throw new Error('useContext must be used within a PayContextProvider');
@@ -37,7 +37,7 @@ const PaymentForm: React.FC<props> = ({formData}) => {
   // const {paymentSuccess} = payContext
 
   const info = formData[0];
-  const totalFare = info.fare * formData.length
+  const totalFare = info.fare * formData.length;
 
   return (
     <main className="max-w-6xl mx-auto p-10 text-center border m-10">
@@ -65,18 +65,20 @@ const PaymentForm: React.FC<props> = ({formData}) => {
               </label>
             </div> */}
           <div className="my-10">
-            {/* <Elements stripe={stripePromise} options={{
-                mode: 'payment',
-                amount: convertToSubCurrency(amount),
-                currency: "inr"
-            }}>
-                <Checkout amount={amount}/>
-            </Elements> */}
+            <Elements stripe={stripePromise}>
+              <Checkout
+                bookingIds={bookingIds}
+                totalFare={totalFare}
+                formData={formData}
+              />
+            </Elements>
           </div>
         </div>
         <div className="passenger-info w-[40%] m-10">
           <div className="shadow-lg shadow-black">
-            <h1 className="text-indigo-700 font-bold text-xl p-5">{info.bus_name}</h1>
+            <h1 className="text-indigo-700 font-bold text-xl p-5">
+              {info.bus_name}
+            </h1>
             <hr />
             <div className="departure m-4 flex justify-between">
               <div className="flex">
@@ -91,12 +93,12 @@ const PaymentForm: React.FC<props> = ({formData}) => {
                 <h2>Seats</h2>
                 <h3 className="text-lg font-semibold flex">
                   {formData.map((item, index) => {
-                      return (
-                        <ul key={index} className="flex">
-                          <li>{item.seat_no}, </li>
-                        </ul>
-                      );
-                    })}
+                    return (
+                      <ul key={index} className="flex">
+                        <li>{item.seat_no}, </li>
+                      </ul>
+                    );
+                  })}
                 </h3>
               </div>
             </div>
@@ -117,12 +119,12 @@ const PaymentForm: React.FC<props> = ({formData}) => {
             <div className="passenger bg-indigo-700">
               <div className="flex font-semibold text-md py-5 px-4 text-white">
                 {formData.map((item, index) => {
-                    return (
-                      <ul key={index} className="flex">
-                        <li className="mx-3">{item.passenger_name}</li>
-                      </ul>
-                    );
-                  })}
+                  return (
+                    <ul key={index} className="flex">
+                      <li className="mx-3">{item.passenger_name}</li>
+                    </ul>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -143,6 +145,6 @@ const PaymentForm: React.FC<props> = ({formData}) => {
       </div>
     </main>
   );
-}
+};
 
-export default PaymentForm
+export default PaymentForm;

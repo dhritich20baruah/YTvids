@@ -11,7 +11,7 @@ export default async function Payments({params}:{params: { bookingId: string }})
   }))
   return (
    <main>
-    <PaymentForm formData={result}/>
+    <PaymentForm formData={result} bookingIds={bookingIds}/>
    </main>
   );
 }
