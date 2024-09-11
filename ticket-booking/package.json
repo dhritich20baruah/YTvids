@@ -17,6 +17,7 @@
     "html2pdf-ts": "^1.2.22",
     "html2pdf.js": "^0.10.2",
     "next": "14.2.4",
+    "node-cron": "^3.0.3",
     "pg": "^8.12.0",
     "react": "^18",
     "react-dom": "^18",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/node-cron": "^3.0.11",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",

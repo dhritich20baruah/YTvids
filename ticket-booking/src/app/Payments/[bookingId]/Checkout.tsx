@@ -4,7 +4,6 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { StripeCardElement } from "@stripe/stripe-js";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import Head from "next/head";
 import html2pdf from 'html2pdf.js';
 
 type passengerData = {
@@ -102,22 +101,23 @@ const Checkout: React.FC<props> = ({ formData, bookingIds, totalFare }) => {
     router.replace("/");
   };
 
-  const cancelPayment = () => {
-    
+  const cancelPayment = async (e: React.FormEvent) => {
+    e.preventDefault();  
+    try {
+      const response = await axios.post("/api/cancelBookings", bookingIds, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      alert("Booking Canceled");
+      router.push(`/`)
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
     <>
-      <Head>
-        {/* Include html2pdf CDN */}
-        <script
-          src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"
-          integrity="sha512-/9A7PAyXZ4jX3djTFoFZ6d6w6XfHjxPRXDJkYgSSTjs6C1I/N7v6lSLOxlfy/RSmeL2LUJiwr+FzUmeKN/78AA=="
-          crossOrigin="anonymous"
-          referrerPolicy="no-referrer"
-          defer
-        ></script>
-      </Head>
       {!paymentSuccess ? (
         <>
         <form onSubmit={handleSubmit}>
@@ -133,6 +133,7 @@ const Checkout: React.FC<props> = ({ formData, bookingIds, totalFare }) => {
         <button
             type="submit"
             className="px-2 py-1 bg-red-700 text-white font-semibold hover:cursor-pointer hover:bg-orange-700 m-5"
+            onClick={cancelPayment}
           >
             Cancel
           </button>

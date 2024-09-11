@@ -44,26 +44,6 @@ const PaymentForm: React.FC<props> = ({ formData, bookingIds }) => {
       <div className="main flex">
         <div className="payment-options w-[60%] p-10">
           <h1 className="text-xl font-bold mb-5">Make Payment</h1>
-          {/* <div className="flex flex-col shadow-lg shadow-black p-5 space-y-3 text-lg font-semibold text-gray-800">
-              <label
-                htmlFor="creditCard"
-                className="border-b-2 border-gray-400 pb-2"
-              >
-                <input type="radio" name="creditCard" id="creditCard" /> Credit
-                Card
-              </label>
-              <label
-                htmlFor="debitCard"
-                className="border-b-2 border-gray-400 pb-2"
-              >
-                <input type="radio" name="creditCard" id="debitCard" /> Debit
-                Card
-              </label>
-              <label htmlFor="netBanking">
-                <input type="radio" name="netBanking" id="netBanking" /> Net
-                Banking
-              </label>
-            </div> */}
           <div className="my-10">
             <Elements stripe={stripePromise}>
               <Checkout

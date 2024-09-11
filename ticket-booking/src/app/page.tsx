@@ -14,6 +14,10 @@ export default function Home() {
     "Dibrugarh",
     "Tinsukia",
     "Saikhowa",
+    "Tezpur",
+    "Dhemaji",
+    "North Lakhimpur",
+    "Mangaldoi"
   ];
 
   const [places, setPlaces] = useState<string>("");
@@ -84,13 +88,13 @@ export default function Home() {
   }
 
   return (
-    <main>
-      <div id="main">
+    <main className="bg-[url('/busbg.jfif')] bg-cover bg-center h-screen">
+      <div id="main" className="flex justify-center items-center w-full h-screen">
         <form
           action=""
           method="post"
           id="searchBus"
-          className="absolute top-[30%] left-[68%] translate-x-[-50%] translate-y-[-68%] w-[100%] md:flex md:flex-row flex-col"
+          className="flex"
           onSubmit={(e) => {
             e.preventDefault();
             searchBuses();
