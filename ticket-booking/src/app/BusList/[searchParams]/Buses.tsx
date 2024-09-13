@@ -76,15 +76,8 @@ const Buses: React.FC<props> = ({ buses }) => {
         </Link>
       </p>
 
-      <section id="busList" className="flex">
+      <section id="busList" className="flex mx-10">
         <div id="busList" className="w-max-[80%] mx-auto">
-          {buses.length == 0 ? (
-            <p className="text-center text-2xl font-bold m-20">
-              NO AVAILABLE BUSES
-            </p>
-          ) : (
-            <p>AVAILABLE BUSES</p>
-          )}
 
           {buses.map((item, index) => {
             return (

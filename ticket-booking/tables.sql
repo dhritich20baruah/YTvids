@@ -167,3 +167,47 @@ INSERT INTO buses (
     'day',
     'NH37_T2G'
 );
+
+-- Guwahati Dhemaji Route
+
+INSERT INTO buses (
+    bus_name, details, total_seats, stoppages, fare, start_time, speed, service, routes
+) VALUES (
+    'Network Travels',
+    'Non A/C Seater Pushback 2+1',
+    36,
+    ARRAY['Guwahati', 'Mangaldoi', 'Tezpur', 'North Lakhimpur', 'Dhemaji'],
+    1.44,
+    '07:30',
+    41,
+    'day',
+    'NH15_52_G2D'
+);
+
+INSERT INTO buses (
+    bus_name, details, total_seats, stoppages, fare, start_time, speed, service, routes
+) VALUES (
+    'Green Valley Travels',
+    'Non A/C Seater Pushback 2+2',
+    48,
+    ARRAY['Guwahati', 'Mangaldoi', 'Tezpur', 'North Lakhimpur', 'Dhemaji'],
+    1.5,
+    '07:00',
+    41,
+    'day',
+    'NH15_52_G2D'
+);
+
+INSERT INTO buses (
+    bus_name, details, total_seats, stoppages, fare, start_time, speed, service, routes
+) VALUES (
+    'Pranjit Travels',
+    'Bharat Benz A/C 2+1',
+    36,
+    ARRAY['Guwahati', 'Mangaldoi', 'Tezpur', 'North Lakhimpur', 'Dhemaji'],
+    1.88,
+    '21:00',
+    41.3,
+    'night',
+    'NH15_52_G2D'
+);
