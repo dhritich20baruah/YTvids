@@ -11,10 +11,6 @@ CREATE TABLE buses (
     routes VARCHAR
 );
 
-SELECT seat_no, bus_name FROM journey WHERE doj = '2024-09-02' AND 'Nagaon' = ANY(stoppages) OR 'Dibrugarh' = ANY(stoppages) AND array_position(stoppages, 'Nagaon') < array_position(stoppages, 'Dibrugarh');
-
-SELECT seat_no FROM journey WHERE doj = '2024-09-02' AND 'Nagaon' = ANY(stoppages) AND 'Dibrugarh' = ANY(stoppages) AND array_position(stoppages, 'Nagaon') < array_position(stoppages, 'Dibrugarh') AND bus_name = 'Network Travels';
-
 CREATE TABLE journey (
     id SERIAL PRIMARY KEY,
     bus_name VARCHAR NOT NULL,
@@ -211,3 +207,7 @@ INSERT INTO buses (
     'night',
     'NH15_52_G2D'
 );
+
+SELECT seat_no, bus_name FROM journey WHERE doj = '2024-09-02' AND 'Nagaon' = ANY(stoppages) OR 'Dibrugarh' = ANY(stoppages) AND array_position(stoppages, 'Nagaon') < array_position(stoppages, 'Dibrugarh');
+
+SELECT seat_no FROM journey WHERE doj = '2024-09-02' AND 'Nagaon' = ANY(stoppages) AND 'Dibrugarh' = ANY(stoppages) AND array_position(stoppages, 'Nagaon') < array_position(stoppages, 'Dibrugarh') AND bus_name = 'Network Travels';

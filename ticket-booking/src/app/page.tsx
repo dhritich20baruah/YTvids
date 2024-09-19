@@ -22,11 +22,11 @@ export default function Home() {
 
   const [places, setPlaces] = useState<string>("");
   const [filteredOrigins, setFilteredOrigins] = useState<string[]>([]);
+  const [filteredDestinations, setFilteredDestination] = useState<string[]>([]);
   const [origin, setOrigin] = useState("")
   const [destination, setDestination] = useState("")
   const [doj, setDoj] = useState("")
   const [stops, setStops] = useState<string>("");
-  const [filteredDestinations, setFilteredDestination] = useState<string[]>([]);
 
   const today = new Date().toISOString().split("T")[0];
 

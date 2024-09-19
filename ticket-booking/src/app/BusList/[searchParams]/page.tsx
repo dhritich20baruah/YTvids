@@ -1,6 +1,7 @@
 import { pool } from "../../../../utils/dbConnect";
 import Buses from "./Buses";
-import { addHours, format } from "date-fns";
+import { addHours, format, parseISO } from "date-fns";
+import Link from "next/link";
 
 export default async function BusList({
   params,
@@ -9,10 +10,13 @@ export default async function BusList({
 }) {
   const searchArgs = params.searchParams;
   // Decode the URL-encoded string
-  const decodedOrigin = decodeURIComponent(searchArgs); // This will convert "%26" to "&"
+  const decodedArgs = decodeURIComponent(searchArgs); // This will convert "%26" to "&"
 
   //Split the string on the "&" character
-  const [origin, destination, doj] = decodedOrigin.split("&");
+  const [origin, destination, doj] = decodedArgs.split("&");
+
+  const parsedDate = parseISO(doj);
+  const formated_date = format(parsedDate, "dd/MM/yyyy");
 
   const data = await pool.query(
     `SELECT * FROM buses WHERE stoppages @> ARRAY[$1, $2]::text[] AND array_position(stoppages, $1) < array_position(stoppages, $2)`,
@@ -22,11 +26,25 @@ export default async function BusList({
   if (data.rows.length === 0) {
     // Handle no bus found
     return (
+      <>
+      <p id="busRoute" className="my-4 mx-10">
+        <strong>Home</strong> &gt; Bus Tickets
+      </p>
+      <p id="travelPlan" className="flex font-bold my-4 mx-10">
+        {" "}
+        {origin} - &gt; {destination} - &gt; {formated_date}
+        <Link href="/">
+          <button className="mx-5 p-1 text-white bg-indigo-500 rounded-md hover:cursor-pointer">
+            Modify
+          </button>
+        </Link>
+      </p>
       <div className="flex align-middle justify-center h-screen w-full">
         <p className="text-center text-2xl font-bold m-20">
           NO AVAILABLE BUSES
         </p>
       </div>
+      </>
     );
   }
 
