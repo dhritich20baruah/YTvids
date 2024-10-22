@@ -1,4 +1,10 @@
 (function() {
+    // Check if the script is already running
+    if (document.getElementById('snipArea')) {
+        return; // Avoid multiple snipping instances
+    }
+
+    // Create snipArea element
     const snipArea = document.createElement('div');
     snipArea.id = 'snipArea';
     snipArea.style.position = 'absolute';
@@ -23,11 +29,11 @@
 
     document.addEventListener('mousemove', (e) => {
         if (isSelecting) {
-            let currentX = e.clientX;
-            let currentY = e.clientY;
+            const currentX = e.clientX;
+            const currentY = e.clientY;
 
-            let width = Math.abs(currentX - startX);
-            let height = Math.abs(currentY - startY);
+            const width = Math.abs(currentX - startX);
+            const height = Math.abs(currentY - startY);
 
             snipArea.style.width = `${width}px`;
             snipArea.style.height = `${height}px`;
@@ -44,19 +50,48 @@
         const width = parseInt(snipArea.style.width);
         const height = parseInt(snipArea.style.height);
 
-        html2canvas(document.body, {
-            x: x,
-            y: y,
-            width: width,
-            height: height
-        }).then(canvas => {
-            const imgData = canvas.toDataURL('image/png');
-            const downloadLink = document.createElement('a');
-            downloadLink.href = imgData;
-            downloadLink.download = 'snip.png';
-            downloadLink.click();
+        console.log('Area selected:', { x, y, width, height });
 
+        // Inject html2canvas if not already loaded
+        if (typeof html2canvas === 'undefined') {
+            const script = document.createElement('script');
+            script.src = chrome.runtime.getURL('html2canvas.min.js');
+            script.onload = () => {
+                captureArea(x, y, width, height);
+            };
+            document.body.appendChild(script);
+        } else {
+            captureArea(x, y, width, height);
+        }
+
+        function captureArea(x, y, width, height) {
+            console.log('Capturing area with html2canvas:', { x, y, width, height });
+            html2canvas(document.body, {
+                x: x,
+                y: y,
+                width: width,
+                height: height
+            }).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                const downloadLink = document.createElement('a');
+                downloadLink.href = imgData;
+                downloadLink.download = 'snip.png';
+                console.log('Image captured:', imgData);
+
+                downloadLink.click(); // Trigger download
+
+                document.body.removeChild(snipArea); // Remove selection box after capture
+            }).catch(error => {
+                console.error('Error capturing with html2canvas:', error);
+            });
+        }
+    });
+
+    // Add keyboard abort handler (Escape key)
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
             document.body.removeChild(snipArea);
-        });
+            isSelecting = false;
+        }
     });
 })();
