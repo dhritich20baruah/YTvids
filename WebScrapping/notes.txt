@@ -1,0 +1,8 @@
+{
+    "_id": "67b04d5436b3809160705ee7",
+    "country": "1 January",
+    "date": "Nýársdagur",
+    "name": "New Year's Day",
+    "type": "public",
+    "__v": 0
+  },
