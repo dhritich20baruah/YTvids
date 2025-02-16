@@ -16,6 +16,7 @@ async function scrapeHolidays(country) {
       if (columns.length < 3) return; // Skip rows with missing columns
 
       const date = $(columns[0]).text().trim();
+      // const holidayName = $(columns[1]).text().trim()
       // Extract holiday name flexibly
       let holidayName = "";
       if (columns.length === 3) {

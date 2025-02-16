@@ -33,4 +33,14 @@ router.delete("/deleteAll", async (req, res) => {
   }
 });
 
+router.delete("/deleteByCountry/:country", async (req, res) => {
+  try {
+    const country = await req.params.country
+    await Holiday.deleteMany({country});
+    res.json({ message: `${country}'s holiday records are deleted` });
+  } catch (error) {
+    res.status(500).json({ error: "Unable to delete all" });
+  }
+});
+
 module.exports = router;
