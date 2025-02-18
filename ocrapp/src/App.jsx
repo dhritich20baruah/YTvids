@@ -10,18 +10,18 @@ function App() {
   const [loading, setLoading] = useState(false)
 
   const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    setImage(URL.createObjectURL(file))
+    const file = e.target.files[0]; //e.target.files is an array-like object containing selected files. files[0] gets the first file.
+    setImage(URL.createObjectURL(file)) //URL.createObjectURL(file) generates a temporary URL for the file. This URL allows us to display the image without uploading it to a server.
   }
 
-  const performOCR = () => {
-    if(!image) return;
-    setLoading(true);
-    Tesseract.recognize(image, "eng", {
-      logger: (m) => console.log(m),
-    }).then((result)=>{
-      if(result && result.data && result.data.text){
-        setText(result.data.text);
+  const performOCR = () => { //This function performs OCR (Optical Character Recognition) on an image.
+    if(!image) return; //If no image is provided, the function returns immediately and does nothing.
+    setLoading(true); //This updates the state to indicate that OCR processing has started.
+    Tesseract.recognize(image, "eng", { //Runs OCR on the given image. "eng": Specifies the English language model for text recognition.
+      logger: (m) => console.log(m), //Logs the OCR progress to the console.
+    }).then((result)=>{ //Once OCR is complete, it returns a result object.
+      if(result && result.data && result.data.text){ 
+        setText(result.data.text); //If OCR successfully detects text, it updates the state with setText(result.data.text).
       }else{
         console.error("OCR result is missing text")
       }
@@ -52,9 +52,9 @@ function App() {
         )}
         <div>
           {text && (
-            <div>
-              <h3>Extracted Text</h3>
-              <textarea cols={50} rows={100}>{text}</textarea>
+            <div className='m-10'>
+              <h3 className='font-bold'>Extracted Text</h3>
+              <textarea cols={70} rows={100} className='my-5 p-4 shadow-lg shadow-black'>{text}</textarea>
             </div>
           )}
         </div>
