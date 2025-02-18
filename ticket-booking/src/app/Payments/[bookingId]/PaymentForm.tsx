@@ -1,10 +1,10 @@
 "use client";
-import { useContext } from "react";
+// import { useContext } from "react";
+// import { PaymentContext } from "./Context";
+// import convertToSubCurrency from "./convert";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import convertToSubCurrency from "./convert";
 import Checkout from "./Checkout";
-// import { PaymentContext } from "./Context";
 
 type passengerData = {
   id: number;

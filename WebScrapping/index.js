@@ -6,8 +6,10 @@ const rateLimit = require("express-rate-limit");
 const mongoose = require("mongoose");
 const ScrapedData = require("./models/ScrappedData");
 const holidayRoutes = require("./router/holiday");
+const cors = require("cors")
 
 const app = express();
+app.use(cors());
 const PORT = process.env.PORT || 5000;
 
 const limiter = rateLimit({

@@ -43,4 +43,21 @@ router.delete("/deleteByCountry/:country", async (req, res) => {
   }
 });
 
+router.post("/AddHoliday", async(req, res) => {
+  try {
+    const { country, date, name } = req.body;
+
+    if (!country || !date || !name) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    const newHoliday = new Holiday({ country, date, name });
+    await newHoliday.save();
+
+    res.status(201).json({ message: "Holiday saved successfully", holiday: newHoliday });
+  } catch (error) {
+    res.status(500).json({ message: "Server Error", error });
+  }
+})
+
 module.exports = router;

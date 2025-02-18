@@ -4,6 +4,7 @@ import './App.css'
 import Axios from 'axios'
 import { todoListAtom } from './recoil/atom/todoAtom'
 import { TodoMain } from './components/TodoMain'
+import AddHolidayForm from './components/AddHolidays'
 
 function App() {
   const [note, setNote] = useState("")
@@ -76,7 +77,7 @@ function App() {
     {/* <label htmlFor="note">
       <input type="text" name='note' id='note' onChange={createNote}/>
     </label> */}
-   <div className="container m-5">
+   {/* <div className="container m-5">
       <form>
       <div className="mb-3">
         <label htmlFor="note" className="form-label">
@@ -141,8 +142,9 @@ function App() {
         </tbody>
       </table>
    
-    </div>
+    </div> */}
     {/* <TodoMain note={note}/> */}
+    <AddHolidayForm/>
     </>
   )
 }
