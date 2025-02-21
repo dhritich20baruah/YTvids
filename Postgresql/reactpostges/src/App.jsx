@@ -1,152 +1,95 @@
-import { useState, useEffect } from 'react'
-import { useRecoilState } from 'recoil'
-import './App.css'
-import Axios from 'axios'
-import { todoListAtom } from './recoil/atom/todoAtom'
-import { TodoMain } from './components/TodoMain'
-import AddHolidayForm from './components/AddHolidays'
+import { useState } from "react";
+import "./App.css";
+import Axios from "axios";
 
 function App() {
-  const [note, setNote] = useState("")
-  const [writtenBy, setWrittenBy] = useState("")
-  const [_, setTodoList] = useRecoilState(todoListAtom)
-  // const [noteId, setNoteId] = useState('')
-  const [items, setItems] = useState([])
-  const [visibility, setVisibility] = useState(true)
+  const [items, setItems] = useState([]);
+  const [country, setCountry] = useState("");
+  const [updatedHolidays, setUpdatedHolidays] = useState({});
 
-  const createNote = async () => {
-  //   if(note){
-  //   setTodoList((oldTodoList)=>[
-  //     ...oldTodoList,
-  //     {
-  //       id: Date.now() + "_id_" + Math.floor(Math.random()*1000),
-  //       text: note,
-  //       // writtenBy: writtenBy
-  //       isComplete: false
-  //     }
-  //   ]);
-  //   setNote("")
-  // }
-    const noteObj = {
-      note: note,
-      writtenBy: writtenBy
-    }
-    await Axios.post('http://localhost:5000/createNote', noteObj).then(()=>{alert('Note posted')})
-  }
+  const fetchHolidays = (event) => {
+    event.preventDefault();
+    Axios.get(`http://localhost:5000/holidays/searchByCountry/${country}`)
+      .then((res) => {
+        setItems(res.data);
+        // Initialize updatedHolidays state
+        const initialUpdates = res.data.reduce((acc, holiday) => {
+          acc[holiday._id] = {date: holiday.date, name: holiday.name, type: holiday.type };
+          return acc;
+        }, {});
+        setUpdatedHolidays(initialUpdates);
+      })
+      .catch((err) => console.log(err));
+  };
 
-  useEffect(() => {
-     Axios.get('http://localhost:5000/getNotes')
-    .then((res)=>setItems(res.data))
-    .catch((err)=>console.log(err))
-  }, [])
+  const handleInputChange = (holidayId, field, value) => {
+    setUpdatedHolidays((prev) => ({
+      ...prev,
+      [holidayId]: { ...prev[holidayId], [field]: value },
+    }));
+  };
 
-  const deleteNote= (id) => {
-    Axios.delete(`http://localhost:5000/deleteNote/${id}`)
-    .then(()=>{
-      window.location.reload()
-    })
-  }
+  const updateAllHolidays = () => {
+    const updatesArray = Object.entries(updatedHolidays).map(([id, data]) => ({
+      _id: id,
+      ...data,
+    }));
 
-  const editNote = (id, note, writtenBy) => {
-    setNoteId(id)
-    setNote(note);
-    setWrittenBy(writtenBy);
-    setVisibility(visibility => !visibility)
-  }
-
-  const updateNote = (noteId) => {
-    const noteObj = {
-      note: note,
-      writtenBy: writtenBy
-    }
-    console.log(noteId)
-    Axios.put(`http://localhost:5000/updateNote/${noteId}`, noteObj)
-    .then(()=>{
-      alert('Note updated')
-    })
-  }
-  // const [note, setNote] = useState('')
-  // const [note, setNote] = useRecoilState(todoListAtom)
-
-  // const createNote = (event) => {
-  //   setNote(event.target.value)
-  // }
+    Axios.put(`http://localhost:5000/holidays/updateMany`, { holidays: updatesArray })
+      .then(() => {
+        alert("All holidays updated successfully!");
+      })
+      .catch((err) => console.error("Update failed:", err));
+  };
 
   return (
     <>
-    {/* <label htmlFor="note">
-      <input type="text" name='note' id='note' onChange={createNote}/>
-    </label> */}
-   {/* <div className="container m-5">
-      <form>
-      <div className="mb-3">
-        <label htmlFor="note" className="form-label">
-          Note
-        </label>
-        <textarea
-          className="form-control"
-          id="note"
-          rows="3"
-          name="note"
-          value={note}
-          onChange={(e)=>setNote(e.target.value)}
-        ></textarea>
+      <div>
+        <form onSubmit={fetchHolidays}>
+          <input
+            type="text"
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+          />
+          <button type="submit">FETCH</button>
+        </form>
       </div>
-      <div className="mb-3">
-        <label htmlFor="writtenBy" className="form-label">
-          Written by
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          id="writtenBy"
-          placeholder="Written by"
-          name="writtenBy"
-          value={writtenBy}
-          onChange={(e)=>setWrittenBy(e.target.value)}
-        />
+
+      <div className="container">
+        {items.map((holiday) => (
+          <div key={holiday._id}>
+             <label htmlFor={`date-${holiday._id}`}>Date</label>
+            <input
+              type="text"
+              id={`date-${holiday._id}`}
+              value={updatedHolidays[holiday._id]?.date || ""}
+              onChange={(e) => handleInputChange(holiday._id, "date", e.target.value)}
+            />
+            <label htmlFor={`name-${holiday._id}`}>Holiday Name</label>
+            <input
+              type="text"
+              id={`name-${holiday._id}`}
+              value={updatedHolidays[holiday._id]?.name || ""}
+              onChange={(e) => handleInputChange(holiday._id, "name", e.target.value)}
+            />
+            <label htmlFor={`type-${holiday._id}`}>Type</label>
+            <input
+              type="text"
+              id={`type-${holiday._id}`}
+              value={updatedHolidays[holiday._id]?.type || ""}
+              onChange={(e) => handleInputChange(holiday._id, "type", e.target.value)}
+            />
+          </div>
+        ))}
       </div>
-      {visibility ? 
-      <button className="btn btn-warning" onClick={createNote}>SUBMIT</button>
-      :
-      <button className="btn btn-primary" onClick={()=>updateNote(noteId)}>UPDATE</button>
-      }
-      </form>
-    </div> 
-   <div className="container m-5"> 
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">id</th>
-            <th scope="col">Note</th>
-            <th scope="col">Written by</th>
-            <th scope="col">Written on</th>
-            <th scope="col">Options</th>
-          </tr>
-        </thead>
-        <tbody>
-          {items.map((element)=>{
-            return(
-              <tr key={element.id}>
-              <th scope="row">{element.id}</th>
-              <td>{element.note}</td>
-              <td>{element.written_by}</td>
-              <td>{element.written_on}</td>
-              <td>
-                <button className="btn btn-danger" onClick={()=>deleteNote(element.id)}>DEL</button>
-                <button className="btn btn-primary" onClick={()=>editNote(element.id, element.note, element.written_by)}>EDIT</button>
-              </td>
-            </tr>
-            )
-          })}       
-        </tbody>
-      </table>
-   
-    </div> */}
-    {/* <TodoMain note={note}/> */}
-    <AddHolidayForm/>
+
+      {items.length > 0 && (
+        <button className="btn" onClick={updateAllHolidays}>
+          SUBMIT ALL
+        </button>
+      )}
     </>
-  )
+  );
 }
 
-export default App
+export default App;

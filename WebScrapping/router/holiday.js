@@ -8,10 +8,19 @@ router.get("/", async (req, res) => {
   res.json(holidays);
 });
 
-router.get("/:country", async (req, res) => {
+router.get("/searchByCountry/:country", async (req, res) => {
   const holidays = await Holiday.find({ country: req.params.country });
   res.json(holidays);
-  // res.send("Searching for holidays in the country")
+});
+
+router.get("/searchByDate/:date", async (req, res) => {
+  const holidays = await Holiday.find({ date: req.params.date });
+  res.json(holidays);
+});
+
+router.get("/searchByHoliday/:holiday", async (req, res) => {
+  const holidays = await Holiday.find({ name: req.params.holiday });
+  res.json(holidays);
 });
 
 router.get("/scrape/:country", async (req, res) => {
@@ -51,7 +60,7 @@ router.post("/AddHoliday", async(req, res) => {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    const newHoliday = new Holiday({ country, date, name });
+    const newHoliday = new Holiday({ country, date, name, type: "public" });
     await newHoliday.save();
 
     res.status(201).json({ message: "Holiday saved successfully", holiday: newHoliday });
@@ -59,5 +68,23 @@ router.post("/AddHoliday", async(req, res) => {
     res.status(500).json({ message: "Server Error", error });
   }
 })
+
+router.put("/holidays/updateMany", async (req, res) => {
+  try {
+    const { holidays } = req.body; // Array of holiday updates
+
+    const bulkOps = holidays.map((holiday) => ({
+      updateOne: {
+        filter: { _id: holiday._id },
+        update: { $set: {date: holiday.date, name: holiday.name, type: holiday.type } },
+      },
+    }));
+
+    await Holiday.bulkWrite(bulkOps);
+    res.json({ message: "Holidays updated successfully!" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 module.exports = router;

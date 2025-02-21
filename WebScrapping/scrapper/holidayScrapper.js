@@ -4,7 +4,8 @@ const Holiday = require("../models/HolidaySchema");
 
 async function scrapeHolidays(country) {
   try {
-    const url = `http://127.0.0.1:5500/popup.html`;
+    // const url = `https://en.wikipedia.org/wiki/Public_holidays_in_${country}`;
+    const url = "http://127.0.0.1:5500/index.html"
     const { data } = await axios.get(url);
     const $ = cheerio.load(data);
 
@@ -37,18 +38,34 @@ async function scrapeHolidays(country) {
     //   }
     // });
 
-    $("div.Holiday ul li").each((index, element) => {
-      const text = $(element).text().trim();
+    // $("div.Holiday ul li").each((index, element) => {
+    //   const text = $(element).text().trim();
       
-      // Split date and holiday name
-      const match = text.match(/^([\w\s\d–-]+):\s*(.+)$/);
-      if (match) {
-        holidays.push({
-          country: country,
-          name: match[1].trim(),
-          date: match[2].trim(),
-          type: "public"
-        });
+    //   // Split date and holiday name
+    //   const match = text.match(/^([\w\s\d–-]+):\s*(.+)$/);
+    //   if (match) {
+    //     holidays.push({
+    //       country: country,
+    //       date: match[1].trim(),
+    //       name: match[2].trim(),
+    //       type: "Public"
+    //     });
+    //   }
+    // });
+
+    $("#holidays-table tbody tr").each((index, element) => {
+      const date = $(element).find("th.nw").text().trim();
+      const name = $(element).find("td:nth-child(2) a").text().trim();
+      let type = ""
+      let details = $(element).find("td:nth-child(4)").text().trim();
+      if (details){
+        type = $(element).find("td:nth-child(3)").text().trim() + " ( " + details + " )";
+      } else {
+        type = $(element).find("td:nth-child(3)").text().trim()
+      }
+
+      if (date && name && type) {
+        holidays.push({country: country, date, name, type });
       }
     });
 
