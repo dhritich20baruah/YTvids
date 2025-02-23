@@ -54,19 +54,17 @@ async function scrapeHolidays(country) {
     // });
 
     $("#holidays-table tbody tr").each((index, element) => {
-      const date = $(element).find("th.nw").text().trim();
-      const name = $(element).find("td:nth-child(2) a").text().trim();
-      let type = ""
-      let details = $(element).find("td:nth-child(4)").text().trim();
-      if (details){
-        type = $(element).find("td:nth-child(3)").text().trim() + " ( " + details + " )";
-      } else {
-        type = $(element).find("td:nth-child(3)").text().trim()
-      }
+      const rawDate = $(element).find("th.nw").text().trim(); // Extract Date
+      const name = $(element).find("td:nth-child(3) a").text().trim(); // Extract Name
+      const type = $(element).find("td:nth-child(4)").text().trim(); // Extract Type
 
-      if (date && name && type) {
-        holidays.push({country: country, date, name, type });
-      }
+      if (!rawDate || !name) return; // Skip empty rows
+
+      // Format Date as "March 1"
+      const dateParts = rawDate.split(" ");
+      const formattedDate = `${dateParts[1]} ${dateParts[0]}`;
+
+      holidays.push({ country, date: formattedDate, name, type });
     });
 
     if (holidays.length === 0) {

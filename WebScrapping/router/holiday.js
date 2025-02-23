@@ -69,10 +69,10 @@ router.post("/AddHoliday", async(req, res) => {
   }
 })
 
-router.put("/holidays/updateMany", async (req, res) => {
+router.put("/updateMany", async (req, res) => {
   try {
     const { holidays } = req.body; // Array of holiday updates
-
+    console.log(holidays)
     const bulkOps = holidays.map((holiday) => ({
       updateOne: {
         filter: { _id: holiday._id },
