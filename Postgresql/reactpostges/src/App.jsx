@@ -73,11 +73,13 @@ function App() {
               onChange={(e) => handleInputChange(holiday._id, "name", e.target.value)}
             />
             <label htmlFor={`type-${holiday._id}`}>Type</label>
+            {/* <textarea cols="50" rows="5" id={`type-${holiday._id}`} onChange={(e) => handleInputChange(holiday._id, "type", e.target.value)}>{updatedHolidays[holiday._id]?.type || ""}</textarea> */}
             <input
               type="text"
               id={`type-${holiday._id}`}
               value={updatedHolidays[holiday._id]?.type || ""}
               onChange={(e) => handleInputChange(holiday._id, "type", e.target.value)}
+              style={{width: "50%"}}
             />
           </div>
         ))}
