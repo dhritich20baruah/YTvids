@@ -21,7 +21,7 @@ const monthMap = {
 async function scrapeHolidays(country) {
   try {
     // const url = `https://en.wikipedia.org/wiki/Public_holidays_in_${country}`;
-    const url = "https://www.timeanddate.com/holidays/burundi/2025";
+    const url = "https://www.timeanddate.com/holidays/norfolk-island/2025";
     const { data } = await axios.get(url);
     const $ = cheerio.load(data);
 
