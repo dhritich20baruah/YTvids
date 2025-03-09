@@ -9,6 +9,26 @@ router.get("/", async (req, res) => {
   res.json(holidays);
 });
 
+//Fetch All Countries
+router.get("/fetchAllCountries", async (req, res) => {
+  try {
+    const countries = await Holiday.distinct("country");
+    res.json({ success: true, countries });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+})
+
+//Fetch All Countries
+router.get("/fetchAllHolidays", async (req, res) => {
+  try {
+    const holidays = await Holiday.distinct("name");
+    res.json({ success: true, holidays });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+})
+
 // Fetch By Country
 router.get("/fetchByCountry/:country", async (req, res) => {
   const country = req.params.country;

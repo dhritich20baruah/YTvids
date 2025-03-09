@@ -7,6 +7,77 @@
     "__v": 0
   },
 
-  cyprus
-  Djibouti
-Dominican Republic
+### **Pricing & Monetization Strategy for Your Holiday API on RapidAPI**  
+
+To attract different types of users, you should offer multiple pricing plans. Here’s a good structure:  
+
+---
+
+## **💰 Pricing Tiers**  
+
+### **1. Free Plan (For Basic Users & Trial)**
+- **Requests per month:** 1,000  
+- **Rate limit:** 10 requests per minute  
+- **Access to:**  
+  - `/holidays/country/{countryCode}/year/{year}`  
+  - `/holidays/countries` (List of supported countries)  
+  - `/holidays/public/country/{countryCode}`  
+- **Purpose:** Get free users to test your API and upgrade later.  
+
+---
+
+### **2. Basic Plan ($5 - $10/month)**
+- **Requests per month:** 10,000  
+- **Rate limit:** 50 requests per minute  
+- **Access to:**  
+  - Everything in the Free Plan  
+  - `/holidays/search?name={holidayName}`  
+  - `/holidays/upcoming`  
+  - `/holidays/business/country/{countryCode}`  
+- **Purpose:** Small developers, personal apps, or hobby projects.  
+
+---
+
+### **3. Pro Plan ($20 - $50/month)**
+- **Requests per month:** 100,000  
+- **Rate limit:** 200 requests per minute  
+- **Access to:**  
+  - Everything in the Basic Plan  
+  - `/holidays/multi` (Fetch multiple countries in one request)  
+  - `/holidays/alternative-calendar/{calendarType}/country/{countryCode}`  
+  - `/holidays/countdown/{holidayName}/country/{countryCode}`  
+- **Purpose:** Startups, mid-size applications, and serious developers.  
+
+---
+
+### **4. Enterprise Plan (Custom Pricing)**
+- **Requests per month:** Unlimited  
+- **Rate limit:** 1,000 requests per minute  
+- **Access to:**  
+  - Everything in the Pro Plan  
+  - Dedicated support & SLAs  
+  - Custom API modifications upon request  
+- **Purpose:** Large businesses, government agencies, travel apps, and financial companies.  
+
+---
+
+## **📄 Documentation Strategy (For RapidAPI & Developers)**  
+
+1. **Clear Getting Started Guide**  
+   - How to sign up, get an API key, and make the first request.  
+   - Example cURL, JavaScript, Python, and Node.js requests.  
+
+2. **Detailed Endpoints Explanation**  
+   - Include request parameters and expected responses.  
+   - Example responses in JSON format.  
+
+3. **Error Handling & Rate Limits**  
+   - Explain common errors (`429 Too Many Requests`, `404 Not Found`, etc.).  
+
+4. **Use Cases & Tutorials**  
+   - "How to use this API for a travel website"  
+   - "Fetching business holidays for stock trading apps"  
+
+---
+
+Would you like me to help structure the API documentation for you? 🚀
