@@ -4,6 +4,7 @@ const HolidaySchema = new mongoose.Schema({
     country: String,
     aliases: [String],
     date: String,
+    year: Number,
     name: String,
     type: String
 })

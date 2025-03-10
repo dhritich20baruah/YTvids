@@ -1,8 +1,8 @@
 const Holiday = require("../models/HolidaySchema");
 
 const countryAliases = {
- "USA": ["America", "United_States", "US", "United_States_Of_America"],
-};
+    "India": ["Bharat", "Hindustan", "Republic_Of_India"],
+}
 
 // Function to update all documents
 const updateAliases = async () => {

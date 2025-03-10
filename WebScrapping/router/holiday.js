@@ -19,39 +19,59 @@ router.get("/fetchAllCountries", async (req, res) => {
   }
 })
 
-//Fetch All Countries
+//Fetch All Holidays
 router.get("/fetchAllHolidays", async (req, res) => {
   try {
-    const holidays = await Holiday.distinct("name");
-    res.json({ success: true, holidays });
+    const { page = 1, limit = 10 } = req.query; // Get page and limit from query params
+
+    const holidays = await Holiday.aggregate([
+      { $group: { _id: "$name" } }, // Get distinct holiday names
+      { $sort: { _id: 1 } }, // Sort alphabetically
+      { $skip: (parseInt(page) - 1) * parseInt(limit) }, // Apply pagination
+      { $limit: parseInt(limit) }, // Limit results
+    ]);
+
+    res.json({ success: true, holidays: holidays.map((h) => h._id) });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
-})
+});
 
 // Fetch By Country
 router.get("/fetchByCountry/:country", async (req, res) => {
-  const country = req.params.country;
-  const formattedCountry = country.replace(/ /g, "_");
-  const holidays = await Holiday.find({ 
-    $or: [
-      { country: { $regex: `^${formattedCountry}$`, $options: "i" } },
-      { aliases: { $regex: `^${formattedCountry}$`, $options: "i" } },
-    ]
-   });
-  res.json(holidays);
+  try {
+    const country = req.params.country;
+    const formattedCountry = country.replace(/ /g, "_");
+    const holidays = await Holiday.find({
+      $or: [
+        { country: { $regex: `^${formattedCountry}$`, $options: "i" } },
+        { aliases: { $regex: `^${formattedCountry}$`, $options: "i" } },
+      ],
+    });
+    res.json(holidays);
+  } catch (error) {
+    res.status(500).json({ error: "Server error" });
+  }
 });
 
 // Fetch By Date
 router.get("/fetchByDate/:date", async (req, res) => {
-  const holidays = await Holiday.find({ date: req.params.date });
-  res.json(holidays);
+  try {
+    const holidays = await Holiday.find({ date: req.params.date });
+    res.json(holidays);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 // Fetch By Holiday
 router.get("/fetchByHoliday/:holiday", async (req, res) => {
-  const holidays = await Holiday.find({ name: req.params.holiday });
-  res.json(holidays);
+  try {
+    const holidays = await Holiday.find({ name: req.params.holiday });
+    res.json(holidays);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 // Fetch By Type
@@ -60,7 +80,7 @@ router.get("/fetchByType/:type", async (req, res) => {
     const holidays = await Holiday.find({ type: req.params.type });
     res.json(holidays);
   } catch (error) {
-    res.status(500).json({ error: "Server error" });
+    res.status(500).json({ error: error.message });
   }
 });
 
@@ -73,7 +93,7 @@ router.get("/fetchByMonth/:month", async (req, res) => {
     });
     res.json(holidays);
   } catch (error) {
-    res.status(500).json({ error: "Server error" });
+    res.status(500).json({ error: error.message });
   }
 });
 
@@ -90,6 +110,27 @@ router.get("/fetchByCountryAndMonth/:country/:month", async (req, res) => {
         { aliases: { $regex: `^${formattedCountry}$`, $options: "i" } },
       ],
       date: { $regex: `^${month}`, $options: "i" },
+    });
+
+    res.json(holidays);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+//Fetch By Year and Country
+router.get("/fetchByCountryAndYear/:country/:year", async (req, res) => {
+  try {
+    let { country, year } = req.params;
+
+    const formattedCountry = country.replace(/ /g, "_");
+
+    const holidays = await Holiday.find({
+      $or: [
+        { country: { $regex: `^${formattedCountry}$`, $options: "i" } },
+        { aliases: { $regex: `^${formattedCountry}$`, $options: "i" } },
+      ],
+      year: year,
     });
 
     res.json(holidays);
@@ -169,5 +210,19 @@ router.get("/addAliases", async (req, res) => {
     res.status(500).json({ error: "Update failed." });
   }
 });
+
+router.post("/addYear", async (req, res) => {
+  try {
+    const  result = await Holiday.updateMany({}, {$set: {year: 2025}});
+    console.log(`${result.modifiedCount} documents updated.`)
+    res.json({ 
+      message: "Year Added Successfully",
+      updatedCount: result.modifiedCount 
+    });
+  } catch (error) {
+    console.error("Update Error:", error);
+    res.status(500).json({ error: "Update failed." });
+  }
+})
 
 module.exports = router;
