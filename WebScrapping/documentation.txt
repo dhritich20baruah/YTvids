@@ -1,0 +1,203 @@
+
+
+### **1. General Overview**
+Start with a high-level introduction:  
+- **API Name:** Holiday API  
+- **Base URL:** `https://your-vercel-api-url.com/`  
+- **Description:** A comprehensive API that provides national and international holiday data by country, date, type, and more.  
+- **Authentication:** (If applicable, mention API key usage)  
+- **Response Format:** JSON  
+
+---
+
+### **2. List of Endpoints**  
+Break down the available endpoints with descriptions, request parameters, and example responses.
+
+#### **Fetch All Countries**
+- **Endpoint:** `/fetchAllCountries`
+- **Method:** `GET`
+- **Description:** Returns a list of all available countries.  
+- **Response Example:**
+  ```json
+  {
+    "success": true,
+    "countries": ["United_States", "India", "United_Kingdom", "Canada"]
+  }
+  ```
+
+#### **Fetch All Holidays**
+- **Endpoint:** `/fetchAllHolidays`
+- **Method:** `GET`
+- **Description:** Returns a list of all holidays.  
+- **Response Example:**
+  ```json
+  {
+    "success": true,
+    "holidays": ["New Year's Day", "Christmas", "Independence Day"]
+  }
+  ```
+
+#### **Fetch Holidays by Country**
+- **Endpoint:** `/fetchByCountry/:country`
+- **Method:** `GET`
+- **Parameters:**  
+  - `country` (string) – The country name in underscore format (e.g., `United_States`)  
+- **Example Request:**  
+  ```
+  /fetchByCountry/United_States
+  ```
+- **Response Example:**
+  ```json
+  [
+    {
+      "date": "January 1",
+      "name": "New Year's Day",
+      "type": "Public Holiday",
+      "country": "United_States"
+    }
+  ]
+  ```
+
+#### **Fetch Holidays by Date**
+- **Endpoint:** `/fetchByDate/:date`
+- **Method:** `GET`
+- **Parameters:**  
+  - `date` (string) – Month and day format (e.g., `January 1`)  
+- **Example Request:**  
+  ```
+  /fetchByDate/January 1
+  ```
+- **Response Example:**
+  ```json
+  [
+    {
+      "country": "United_States",
+      "name": "New Year's Day",
+      "type": "Public Holiday"
+    },
+    {
+      "country": "Canada",
+      "name": "New Year's Day",
+      "type": "Public Holiday"
+    }
+  ]
+  ```
+
+#### **Fetch Holidays by Month**
+- **Endpoint:** `/fetchByMonth/:month`
+- **Method:** `GET`
+- **Parameters:**  
+  - `month` (string) – Full month name (e.g., `January`)  
+- **Example Request:**  
+  ```
+  /fetchByMonth/January
+  ```
+- **Response Example:**
+  ```json
+  [
+    {
+      "date": "January 1",
+      "name": "New Year's Day",
+      "country": "United_States"
+    }
+  ]
+  ```
+
+#### **Fetch Holidays by Country and Month**
+- **Endpoint:** `/fetchByCountryAndMonth/:country/:month`
+- **Method:** `GET`
+- **Parameters:**  
+  - `country` (string)  
+  - `month` (string)  
+- **Example Request:**  
+  ```
+  /fetchByCountryAndMonth/India/August
+  ```
+- **Response Example:**
+  ```json
+  [
+    {
+      "date": "August 15",
+      "name": "Independence Day",
+      "country": "India"
+    }
+  ]
+  ```
+
+#### **Fetch Holidays by Year and Country**
+- **Endpoint:** `/fetchByCountryAndYear/:country/:year`
+- **Method:** `GET`
+- **Parameters:**  
+  - `country` (string)  
+  - `year` (string)  
+- **Example Request:**  
+  ```
+  /fetchByCountryAndYear/United_States/2025
+  ```
+- **Response Example:**
+  ```json
+  [
+    {
+      "date": "July 4",
+      "name": "Independence Day",
+      "year": "2025",
+      "country": "United_States"
+    }
+  ]
+  ```
+
+#### **Fetch Holidays by Type**
+- **Endpoint:** `/fetchByType/:type`
+- **Method:** `GET`
+- **Parameters:**  
+  - `type` (string) – Example: `"Public Holiday"`, `"Observance"`, `"Season"`  
+- **Example Request:**  
+  ```
+  /fetchByType/Public Holiday
+  ```
+- **Response Example:**
+  ```json
+  [
+    {
+      "date": "January 1",
+      "name": "New Year's Day",
+      "type": "Public Holiday",
+      "country": "United_States"
+    }
+  ]
+  ```
+
+---
+
+### **3. Error Handling**
+- **If a country is not found:**  
+  ```json
+  {
+    "error": "No holidays found for this country."
+  }
+  ```
+- **If no holidays exist for the requested date:**  
+  ```json
+  {
+    "error": "No holidays found for this date."
+  }
+  ```
+
+---
+
+### **4. Future Enhancements**
+- Add a search feature for multiple years.  
+- Introduce caching to improve API performance.  
+- Expand alias coverage for more countries.
+
+---
+
+### **5. Pricing & Usage Limits (For RapidAPI)**
+Define pricing tiers if applicable:  
+- **Free Plan:** 100 requests/day  
+- **Basic Plan:** 10,000 requests/month  
+- **Pro Plan:** Unlimited requests  
+
+---
+
+This structure will make your API **easy to understand, use, and integrate** for developers on RapidAPI! 🚀 Let me know if you want to tweak anything!
