@@ -6,6 +6,7 @@ const rateLimit = require("express-rate-limit");
 const mongoose = require("mongoose");
 const ScrapedData = require("./models/ScrappedData");
 const holidayRoutes = require("./router/holiday");
+const jobRoutes = require("./router/jobs");
 const cors = require("cors")
 
 const app = express();
@@ -34,7 +35,7 @@ app.get("/", (req, res) => {
 })
 
 app.use('/holidays', holidayRoutes);
-
+app.use("/jobs", jobRoutes);
 // app.get("/scrape", async (req, res) => {
 //   const { url } = req.query;
 //   if (!url) return res.status(400).json({ error: "URL is required" });
