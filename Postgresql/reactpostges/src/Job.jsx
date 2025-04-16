@@ -1,8 +1,7 @@
-import { useState } from "react";
-import "./App.css";
-import Axios from "axios";
+import React, { useState } from "react";
+import axios from "axios";
 
-function App() {
+const AddJobForm = () => {
   const [formData, setFormData] = useState({
     title: "",
     lastDate: "",
@@ -55,6 +54,6 @@ function App() {
       <button type="submit">Submit</button>
     </form>
   );
-}
+};
 
-export default App;
+export default AddJobForm;
