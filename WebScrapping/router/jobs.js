@@ -18,4 +18,31 @@ router.get("/fetchAll", async (req, res) => {
     res.json(allJobs);
 })
 
+router.post("/addJob", async (req, res) => {
+  try {
+    const { title, lastDate, postNum, description, category, advLink, applyLink } = req.body;
+
+    // Validate required fields
+    if (!title || !lastDate || !postNum || !description || !category || !advLink || !applyLink) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    const newJob = new Job({
+      title,
+      lastDate,
+      Post: postNum,
+      description,
+      category,
+      advLink,
+      applyLink
+    });
+
+    const savedJob = await newJob.save();
+    res.status(201).json(savedJob);
+  } catch (error) {
+    console.error("Error saving job:", error);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
 module.exports = router;

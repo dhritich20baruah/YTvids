@@ -22,13 +22,19 @@ const limiter = rateLimit({
 app.use(limiter);
 app.use(express.json());
 
-//Cloud Database
-const db = process.env.MONGO_URI;
-
+// //Connect to mongoose
 mongoose
-  .connect(db)
-  .then(() => console.log("DB connected"))
-  .catch((err) => console.log(err));
+  .connect("mongodb://0.0.0.0:27017/jobs_and_tests")
+  .then(() => console.log("Database Connected"))
+  .catch((error) => console.log(error));
+
+//Cloud Database
+// const db = process.env.MONGO_URI;
+
+// mongoose
+//   .connect(db)
+//   .then(() => console.log("DB connected"))
+//   .catch((err) => console.log(err));
 
 app.get("/", (req, res) => {
     res.send("Holiday API is running")
