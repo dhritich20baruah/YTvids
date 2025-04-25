@@ -1,6 +1,4 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import Axios from "axios";
 
@@ -13,19 +11,25 @@ function App() {
   const [advLink, setAdvLink] = useState("");
   const [applyLink, setApplyLink] = useState("");
 
-  const handleSubmit = () => {
-    const jobObj = {
-      title,
-      lastDate,
-      postNum,
-      description,
-      category,
-      advLink,
-      applyLink,
-    };
-    Axios.post(`http://localhost:5000/jobs/addJob`, jobObj).then(() => {
-      alert("posted");
-    });
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    try {
+      const jobObj = {
+        title,
+        lastDate,
+        postNum,
+        description,
+        category,
+        advLink,
+        applyLink,
+      };
+      console.log(jobObj)
+      Axios.post(`http://localhost:3600/jobs/addJob`, jobObj).then(() => {
+        alert("posted");
+      });
+    } catch (error) {
+      console.error(error)
+    }    
   };
 
   return (
@@ -77,7 +81,7 @@ function App() {
         />
         <input
           name="advLink"
-          placeholder="Apply Link"
+          placeholder="Adv Link"
           value={advLink}
           onChange={(event)=>setAdvLink(event.target.value)}
           className="w-2/3 border-2 border-black rounded-md p-2"
