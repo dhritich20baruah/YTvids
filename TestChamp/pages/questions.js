@@ -276,25 +276,26 @@ const Questions = () => {
           </div>
         </div>
       </div>
-      <div className="questions-body flex relative">
-        <div className="left-panel h-[88vh] w-[75vw]">
-          <div className="qAndAns mx-10 my-4 overflow-auto h-[65vh]">
+      <div className="questions-body flex md:flex-row flex-col relative">
+        <div className="left-panel md:h-[88vh] md:w-3/4 w-full h-fit">
+          <div className="qAndAns mx-10 my-4 overflow-auto md:h-[65vh] h-fit">
             <p className="direction  bg-red-500 text-white w-24 font-bold p-1">
               <span className="font-bold text-lg mr-2">Q. No.:</span>
-              {Questionset[index].number}
+              {Questionset[index].Number}
             </p>
             <p className="direction">
               <span className="font-bold text-lg mr-2">Question:</span>
             </p>
             <p className="Statement text-justify m-3">
-            <Image src={Questionset[index].question} alt="profilepic" width={1000} height={1000} className="w-full h-auto"/>
+            {/* <Image src={Questionset[index].question} alt="question" height={500} width={500} className="w-[50%] h-auto"/> */}
+            <img src={Questionset[index].question} alt="question" className="md:w-3/4 h-auto w-full"/>
             </p>
-            <p className="font-bold text-lg mt-2">Options</p>
-            <div className=" flex flex-col space-x-2 space-y-2">
+            <p className="font-bold text-lg my-5">Options</p>
+            <div className=" flex flex-row justify-evenly space-x-2 space-y-2 mb-5">
               <p></p>
               <label
                 htmlFor="option"
-                className="border-2 border-slate-400 rounded w-[80%] p-2 h-auto hover:cursor-pointer hover:bg-slate-200"
+                className="shadow-lg shadow-black rounded p-5 h-auto hover:cursor-pointer hover:shadow-red-500"
               >
                 <input
                   type="radio"
@@ -304,11 +305,11 @@ const Questions = () => {
                   checked={option == "1"}
                   onChange={handleChange}
                 />{" "}
-                1. 
+                1 
               </label>
               <label
                 htmlFor="option"
-                className="border-2 border-slate-400 rounded w-[80%] p-2 h-auto hover:cursor-pointer hover:bg-slate-200"
+                className="shadow-lg shadow-black rounded p-5 h-auto hover:cursor-pointer hover:shadow-red-500"
               >
                 <input
                   type="radio"
@@ -318,11 +319,11 @@ const Questions = () => {
                   checked={option == "2"}
                   onChange={handleChange}
                 />{" "}
-                2. 
+                2 
               </label>
               <label
                 htmlFor="option"
-                className="border-2 border-slate-400 rounded w-[80%] p-2 h-auto hover:cursor-pointer hover:bg-slate-200"
+                className="shadow-lg shadow-black rounded p-5 h-auto hover:cursor-pointer hover:shadow-red-500"
               >
                 <input
                   type="radio"
@@ -332,11 +333,11 @@ const Questions = () => {
                   checked={option == "3"}
                   onChange={handleChange}
                 />{" "}
-                3. 
+                3 
               </label>
               <label
                 htmlFor="option"
-                className="border-2 border-slate-400 rounded w-[80%] p-2 h-auto hover:cursor-pointer hover:bg-slate-200"
+                className="shadow-lg shadow-black rounded p-5 h-auto hover:cursor-pointer hover:shadow-red-500"
               >
                 <input
                   type="radio"
@@ -346,12 +347,12 @@ const Questions = () => {
                   checked={option == "4"}
                   onChange={handleChange}
                 />{" "}
-                4. 
+                4 
               </label>
             </div>
           </div>
           <hr />
-          <div className="response-buttons flex flex-row justify-between mx-10 my-4 w-[80%]">
+          <div className="response-buttons flex flex-row justify-between md:mx-10 mx-3 my-4 md:w-[80%] w-fit">
             <div>
               <button
                 className="p-2 text-blue-800 border-2 border-blue-800 rounded m-2 hover:text-white hover:bg-blue-800 hover:cursor-pointer"
@@ -380,7 +381,7 @@ const Questions = () => {
               <p>
                 Your response:{" "}
                 <span className="font-bold text-red-600">
-                  {Questionset[index].response}{" "}
+                  {Questionset[index].response}{" "}{option}
                 </span>
               </p>
             </div>
@@ -403,8 +404,8 @@ const Questions = () => {
             </div>
           </div>
         </div>
-        <div className="right-panel bg-orange-200 h-[88vh] w-[25vw]">
-          <div className="number-board flex flex-row flex-wrap p-3">
+        <div className="right-panel bg-orange-200 md:h-[88vh] md:w-1/4 w-full h-auto">
+          <div className="Number-board flex flex-row flex-wrap p-3">
             <div className="flex flex-row">
               <div className="notvisited">{notvisitedCount}</div>Not visited
             </div>
@@ -435,13 +436,13 @@ const Questions = () => {
                   return (
                     <li
                       className={item.status}
-                      key={item.number}
+                      key={item.Number}
                       onClick={() => {
-                        setIndex(item.number - 1);
+                        setIndex(item.Number - 1);
                       }}
                     >
                       {" "}
-                      {item.number}{" "}
+                      {item.Number}{" "}
                     </li>
                   );
                 })}
