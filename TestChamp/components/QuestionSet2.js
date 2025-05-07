@@ -1,12 +1,16 @@
 export const Questionset = [
     {
         number: "1",
-        question: "/JEE_Mains/2021shift1/Q01.JPG",
+        directions: "Read the passage given below and answer the following questions.",
+        statement: "India is the seventh-largest country in the world by geographical area which is located at South Asia. Moreover, India is the second populous country and the second country which gets the most frequent rainfalls. Then why is India experiencing a water shortage? Unfortunately, there is an ecologicalunbalance on a global scale. India is one of the eight countries which is seriously facing a sharp increase in water crisis that threatens humans, while a huge percentage of the world has no access to sanitationand clean water. The average person only needs 20 or 30 liters of water, while every Indian uses a big amount of water per day for different purposes than they are supposed to. Additionally, overpopulation and pollution have also been a cause of water poverty in India. Therefore, young children under the age of five make up the 75% of 37.7 million people who are affected by water-borne disease (Khurana 2008). The aim of this project was to create three possible solutions, and finally, the most effective solution is recommended.Thus, several ways to deal with the problem of water shortage in India include harvesting rainwater, watershed management, and river interlinking.",
+        question: "Which is not one of the several ways to deal with water shortage in India?",
+        options: ["Rainwater harvesting","River interlinking","Developing farm-based water conservation","Watershed management","None of the above"],
         status: "notvisited",
         solution: "Developing farm-based water conservation",
-        answer: "4",
+        answer: "3",
         response: "",
-        result: ""
+        result: "",
+        section: "English Language"
     },
     {
         number: "2",
