@@ -17,6 +17,7 @@ const Questions = () => {
   const [ansNreviewCount, setansNreviewCount] = useState(0);
   const [visible, setVisible] = useState(false);
   const { score, setScore } = useContext(ScoreStateContext);
+  const [screenValue, setScreenValue] = useState("");
 
   const router = useRouter();
 
@@ -51,21 +52,49 @@ const Questions = () => {
     Questionset[index].result = "";
     Questionset[index].status = "notanswered";
   };
+
   //Evaluation
   function evaluate() {
-    if (Questionset[index].answer == option) {
-      setScore(score + 1);
-      Questionset[index].result = "Correct";
-    } else {
-      setScore(score - 0.25);
-      Questionset[index].result = "Incorrect";
+    if(Questionset[index].section == "1"){
+      if (Questionset[index].answer == option) {
+        setScore(score + 1);
+        Questionset[index].result = "Correct";
+      } else {
+        setScore(score - 0.25);
+        Questionset[index].result = "Incorrect";
+      }
+    }
+    else if(Questionset[index].section == "2"){
+       if (Questionset[index].answer == screenValue) {
+        setScore(score + 1);
+        Questionset[index].result = "Correct";
+      } else {
+        setScore(score - 0.25);
+        Questionset[index].result = "Incorrect";
+      }
     }
   }
+
+  //Keypad
+  const handleClick = (value) => {
+    if (value === "C") {
+      setScreenValue("");
+    } else {
+      setScreenValue((prev) => prev + value);
+    }
+  };
+
+  const buttons = [
+    ["1", "2", "3"],
+    ["4", "5", "6"],
+    ["7", "8", "9"],
+    [".", "0", "C"],
+  ];
 
   //save and next button
   const nextQuestion = () => {
     Questionset[index].response = option;
-    if (option != "") {
+    if (option != "" || screenValue != "") {
       if (Questionset[index].status != "answered") {
         setansweredCount(answeredCount + 1);
       }
@@ -103,12 +132,13 @@ const Questions = () => {
     }
     setIndex(index + 1);
     setOption("");
+    setScreenValue("")
   };
 
   //Mark and review
   const marknReview = () => {
     Questionset[index].response = option;
-    if (option != "") {
+    if (option != "" || screenValue != "") {
       if (Questionset[index].status != "ansNreview") {
         setansNreviewCount(ansNreviewCount + 1);
       }
@@ -146,6 +176,7 @@ const Questions = () => {
     }
     setIndex(index + 1);
     setOption("");
+    setScreenValue("")
   };
 
   //visibility
@@ -258,20 +289,24 @@ const Questions = () => {
           </div>
           <div className="p-2">
             <p>
-            Candidate Name:{" "}
-            <span className="head-info text-red-600 ml-3">Your Name</span>
+              Candidate Name:{" "}
+              <span className="head-info text-red-600 ml-3">Your Name</span>
             </p>
             <p>
-            Roll No.:
-            <span className="head-info text-red-600 ml-3">23045-B890 </span>
+              Roll No.:
+              <span className="head-info text-red-600 ml-3">23045-B890 </span>
             </p>
             <p>
-            Exam Name:
-            <span className="head-info text-red-600 ml-3">JEE Main Shift 1</span>
+              Exam Name:
+              <span className="head-info text-red-600 ml-3">
+                JEE Main Shift 1
+              </span>
             </p>
             <p className="flex flex-row">
-            Remaining Time:
-            <span className="head-info ml-3 px-1 rounded-lg bg-blue-700 text-white"><Timer/> </span>
+              Remaining Time:
+              <span className="head-info ml-3 px-1 rounded-lg bg-blue-700 text-white">
+                <Timer />{" "}
+              </span>
             </p>
           </div>
         </div>
@@ -287,69 +322,112 @@ const Questions = () => {
               <span className="font-bold text-lg mr-2">Question:</span>
             </p>
             <p className="Statement text-justify m-3">
-            {/* <Image src={Questionset[index].question} alt="question" height={500} width={500} className="w-[50%] h-auto"/> */}
-            <img src={Questionset[index].question} alt="question" className="md:w-3/4 h-auto w-full"/>
+              {/* <Image src={Questionset[index].question} alt="question" height={500} width={500} className="w-[50%] h-auto"/> */}
+              <img
+                src={Questionset[index].question}
+                alt="question"
+                className="md:w-3/4 h-auto w-full"
+              />
             </p>
-            <p className="font-bold text-lg my-5">Options</p>
-            <div className=" flex flex-row justify-evenly space-x-2 space-y-2 mb-5">
-              <p></p>
-              <label
-                htmlFor="option"
-                className="shadow-lg shadow-black rounded p-5 h-auto hover:cursor-pointer hover:shadow-red-500"
-              >
-                <input
-                  type="radio"
-                  name="option"
-                  id="option1"
-                  value="1"
-                  checked={option == "1"}
-                  onChange={handleChange}
-                />{" "}
-                1 
-              </label>
-              <label
-                htmlFor="option"
-                className="shadow-lg shadow-black rounded p-5 h-auto hover:cursor-pointer hover:shadow-red-500"
-              >
-                <input
-                  type="radio"
-                  name="option"
-                  id="option2"
-                  value="2"
-                  checked={option == "2"}
-                  onChange={handleChange}
-                />{" "}
-                2 
-              </label>
-              <label
-                htmlFor="option"
-                className="shadow-lg shadow-black rounded p-5 h-auto hover:cursor-pointer hover:shadow-red-500"
-              >
-                <input
-                  type="radio"
-                  name="option"
-                  id="option3"
-                  value="3"
-                  checked={option == "3"}
-                  onChange={handleChange}
-                />{" "}
-                3 
-              </label>
-              <label
-                htmlFor="option"
-                className="shadow-lg shadow-black rounded p-5 h-auto hover:cursor-pointer hover:shadow-red-500"
-              >
-                <input
-                  type="radio"
-                  name="option"
-                  id="option4"
-                  value="4"
-                  checked={option == "4"}
-                  onChange={handleChange}
-                />{" "}
-                4 
-              </label>
-            </div>
+            {Questionset[index].section == "1" ? (
+              <div>
+                <p className="font-bold text-lg my-5">Options</p>
+                <div className=" flex flex-row justify-evenly space-x-2 space-y-2 mb-5">
+                  <p></p>
+                  <label
+                    htmlFor="option"
+                    className="shadow-lg shadow-black rounded p-5 h-auto hover:cursor-pointer hover:shadow-red-500"
+                  >
+                    <input
+                      type="radio"
+                      name="option"
+                      id="option1"
+                      value="1"
+                      checked={option == "1"}
+                      onChange={handleChange}
+                    />{" "}
+                    1
+                  </label>
+                  <label
+                    htmlFor="option"
+                    className="shadow-lg shadow-black rounded p-5 h-auto hover:cursor-pointer hover:shadow-red-500"
+                  >
+                    <input
+                      type="radio"
+                      name="option"
+                      id="option2"
+                      value="2"
+                      checked={option == "2"}
+                      onChange={handleChange}
+                    />{" "}
+                    2
+                  </label>
+                  <label
+                    htmlFor="option"
+                    className="shadow-lg shadow-black rounded p-5 h-auto hover:cursor-pointer hover:shadow-red-500"
+                  >
+                    <input
+                      type="radio"
+                      name="option"
+                      id="option3"
+                      value="3"
+                      checked={option == "3"}
+                      onChange={handleChange}
+                    />{" "}
+                    3
+                  </label>
+                  <label
+                    htmlFor="option"
+                    className="shadow-lg shadow-black rounded p-5 h-auto hover:cursor-pointer hover:shadow-red-500"
+                  >
+                    <input
+                      type="radio"
+                      name="option"
+                      id="option4"
+                      value="4"
+                      checked={option == "4"}
+                      onChange={handleChange}
+                    />{" "}
+                    4
+                  </label>
+                </div>
+              </div>
+            ) : (
+              <div id="input-response" className="block">
+                {" "}
+                {/* Remove 'hide' if you want it visible */}
+                <div id="input-field" className="mb-4 flex justify-center">
+                  <input
+                    type="text"
+                    placeholder="Enter your value"
+                    id="input-value"
+                    value={screenValue}
+                    readOnly
+                    className="border p-2 rounded mx-auto border-black"
+                  />
+                </div>
+                <div id="key-pad">
+                  <table className="mx-auto">
+                    <tbody>
+                      {buttons.map((row, rowIndex) => (
+                        <tr key={rowIndex}>
+                          {row.map((btn, colIndex) => (
+                            <td key={colIndex}>
+                              <button
+                                onClick={() => handleClick(btn)}
+                                className="num-pad-btn border m-1 p-3 rounded bg-gray-200 hover:bg-red-500 hover:text-white"
+                              >
+                                {btn}
+                              </button>
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
           </div>
           <hr />
           <div className="response-buttons flex flex-row justify-between md:mx-10 mx-3 my-4 md:w-[80%] w-fit">
@@ -381,7 +459,7 @@ const Questions = () => {
               <p>
                 Your response:{" "}
                 <span className="font-bold text-red-600">
-                  {Questionset[index].response}{" "}{option}
+                  {Questionset[index].response} {option}
                 </span>
               </p>
             </div>
@@ -427,8 +505,7 @@ const Questions = () => {
           </div>
           <div className="question-palette">
             <h3 className="font-bold p-3 w-[100%] bg-blue-200">
-              Section:{" "}
-              <span className="text-red-500">{Questionset[index].section}</span>{" "}
+              Navigate to Q. No.:
             </h3>
             <div className="overflow-auto w-[80%] h-[45vh] mx-6">
               <ul className="flex flex-row flex-wrap hover:cursor-pointer">
