@@ -30,7 +30,7 @@ const Timer = () => {
     }
 
     const clearTimer = (e) => {
-        setTimer('00:45:00')
+        setTimer('03:00:00')
         if (Ref.current) clearInterval(Ref.current);
         const id = setInterval(() => {
             startTimer(e);
@@ -40,7 +40,7 @@ const Timer = () => {
 
     const getDeadTimer = () => {
         let deadline = new Date();
-        deadline.setMinutes(deadline.getMinutes() + 45);
+        deadline.setMinutes(deadline.getMinutes() + 180);
         return deadline;
     }
 

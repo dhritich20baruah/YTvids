@@ -5,12 +5,11 @@ import { useRouter } from "next/router";
 import { ScoreStateContext } from "../components/Context";
 import Image from "next/image";
 import profilePic from "../public/profilepic.png";
-import CountdownTimer from "../components/CountdownTimer";
 
 const Questions = () => {
   const [index, setIndex] = useState(0);
   const [option, setOption] = useState("");
-  const [notvisitedCount, setnotvisitedCount] = useState(30);
+  const [notvisitedCount, setnotvisitedCount] = useState(90);
   const [notansweredCount, setnotansweredCount] = useState(0);
   const [answeredCount, setansweredCount] = useState(0);
   const [reviewCount, setreviewCount] = useState(0);
@@ -57,19 +56,19 @@ const Questions = () => {
   function evaluate() {
     if(Questionset[index].section == "1"){
       if (Questionset[index].answer == option) {
-        setScore(score + 1);
+        setScore(score + 4);
         Questionset[index].result = "Correct";
       } else {
-        setScore(score - 0.25);
+        setScore(score - 1);
         Questionset[index].result = "Incorrect";
       }
     }
     else if(Questionset[index].section == "2"){
        if (Questionset[index].answer == screenValue) {
-        setScore(score + 1);
+        setScore(score + 4);
         Questionset[index].result = "Correct";
       } else {
-        setScore(score - 0.25);
+        setScore(score - 1);
         Questionset[index].result = "Incorrect";
       }
     }
@@ -93,7 +92,7 @@ const Questions = () => {
 
   //save and next button
   const nextQuestion = () => {
-    Questionset[index].response = option;
+    Questionset[index].response = option || screenValue;
     if (option != "" || screenValue != "") {
       if (Questionset[index].status != "answered") {
         setansweredCount(answeredCount + 1);
@@ -137,7 +136,7 @@ const Questions = () => {
 
   //Mark and review
   const marknReview = () => {
-    Questionset[index].response = option;
+    Questionset[index].response = option || screenValue;
     if (option != "" || screenValue != "") {
       if (Questionset[index].status != "ansNreview") {
         setansNreviewCount(ansNreviewCount + 1);
@@ -191,7 +190,7 @@ const Questions = () => {
 
   //Last question
   function last() {
-    Questionset[index].response = option;
+    Questionset[index].response = option || screenValue;
     if (option != "") {
       if (Questionset[index].status != "answered") {
         setansweredCount(answeredCount + 1);
@@ -234,7 +233,7 @@ const Questions = () => {
 
   //Last question review
   const lastReview = () => {
-    Questionset[index].response = option;
+    Questionset[index].response = option || screenValue;
     if (option != "") {
       if (Questionset[index].status != "ansNreview") {
         setansNreviewCount(ansNreviewCount + 1);
@@ -336,7 +335,7 @@ const Questions = () => {
                   <p></p>
                   <label
                     htmlFor="option"
-                    className="shadow-lg shadow-black rounded p-5 h-auto hover:cursor-pointer hover:shadow-red-500"
+                    className="p-3 h-auto hover:cursor-pointer hover:text-red-700 text-2xl"
                   >
                     <input
                       type="radio"
@@ -350,7 +349,7 @@ const Questions = () => {
                   </label>
                   <label
                     htmlFor="option"
-                    className="shadow-lg shadow-black rounded p-5 h-auto hover:cursor-pointer hover:shadow-red-500"
+                    className="p-3 h-auto hover:cursor-pointer hover:text-red-700 text-2xl"
                   >
                     <input
                       type="radio"
@@ -364,7 +363,7 @@ const Questions = () => {
                   </label>
                   <label
                     htmlFor="option"
-                    className="shadow-lg shadow-black rounded p-5 h-auto hover:cursor-pointer hover:shadow-red-500"
+                    className="p-3 h-auto hover:cursor-pointer hover:text-red-700 text-2xl"
                   >
                     <input
                       type="radio"
@@ -378,7 +377,7 @@ const Questions = () => {
                   </label>
                   <label
                     htmlFor="option"
-                    className="shadow-lg shadow-black rounded p-5 h-auto hover:cursor-pointer hover:shadow-red-500"
+                    className="p-3 h-auto hover:cursor-pointer hover:text-red-700 text-2xl"
                   >
                     <input
                       type="radio"
@@ -459,7 +458,7 @@ const Questions = () => {
               <p>
                 Your response:{" "}
                 <span className="font-bold text-red-600">
-                  {Questionset[index].response} {option}
+                 {option}
                 </span>
               </p>
             </div>

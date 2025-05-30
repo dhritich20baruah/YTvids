@@ -24,7 +24,7 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/api/jobs", {
+      const response = await axios.post("http://localhost:3600/jobs/addJob", {
         ...formData,
         Post: Number(formData.Post),
       });

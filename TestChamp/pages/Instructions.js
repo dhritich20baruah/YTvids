@@ -137,7 +137,7 @@ export default function Jeeinstructions() {
             </ol>
           </li>
         </ol>
-        <h2 class="font-semibold underline mt-4">Answering a Question:</h2>
+        <h2 className="font-semibold underline mt-4">Answering a Question:</h2>
         <ol start="{8}">
           <li>
             8. Procedure for answering a multiple choice type question:
