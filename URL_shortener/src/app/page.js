@@ -1,55 +1,106 @@
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Home() {
+  const [longUrl, setLongUrl] = useState('');
+  const [shortUrl, setShortUrl] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleShorten = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    setShortUrl('');
+
+    try {
+      const response = await fetch('/api/shorten', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ longUrl }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setShortUrl(data.shortUrl);
+      } else {
+        setError(data.message || 'Something went wrong');
+      }
+    } catch (error) {
+      setError('Failed to connect to the server.');
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+
+  const copyToClipboard = () => {
+    if (shortUrl) {
+      // Using document.execCommand('copy') as navigator.clipboard.writeText()
+      // might not work due to iFrame restrictions in some environments.
+      const el = document.createElement('textarea');
+      el.value = shortUrl;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      alert('Short URL copied to clipboard!'); // Using alert for simplicity, consider a custom modal in production.
+    }
+  };
+  
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
+        <h1 className="text-white text-3xl">URL SHORTENER</h1>
+        <form onSubmit={handleShorten}>
+          <div className="text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
+            <lable className="mb-2 tracking-[-.01em]">
+              Paste the URL you want to shorten
+            </lable>
+            <br />
+            <input type="url" value={longUrl}
+              onChange={(e) => setLongUrl(e.target.value)}
+              placeholder="Enter your long URL here"
+              required className="md:w-full bg-white p-2" />
+          </div>
+          <button
             className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            type="submit"
+            disabled={loading}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+            {loading ? 'Shortening...' : 'Shorten URL'}
+          </button>
+        </form>
+
+        {shortUrl && (
+          <div className="w-full bg-blue-50 border border-blue-200 p-4 rounded-lg flex flex-col items-center space-y-3">
+            <p className="text-gray-700 text-lg font-medium">Your Shortened URL:</p>
+            <a
+              href={shortUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-700 hover:underline text-xl font-semibold break-all text-center"
+            >
+              {shortUrl}
+            </a>
+            <button
+              onClick={copyToClipboard}
+              className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105"
+            >
+              Copy to Clipboard
+            </button>
+          </div>
+        )}
+
+        {error && (
+          <div className="w-full bg-red-100 border border-red-400 text-red-700 p-3 rounded-lg text-center">
+            {error}
+          </div>
+        )}
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a
