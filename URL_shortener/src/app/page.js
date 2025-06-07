@@ -25,6 +25,7 @@ export default function Home() {
 
       const data = await response.json();
 
+      console.log(data)
       if (response.ok) {
         setShortUrl(data.shortUrl);
       } else {
@@ -66,10 +67,10 @@ export default function Home() {
             <input type="url" value={longUrl}
               onChange={(e) => setLongUrl(e.target.value)}
               placeholder="Enter your long URL here"
-              required className="md:w-full bg-white p-2 text-black" name="longurl" id="longurl"/>
+              required className="md:w-full bg-white p-2 text-black rounded-md" name="longurl" id="longurl"/>
           </div>
           <button
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
+            className="rounded-md mt-5 border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
             type="submit"
             disabled={loading}
           >
@@ -103,6 +104,7 @@ export default function Home() {
           </div>
         )}
       </main>
+
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
