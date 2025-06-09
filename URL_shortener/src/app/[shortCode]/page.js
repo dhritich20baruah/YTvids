@@ -1,13 +1,14 @@
 import { db } from "../../../utils/firebaseConfig";
 import { collection, query, where, getDocs } from "firebase/firestore";
+import { redirect } from "next/navigation";
 
-export async function getServerSideProps(context) {
-  const { shortCode } = context.params;
+export default async function ShortCodePage({params}) {
+  const { shortCode } = await params;
+  console.log(params)
 
   if (!shortCode) {
-    return {
-      notFound: true, // Return 404 if no shortCode is provided
-    };
+    console.log("no short code")
+    redirect('/')
   }
 
   try {
@@ -15,9 +16,7 @@ export async function getServerSideProps(context) {
     const querySnapshot = await getDocs(q);
 
     if (querySnapshot.empty) {
-      return {
-        notFound: true, // Short code not found in database
-      };
+      redirect('/404')
     }
 
     // Assuming short codes are unique, get the first document
@@ -25,30 +24,17 @@ export async function getServerSideProps(context) {
     const longUrl = docData.longUrl;
 
     // Perform the permanent redirect
-    return {
-      redirect: {
-        destination: longUrl,
-        permanent: true, // Use 301 for permanent redirect
-      },
-    };
+    redirect(longUrl);
   } catch (error) {
     console.error('Error fetching URL for redirection:', error);
     // You might want to show a generic error page or redirect to home
-    return {
-      redirect: {
-        destination: '/', // Redirect to home on error
-        permanent: false,
-      },
-    };
+    redirect('/')
   }
-}
 
-// This component will not be rendered as getServerSideProps performs a redirect.
-// It's still required for Next.js to recognize the page.
-export default function ShortCodePage() {
-  return (
+   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <p className="text-lg text-gray-700">Redirecting...</p>
     </div>
   );
 }
+

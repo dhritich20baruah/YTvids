@@ -4,10 +4,6 @@ import { nanoid } from "nanoid";
 import { NextResponse } from "next/server";
 
 export const POST = async (req, res) => {
-    if (req.method !== 'POST') {
-        return NextResponse.json({ message: 'Mehod Not Allowed' })
-    }
-
     const { longUrl } = await req.json();
 
     if (!longUrl || typeof longUrl !== 'string' || !longUrl.startsWith('http')) {
@@ -40,7 +36,7 @@ export const POST = async (req, res) => {
 
         if (!host) {
             console.error('Failed to determine host for short URL construction.');
-            return res.status(500).json({ message: 'Could not determine host for short URL.' });
+            return NextResponse.json({ message: 'Could not determine host for short URL.' });
         }
         const shortUrl = `${protocol}://${host}/${shortCode}`;
 
