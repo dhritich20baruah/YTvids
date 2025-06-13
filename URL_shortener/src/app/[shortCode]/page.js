@@ -3,7 +3,7 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { redirect } from "next/navigation";
 
 export default async function ShortCodePage({params}) {
-  const { shortCode } = await params;
+  const { shortCode } = await params.shortCode;
   console.log(params)
 
   if (!shortCode) {
