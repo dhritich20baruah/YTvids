@@ -1,5 +1,5 @@
 {
-  "name": "url_shortener",
+  "name": "url_shortener_firebase_page",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "firebase": "^11.8.1",
+    "firebase": "^11.9.1",
     "nanoid": "^5.1.5",
     "next": "15.3.3",
     "react": "^19.0.0",
