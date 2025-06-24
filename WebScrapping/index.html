@@ -1,450 +1,922 @@
 <!DOCTYPE html>
-<html lang='en' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr' xmlns:og='http://ogp.me/ns#'>
+<html lang="en">
 <head>
-<meta content='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiMvJJ4G3Q8m_wEc9qpI6j575N_b3fjzi9BHyuN30Fbexg6agTG3LZTZsMJYm_yOMF3HsUkPeuOet2tHJZQFRhQuOJ_IHyQqUtzBC4dkleghxOWegohYczpRTxKW1uhosX0QHLMr5TGM8f8GeZ5SMC62LzTcGFTsbZ-_QjQn5zO9ywBb6q1M6TRYREJzfU/w0/agriculture-department-recruitment.jpg' property='og:image'/>
-<meta content='width=device-width, initial-scale=1, minimum-scale=1' name='viewport'>
-<meta content='jobs in assam, assamcareer.com, assamcareer.net, assamcareer.org, JobAssam, JobAssam.in, assam.career, Vacancy in Assam, Exam Result, Exam Admit Card, job in assam, assam career, assam jobs, government jobs in assam 2025, assam govt jobs 2025, assam job, govt jobs in assam 2025, government jobs in assam, job in assam govt, assam govt job,govt job in  assam, assam government jobs, assam government jobs 2025, latest govt jobs in assam, assam govt job 2025, govt jobs assam, jobs assam, job at assam, nrhm assam job, recruitment in assam 2024-2025, latest jobs in assam govt,current govt job in assam, www.assamjobs.com, job of assam, assamjobs.com, assam govt jobs in 2025, central govt jobs in assam, new government jobs in assam, Nagaland Jobs, Arunachal Govt Jobs 2025, Shillong Jobs 2025, Manipur Jobs 2025, Mizoram Jobs 2025, Sikkim Jobs, sakori, sarkari sakori, job news assam, assam job news, jobassam.in, all job assam, guwahati jobs' name='Keywords'/>
+  <meta charset="UTF-8">
+  <title>Treasure Hunt Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --primary: #086972;
+      --secondary: #17b978;
+      --accent: #f6df6a;
+      --bg: #f5f5f5;
+      --danger: #ef2e4b;
+      --map-bg: #e0c097;
+    }
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    body {
+      background: var(--bg);
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0;
+    }
+    .container {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      color: var(--primary);
+      margin-top: 16px;
+      margin-bottom: 8px;
+      text-align: center;
+      font-size: 2.2rem;
+      text-shadow: 0 2px 6px #0001;
+    }
+    .game-info {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff7e0;
+      padding: 12px 18px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px #0002;
+      gap: 16px;
+    }
+    .timer {
+      font-weight: bold;
+      font-size: 1.3rem;
+      color: var(--danger);
+      letter-spacing: 2px;
+    }
+    .score {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+    .leaderboard {
+      width: 100%;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px #0001;
+      padding: 14px 10px 8px 10px;
+      margin-top: 24px;
+      margin-bottom: 24px;
+    }
+    .leaderboard h2 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 1.15rem;
+      color: var(--secondary);
+      letter-spacing: 1px;
+    }
+    .leaderboard-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .leaderboard-list li {
+      padding: 6px 8px;
+      font-size: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+    }
+    .leaderboard-list li:last-child {
+      border-bottom: none;
+    }
+    .treasure-map {
+      background: url('https://images.unsplash.com/photo-1622572860925-daa5e4219d53?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YWVyaWFsJTIwZm9yZXN0fGVufDB8fDB8fHww');
+      background-size: cover;
+      background-repeat: no-repeat;
+      border: 4px dashed #b08968;
+      border-radius: 16px;
+      box-shadow: 0 4px 32px #0002;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+      width: 90vw;
+      max-width: 420px;
+      aspect-ratio: 1/1;
+      position: relative;
+      margin-top: 16px;
+      margin-bottom: 20px;
+      touch-action: manipulation;
+      overflow: hidden;
+    }
+    .cell {
+      aspect-ratio: 1/1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      z-index: 2;
+      transition: background 0.22s;
+      border-width: 0.2px;
+      border-color: rgb(214, 206, 206);
+      border-style: solid;
+    }
+    .cell.revealed {
+      background: #fff3c7;
+      cursor: default;
+      animation: reveal-cell 0.4s;
+    }
+    @keyframes reveal-cell {
+      0% { background: var(--map-bg); }
+      100% { background: #fff3c7; }
+    }
+    .treasure {
+      width: 44px;
+      height: 44px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      z-index: 4;
+      outline: none;
+    }
+    .treasure-img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      pointer-events: none;
+      opacity: 0.96;
+      filter: drop-shadow(0 3px 8px #0004);
+      transform: scale(0.5);
+      animation: pop-treasure 0.52s cubic-bezier(.67,.32,.42,1.17);
+    }
+    @keyframes pop-treasure {
+      0% { transform: scale(0.3) rotate(-30deg); opacity: 0.2; }
+      50% { transform: scale(1.2) rotate(8deg); opacity: 1; }
+      100% { transform: scale(1) rotate(0); opacity: 1; }
+    }
+    .treasure-found {
+      animation: sparkle 0.8s;
+    }
+    @keyframes sparkle {
+      0% { filter: brightness(2) drop-shadow(0 0 12px var(--accent)); }
+      60% { filter: brightness(2) drop-shadow(0 0 20px var(--accent)); }
+      100% { filter: brightness(1) drop-shadow(0 0 0px var(--accent)); }
+    }
+    .puzzle-modal {
+      position: fixed;
+      z-index: 20;
+      left: 0; right: 0; top: 0; bottom: 0;
+      display: flex;
+      background: rgba(0,0,0,0.34);
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0.1s, opacity 0.18s;
+    }
+    .puzzle-modal.active {
+      visibility: visible;
+      opacity: 1;
+    }
+    .puzzle-content {
+      background: #f9f9f9;
+      border-radius: 14px;
+      box-shadow: 0 4px 36px #0003;
+      padding: 36px 20px 25px 20px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      animation: pop-modal 0.33s;
+    }
+    @keyframes pop-modal {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .puzzle-question {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--primary);
+      margin-bottom: 18px;
+      letter-spacing: 0.2px;
+    }
+    .puzzle-input, .puzzle-option {
+      padding: 8px 12px;
+      margin: 6px 0 8px 0;
+      border: 1.5px solid #ccc;
+      border-radius: 6px;
+      font-size: 1.04rem;
+      width: 90%;
+      max-width: 260px;
+      outline: none;
+      transition: border 0.16s;
+    }
+    .puzzle-option {
+      background: #fff;
+      cursor: pointer;
+      display: block;
+      margin: 6px auto;
+      width: 98%;
+      text-align: left;
+      border: 1.5px solid #eee;
+      transition: background 0.12s, border 0.16s;
+    }
+    .puzzle-option:hover, .puzzle-option.selected {
+      background: var(--accent);
+      border: 2px solid var(--secondary);
+    }
+    .puzzle-feedback {
+      font-size: 1rem;
+      margin-top: 12px;
+      margin-bottom: 6px;
+      color: var(--danger);
+      min-height: 24px;
+      transition: color 0.2s;
+    }
+    .puzzle-btn {
+      padding: 8px 24px;
+      background: var(--secondary);
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      font-size: 1.07rem;
+      font-weight: 600;
+      margin-top: 10px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px #0001;
+      transition: background 0.15s;
+    }
+    .puzzle-btn:active {
+      background: var(--primary);
+    }
+    .overlay {
+      position: fixed;
+      left: 0; right: 0; top: 0; bottom: 0;
+      background: rgba(0,0,0,0.25);
+      z-index: 10;
+      display: none;
+    }
+    .overlay.active {
+      display: block;
+    }
+    .game-controls {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    .restart-btn {
+      background: var(--primary);
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 7px;
+      border: none;
+      font-size: 1.01rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin: 0;
+      cursor: pointer;
+      box-shadow: 0 2px 6px #0001;
+      transition: background 0.13s;
+    }
+    .restart-btn:active {
+      background: var(--danger);
+    }
+    .game-over-modal {
+      position: fixed;
+      left: 0; right: 0; top: 0; bottom: 0;
+      z-index: 30;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .game-over-modal.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .game-over-content {
+      background: #fff;
+      padding: 36px 14px 22px 14px;
+      border-radius: 16px;
+      text-align: center;
+      min-width: 250px;
+      max-width: 350px;
+      box-shadow: 0 6px 32px #0003;
+      animation: pop-modal 0.36s;
+    }
+    .game-over-content h2 {
+      margin: 12px 0 18px 0;
+      color: var(--danger);
+      font-size: 2rem;
+    }
+    .game-over-content .score {
+      color: var(--primary);
+      font-size: 1.16rem;
+      font-weight: 500;
+      margin-bottom: 18px;
+    }
+    .game-over-content input[type="text"] {
+      padding: 7px 10px;
+      border-radius: 6px;
+      border: 1.3px solid #ccc;
+      margin-bottom: 10px;
+      font-size: 1rem;
+      width: 75%;
+    }
+    .game-over-content button {
+      padding: 7px 18px;
+      border-radius: 7px;
+      background: var(--secondary);
+      color: #fff;
+      border: none;
+      font-weight: 600;
+      font-size: 1.01rem;
+      margin-top: 6px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px #0001;
+      transition: background 0.13s;
+    }
+    .game-over-content button:active {
+      background: var(--primary);
+    }
+    @media (max-width: 900px) {
+      .treasure-map {
+        max-width: 360px;
+      }
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 8px;
+      }
+      .treasure-map {
+        max-width: 95vw;
+      }
+      .game-info, .leaderboard, .game-controls {
+        font-size: 1rem;
+        padding-left: 7px;
+        padding-right: 7px;
+      }
+    }
+    @media (max-width: 420px) {
+      .puzzle-content {
+        padding: 22px 6px 14px 6px;
+      }
+      .game-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+    }
+    #map-img{
+      width: 100px;
+      height: 100px;
+    }
+  </style>
 </head>
-<style type='text/css'>.post-body img{width:100%;height:auto;aspect-ratio:attr(width) / attr(height)}</style>
 <body>
-<div class='blogoutter-wrapper'>
-<div class='bloginner-wrapper'>
-<div class='ct-wrapper'>
-<!-- New widgets container Start -->
-<div class='NewContainer no-items section' id='NewContainer'></div>
-<!-- New widgets container End -->
-<div class='header-right-wrap section' id='header-right-wrap'><div class='widget HTML' data-version='1' id='HTML22'>
-<div id='header-right'>
-<div id='search'>
-<form action='/search' id='search-form' method='get'>
-<input aria-label='Search this blog' id='s' name='q' onblur='if (this.value == "") {this.value = "Search this website...";}' onfocus='if (this.value == "Search this website...") {this.value = ""}' type='text' value='Search this website...'/>
-<input id='sbtn' type='submit' value='.'/>
-</form>
-</div></div>
-</div></div>
-</div>
-</div>
-</div>
-<div class='navigation section' id='navigation'><div class='widget HTML' data-version='1' id='HTML99'>
-<div class='main-nav-main'>
-<div class='mobile-menu'></div>
-<div class='ct-wrapper'>
-<span class='slide-menu-toggle'>Main Menu</span>
-<ul class='sf-menu'>
-<li><a href='https://www.assamcareer.com/'>Home</a></li>
-<li><a href='https://www.assamcareer.com/p/about-us.html'>About</a>
-<ul class='sub-menu'>
-<li><a href='https://www.assamcareer.com/p/advertise.html'>Advertise</a></li>
-<li><a href='https://www.assamcareer.com/p/disclaimer-notice.html'>Disclaimer</a></li>
-<li><a href='https://www.assamcareer.com/p/faq.html'>FAQ</a></li>
-<li><a href='https://www.assamcareer.com/p/privacy-policy.html'>Privacy</a></li>
-<li><a href='https://www.assamcareer.com/p/submit-job.html'>Submit Job</a></li>
-</ul>
-</li>
-<li><a href='https://www.assamcareer.com/search/label/Admission'>Admission</a></li>
-<li><a href='https://www.assamcareer.com/search/label/Admit%20Card'>Admit Card</a></li>
-<li><a href='https://www.assamcareer.com/p/books.html'>Books</a></li>
-<li><a href='https://www.assamcareer.com/p/download.html'>Imp Links</a></li>
-<li><a href='https://www.assamcareer.com/search/label/Private%20Job'>Private Job</a></li>
-<li><a href='https://www.assamcareer.com/search/label/Result'>Result</a></li>
-<li><a href='https://www.assamcareer.com/search/label/Scholarship'>Scholarship</a></li>
-<li><a href='https://www.assamcareer.com/p/contact-us.html'>Contact</a></li>
-</ul>
-</div>
-</div>
-</div><div class='widget HTML' data-version='1' id='HTML8'>
-</div></div>
-<div class='clr'></div>
-<div class='ct-wrapper'>
-<div class='outer-wrapper'>
-<div class='main-wrapper'>
-<div class='content section' id='content'><div class='widget HTML' data-version='1' id='HTML3'>
-<div class='widget-content'>
-<div style="clear: both; margin: 2px; text-align: center;"><div style="border: 1px solid teal; border-radius: 2px; background: #f0f8ff; display: flex; align-items: center; padding: 1px; justify-content: space-between;">
-<span style="display: flex; align-items: center;">
-<span style="font-weight: bold; margin-left: 10px; font-size: 1rem !important;">WhatsApp Channel&#160;</span>
-</span>
-<a class="seoquake-nofollow" href="https://bit.ly/WAassamcareer" rel="dofollow noopener noreferrer" style="text-decoration: none; background: #006400; color: white; padding: 5px 10px; border-radius: 2px; flex-shrink: 0; font-size: 1rem;" target="_blank">
-Join Now
-</a>
-</div>
-<div style="border: 1px solid teal; border-radius: 2px; background: #f0f8ff; display: flex; align-items: center; padding: 1px; justify-content: space-between;">
-<span style="display: flex; align-items: center;">
-<span style="font-weight: bold; margin-left: 10px; font-size: 1rem !important;">Telegram Channel </span>
-</span>
-<a class="seoquake-nofollow" href="https://t.me/AssamCareer" rel="nofollow noopener noreferrer" style="text-decoration: none; background: #311EA3; color: white; padding: 5px 10px; border-radius: 2px; flex-shrink: 0; font-size: 1rem;" target="_blank">
-Join Now
-</a></div></div>
-</div>
-<div class='clear'></div>
-</div><div class='widget Blog' data-version='1' id='Blog1'>
-<div class='blog-posts hfeed'>
-<p class='breadcrumbs'>
-<span class='post-labels'>
-<a href='https://www.assamcareer.com/' rel='tag'>Home</a>
- &#187;
-<a href='https://www.assamcareer.com/search/label/Agriculture' rel='tag'>Agriculture</a>
-
-&#187; <span>Agriculture Department Recruitment 2025 &#8211; 195 Agricultural Development Officer Posts</span>
-</span>
-</p>
-<!--Can't find substitution for tag [defaultAdStart]-->
-<div class='post-outer'>
-<div class='post hentry uncustomized-post-template'>
-<div class='post-header'>
-<div class='post-header-line-1'></div>
-</div>
-<h1 class='post-title entry-title'>
-Agriculture Department Recruitment 2025 &#8211; 195 Agricultural Development Officer Posts
-</h1>
-<div class='post-body entry-content' id='post-body-2083085689531978191'>
-<div style='clear: both; margin: 10px; text-align: center;'>
-<center>
-<style>.sn_responsive_1{width:320px;height:250px}@media(min-width:400px){.sn_responsive_1{width:336px;height:600px}}@media(min-width:800px){.sn_responsive_1{width:100%;height:330px}}</style>
-<center><!-- New-AC -->
-<ins class="adsbygoogle sn_responsive_1"
-style="display:block"
-data-ad-client="ca-pub-9308635674884747"
-data-ad-slot="4859995779"
-data-ad-format="auto"
-data-full-width-responsive="true"></ins>
-</div>
-<div id='PostBody'>
-<div style="text-align: justify;"><span style="font-family: arial;"><b>Assam Public Service Commission.<br />Last Date: 17/04/2025.</b><br /><i><b><br /></b></i><b>Assam Public Service Commission</b><i><b> </b></i>has released an employment notification for the recruitment of <b>195 Agricultural Development Officer Posts</b> under <b><a href="https://www.assamcareer.com/2021/07/asrb.html" target="_blank">Agriculture Department</a>, Assam</b>. Interested and eligible candidates may<i><b> apply online</b></i> here.&nbsp;</span></div><div style="text-align: justify;"><span style="font-family: arial;">&nbsp;</span></div><div style="text-align: justify;"><span style="font-family: arial;"></span><div class="hidepic" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiMvJJ4G3Q8m_wEc9qpI6j575N_b3fjzi9BHyuN30Fbexg6agTG3LZTZsMJYm_yOMF3HsUkPeuOet2tHJZQFRhQuOJ_IHyQqUtzBC4dkleghxOWegohYczpRTxKW1uhosX0QHLMr5TGM8f8GeZ5SMC62LzTcGFTsbZ-_QjQn5zO9ywBb6q1M6TRYREJzfU/s1201/agriculture-department-recruitment.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="680" data-original-width="1201" loading="lazy" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiMvJJ4G3Q8m_wEc9qpI6j575N_b3fjzi9BHyuN30Fbexg6agTG3LZTZsMJYm_yOMF3HsUkPeuOet2tHJZQFRhQuOJ_IHyQqUtzBC4dkleghxOWegohYczpRTxKW1uhosX0QHLMr5TGM8f8GeZ5SMC62LzTcGFTsbZ-_QjQn5zO9ywBb6q1M6TRYREJzfU/s16000-rw/agriculture-department-recruitment.jpg" /></a></div><div class="hidepic" style="clear: both; text-align: center;"></div><h3><span style="font-family: arial;"><span style="font-size: large;"><b><span><a name='more'></a></span>Agriculture Department Recruitment 2025</b></span></span></h3><h3><span style="font-family: arial;"></span></h3><span style="font-family: arial;"><b><br />Name of post: Agricultural Development Officer (ADO)<br /><br />No of posts:</b> 195 posts<br /><br /><b>Category-wise vacancy:</b><br /><br /># UR: 112<br /># OBC/ MOBC: 37<br /># SC: 14<br /># STP: 23<br /># STH: 9<br /><br /><b>Scale of pay: </b>Pay Band - 4, Rs 30,000/- to Rs. 1,10,000/-, GP: Rs 12,700/-<br /><br /><b>Name of department: </b>Agriculture Department, Govt. of Assam<br /><span style="font-size: large;"><b><br /></b></span></span><h3><span style="font-family: arial;"><span style="font-size: large;"><b>Eligibility Criteria of Agriculture Department Recruitment</b></span></span></h3><h3><span style="font-family: arial;"></span></h3><span style="font-family: arial;"><b><br />Citizenship:</b> Candidates must be Indian Citizens as defined in Articles 5 to 8 of the Constitution of India.<br /><br /><b>Residentship:</b><br /><br />(i) The candidate must be a permanent resident of Assam.<br />(ii) The candidate must produce PRC issued in Assam for educational purpose/ Employment Exchange Registration certificate as proof of residency along with the online application form. <br />&nbsp;<br /><b>Age Limit:</b> The candidates should not be less than 21 years of age and not more than 38 years of age as on 01/01/2025. <br />&nbsp;<br /><b>Age Relaxation: </b>The category-wise age relaxation is as mentioned below.<br /><br /># SC: 5 years<br /># ST: 5 years<br /># OBC/ MOBC: 3 years<br /># PwBD: 10 years<br /># For more details pl read the official notification/s.<br /><br /><b>Educational Qualification:</b> A candidate must pass B.Sc (Agriculture) or a degree declared equivalent to BSc.(Agriculture) from a recognized University and also recognized by the Government of Assam.<br /><br /><b>Employment Exchange Registration: </b>Candidates must be registered themselves in any of the employment exchanges of Assam.<br /><br /><b>Small Family Norms:</b> The candidates have to submit a declaration regarding &#8220;The Small Family Norms&#8221; in Form-A at the time of applying for the post.</span></div><div style="text-align: justify;"><span style="font-family: arial;">&nbsp;</span></div><div style="text-align: justify;"><div style="text-align: justify;"><span style="font-family: arial;"><b><span style="font-size: normal;">Application Fee: </span></b><span style="font-size: normal;">Category-wise application fee is as under.&nbsp;</span><b><span style="font-size: medium;"> <br /></span></b></span></div><div style="text-align: justify;"><table class="tablepress tablepress-id-51"><tbody class="row-hover"><tr class="row-11 odd"><td class="column-1"><b><span style="font-size: medium;"><span><span style="font-family: arial;">Category<br /></span></span></span></b></td><td class="column-2"><b><span style="font-size: medium;"><span style="font-family: arial;">Fee (in Rs.)<br /></span></span></b></td>
-  
-</tr>  
-  
-  <tr class="row-11 odd"><td class="column-1"><span style="font-size: medium;"><span><span style="font-family: arial;">General</span></span></span></td><td class="column-2"><span style="font-size: medium;"><span style="font-family: arial;">Rs.297.20/-</span></span></td>
-  
-</tr>  
-  
-  <tr class="row-11 odd"><td class="column-1"><span style="font-size: medium;"><span><span style="font-family: arial;">OBC/MOBC<br /></span></span></span></td><td class="column-2"><span style="font-size: medium;"><span style="font-family: arial;">Rs.197.20/-</span></span></td>
-  
-</tr>  
-  
-     <tr class="row-11 odd">
-	<td class="column-1"><span style="font-size: medium;"><span style="font-family: arial;">SC/ST/BPL/ PwBD</span><br /></span></td><td class="column-2"><span style="font-size: medium;"><span style="font-family: arial;"><span><span>Rs.47.20/-</span></span><span><br /></span></span></span></td></tr></tbody></table></div><br /><h3><span style="font-family: arial;"><span style="font-size: large;"><b>How to Apply for Agriculture Department Recruitment ?</b></span></span></h3><h3><span style="font-family: arial;"></span></h3><div style="text-align: justify;"><span style="font-family: arial;">&nbsp;</span></div><div style="text-align: justify;"><span style="font-family: arial;">Interested and eligible candidates may
- apply online for these <u>posts</u> by visiting at 
-official recruitment portal of Assam Public Service Commission. They may
- follow below mentioned steps .</span><br /></div><div class="google-auto-placed ap_container" style="clear: both; height: auto; text-align: center; width: 100%;"><ins class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-9308635674884747" data-ad-format="auto" data-ad-status="unfilled" data-adsbygoogle-status="done" style="background-color: transparent; display: block; height: 0px; margin: auto;"><div id="aswift_2_host" style="background-color: transparent; border: medium; display: inline-block; height: 0px; margin: 0px; opacity: 0; overflow: hidden; padding: 0px; position: relative; visibility: visible; width: 589px;"></div></ins></div><div style="height: auto;"><span style="font-family: arial;"><br /># Scroll down, go to <b>Important Web-Links</b> section .<br /><br /># Click on <b>Online Application Form</b> link .<br /><br /># A new webpage will be opened.<br /><br /># Enter all your <b>personal and educational details</b> as required .<br /><br /># Upload your <b>passport sized photograph and signature</b> and other required documents.<br /><br /># Pay the <b>application fee</b> as per your category and at the end click on<b> submit </b>button .<br /><br /># Don't forget to take a <b>print </b>of submitted application form .</span></div></div><div style="text-align: justify;"><span style="font-family: arial;">&nbsp;<br /></span><h3><span style="font-family: arial;"><span style="font-size: large;"><b>Important Dates of Assam Agriculture Department Recruitment 2025</b></span></span></h3><h3><span style="font-family: arial;"></span></h3><span style="font-family: arial;"><br /># Starting date of submission of online application: 18th March 2025<br /># Last date of submission of online application: 17th April 2025<span style="background-color: #fcff01;"><br /></span><br /></span><h3><span style="font-family: arial;"><span style="font-size: large;"><b>Important Web-Links of Agriculture Department Vacancy</b></span></span></h3><h3><span style="font-family: arial;"></span></h3><table class="tablepress tablepress-id-47"><tbody class="row-hover"><tr class="row-1 odd"><td class="column-1"><b><span style="font-size: medium;"><span><span><span style="font-family: arial;">Online Application Form<br /></span></span></span></span></b></td><td class="column-2"><b><span style="font-size: medium;"><span style="font-family: arial;"><a href="https://apscrecruitment.in/" rel="nofollow" target="_blank">Click Here</a></span></span></b></td></tr><tr class="row-2 even">
-	<td class="column-1"><b><span style="font-size: medium;"><span><span><span style="font-family: arial;">Advertisement Details</span></span></span></span></b></td><td class="column-2"><b><span style="font-size: medium;"><span><span><span style="font-family: arial;"><a href="https://apsc.nic.in/advt_2025/Advt_No_09_2025_ADO_Agri_Deptt_13032025.pdf" rel="nofollow" target="_blank">Click Here</a></span></span></span></span></b></td>
-</tr><tr class="row-2 even">
-	<td class="column-1"><b><span style="font-size: medium;"><span><span><span style="font-family: arial;">Small Family Norms Declaration<br /></span></span></span></span></b></td><td class="column-2"><b><span style="font-size: medium;"><span><span><span style="font-family: arial;"><a href="https://apsc.nic.in/misc_2020/Declaration_FormA.pdf" rel="nofollow" target="_blank">Click Here</a></span></span></span></span></b></td>
-</tr><tr class="row-3 odd"><td class="column-1"><b><span style="font-size: medium;"><span><span><span style="font-family: arial;">Official Website<br /></span></span></span></span></b></td><td class="column-2"><b><span style="font-size: medium;"><span><span><span style="font-family: arial;"><a href="http://apsc.nic.in/" rel="nofollow" target="_blank">Click Here</a></span></span></span></span></b></td></tr></tbody></table></div><div style="text-align: left;">&nbsp;<br /></div><div style="text-align: left;"><h3 style="text-align: left;"><b><span style="font-size: large;"><span style="font-family: arial;">FAQs of Agriculture Department Recruitment</span></span></b></h3></div><details open="">
-  <summary>What is the starting date to apply online for Agriculture Department Recruitment ?
-
-</summary>
-  <div>
-    <p>The starting date to apply online for Agriculture Department Recruitment is <b>18th March 2025.
-</b></p>
+  <div class="container">
+    <h1>Treasure Hunt!</h1>
+    <div class="game-controls">
+      <button class="restart-btn">Restart Game</button>
+    </div>
+    <div class="game-info">
+      <span class="timer" id="timer">⏰ 90</span>
+      <span class="score" id="score">💰 0</span>
+    </div>
+    <div class="treasure-map" id="treasure-map"></div>
+    <div class="leaderboard" id="leaderboard">
+      <h2>🏆 Leaderboard</h2>
+      <ol class="leaderboard-list" id="leaderboard-list"></ol>
+    </div>
   </div>
-</details>
-<details open="">
-  <summary>What is the last date to apply online for Agriculture Department Recruitment ?
-</summary>
-  <div>
-    <p>The last date to apply online for Agriculture Department Recruitment is <b>17th April 2025.
 
-</b></p>
+  <!-- Puzzle Modal -->
+  <div class="puzzle-modal" id="puzzle-modal">
+    <div class="puzzle-content">
+      <div class="puzzle-question" id="puzzle-question"></div>
+      <div class="puzzle-choices" id="puzzle-choices"></div>
+      <div class="puzzle-feedback" id="puzzle-feedback"></div>
+      <button class="puzzle-btn" id="submit-answer">Submit</button>
+    </div>
   </div>
-</details>
-<details open="">
-  <summary>What is the total number of vacancies in Agriculture Department Recruitment ?
-
-</summary>
-  <div>
-    <p>The total number of vacancies in Agriculture Department Recruitment is <b>195.
-</b></p>
+  <!-- Game Over Modal -->
+  <div class="game-over-modal" id="game-over-modal">
+    <div class="game-over-content">
+      <h2 id="game-over-title">Game Over!</h2>
+      <div class="score" id="final-score"></div>
+      <form id="score-form" autocomplete="off" style="display:none;">
+        <label for="player-name">Your Name:</label><br>
+        <input type="text" id="player-name" maxlength="16" required placeholder="Enter Name"/><br>
+        <button type="submit">Submit Score</button>
+      </form>
+      <button id="play-again-btn">Play Again</button>
+    </div>
   </div>
-</details><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the starting date to apply online for Agriculture Department Recruitment ?","acceptedAnswer":{"@type":"Answer","text":"The starting date to apply online for Agriculture Department Recruitment is 18th March 2025."}},{"@type":"Question","name":"What is the last date to apply online for Agriculture Department Recruitment ?","acceptedAnswer":{"@type":"Answer","text":"The last date to apply online for Agriculture Department Recruitment is 17th April 2025."}},{"@type":"Question","name":"What is the total number of vacancies in Agriculture Department Recruitment ?","acceptedAnswer":{"@type":"Answer","text":"The total number of vacancies in Agriculture Department Recruitment is 195."}}]}</script>
-</div>
-<div id='AdCode'>
-<div style='clear: both; margin: 10px; text-align: center;'>
-<center>
-<style>.sn_responsive_1{width:320px;height:250px}@media(min-width:400px){.sn_responsive_1{width:336px;height:600px}}@media(min-width:800px){.sn_responsive_1{width:100%;height:330px}}</style>
-<center><!-- New-AC -->
-<ins class="adsbygoogle sn_responsive_1"
-style="display:block"
-data-ad-client="ca-pub-9308635674884747"
-data-ad-slot="4859995779"
-data-ad-format="auto"
-data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-  
-<div style="clear: both; margin: 2px; text-align: center;"><div style="border: 1px solid teal; border-radius: 2px; background: #f0f8ff; display: flex; align-items: center; padding: 1px; justify-content: space-between;">
-<span style="display: flex; align-items: center;">
-<span style="font-weight: bold; font-size: 1rem !important;"> &#160;</span>
-<center><a rel="nofollow" href="https://bit.ly/a2zassamcareer" target="_blank">
-         <img alt="Buy-Books-Online" margin: auto; src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjm97voTJ5ynU1ZDBANwq7KZbbNz6CisF4K5yWEPGXaH7kBRjN8E3MSRiUxjj5FSR1tXjGrVcFtSX8ZD8h-qf5t-I83JSYhg3HApvWkAtX3-RdxfhLh5TmC2iMWWW11TXhUA875YQEynkddiJSUG2H6teww06crUR2sjHLZJ0vBXO8iNwt6M7qkfDotp0o/s500/Amazon-Online-Bookstore.png" width="400&quot;" height="189"/> </a></center>
+  <script>
+    // Puzzle database
+    const PUZZLES = [
+      {
+        type: 'mcq',
+        question: 'Which is the largest ocean on Earth?',
+        options: ['Atlantic', 'Indian', 'Pacific', 'Arctic'],
+        answer: 'Pacific'
+      },
+      {
+        type: 'input',
+        question: 'What is 9 × 7?',
+        answer: '63'
+      },
+      {
+        type: 'mcq',
+        question: 'Who wrote "Treasure Island"?',
+        options: [
+          'Robert Louis Stevenson', 
+          'Jules Verne',
+          'Mark Twain',
+          'Lewis Carroll'
+        ],
+        answer: 'Robert Louis Stevenson'
+      },
+      {
+        type: 'input',
+        question: 'What color do you get by mixing blue and yellow?',
+        answer: 'green'
+      },
+      {
+        type: 'mcq',
+        question: 'Which planet is known as the Red Planet?',
+        options: ['Mars', 'Jupiter', 'Saturn', 'Venus'],
+        answer: 'Mars'
+      },
+      {
+        type: 'input',
+        question: 'What is the capital of France?',
+        answer: 'paris'
+      },
+      {
+        type: 'mcq',
+        question: 'Which animal is known as the king of the jungle?',
+        options: ['Lion', 'Tiger', 'Elephant', 'Bear'],
+        answer: 'Lion'
+      },
+      {
+        type: 'input',
+        question: 'How many continents are there?',
+        answer: '7'
+      },
+      {
+        type: 'mcq',
+        question: 'Which precious metal has the chemical symbol "Au"?',
+        options: ['Silver', 'Platinum', 'Gold', 'Copper'],
+        answer: 'Gold'
+      },
+      {
+        type: 'input',
+        question: 'What is the freezing point of water in Celsius?',
+        answer: '0'
+      },
+      {
+        type: 'mcq',
+        question: 'What is the main language spoken in Brazil?',
+        options: ['Spanish', 'Portuguese', 'French', 'English'],
+        answer: 'Portuguese'
+      },
+      {
+        type: 'input',
+        question: 'How many colors are there in a rainbow?',
+        answer: '7'
+      },
+      {
+        type: 'mcq',
+        question: 'Which bird is a universal symbol of peace?',
+        options: ['Eagle', 'Dove', 'Owl', 'Swan'],
+        answer: 'Dove'
+      },
+      {
+        type: 'input',
+        question: 'What is 3 cubed (3³)?',
+        answer: '27'
+      },
+      {
+        type: 'mcq',
+        question: 'Which gas do plants absorb from the atmosphere?',
+        options: ['Oxygen', 'Nitrogen', 'Carbon Dioxide', 'Hydrogen'],
+        answer: 'Carbon Dioxide'
+      },
+      {
+        type: 'input',
+        question: 'How many legs does a spider have?',
+        answer: '8'
+      },
+      // Add more puzzles here for further replayability!
+    ];
+    // Treasure icons - SVGs (for animation)
+    const TREASURE_ICONS = [
+      // Gold coin
+      `<svg class="treasure-img" viewBox="0 0 48 48"><circle fill="#FFD700" stroke="#bfa82f" stroke-width="4" cx="24" cy="24" r="18"/><circle fill="none" stroke="#bfa82f" stroke-width="2" cx="24" cy="24" r="12"/><text x="50%" y="56%" text-anchor="middle" fill="#bfa82f" font-size="16" font-weight="bold" font-family="Arial" dy=".3em">$</text></svg>`,
+      // Ruby
+      `<svg class="treasure-img" viewBox="0 0 48 48"><polygon fill="#e53558" stroke="#b1152f" stroke-width="2" points="24,8 6,20 14,40 34,40 42,20" /><polygon fill="#fb8b98" points="24,8 14,40 34,40" /></svg>`,
+      // Crown
+      `<svg class="treasure-img" viewBox="0 0 48 48"><path d="M8,34 L12,16 L24,30 L36,16 L40,34 Z" fill="#f6df6a" stroke="#bfa82f" stroke-width="2"/><ellipse cx="12" cy="16" rx="2" ry="2" fill="#e53558"/><ellipse cx="36" cy="16" rx="2" ry="2" fill="#17b978"/><ellipse cx="24" cy="30" rx="2" ry="2" fill="#5cb0c7"/></svg>`,
+      // Pearl
+      `<svg class="treasure-img" viewBox="0 0 48 48"><circle cx="24" cy="24" r="15" fill="#f6f6ef" stroke="#e0e0db" stroke-width="3"/><ellipse cx="24" cy="22" rx="6" ry="2" fill="#d3dbe7" opacity="0.6"/></svg>`,
+      // Map
+      `<svg class="treasure-img" viewBox="0 0 48 48"><rect x="8" y="10" width="32" height="28" rx="5" fill="#fff3c7" stroke="#b08968" stroke-width="2"/><path d="M12,25 Q24,16 36,30" stroke="#f6df6a" stroke-width="2" fill="none"/><circle cx="36" cy="30" r="2.5" fill="#e53558"/><circle cx="12" cy="25" r="2.5" fill="#17b978"/></svg>`
+    ];
+    // Leaderboard storage key
+    const LEADERBOARD_KEY = "treasure_hunt_leaderboard_v1";
+    const MAP_SIZE = 6; // 6x6 grid
+    const NUM_TREASURES = 8;
+    const START_TIME = 90; // seconds
 
-</div></div>  
-  
-  
-</div>
-</div>
-<div style='clear: both;'></div>
-</div>
-<div class='post-footer'>
-<div class='post-footer-line post-footer-line-1'>
-<span class='post-icons'>
+    // State
+    let grid = [];
+    let treasures = [];
+    let treasuresLeft = NUM_TREASURES;
+    let score = 0;
+    let timer = START_TIME;
+    let countdownInterval = null;
+    let currentPuzzle = null;
+    let currentTreasureCell = null;
+    let gameActive = false;
+    let leaderboard = [];
+    let puzzlesUsed = [];
 
-  
-<div style="clear: both; margin: 2px; text-align: center;"><div style="border: 1px solid teal; border-radius: 2px; background: #f0f8ff; display: flex; align-items: center; padding: 1px; justify-content: space-between;">
-<span style="display: flex; align-items: center;">
-<span style="font-weight: bold; margin-left: 10px; font-size: 1rem !important;">WhatsApp Channel&#160;</span>
-</span>
-<a class="seoquake-nofollow" href="https://bit.ly/WAassamcareer" rel="dofollow noopener noreferrer" style="text-decoration: none; background: #006400; color: white; padding: 5px 10px; border-radius: 2px; flex-shrink: 0; font-size: 1rem;" target="_blank">
-Join Now
-</a>
-</div>
-<div style="border: 1px solid teal; border-radius: 2px; background: #f0f8ff; display: flex; align-items: center; padding: 1px; justify-content: space-between;">
-<span style="display: flex; align-items: center;">
-<span style="font-weight: bold; margin-left: 10px; font-size: 1rem !important;">Telegram Channel </span>
-</span>
-<a class="seoquake-nofollow" href="https://t.me/AssamCareer" rel="nofollow noopener noreferrer" style="text-decoration: none; background: #311EA3; color: white; padding: 5px 10px; border-radius: 2px; flex-shrink: 0; font-size: 1rem;" target="_blank">
-Join Now
-</a></div></div>
+    // DOM elements
+    const treasureMap = document.getElementById('treasure-map');
+    const timerSpan = document.getElementById('timer');
+    const scoreSpan = document.getElementById('score');
+    const puzzleModal = document.getElementById('puzzle-modal');
+    const puzzleQuestion = document.getElementById('puzzle-question');
+    const puzzleChoices = document.getElementById('puzzle-choices');
+    const puzzleFeedback = document.getElementById('puzzle-feedback');
+    const submitAnswerBtn = document.getElementById('submit-answer');
+    const leaderboardList = document.getElementById('leaderboard-list');
+    const leaderboardBox = document.getElementById('leaderboard');
+    const restartBtn = document.querySelector('.restart-btn');
+    const gameOverModal = document.getElementById('game-over-modal');
+    const finalScoreDiv = document.getElementById('final-score');
+    const playAgainBtn = document.getElementById('play-again-btn');
+    const scoreForm = document.getElementById('score-form');
+    const playerNameInput = document.getElementById('player-name');
+    const gameOverTitle = document.getElementById('game-over-title');
 
+    // --- Game Functions ---
+    function shuffle(array) {
+      // Fisher-Yates shuffle
+      for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
 
+    function randomTreasureIcon() {
+      return TREASURE_ICONS[Math.floor(Math.random() * TREASURE_ICONS.length)];
+    }
 
-<div style='clear: both; margin: 10px; text-align: center;'>
-<central><!-- AC-Mid -->
-<ins class="adsbygoogle"
-style="display:inline-block;width:400px;height:400px"
-data-ad-client="ca-pub-9308635674884747"
-data-ad-slot="9536104277"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script></central>
-</div>
-</span>
-<div class='post-share-buttons goog-inline-block'>
-</div>
-</div>
-<div class='post-footer-line post-footer-line-2'>
-<div class='post-meta'>
-<span class='post-labels'>
-Category:
-<a href='https://www.assamcareer.com/search/label/Agriculture' rel='tag'>Agriculture</a>
-</span>
-<em>|</em>
-<span class='post-timestamp'>
-Last Updated On
-<meta content='https://www.assamcareer.com/2021/02/agriculture-department-recruitment.html' itemprop='url'/>
-<a class='timestamp-link' href='https://www.assamcareer.com/2021/02/agriculture-department-recruitment.html' rel='bookmark' title='permanent link'><abbr class='published timeago' itemprop='datePublished' title='2025-04-14T09:11:00+05:30'>April 14, 2025</abbr></a>
-</span>
-</div>
-</div>
-<div class='post-footer-line post-footer-line-3'>
-<div class='disqus-loading'></div>
-<span class='post-location'>
-</span>
-</div>
-</div>
-</div>
-<div class='comments' id='comments'>
-<a name='comments'></a>
-<div id='backlinks-container'>
-<div id='Blog1_backlinks-container'>
-</div>
-</div>
-</div>
-</div>
-<!--Can't find substitution for tag [adEnd]-->
-</div>
-<div class='blog-pager' id='blog-pager'>
-<span id='blog-pager-newer-link'>
-<a class='blog-pager-newer-link' href='https://www.assamcareer.com/2021/08/assam-cee-admit-card.html' id='Blog1_blog-pager-newer-link' title='Newer Post'>Newer Post</a>
-</span>
-<span id='blog-pager-older-link'>
-<a class='blog-pager-older-link' href='https://www.assamcareer.com/2022/04/apsc-vacancy.html' id='Blog1_blog-pager-older-link' title='Older Post'>Older Post</a>
-</span>
-<a class='home-link' href='https://www.assamcareer.com/'>Home</a>
-</div>
-<div class='clear'></div>
-</div></div>
-</div>
-<div class='sidebar-wrapper'>
-<div class='sidebar section' id='sidebar'><div class='widget HTML' data-version='1' id='HTML1'>
-<h2 class='title'>Follow Us</h2>
-<div class='widget-content'>
-<center><div class='social-media-icons' id='social-icons'>
-<ul>
+    function generateMap() {
+      treasureMap.innerHTML = '';
+      grid = [];
+      for (let r = 0; r < MAP_SIZE; r++) {
+        for (let c = 0; c < MAP_SIZE; c++) {
+          const cell = document.createElement('div');
+          cell.classList.add('cell');
+          cell.dataset.row = r;
+          cell.dataset.col = c;
+          cell.addEventListener('click', onCellClick);
+          treasureMap.appendChild(cell);
+          grid.push({
+            r, c,
+            cell,
+            hasTreasure: false,
+            revealed: false
+          });
+        }
+      }
+      treasures = [];
+      // Place treasures
+      const positions = [];
+      for (let i = 0; i < MAP_SIZE * MAP_SIZE; i++) positions.push(i);
+      shuffle(positions);
+      for (let i = 0; i < NUM_TREASURES; i++) {
+        const idx = positions[i];
+        grid[idx].hasTreasure = true;
+        treasures.push(grid[idx]);
+      }
+    }
 
-<li class='media_icon'><a href="https://www.youtube.com/assamcareer/?sub_confirmation=1" target="blank" title="Subscribe to our YouTube Channel"> <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi1KYN767AebgGrYO1B1w56haqN9aJ14GxfFMIEjfC846RvULkk3pvbibrnUr9bWwFKRLuF3xsUQcehxst5GpQMsi1lkILNFtDSlj-4cBA8XZ_KbpyI3SrDAa0ZIWopK3St6v3iZpaMwwObtBxSAi6R15S3GC6EXDgxi85RcaSAJVV18w4c64XWxV74Suw/s48-rw/YouTube.webp" alt="YouTube" border="0" img width="48" height="48"/></a></li>
+    function resetGame() {
+      gameActive = true;
+      score = 0;
+      timer = START_TIME;
+      puzzlesUsed = [];
+      treasuresLeft = NUM_TREASURES;
+      updateScore();
+      updateTimer();
+      generateMap();
+      hideGameOver();
+      clearInterval(countdownInterval);
+      startTimer();
+    }
 
+    function updateScore() {
+      scoreSpan.textContent = `💰 ${score}`;
+    }
 
-<li class='media_icon'><a href="https://x.com/AssamCareer" target="blank" title="Follow us @ Twitter"> <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgNWVl2mqS-02z7rqJGxbmoFMROmLIzapsQ6lgwJwABLoETCriVZKTZGgXpkTSb9xNxphTXa5EIXBXvNOPHNGFRll2SIVXkQ49IPyLDLuWGXMcBRYWTl51MGjy5Ey-mxfywBl2jNyLoCVhqBN_Cbaej63d61l0ZS4jumn2OV_JvYal_Z-BTs6spluJ2z1Q/s48-rw/twitter-x.webp" alt="Twitter or X" border="0" img width="48" height="48"/></a></li>
+    function updateTimer() {
+      timerSpan.textContent = `⏰ ${timer}`;
+      if (timer <= 10) {
+        timerSpan.style.color = 'var(--danger)';
+      } else {
+        timerSpan.style.color = 'var(--danger)';
+      }
+    }
 
-<li class='media_icon'><a href="https://www.facebook.com/AssamCareer/" target="blank" title="Like us Our Facebook Page"> <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiY72re8F5TcGn_77b6G4q6oC0xicPVf2vC4HX5FZpt9XnTuUBFXdXYZGg0dejwe-IxyT5JfnFEeWu9EmANwtE9_YZoJCE4OLKPZKGX7yFO38YuRMOrwPy2yR3t5avdu_LUrH75yKhWkAbny9hR98mtPrmeiFqNAp3165CaNEDm64YdBuk8l2_Ya4jzw04/s48-rw/facebook.webp" alt="Facebook" border="0" img width="48" height="48"/></a></li>
+    function startTimer() {
+      countdownInterval = setInterval(() => {
+        if (!gameActive) return;
+        timer--;
+        updateTimer();
+        if (timer <= 0) {
+          timer = 0;
+          updateTimer();
+          clearInterval(countdownInterval);
+          endGame(false);
+        }
+      }, 1000);
+    }
 
+    function onCellClick(e) {
+      if (!gameActive) return;
+      const cellDiv = e.currentTarget;
+      const r = parseInt(cellDiv.dataset.row, 10);
+      const c = parseInt(cellDiv.dataset.col, 10);
+      const cell = grid.find(x => x.r === r && x.c === c);
 
+      if (cell.revealed) return;
+      cell.revealed = true;
+      cellDiv.classList.add('revealed');
+      // If treasure, launch puzzle modal
+      if (cell.hasTreasure) {
+        currentTreasureCell = cell;
+        askPuzzle();
+      } else {
+        // Minor feedback for empty cell
+        cellDiv.style.background = 'none';
+        cellDiv.innerHTML = `<svg width="24" height="24"><circle cx="12" cy="12" r="6" fill="#ccc" opacity="0.38"/></svg>`;
+        cellDiv.style.pointerEvents = 'none';
+      }
+    }
 
-</ul>
-</div></center>
-</div>
-<div class='clear'></div>
-</div><div class='widget HTML' data-version='1' id='HTML9'>
-<h2 class='title'>Trending Topics</h2>
-<div class='widget-content'>
-<div class='widget-content'>
-<button class="button"><a href="https://www.assamcareer.com/2023/09/atmanirbhar-assam.html" title='Atmanirbhar Assam'>Atmanirbhar Assam</a></button>
-<button class="button"><a href="https://www.assamcareer.com/2023/04/adre-question-paper.html" title='ADRE Question Paper'>ADRE Question Paper</a></button>
-<button class="button"><a href="https://www.assamcareer.com/2022/06/assam-direct-recruitment-syllabus.html" title='ADRE Syllabus'>ADRE Syllabus</a></button>
-<button class="button"><a href="https://www.assamcareer.com/2020/08/apsc-question-paper.html" title='APSC Question Paper'>APSC Question Paper</a></button>
-<button class="button"><a href="https://www.assamcareer.com/2020/01/apsc-cce-syllabus.html" title='APSC CCE Syllabus'>APSC CCE Syllabus</a></button>
-<button class="button"><a href="https://www.assamcareer.com/2013/05/upsc-question-paper.html" title='UPSC Question Paper'>UPSC Question Paper</a></button>
-<button class="button"><a href="https://www.assamcareer.com/2022/01/assam-government-holiday-list.html" title='Assam Government Holiday List'>Assam Government Holiday List</a></button>
-<button class="button"><a href="https://www.assamcareer.com/2021/10/mission-basundhara.html" title='Mission Basundhara'>Mission Basundhara</a></button>
-<button class="button"><a href="https://www.assamcareer.com/2022/08/mission-bhumiputra.html" title='Mission Bhumiputra'>Mission Bhumiputra</a></button>
-<button class="button"><a href="https://www.assamcareer.com/2018/09/apsc-interview.html" title='APSC Interview Preparation'>APSC Interview Preparation</a></button>
-<button class="button"><a href="https://www.assamcareer.com/2021/09/employment-exchange-registration.html" title='Employment Exchange Registration'>Employment Exchange Registration</a></button>
-<button class="button"><a href="https://www.assamcareer.com/2021/06/link-pan-with-aadhaar.html" title='Link PAN Card with Aadhaar'>Link PAN Card with Aadhaar</a></button>
-<button class="button"><a href="https://www.assamcareer.com/2020/05/ews-certificate-assam.html" title='EWS Certificate'>EWS Certificate</a></button>
-<button class="button"><a href="https://www.assamcareer.com/2021/09/learner-driving-licence.html" title='Learner Driving Licence'>Learner Driving Licence</a></button>
-<button class="button"><a href="https://www.assamcareer.com/2020/08/assam-orunodoi-scheme.html" title='Orunodoi Scheme'>Orunodoi Scheme</a></button>
-</div>
-</div>
-<div class='clear'></div>
-</div><div class='widget HTML' data-version='1' id='HTML4'>
-<div class='widget-content'>
-<!-- AC-Mid -->
-<ins class="adsbygoogle"
-style="display:inline-block;width:400px;height:400px"
-data-ad-client="ca-pub-9308635674884747"
-data-ad-slot="9536104277"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-</div>
-<div class='clear'></div>
-</div><div class='widget PopularPosts' data-version='1' id='PopularPosts1'>
-<h2>Trending Jobs</h2>
-<div class='widget-content popular-posts'>
-<ul>
-<li>
-<a href='https://www.assamcareer.com/2013/04/hslc-result.html'>Assam HSLC Result 2025 &#8211; Check Class 10th Exam Result & Marksheet Online</a>
-</li>
-<li>
-<a href='https://www.assamcareer.com/2021/07/water-resources-department.html'>Water Resources Department Recruitment 2025 &#8211; 212 AE & JE Vacancy</a>
-</li>
-<li>
-<a href='https://www.assamcareer.com/2021/07/rrb-alp.html'>RRB ALP Recruitment 2025 &#8211; 9970 Assistant Loco Pilot Posts, Online Apply</a>
-</li>
-<li>
-<a href='https://www.assamcareer.com/2021/02/btc-kokrajhar.html'>BTC Kokrajhar Recruitment 2025 &#8211; 569 Grade III & Grade IV Posts, Online Apply</a>
-</li>
-<li>
-<a href='https://www.assamcareer.com/2021/07/esic.html'>ESIC Recruitment 2025 &#8211; 558 Specialist Grade&#8211; II Posts</a>
-</li>
-<li>
-<a href='https://www.assamcareer.com/2021/02/agriculture-department-recruitment.html'>Agriculture Department Recruitment 2025 &#8211; 195 Agricultural Development Officer Posts</a>
-</li>
-<li>
-<a href='https://www.assamcareer.com/2023/04/purabi-dairy-recruitment.html'>Purabi Dairy Recruitment 2025 &#8211; Assistant, Executive & Other Posts</a>
-</li>
-<li>
-<a href='https://www.assamcareer.com/2022/06/indian-army-recruitment.html'>Indian Army Recruitment 2025 &#8211; Apply Online for Agniveer Vacancy</a>
-</li>
-<li>
-<a href='https://www.assamcareer.com/2021/09/dee-lp-up-teacher.html'>DEE LP UP Teacher Recruitment 2025 &#8211; Online Apply for 4500 Posts</a>
-</li>
-<li>
-<a href='https://www.assamcareer.com/2020/10/apsc-cce.html'>APSC CCE Recruitment 2025 &#8211; CCE 2024 for 289 Posts, Online Apply</a>
-</li>
-</ul>
-<div class='clear'></div>
-</div>
-</div></div>
-</div>
-<div class='clr'></div>
-</div>
-</div>
-<div class='ct-wrapper ad-foot-wrapper'>
-<div class='ad-section-wrap section' id='ad-widgets'><div class='widget HTML' data-version='1' id='HTML5'>
-<div class='widget-content'>
-<div style="clear: both; margin: 2px; text-align: center;">
-<center>
-<style>
-.sn_responsive_13 { width: 320px; height: 280px;}
-@media(min-width:400px) {.sn_responsive_13 {width: 100%; height: 280px;}}
-@media(min-width:1100px) {.sn_responsive_13 {width: 100%;height: 280px;}}
-</style>
-<!-- bsnlguide12 -->
-<ins class="adsbygoogle sn_responsive_13"
-style="display:block"
-data-ad-client="ca-pub-9308635674884747"
-data-ad-slot="4196833116"
-data-ad-format="auto"
-data-full-width-responsive="true"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script></center></div>
-</div>
-<div class='clear'></div>
-</div></div>
-</div>
-<div id='footer-wrapper'>
-<div class='ct-wrapper'>
-<div class='footer-wrap section' id='footer-wrap'><div class='widget HTML' data-version='1' id='HTML2'>
-<div class='gototop'><a href='javascript:;' id='back-to-top' rel='nofollow'>Return to top of page</a></div>
-<div class='creds'>Copyright &#169; 2012-&#9854;&#65039; &#183; <a href='http://www.assamcareer.com/' target='_blank' title='AssamCareer.com'><b>AssamCareer.com </b></a>
-</div>
-<div class='clr'></div>
-</div></div>
-</div>
-</div>
-</div>
-<script type='text/javascript'>var lazyanalisis=!1;window.addEventListener("scroll",function(){(0!=document.documentElement.scrollTop&&!1===lazyanalisis||0!=document.body.scrollTop&&!1===lazyanalisis)&&(!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=UA-32405342-2";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(e,a)}(),lazyanalisis=!0)},!0);</script>
-<link as='script' href='https://www.googletagmanager.com/gtag/js?id=G-CEY4Q0WDVP' rel='preload'/>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());gtag('config','G-CEY4Q0WDVP');</script>
-<script>$AdCode=$("#AdCode").html();$("#PostBody br:eq(15)").replaceWith($AdCode);$("#AdCode").remove();</script>
-<script type='text/javascript'>$(document).ready(function(){$("ul.sf-menu").clone().appendTo(".mobile-menu");$(".slide-menu-toggle").on("click",function(){$("body").toggleClass("nav-active")});$("#back-to-top").click(function(){$("html, body").animate({scrollTop:0},1000);return false})});</script>
-<script async='async' data-cfasync='false' defer='defer' type='text/javascript'>var lazyadsense=!1;window.addEventListener("scroll",function(){(0!=document.documentElement.scrollTop&&!1===lazyadsense||0!=document.body.scrollTop&&!1===lazyadsense)&&(!function(){var c=document.createElement("script");c.type="text/javascript",c.async=!0,c.src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(c,b)}(),lazyadsense=!0)},!0);</script>
-<script> (function() { var v = document.getElementsByClassName("youtube-player"); for (var n = 0; n < v.length; n++) { v[n].onclick = function () { var iframe = document.createElement("iframe"); iframe.setAttribute("src", "//www.youtube.com/embed/" + this.dataset.id + "?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&rel="+ this.dataset.related +"&controls="+this.dataset.control+"&showinfo=" + this.dataset.info); iframe.setAttribute("frameborder", "0"); iframe.setAttribute("id", "youtube-iframe"); iframe.setAttribute("style", "width: 100%; height: 100%; position: absolute; top: 0; left: 0;"); if (this.dataset.fullscreen == 1){ iframe.setAttribute("allowfullscreen", ""); } while (this.firstChild) { this.removeChild(this.firstChild); } this.appendChild(iframe); }; } })(); </script>
-<script type='text/javascript'>let img,p,a,s;p=/^.*[\\\/]/g;img=document.querySelectorAll('.post img');img.forEach((el,i,array)=>{s=el.getAttribute('src');a=s.replace(p,'').split('.')[0].replace(/%2B/g,' ');if(!el.getAttribute('alt')){el.setAttribute('alt',a);}
-if(!el.getAttribute('title')){el.setAttribute('title',a);}});</script>
-<script>(function(a){a.fn.lazyload=function(b){var c={threshold:0,failurelimit:0,event:"scroll",effect:"show",container:window};if(b){a.extend(c,b)}var d=this;if("scroll"==c.event){a(c.container).bind("scroll",function(b){var e=0;d.each(function(){if(a.abovethetop(this,c)||a.leftofbegin(this,c)){}else if(!a.belowthefold(this,c)&&!a.rightoffold(this,c)){a(this).trigger("appear")}else{if(e++>c.failurelimit){return false}}});var f=a.grep(d,function(a){return!a.loaded});d=a(f)})}this.each(function(){var b=this;if(undefined==a(b).attr("original")){a(b).attr("original",a(b).attr("src"))}if("scroll"!=c.event||undefined==a(b).attr("src")||c.placeholder==a(b).attr("src")||a.abovethetop(b,c)||a.leftofbegin(b,c)||a.belowthefold(b,c)||a.rightoffold(b,c)){if(c.placeholder){a(b).attr("src",c.placeholder)}else{a(b).removeAttr("src")}b.loaded=false}else{b.loaded=true}a(b).one("appear",function(){if(!this.loaded){a("<img />").bind("load",function(){a(b).hide().attr("src",a(b).attr("original"))[c.effect](c.effectspeed);b.loaded=true}).attr("src",a(b).attr("original"))}});if("scroll"!=c.event){a(b).bind(c.event,function(c){if(!b.loaded){a(b).trigger("appear")}})}});a(c.container).trigger(c.event);return this};a.belowthefold=function(b,c){if(c.container===undefined||c.container===window){var d=a(window).height()+a(window).scrollTop()}else{var d=a(c.container).offset().top+a(c.container).height()}return d<=a(b).offset().top-c.threshold};a.rightoffold=function(b,c){if(c.container===undefined||c.container===window){var d=a(window).width()+a(window).scrollLeft()}else{var d=a(c.container).offset().left+a(c.container).width()}return d<=a(b).offset().left-c.threshold};a.abovethetop=function(b,c){if(c.container===undefined||c.container===window){var d=a(window).scrollTop()}else{var d=a(c.container).offset().top}return d>=a(b).offset().top+c.threshold+a(b).height()};a.leftofbegin=function(b,c){if(c.container===undefined||c.container===window){var d=a(window).scrollLeft()}else{var d=a(c.container).offset().left}return d>=a(b).offset().left+c.threshold+a(b).width()};a.extend(a.expr[":"],{"below-the-fold":"$.belowthefold(a, {threshold : 0, container: window})","above-the-fold":"!$.belowthefold(a, {threshold : 0, container: window})","right-of-fold":"$.rightoffold(a, {threshold : 0, container: window})","left-of-fold":"!$.rightoffold(a, {threshold : 0, container: window})"})})(jQuery);$(function(){$("img").lazyload({placeholder:"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjQu9L2IalAcrGuysHQX5E_Neu9dtaurooKk-iKmORchMXoPsQxuA7h6EP-0Z6izV7lN1io_BHvngZMIKWYFDtqJK88ZxmyFk8WIRUWkCe6iz8EvR9wjVX8qrRs2h9joSD_jizg69PSvim3/s1600/sun.gif",effect:"fadeIn",threshold:"-50"})});</script>
-<style>
-#site-navigation{margin-top:10px!important;}
-.reading-meter {position: fixed;top: 0!important;z-index: 1111;width: 100%;background-color: #f1f1f1;}
-.K2progress {width: 100%;height: 4px;  z-index: 1111;background: #ccc;}
-.progress-bar {height: 4px;background-color:tomato;width: 0%;}
-</style>
-<div class='reading-meter'><div class='K2progress'><div class='progress-bar' id='myBar'></div></div>
-</div>
-<script> 
-window.onscroll = function() {myFunction()};
-function myFunction() {
-  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  var scrolled = (winScroll / height) * 100;
-  document.getElementById("myBar").style.width = scrolled + "%";
-}
-</script>
-<script type='text/javascript'> //<![CDATA[ $(document).ready(function() {   $('img').each(function(){     var $img = $(this);     var filename = $img.attr('src')     $img.attr('title', filename.substring((filename.lastIndexOf('/'))+1, filename.lastIndexOf('.')));     $img.attr('alt', filename.substring((filename.lastIndexOf('/'))+1, filename.lastIndexOf('.')));   }); }); //]]> </script>  
-  
-  
-<!--
-<script type="text/javascript" src="https://www.blogger.com/static/v1/widgets/1799749036-widgets.js"></script>
-<script type='text/javascript'>
-window['__wavt'] = 'AOuZoY7lCqbgUn_4uoueX4awV0Az3PK32g:1744644034369';_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d288716606898579416','//www.assamcareer.com/2021/02/agriculture-department-recruitment.html','288716606898579416');
-_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '288716606898579416', 'title': 'AssamCareer.com \u2013 Jobs In Assam, Guwahati and North East India', 'url': 'https://www.assamcareer.com/2021/02/agriculture-department-recruitment.html', 'canonicalUrl': 'https://www.assamcareer.com/2021/02/agriculture-department-recruitment.html', 'homepageUrl': 'https://www.assamcareer.com/', 'searchUrl': 'https://www.assamcareer.com/search', 'canonicalHomepageUrl': 'https://www.assamcareer.com/', 'blogspotFaviconUrl': 'https://www.assamcareer.com/favicon.ico', 'bloggerUrl': 'https://www.blogger.com', 'hasCustomDomain': true, 'httpsEnabled': true, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': 'UA-32405342-2', 'encoding': 'UTF-8', 'locale': 'en-GB', 'localeUnderscoreDelimited': 'en_gb', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'isDynamicViewsAvailable': true, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22AssamCareer.com \u2013 Jobs In Assam, Guwahati and North East India - Atom\x22 href\x3d\x22https://www.assamcareer.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22AssamCareer.com \u2013 Jobs In Assam, Guwahati and North East India - RSS\x22 href\x3d\x22https://www.assamcareer.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22AssamCareer.com \u2013 Jobs In Assam, Guwahati and North East India - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/288716606898579416/posts/default\x22 /\x3e\n\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22AssamCareer.com \u2013 Jobs In Assam, Guwahati and North East India - Atom\x22 href\x3d\x22https://www.assamcareer.com/feeds/2083085689531978191/comments/default\x22 /\x3e\n', 'meTag': '', 'adsenseClientId': 'ca-pub-9308635674884747', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'adsenseHasAds': false, 'adsenseAutoAds': false, 'boqCommentIframeForm': true, 'loginRedirectParam': '', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/b06af935920febda', 'plusOneApiSrc': 'https://apis.google.com/js/platform.js', 'disableGComments': true, 'interstitialAccepted': false, 'sharing': {'platforms': [{'name': 'Get link', 'key': 'link', 'shareMessage': 'Get link', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Share to Facebook', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'X', 'key': 'twitter', 'shareMessage': 'Share to X', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Share to Pinterest', 'target': 'pinterest'}, {'name': 'Email', 'key': 'email', 'shareMessage': 'Email', 'target': 'email'}], 'disableGooglePlus': true, 'googlePlusShareButtonWidth': 0, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27en_GB\x27};\x3c/script\x3e'}, 'hasCustomJumpLinkMessage': false, 'jumpLinkMessage': 'Read more', 'pageType': 'item', 'postId': '2083085689531978191', 'postImageThumbnailUrl': 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiMvJJ4G3Q8m_wEc9qpI6j575N_b3fjzi9BHyuN30Fbexg6agTG3LZTZsMJYm_yOMF3HsUkPeuOet2tHJZQFRhQuOJ_IHyQqUtzBC4dkleghxOWegohYczpRTxKW1uhosX0QHLMr5TGM8f8GeZ5SMC62LzTcGFTsbZ-_QjQn5zO9ywBb6q1M6TRYREJzfU/s72-c/agriculture-department-recruitment.jpg', 'postImageUrl': 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiMvJJ4G3Q8m_wEc9qpI6j575N_b3fjzi9BHyuN30Fbexg6agTG3LZTZsMJYm_yOMF3HsUkPeuOet2tHJZQFRhQuOJ_IHyQqUtzBC4dkleghxOWegohYczpRTxKW1uhosX0QHLMr5TGM8f8GeZ5SMC62LzTcGFTsbZ-_QjQn5zO9ywBb6q1M6TRYREJzfU/s16000/agriculture-department-recruitment.jpg', 'pageName': 'Agriculture Department Recruitment 2025 \u2013 195 Agricultural Development Officer Posts', 'pageTitle': 'AssamCareer.com \u2013 Jobs In Assam, Guwahati and North East India: Agriculture Department Recruitment 2025 \u2013 195 Agricultural Development Officer Posts', 'metaDescription': 'Agriculture Department Recruitment 2025 for 195 Agricultural Development Officer (ADO) Posts under Agriculture Department, Assam. Apply online here.'}}, {'name': 'features', 'data': {}}, {'name': 'messages', 'data': {'edit': 'Edit', 'linkCopiedToClipboard': 'Link copied to clipboard', 'ok': 'Ok', 'postLink': 'Post link'}}, {'name': 'template', 'data': {'name': 'custom', 'localizedName': 'Custom', 'isResponsive': false, 'isAlternateRendering': false, 'isCustom': true}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'Agriculture Department Recruitment 2025 \u2013 195 Agricultural Development Officer Posts', 'description': 'Agriculture Department Recruitment 2025 for 195 Agricultural Development Officer (ADO) Posts under Agriculture Department, Assam. Apply online here.', 'featuredImage': 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiMvJJ4G3Q8m_wEc9qpI6j575N_b3fjzi9BHyuN30Fbexg6agTG3LZTZsMJYm_yOMF3HsUkPeuOet2tHJZQFRhQuOJ_IHyQqUtzBC4dkleghxOWegohYczpRTxKW1uhosX0QHLMr5TGM8f8GeZ5SMC62LzTcGFTsbZ-_QjQn5zO9ywBb6q1M6TRYREJzfU/s16000/agriculture-department-recruitment.jpg', 'url': 'https://www.assamcareer.com/2021/02/agriculture-department-recruitment.html', 'type': 'item', 'isSingleItem': true, 'isMultipleItems': false, 'isError': false, 'isPage': false, 'isPost': true, 'isHomepage': false, 'isArchive': false, 'isLabelSearch': false, 'postId': 2083085689531978191}}]);
-_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', document.getElementById('Header1'), {}, 'displayModeFull'));
-_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML22', 'header-right-wrap', document.getElementById('HTML22'), {}, 'displayModeFull'));
-_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML99', 'navigation', document.getElementById('HTML99'), {}, 'displayModeFull'));
-_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML8', 'navigation', document.getElementById('HTML8'), {}, 'displayModeFull'));
-_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML3', 'content', document.getElementById('HTML3'), {}, 'displayModeFull'));
-_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'content', document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/1083375951-lbx__en_gb.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/3681588378-lightbox_bundle.css'}, 'displayModeFull'));
-_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML1', 'sidebar', document.getElementById('HTML1'), {}, 'displayModeFull'));
-_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML9', 'sidebar', document.getElementById('HTML9'), {}, 'displayModeFull'));
-_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML4', 'sidebar', document.getElementById('HTML4'), {}, 'displayModeFull'));
-_WidgetManager._RegisterWidget('_PopularPostsView', new _WidgetInfo('PopularPosts1', 'sidebar', document.getElementById('PopularPosts1'), {}, 'displayModeFull'));
-_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML5', 'ad-widgets', document.getElementById('HTML5'), {}, 'displayModeFull'));
-_WidgetManager._RegisterWidget('_HTMLView', new _WidgetInfo('HTML2', 'footer-wrap', document.getElementById('HTML2'), {}, 'displayModeFull'));
-</script>
-</body>--><script>document.write="</body>";</script>
+    function getUnusedPuzzle() {
+      if (puzzlesUsed.length >= PUZZLES.length) puzzlesUsed = [];
+      let availableIndexes = [];
+      for (let i = 0; i < PUZZLES.length; i++) {
+        if (!puzzlesUsed.includes(i)) availableIndexes.push(i);
+      }
+      if (availableIndexes.length === 0) availableIndexes = [...Array(PUZZLES.length).keys()];
+      const idx = availableIndexes[Math.floor(Math.random() * availableIndexes.length)];
+      puzzlesUsed.push(idx);
+      return PUZZLES[idx];
+    }
+
+    function askPuzzle() {
+      currentPuzzle = getUnusedPuzzle();
+      puzzleModal.classList.add('active');
+      puzzleFeedback.textContent = '';
+      puzzleChoices.innerHTML = '';
+      submitAnswerBtn.disabled = false;
+
+      if (currentPuzzle.type === 'mcq') {
+        puzzleQuestion.textContent = currentPuzzle.question;
+        // Shuffle options for fairness
+        let options = [...currentPuzzle.options];
+        shuffle(options);
+        options.forEach(opt => {
+          const btn = document.createElement('button');
+          btn.className = 'puzzle-option';
+          btn.textContent = opt;
+          btn.onclick = () => {
+            Array.from(puzzleChoices.children).forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+          };
+          puzzleChoices.appendChild(btn);
+        });
+        submitAnswerBtn.style.display = '';
+      } else if (currentPuzzle.type === 'input') {
+        puzzleQuestion.textContent = currentPuzzle.question;
+        const input = document.createElement('input');
+        input.className = 'puzzle-input';
+        input.type = 'text';
+        input.autocomplete = 'off';
+        input.placeholder = 'Type your answer';
+        input.onkeydown = e => {
+          if (e.key === 'Enter') checkPuzzleAnswer();
+        };
+        puzzleChoices.appendChild(input);
+        submitAnswerBtn.style.display = '';
+        input.focus();
+      }
+    }
+
+    function checkPuzzleAnswer() {
+      if (!currentPuzzle) return;
+      submitAnswerBtn.disabled = true;
+      let correct = false;
+      let userAnswer = '';
+      if (currentPuzzle.type === 'mcq') {
+        let selected = Array.from(puzzleChoices.children).find(btn => btn.classList.contains('selected'));
+        if (!selected) {
+          puzzleFeedback.textContent = 'Please select an option.';
+          submitAnswerBtn.disabled = false;
+          return;
+        }
+        userAnswer = selected.textContent.trim();
+        correct = userAnswer.toLowerCase() === currentPuzzle.answer.toLowerCase();
+      } else if (currentPuzzle.type === 'input') {
+        let input = puzzleChoices.querySelector('input.puzzle-input');
+        userAnswer = (input.value || '').trim();
+        if (!userAnswer) {
+          puzzleFeedback.textContent = 'Please enter your answer.';
+          submitAnswerBtn.disabled = false;
+          return;
+        }
+        correct = userAnswer.toLowerCase() === (currentPuzzle.answer + "").toLowerCase();
+      }
+      if (correct) {
+        puzzleFeedback.style.color = 'var(--secondary)';
+        puzzleFeedback.textContent = '🎉 Correct! You found the treasure!';
+        setTimeout(() => {
+          revealTreasure();
+          closePuzzle();
+        }, 900);
+      } else {
+        puzzleFeedback.style.color = 'var(--danger)';
+        puzzleFeedback.textContent = '❌ Incorrect. Try again!';
+        setTimeout(() => {
+          puzzleFeedback.textContent = '';
+          submitAnswerBtn.disabled = false;
+        }, 1100);
+      }
+    }
+
+    function revealTreasure() {
+      if (!currentTreasureCell) return;
+      const cellDiv = currentTreasureCell.cell;
+      // Insert SVG + animate
+      cellDiv.innerHTML = `<button class="treasure">${randomTreasureIcon()}</button>`;
+      const treasureBtn = cellDiv.querySelector('.treasure');
+      treasureBtn.disabled = true;
+      treasureBtn.classList.add('treasure-found');
+      cellDiv.style.background = 'none';
+      cellDiv.style.pointerEvents = 'none';
+      score += 10;
+      treasuresLeft--;
+      updateScore();
+      // Animate sparkle
+      setTimeout(() => {
+        treasureBtn.classList.remove('treasure-found');
+      }, 850);
+      // Check victory
+      if (treasuresLeft <= 0) {
+        clearInterval(countdownInterval);
+        endGame(true);
+      }
+    }
+
+    function closePuzzle() {
+      puzzleModal.classList.remove('active');
+      currentTreasureCell = null;
+      currentPuzzle = null;
+    }
+
+    function endGame(victory) {
+      gameActive = false;
+      clearInterval(countdownInterval);
+      showGameOver(victory);
+    }
+
+    function showLeaderboard() {
+      // Sort by score, tie-breaker: faster time is better
+      leaderboard = getLeaderboard();
+      leaderboardList.innerHTML = '';
+      leaderboard.slice(0, 7).forEach((entry, i) => {
+        const item = document.createElement('li');
+        item.innerHTML = `<span>${i+1}. ${entry.name}</span> <span>💰 ${entry.score} <span style="font-size:0.95em;color:var(--danger)">⏰ ${entry.time}s</span></span>`;
+        leaderboardList.appendChild(item);
+      });
+      if (leaderboard.length === 0) {
+        leaderboardList.innerHTML = '<li>No scores yet.</li>';
+      }
+    }
+
+    function getLeaderboard() {
+      return JSON.parse(localStorage.getItem(LEADERBOARD_KEY) || '[]');
+    }
+
+    function updateLeaderboard(name, scoreValue, timeLeft) {
+      let lb = getLeaderboard();
+      lb.push({name, score: scoreValue, time: START_TIME - timeLeft});
+      lb.sort((a, b) => {
+        if (b.score !== a.score) return b.score - a.score;
+        return a.time - b.time; // less time = better
+      });
+      lb = lb.slice(0, 12); // keep top 12
+      localStorage.setItem(LEADERBOARD_KEY, JSON.stringify(lb));
+      showLeaderboard();
+    }
+
+    function showGameOver(victory) {
+      gameOverModal.classList.add('active');
+      if (victory) {
+        gameOverTitle.textContent = "You Win! 🎉";
+        finalScoreDiv.textContent = `Your Score: 💰 ${score} | Time left: ⏰ ${timer}s`;
+        if (score > 0) {
+          scoreForm.style.display = '';
+        } else {
+          scoreForm.style.display = 'none';
+        }
+      } else {
+        gameOverTitle.textContent = "Game Over!";
+        finalScoreDiv.textContent = `Your Score: 💰 ${score}`;
+        if (score > 0) {
+          scoreForm.style.display = '';
+        } else {
+          scoreForm.style.display = 'none';
+        }
+      }
+      playerNameInput.value = '';
+    }
+
+    function hideGameOver() {
+      gameOverModal.classList.remove('active');
+    }
+
+    // --- Events ---
+    submitAnswerBtn.addEventListener('click', checkPuzzleAnswer);
+
+    puzzleModal.addEventListener('click', function(e) {
+      if (e.target === puzzleModal) closePuzzle();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      // Allow Esc to close puzzle modal if open
+      if (e.key === "Escape" && puzzleModal.classList.contains('active')) {
+        closePuzzle();
+      }
+    });
+
+    restartBtn.addEventListener('click', function() {
+      resetGame();
+    });
+
+    playAgainBtn.addEventListener('click', function() {
+      hideGameOver();
+      resetGame();
+    });
+
+    scoreForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      let name = playerNameInput.value.trim().substring(0, 16) || 'Anon';
+      updateLeaderboard(name, score, timer);
+      scoreForm.style.display = 'none';
+      finalScoreDiv.innerHTML += "<br/><span style='color:green'>Score Saved!</span>";
+    });
+
+    // Initialize
+    showLeaderboard();
+    resetGame();
+
+    // Responsive font resize for timer/score
+    function resizeText() {
+      if (window.innerWidth < 340) {
+        timerSpan.style.fontSize = '1.1rem';
+        scoreSpan.style.fontSize = '1.1rem';
+      } else {
+        timerSpan.style.fontSize = '';
+        scoreSpan.style.fontSize = '';
+      }
+    }
+    window.addEventListener('resize', resizeText);
+    resizeText();
+  </script>
+</body>
 </html>
