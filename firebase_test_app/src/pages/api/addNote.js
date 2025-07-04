@@ -6,11 +6,12 @@ export default async function handler(req, res){
         return res.status(405).json({message: "Method Not Allowed"})
     }
 
-    const {note} = req.body;
+    const {note, uid} = req.body;
 
     try {
         await addDoc(collection(db, 'notes'), {
             note: note,
+            uid: uid,
             createdAt: new Date()
         })
         res.status(200).json({ message: "Note Added"})
