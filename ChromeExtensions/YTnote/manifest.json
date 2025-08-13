@@ -1,0 +1,20 @@
+{
+    "manifest_version": 3,
+    "name": "YouTube Note-Taker",
+    "version": "1.0",
+    "description": "Take timestamped notes while watching YouTube videos.",
+    "permissions": ["storage", "activeTab", "scripting"],
+    "content_scripts": [
+    {
+      "matches": ["*://www.youtube.com/watch*"],
+      "js": ["content.js"],
+      "css": ["sidebar.css"]
+    }
+    ],
+    "web_accessible_resources": [
+    {
+      "resources": ["sidebar.html"],
+      "matches": ["*://www.youtube.com/*"]
+    }
+    ]
+}

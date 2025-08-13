@@ -23,18 +23,18 @@ app.use(limiter);
 app.use(express.json());
 
 // //Connect to mongoose
-mongoose
-  .connect("mongodb://0.0.0.0:27017/jobs_and_tests")
-  .then(() => console.log("Database Connected"))
-  .catch((error) => console.log(error));
+// mongoose
+//   .connect("mongodb://0.0.0.0:27017/jobs_and_tests")
+//   .then(() => console.log("Database Connected"))
+//   .catch((error) => console.log(error));
 
 //Cloud Database
-// const db = process.env.MONGO_URI;
+const db = process.env.MONGO_URI;
 
-// mongoose
-//   .connect(db)
-//   .then(() => console.log("DB connected"))
-//   .catch((err) => console.log(err));
+mongoose
+  .connect(db)
+  .then(() => console.log("DB connected"))
+  .catch((err) => console.log(err));
 
 app.get("/", (req, res) => {
     res.send("Holiday API is running")
