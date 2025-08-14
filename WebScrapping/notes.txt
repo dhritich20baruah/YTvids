@@ -1,83 +1,247 @@
 {
-    "_id": "67b04d5436b3809160705ee7",
-    "country": "1 January",
-    "date": "Nýársdagur",
-    "name": "New Year's Day",
-    "type": "public",
-    "__v": 0
-  },
+    "success": true,
+    "countries": [
+        "Abkhazia",
+        "Afghanistan",
+        "Albania",
+        "Algeria",
+        "Andorra",
+        "Angola",
+        "Anguilla",
+        "Antigua and Barbuda",
+        "Antigua_and_Barbuda",
+        "Argentina",
+        "Armenia",
+        "Aruba",
+        "Australia",
+        "Austria",
+        "Azerbaijan",
+        "Bahamas",
+        "Bahrain",
+        "Bangladesh", //NA
+        "Barbados",
+        "Belarus",
+        "Belgium",
+        "Belize",
+        "Benin",
+        "Bermuda",
+        "Bhutan", //NA
+        "Bolivia",
+        "Bonaire", //na
+        "Bosnia_and_Herzegovina",
+        "Botswana",
+        "Brazil",
+        "British_Virgin_Islands",
+        "Brunei",
+        "Bulgaria",
+        "Burkina_Faso",
+        "Burundi",
+        "Cambodia",
+        "Cameroon",
+        "Canada",
+        "Cape_Verde",
+        "Cayman_Islands",
+        "Central_African_Republic",
+        "Chad",
+        "Chile",
+        "China",
+        "Christmas_Island", //na
+        "Colombia",
+        "Comoros",
+        "Costa_Rica",
+        "Croatia",
+        "Cuba",
+        "Curacao",
+        "Cyprus",
+        "Czech_Republic",
+        "Democratic_Republic_of_Congo",
+        "Denmark",
+        "Djibouti",
+        "Dominica",
+        "Dominican_Republic",
+        "East_Timor",
+        "Ecuador",
+        "Egypt",
+        "El_Salvador",
+        "Equatorial_Guinea",
+        "Eritrea",
+        "Estonia",
+        "Eswatini",
+        "Ethiopia",
+        "Falkland_Islands",
+        "Faroe_Islands",
+        "Fiji",
+        "Finland",
+        "France",
+        "French_Guiana",
+        "French_Polynesia",
+        "Gabon",
+        "Gambia",
+        "Georgia",
+        "Germany",
+        "Ghana",
+        "Gibraltar",
+        "Greece",
+        "Greenland",
+        "Grenada",
+        "Guadeloupe",
+        "Guam",
+        "Guatemala",
+        "Guernsey",
+        "Guinea",
+        "Guinea-Bissau",
+        "Guyana",
+        "Haiti",
+        "Honduras",
+        "Hong_Kong",
+        "Hungary",
+        "Iceland",
+        "India",
+        "Indonesia",
+        "Iran",
+        "Iraq",
+        "Ireland",
+        "Isle_of_Man",
+        "Israel",
+        "Italy",
+        "Ivory_Coast",
+        "Jamaica",
+        "Japan",
+        "Jersey",
+        "Jordan",
+        "Kazakhstan",
+        "Kenya",
+        "Kiribati",
+        "Kosovo",
+        "Kuwait",
+        "Kyrgyzstan",
+        "Laos",
+        "Latvia",
+        "Lebanon",
+        "Lesotho",
+        "Liberia",
+        "Libya",
+        "Liechtenstein",
+        "Lithuania",
+        "Luxembourg",
+        "Macau",
+        "Madagascar",
+        "Malawi",
+        "Malaysia",
+        "Maldives",
+        "Mali",
+        "Malta",
+        "Marshall_Islands",
+        "Martinique",
+        "Mauritania",
+        "Mauritius",
+        "Mexico",
+        "Micronesia",
+        "Moldova",
+        "Monaco",
+        "Mongolia",
+        "Montenegro",
+        "Montserrat",
+        "Morocco",
+        "Mozambique",
+        "Myanmar",
+        "Namibia",
+        "Nauru",
+        "Nepal",
+        "Netherlands",
+        "New_Caledonia",
+        "New_Zealand",
+        "Nicaragua",
+        "Niger",
+        "Nigeria",
+        "Niue",
+        "Norfolk_Island",
+        "North_Korea",
+        "North_Macedonia",
+        "Northern_Cyprus",
+        "Norway",
+        "Oman",
+        "Pakistan",
+        "Palau",
+        "Panama",
+        "Papua New Guinea",
+        "Paraguay",
+        "Peru",
+        "Philippines",
+        "Poland",
+        "Portugal",
+        "Puerto_Rico",
+        "Qatar",
+        "Republic_of_the_Congo",
+        "Reunion",
+        "Romania",
+        "Russia",
+        "Rwanda",
+        "Saba",
+        "Saint Vincent and the Grenadines",
+        "Saint_Barthelemy",
+        "Saint_Helena",
+        "Saint_Kitts_and_Nevis",
+        "Saint_Lucia",
+        "Saint_Martin",
+        "Saint_Vincent_and_the_Grenadines",
+        "Samoa",
+        "San_Marino",
+        "Saudi_Arabia",
+        "Senegal",
+        "Serbia",
+        "Seychelles",
+        "Sierra_Leone",
+        "Singapore",
+        "Sint_Eustatius",
+        "Sint_Maarten",
+        "Slovakia",
+        "Slovenia",
+        "Solomon_Islands",
+        "Somalia",
+        "South_Africa",
+        "South_Korea",
+        "South_Ossetia",
+        "South_Sudan",
+        "Spain",
+        "Sri_Lanka",
+        "Sudan",
+        "Suriname",
+        "Sweden",
+        "Switzerland",
+        "Syria",
+        "São_Tomé_and_Príncipe",
+        "Taiwan",
+        "Tajikistan",
+        "Tanzania",
+        "Thailand",
+        "Togo",
+        "Tonga",
+        "Transnistria",
+        "Trinidad_and_Tobago",
+        "Tunisia",
+        "Turkey",
+        "Turkmenistan",
+        "Turks_and_Caicos_Islands",
+        "Tuvalu",
+        "USA",
+        "Uganda",
+        "Ukraine",
+        "United_Arab_Emirates",
+        "United_Kingdom",
+        "United_States_Virgin_Islands",
+        "Uruguay",
+        "Uzbekistan",
+        "Vanuatu",
+        "Vatican_City",
+        "Venezuela",
+        "Vietnam",
+        "Wallis_and_Futuna",
+        "Yemen",
+        "Zambia",
+        "Zimbabwe",
+        "the_Cocos_(Keeling)_Islands",
+        "the_Cook_Islands"
+    ]
+}
 
-### **Pricing & Monetization Strategy for Your Holiday API on RapidAPI**  
-
-To attract different types of users, you should offer multiple pricing plans. Here’s a good structure:  
-
----
-
-## **💰 Pricing Tiers**  
-
-### **1. Free Plan (For Basic Users & Trial)**
-- **Requests per month:** 1,000  
-- **Rate limit:** 10 requests per minute  
-- **Access to:**  
-  - `/holidays/country/{countryCode}/year/{year}`  
-  - `/holidays/countries` (List of supported countries)  
-  - `/holidays/public/country/{countryCode}`  
-- **Purpose:** Get free users to test your API and upgrade later.  
-
----
-
-### **2. Basic Plan ($5 - $10/month)**
-- **Requests per month:** 10,000  
-- **Rate limit:** 50 requests per minute  
-- **Access to:**  
-  - Everything in the Free Plan  
-  - `/holidays/search?name={holidayName}`  
-  - `/holidays/upcoming`  
-  - `/holidays/business/country/{countryCode}`  
-- **Purpose:** Small developers, personal apps, or hobby projects.  
-
----
-
-### **3. Pro Plan ($20 - $50/month)**
-- **Requests per month:** 100,000  
-- **Rate limit:** 200 requests per minute  
-- **Access to:**  
-  - Everything in the Basic Plan  
-  - `/holidays/multi` (Fetch multiple countries in one request)  
-  - `/holidays/alternative-calendar/{calendarType}/country/{countryCode}`  
-  - `/holidays/countdown/{holidayName}/country/{countryCode}`  
-- **Purpose:** Startups, mid-size applications, and serious developers.  
-
----
-
-### **4. Enterprise Plan (Custom Pricing)**
-- **Requests per month:** Unlimited  
-- **Rate limit:** 1,000 requests per minute  
-- **Access to:**  
-  - Everything in the Pro Plan  
-  - Dedicated support & SLAs  
-  - Custom API modifications upon request  
-- **Purpose:** Large businesses, government agencies, travel apps, and financial companies.  
-
----
-
-## **📄 Documentation Strategy (For RapidAPI & Developers)**  
-
-1. **Clear Getting Started Guide**  
-   - How to sign up, get an API key, and make the first request.  
-   - Example cURL, JavaScript, Python, and Node.js requests.  
-
-2. **Detailed Endpoints Explanation**  
-   - Include request parameters and expected responses.  
-   - Example responses in JSON format.  
-
-3. **Error Handling & Rate Limits**  
-   - Explain common errors (`429 Too Many Requests`, `404 Not Found`, etc.).  
-
-4. **Use Cases & Tutorials**  
-   - "How to use this API for a travel website"  
-   - "Fetching business holidays for stock trading apps"  
-
----
-
-Would you like me to help structure the API documentation for you? 🚀

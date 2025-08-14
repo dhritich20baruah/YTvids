@@ -21,7 +21,7 @@ const monthMap = {
 async function scrapeHolidays(country) {
   try {
     // const url = `https://en.wikipedia.org/wiki/Public_holidays_in_${country}`;
-    const url = "https://www.timeanddate.com/holidays/norfolk-island/2025";
+    const url = "https://www.timeanddate.com/holidays/comores/2026";
     const { data } = await axios.get(url);
     const $ = cheerio.load(data);
 
@@ -97,7 +97,7 @@ async function scrapeHolidays(country) {
       // Format Date as "January 1"
       const formattedDate = `${fullMonth} ${day}`;
 
-      holidays.push({ country, date: formattedDate, name, type: type });
+      holidays.push({ country, date: formattedDate, name, type: type, year: 2026 });
     });
 
     if (holidays.length === 0) {
