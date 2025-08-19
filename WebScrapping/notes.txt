@@ -66,7 +66,7 @@
         "Equatorial_Guinea",
         "Eritrea",
         "Estonia",
-        "Eswatini",
+        "Eswatini", //na
         "Ethiopia",
         "Falkland_Islands",
         "Faroe_Islands",
@@ -91,20 +91,20 @@
         "Guinea",
         "Guinea-Bissau",
         "Guyana",
-        "Haiti",
         "Honduras",
         "Hong_Kong",
         "Hungary",
         "Iceland",
         "India",
-        "Indonesia",
+        "Indonesia",//
         "Iran",
         "Iraq",
         "Ireland",
-        "Isle_of_Man",
         "Israel",
         "Italy",
         "Ivory_Coast",
+        "Isle_of_Man",
+        "Haiti", // upto here
         "Jamaica",
         "Japan",
         "Jersey",
@@ -123,7 +123,7 @@
         "Libya",
         "Liechtenstein",
         "Lithuania",
-        "Luxembourg",
+        "Luxembourg",//uptohere
         "Macau",
         "Madagascar",
         "Malawi",
@@ -144,24 +144,24 @@
         "Montserrat",
         "Morocco",
         "Mozambique",
-        "Myanmar",
+        "Myanmar", //NA
         "Namibia",
         "Nauru",
-        "Nepal",
+        "Nepal",//na
         "Netherlands",
         "New_Caledonia",
         "New_Zealand",
         "Nicaragua",
         "Niger",
         "Nigeria",
-        "Niue",
+        "Niue", //
         "Norfolk_Island",
         "North_Korea",
         "North_Macedonia",
-        "Northern_Cyprus",
+        "Northern_Cyprus",//na
         "Norway",
         "Oman",
-        "Pakistan",
+        "Pakistan",//na
         "Palau",
         "Panama",
         "Papua New Guinea",
@@ -170,15 +170,14 @@
         "Philippines",
         "Poland",
         "Portugal",
-        "Puerto_Rico",
+        "Puerto_Rico", //up to here
         "Qatar",
         "Republic_of_the_Congo",
         "Reunion",
         "Romania",
         "Russia",
         "Rwanda",
-        "Saba",
-        "Saint Vincent and the Grenadines",
+        "Saba", //na
         "Saint_Barthelemy",
         "Saint_Helena",
         "Saint_Kitts_and_Nevis",
@@ -193,7 +192,7 @@
         "Seychelles",
         "Sierra_Leone",
         "Singapore",
-        "Sint_Eustatius",
+        "Sint_Eustatius",//na
         "Sint_Maarten",
         "Slovakia",
         "Slovenia",
@@ -201,7 +200,7 @@
         "Somalia",
         "South_Africa",
         "South_Korea",
-        "South_Ossetia",
+        "South_Ossetia",//na
         "South_Sudan",
         "Spain",
         "Sri_Lanka",
@@ -217,7 +216,7 @@
         "Thailand",
         "Togo",
         "Tonga",
-        "Transnistria",
+        "Transnistria",//na
         "Trinidad_and_Tobago",
         "Tunisia",
         "Turkey",
@@ -240,7 +239,7 @@
         "Yemen",
         "Zambia",
         "Zimbabwe",
-        "the_Cocos_(Keeling)_Islands",
+        "the_Cocos_(Keeling)_Islands",//na
         "the_Cook_Islands"
     ]
 }
