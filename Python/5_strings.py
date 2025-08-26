@@ -52,3 +52,42 @@ print(b[3:])
 
 #Negative indexing - Negative indexes to start the slice from the end of the string. str[from:to(but not included)]
 print(b[-5:-2])
+
+#The upper method returns the string in upper case
+x = "python"
+print(x.upper())
+
+#The lower method returns the string in lower case
+y = "LANGUAGE"
+print(y.lower())
+
+#Remove whitespace- removes any whitespace from the beginning or the end:
+z = " Hello, World ! "
+print(z.strip())
+
+#Replace method replaces a string with another string
+v = "javascript"
+print(v.replace("s", "t"))
+
+#split() method splits the string into substrings if it finds instances of the separator
+print(z.split(","))
+
+#Concatenate and combine two strings
+a = "Hello"
+b = "World"
+c = a + b
+print(c)
+
+#Format string f-string
+age = 36
+txt = f"My name is John, I am {age}"
+print(txt)
+
+#Modifier: A modifier is included by adding a colon : followed by a legal formatting type like, .2f which means fixed point number with 2 decimals
+price = 59
+txt = f"The price is {price: .2f}"
+print(txt)
+
+#A place holder can contain python code like math
+txt = f"The price is {20 * 59} dollars"
+print(txt)
