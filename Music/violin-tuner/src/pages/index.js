@@ -25,7 +25,61 @@ const getClosestNote = (frequency) => {
   return closest;
 };
 
-export default function App() {
+// AutoCorrelation function to find the fundamental frequency
+// This is a more robust method than simple peak detection.
+const autoCorrelate = (buffer, sampleRate) => {
+  const SIZE = buffer.length;
+  const rms = Math.sqrt(buffer.reduce((sum, val) => sum + val * val, 0) / SIZE);
+
+  // If the volume is too low, don't attempt to find a pitch
+  if (rms < 0.01) {
+    return -1;
+  }
+
+  const r1 = new Array(SIZE);
+  let d = 0;
+  for (let i = 0; i < SIZE; i++) {
+    r1[i] = 0;
+  }
+
+  // Calculate the autocorrelation values
+  for (let i = 0; i < SIZE; i++) {
+    for (let j = 0; j < SIZE - i; j++) {
+      r1[i] += buffer[j] * buffer[j + i];
+    }
+  }
+
+  // Find the first peak
+  let maxval = -1;
+  let maxpos = -1;
+
+  for (let i = 1; i < SIZE; i++) {
+    if (r1[i] > maxval) {
+      maxval = r1[i];
+      maxpos = i;
+    }
+  }
+
+  // Find the second peak
+  let T0 = 0;
+  for (let i = 1; i < maxpos; i++) {
+    if (r1[i] > r1[i - 1] && r1[i] > r1[i + 1]) {
+      T0 = i;
+      break;
+    }
+  }
+
+  // Parabolic interpolation for a more precise frequency
+  let x1 = r1[T0 - 1], x2 = r1[T0], x3 = r1[T0 + 1];
+  let a = (x1 + x3 - 2 * x2) / 2;
+  let b = (x3 - x1) / 2;
+  let correctedT0 = T0 - b / (2 * a);
+
+  return sampleRate / correctedT0;
+};
+
+// Main App component (now the default export for the page)
+export default function Home() { // Renamed to Home as is common for pages/index.js
   const [isListening, setIsListening] = useState(false);
   const [detectedFrequency, setDetectedFrequency] = useState(0);
   const [closestNote, setClosestNote] = useState(null);
@@ -38,14 +92,16 @@ export default function App() {
   const animationFrameIdRef = useRef(null);
 
   useEffect(() => {
-    // Only attempt to access browser APIs if window is defined (i.e., on the client-side)
-    if (typeof window === 'undefined') {
-      return; // Do nothing during server-side rendering
+    // This effect runs on component mount and when isListening changes.
+    // Ensure all browser-specific logic is within this block.
+    if (typeof window === 'undefined' || !navigator.mediaDevices) {
+      return;
     }
 
     const startListening = async () => {
       setError('');
       try {
+        // Request microphone access
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
         if (!audioContextRef.current) {
@@ -56,28 +112,19 @@ export default function App() {
         analyserRef.current.fftSize = 2048;
         const bufferLength = analyserRef.current.frequencyBinCount;
         const dataArray = new Float32Array(bufferLength);
+        const floatTimeData = new Float32Array(analyserRef.current.fftSize);
 
         mediaStreamSourceRef.current = audioContextRef.current.createMediaStreamSource(stream);
         mediaStreamSourceRef.current.connect(analyserRef.current);
 
         const analyzeAudio = () => {
-          analyserRef.current.getFloatFrequencyData(dataArray);
+          // Get time-domain data for the autocorrelation
+          analyserRef.current.getFloatTimeDomainData(floatTimeData);
+          
+          const frequency = autoCorrelate(floatTimeData, audioContextRef.current.sampleRate);
 
-          let maxVolume = -Infinity;
-          let maxFrequencyIndex = -1;
-
-          for (let i = 0; i < bufferLength; i++) {
-            if (dataArray[i] > maxVolume && dataArray[i] !== -Infinity) {
-              maxVolume = dataArray[i];
-              maxFrequencyIndex = i;
-            }
-          }
-
-          let frequency = 0;
-          if (maxFrequencyIndex !== -1) {
-            frequency = (maxFrequencyIndex * audioContextRef.current.sampleRate) / analyserRef.current.fftSize;
+          if (frequency !== -1) {
             setDetectedFrequency(frequency);
-
             const closest = getClosestNote(frequency);
             if (closest) {
               setClosestNote(closest);
@@ -101,7 +148,7 @@ export default function App() {
 
       } catch (err) {
         console.error('Error accessing microphone:', err);
-        setError('Failed to access microphone. Please ensure permissions are granted.');
+        setError('Failed to access microphone. Please ensure permissions are granted. If you have denied access, you may need to go to your browser settings to enable it.');
         setIsListening(false);
       }
     };
@@ -127,6 +174,8 @@ export default function App() {
 
     if (isListening) {
       startListening();
+    } else {
+      stopListening();
     }
 
     return () => {
@@ -138,13 +187,13 @@ export default function App() {
   const targetFrequency = targetNote ? targetNote.frequency : 0;
 
   const feedbackColorClass = deviation > 10 ? 'text-red-500' :
-    deviation < -10 ? 'text-blue-500' :
-      closestNote && Math.abs(deviation) <= 10 ? 'text-green-500' :
-        'text-gray-400';
+                             deviation < -10 ? 'text-blue-500' :
+                             closestNote && Math.abs(deviation) <= 10 ? 'text-green-500' :
+                             'text-gray-400';
   const feedbackText = deviation > 10 ? 'Sharp ⬆️' :
-    deviation < -10 ? 'Flat ⬇️' :
-      closestNote && Math.abs(deviation) <= 10 ? 'In Tune ✅' :
-        '';
+                       deviation < -10 ? 'Flat ⬇️' :
+                       closestNote && Math.abs(deviation) <= 10 ? 'In Tune ✅' :
+                       '';
 
   const needleRotation = Math.max(-90, Math.min(90, deviation * 1.8));
 
@@ -172,7 +221,6 @@ export default function App() {
           value={currentString}
           onChange={(e) => setCurrentString(e.target.value)}
           className="p-3 rounded-full shadow-lg bg-gray-700 text-white text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-300"
-          disabled={!isListening}
         >
           {Object.values(VIOLIN_TUNING).map((note) => (
             <option key={note.name} value={note.string}>
@@ -193,7 +241,7 @@ export default function App() {
             style={{ transform: `translateX(-50%) rotate(${needleRotation}deg)` }}
           ></div>
         </div>
-
+        
         <div className="text-center mb-6">
           <p className="text-xl text-gray-400">Target:</p>
           <p className="text-6xl font-bold text-indigo-300 mb-2">{targetNote?.name || 'N/A'}</p>
@@ -220,5 +268,4 @@ export default function App() {
       </p>
     </div>
   );
-
 }
