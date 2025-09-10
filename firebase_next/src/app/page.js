@@ -9,12 +9,12 @@ export default function Home() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!prompt.trim()) return;
+    if (!prompt.trim()) return; //This line performs a basic validation check. It uses the .trim() method to remove any leading or trailing whitespace from the prompt state. 
 
-    const userMessage = { text: prompt, sender: 'user' };
-    setMessages((prev) => [...prev, userMessage]);
+    const userMessage = { text: prompt, sender: 'user' }; //This line creates a new JavaScript object to represent the user's message. It stores the message text from the prompt state and a sender property to identify who sent it.
+    setMessages((prev) => [...prev, userMessage]); //This line updates the messages state. It uses a function-based update, where prev is a reference to the previous state. It creates a new array by spreading the prev array (...prev) and then adding the new userMessage to the end. 
     setPrompt('');
-    setLoading(true);
+    setLoading(true); 
 
     try {
       const response = await fetch('/api/chat', {
@@ -29,9 +29,9 @@ export default function Home() {
         throw new Error('Network response was not ok');
       }
 
-      const data = await response.json();
-      const botMessage = { text: data.text, sender: 'bot' };
-      setMessages((prev) => [...prev, botMessage]);
+      const data = await response.json();//This line parses the JSON response from the server into a JavaScript object.
+      const botMessage = { text: data.text, sender: 'bot' }; //This creates a new message object for the bot's response. It gets the text from the data object and sets the sender to 'bot'.
+      setMessages((prev) => [...prev, botMessage]); //This updates the messages state with the new bot message, similar to how the user's message was added.
     } catch (error) {
       console.error('Fetch error:', error);
       setMessages((prev) => [...prev, { text: 'Sorry, something went wrong.', sender: 'bot' }]);
