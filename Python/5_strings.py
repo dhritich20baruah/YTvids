@@ -91,3 +91,14 @@ print(txt)
 #A place holder can contain python code like math
 txt = f"The price is {20 * 59} dollars"
 print(txt)
+
+# Escape character
+quote = "\"As we grow old we come to know the limits of our abilities.\" \t \n - Henry Ford."
+print(quote)
+
+#String Methods
+string = "hello! How Are you doing?"
+print(string.capitalize())
+print(string.casefold())
+print(string.count("hello"))
+
