@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useState, useCallback, memo } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import { useContext } from "react";
 import { ThemeContext } from "./ThemeContext";
 import { AuthContext } from "./AuthContext";
+
+const Child = memo(({onClick}) => {
+  console.log("Child rendered!!");
+  return <button onClick={onClick}>Increment</button>
+})
 
 function App() {
   const [count, setCount] = useState(0);
@@ -15,6 +20,10 @@ function App() {
     const dummyUser = { name: "Dhritiman", email: "dhriti@emai.com" };
     login(dummyUser);
   };
+
+  const handleIncrement = useCallback(() => {
+    setCount((c) => c + 1);
+  }, [])
 
   return (
     <>
@@ -64,6 +73,7 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <Child onClick={handleIncrement}/>
     </>
   );
 }
