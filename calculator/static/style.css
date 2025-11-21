@@ -1,0 +1,53 @@
+body {
+  font-family: "Gotham Rounded", sans-serif;
+  background-color: rgb(111, 141, 221);
+  font-weight: bold;
+}
+
+#calc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#screen {
+  background: black;
+  height: 3em;
+  width: 13.5em;
+  color: white;
+  border: none;
+  padding: 0.25em;
+}
+
+table {
+  width: 12em;
+}
+
+td {
+  margin: 3em;
+  text-align: center;
+  height: 3em;
+  width: 3em;
+  background-color: rgb(207, 207, 224);
+}
+
+td:hover {
+  cursor: pointer;
+  background-color: rgb(91, 91, 185);
+  color: white;
+}
+
+button {
+  border: none;
+  text-align: center;
+  height: 3em;
+  width: 3em;
+  background-color: rgb(207, 207, 224);
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: rgb(91, 91, 185);
+  color: white;
+}
