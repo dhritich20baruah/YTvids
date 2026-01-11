@@ -1,6 +1,6 @@
 body {
   font-family: "Gotham Rounded", sans-serif;
-  background-color: rgb(111, 141, 221);
+  background-color: rgb(111, 141, 231);
   font-weight: bold;
 }
 
@@ -50,4 +50,12 @@ button:hover {
   cursor: pointer;
   background-color: rgb(91, 91, 185);
   color: white;
+}
+
+#form{
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  width: 50%;
 }
